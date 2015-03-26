@@ -24,7 +24,7 @@
     <fontname>Dialog</fontname>
     <fontsize>12</fontsize>
     <defaultstereotypeview>0</defaultstereotypeview>
-    <activediagram>RP_KernmodellSiedlungsstruktur</activediagram>
+    <activediagram>RP_KernmodellFreiraumstruktur</activediagram>
   </settings>
   <searchpath href="PROJECT_DIR" />
   <members>
