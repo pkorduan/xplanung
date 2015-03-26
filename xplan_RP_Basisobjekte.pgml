@@ -2838,7 +2838,7 @@
     </group>
   </group>
   <group name="Fig14"
-       description="org.argouml.uml.diagram.static_structure.ui.FigClass[1176, 24, 286, 172]pathVisible=false;stereotypeView=0;operationsVisible=false;attributesVisible=true;"
+       description="org.argouml.uml.diagram.static_structure.ui.FigClass[1184, 32, 286, 172]pathVisible=false;stereotypeView=0;operationsVisible=false;attributesVisible=true;"
        href="-64--88--78-24-6a4274cb:14c2d39fb78:-8000:0000000000000F61"
        fill="1"
        fillcolor="255 200 0"
@@ -2849,8 +2849,8 @@
     </private>
     
     <rectangle name="Fig14.0"
-      x="1176"
-      y="24"
+      x="1184"
+      y="32"
       width="286"
       height="172"
       fill="1"
@@ -2859,8 +2859,8 @@
       strokecolor="black"
     />
     <text name="Fig14.1"
-      x="1177"
-      y="25"
+      x="1185"
+      y="33"
       width="284"
       height="43"
       fill="0"
@@ -2875,7 +2875,7 @@
       justification="Center"
     >+ RP_Art</text>
     <group name="Fig14.2"
-         description="org.argouml.uml.diagram.ui.FigStereotypesGroup[1177, 25, 284, 20]"
+         description="org.argouml.uml.diagram.ui.FigStereotypesGroup[1185, 33, 284, 20]"
          href="-64--88--78-24-6a4274cb:14c2d39fb78:-8000:0000000000000F61"
          fill="0"
          fillcolor="255 200 0"
@@ -2886,8 +2886,8 @@
       </private>
       
       <rectangle name="Fig14.2.0"
-        x="1177"
-        y="25"
+        x="1185"
+        y="33"
         width="284"
         height="20"
         fill="0"
@@ -2896,8 +2896,8 @@
         strokecolor="black"
       />
       <text name="Fig14.2.1"
-        x="1177"
-        y="25"
+        x="1185"
+        y="33"
         width="284"
         height="18"
         fill="0"
@@ -2913,8 +2913,8 @@
       >&lt;&lt;Enumeration&gt;&gt;</text>
     </group>
     <rectangle name="Fig14.3"
-      x="1176"
-      y="68"
+      x="1184"
+      y="76"
       width="286"
       height="1"
       fill="1"
@@ -2923,7 +2923,7 @@
       strokecolor="black"
     />
     <group name="Fig14.4"
-         description="org.argouml.uml.diagram.ui.FigAttributesCompartment[1177, 69, 284, 127]"
+         description="org.argouml.uml.diagram.ui.FigAttributesCompartment[1185, 77, 284, 127]"
          href="-64--88--78-24-6a4274cb:14c2d39fb78:-8000:0000000000000F61"
          fill="0"
          fillcolor="255 200 0"
@@ -2934,8 +2934,8 @@
       </private>
       
       <rectangle name="Fig14.4.0"
-        x="1177"
-        y="69"
+        x="1185"
+        y="77"
         width="284"
         height="127"
         fill="0"
@@ -2944,8 +2944,8 @@
         strokecolor="black"
       />
       <text name="Fig14.4.1"
-        x="1177"
-        y="69"
+        x="1185"
+        y="77"
         width="284"
         height="17"
         fill="0"
@@ -2960,8 +2960,8 @@
         justification="Left"
       >+Regionalplan = 1000</text>
       <text name="Fig14.4.2"
-        x="1177"
-        y="86"
+        x="1185"
+        y="94"
         width="284"
         height="17"
         fill="0"
@@ -2976,8 +2976,8 @@
         justification="Left"
       >+SachlicherTeilplan = 2000</text>
       <text name="Fig14.4.3"
-        x="1177"
-        y="103"
+        x="1185"
+        y="111"
         width="284"
         height="17"
         fill="0"
@@ -2992,8 +2992,8 @@
         justification="Left"
       >+Braunkohlenplan = 3000</text>
       <text name="Fig14.4.4"
-        x="1177"
-        y="120"
+        x="1185"
+        y="128"
         width="284"
         height="17"
         fill="0"
@@ -3008,8 +3008,8 @@
         justification="Left"
       >+LandesweiterRaumordnungsplan = 4000</text>
       <text name="Fig14.4.5"
-        x="1177"
-        y="137"
+        x="1185"
+        y="145"
         width="284"
         height="17"
         fill="0"
@@ -3024,8 +3024,8 @@
         justification="Left"
       >+AWZPlan = 5000</text>
       <text name="Fig14.4.6"
-        x="1177"
-        y="154"
+        x="1185"
+        y="162"
         width="284"
         height="17"
         fill="0"
@@ -3040,8 +3040,8 @@
         justification="Left"
       >+StandortkonzeptBund = 5100</text>
       <text name="Fig14.4.7"
-        x="1177"
-        y="171"
+        x="1185"
+        y="179"
         width="284"
         height="23"
         fill="0"
@@ -3057,8 +3057,8 @@
       >+Sonstiges = 9999</text>
     </group>
     <rectangle name="Fig14.5"
-      x="1176"
-      y="195"
+      x="1184"
+      y="203"
       width="242"
       height="1"
       fill="1"
@@ -3068,7 +3068,7 @@
       visibility="0"
     />
     <group name="Fig14.6"
-         description="org.argouml.uml.diagram.ui.FigOperationsCompartment[1177, 196, 240, 21]"
+         description="org.argouml.uml.diagram.ui.FigOperationsCompartment[1185, 204, 240, 21]"
          href="-64--88--78-24-6a4274cb:14c2d39fb78:-8000:0000000000000F61"
          fill="0"
          fillcolor="255 200 0"
@@ -3080,8 +3080,8 @@
       </private>
       
       <rectangle name="Fig14.6.0"
-        x="1177"
-        y="196"
+        x="1185"
+        y="204"
         width="240"
         height="21"
         fill="0"
@@ -3707,8 +3707,8 @@
                         classname="org.argouml.uml.diagram.ui.PathItemPlacement"
                         figclassname="org.argouml.uml.diagram.ui.FigAssociationEndAnnotation"
                         ownerhref="-64--88--78-24-77d10389:14bbaf8e033:-8000:00000000000009E5"
-                        angle="135.0"
-                        offset="5" />
+                        angle="144.0"
+                        offset="49" />
     </private>
     <path name="Fig17.0"
       description="org.argouml.gefext.ArgoFigPoly"
@@ -4969,8 +4969,8 @@
                         classname="org.argouml.uml.diagram.ui.PathItemPlacement"
                         figclassname="org.argouml.uml.diagram.ui.FigAssociationEndAnnotation"
                         ownerhref="-64--88--78-24--50b22de9:14c3616652e:-8000:0000000000001647"
-                        angle="126.0"
-                        offset="45" />
+                        angle="111.0"
+                        offset="38" />
     </private>
     <path name="Fig29.0"
       description="org.argouml.gefext.ArgoFigPoly"

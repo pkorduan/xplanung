@@ -24,7 +24,7 @@
     <fontname>Dialog</fontname>
     <fontsize>12</fontsize>
     <defaultstereotypeview>0</defaultstereotypeview>
-    <activediagram>RP_KernmodellInfrastruktur</activediagram>
+    <activediagram>RP_KernmodellSiedlungsstruktur</activediagram>
   </settings>
   <searchpath href="PROJECT_DIR" />
   <members>
@@ -45,9 +45,9 @@
             diagramclass="org.argouml.uml.diagram.static_structure.ui.UMLClassDiagram"
             diagramname="RP_Basisobjekte" />
     <member type="pgml"
-            name="xplan_Klassendiagramm.pgml"
+            name="xplan_RP_KernmodellFreiraumstruktur.pgml"
             diagramclass="org.argouml.uml.diagram.static_structure.ui.UMLClassDiagram"
-            diagramname="Klassendiagramm" />
+            diagramname="RP_KernmodellFreiraumstruktur" />
     <member type="pgml"
             name="xplan_XP_Raster.pgml"
             diagramclass="org.argouml.uml.diagram.static_structure.ui.UMLClassDiagram"
