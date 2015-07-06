@@ -13,6 +13,10 @@ $config = json_decode(
 );
 $conn = pg_connect('dbname=' . $config['dbname'] . ' user=' . $config['user'] . ' password=' . $config['password']);
 $angemeldet = angemeldet();
+#vars for konvertierungsform
+
+
+
 /*
   PHP Konstanten
 */
@@ -182,6 +186,9 @@ switch ($go) {
   case 'show_planzeichen':
     ($angemeldet) ? show_planzeichen() : show_login();
     break;
+  case 'show_konvertierungform':
+    ($angemeldet) ? show_konvertierungform() : show_login();
+    break;
   case 'get_comments':
     ($angemeldet) ? get_comments($params) : show_login();
     break;
@@ -339,6 +346,7 @@ function output_header($with_menu) {
       <a href="index.php?go=show_plaene" class="menue">Pläne</a>
       <a href="index.php?go=show_planzeichen&planstatus=1" class="menue">Planzeichen</a>
       <a href="index.php?go=show_comments" class="menue">Kommentare</a>
+      <a href="index.php?go=show_konvertierungform" class="menue">Konvertierung</a>
       <a href="index.php?go=show_hilfe" class="menue">Hilfe</a><?php
       if ($angemeldet) { ?>
         <a href="index.php?go=show_login" title="Abmelden"><img src="images/logout.png" alt="Neu einloggen" class = "logout-image"></a>
@@ -924,6 +932,13 @@ function create_comments($params) {
   $comment->create($params);
 }
 
+function show_konvertierungform() {
+  output_header(true);
+  include('classes/konvertierungform.php');
+  output_footer();
+}
+
+
 function show_login() {
   output_header(true); ?>
   <div id="main">
@@ -1335,7 +1350,9 @@ function show_uml() {
     </map>  
   
     <?php
-    echo '<h1>Raumordnungsplan UML-Modell</h1>';
+    echo '<h1>Raumordnungsplan UML-Modell';
+    include('views/helpmodell.php');
+    echo '</h1>';
     echo "<form action =\"index.php\">\n";
     echo "<input type=\"hidden\"name=\"go\" value=\"show_uml\">";
     ?>
@@ -1412,10 +1429,14 @@ function show_uml() {
 function show_elements() {
   global $conn, $params, $packages;
   if ($params['package'] == '') $params['package'] = 'RPlan_Kernmodell';
-  output_header(true);
+  output_header(true);  
    ?>
   <div id="main">
-    <h1>XPlan Elemente mit ihren Attributen</h1>
+    <?php
+      echo '<h1>XPlan Elemente mit ihren Attributen';
+      include('views/helplists.php');
+      echo '</h1>';
+    ?>
     <form action="index.php">
       <input type="hidden" name="go" value="show_elements">
       Package: 
@@ -1603,7 +1624,11 @@ function show_simple_types() {
   global $conn, $params;
   output_header(true);?>
   <div id="main">
-    <h1>Codelisten</h1>
+  <?php
+      echo '<h1>Codelisten';
+      include('views/helplists.php');
+      echo '</h1>';
+    ?>
     <h2>
       <a href="javascript:toggleVisibility('paketeminmax')" class=hlink><img src="images/minimize.png" id="paketeminmax_minimize_img" alt="Minimize Pakete" class = "minimize_img"><img src="images/maximize.png" id="paketeminmax_maximize_img" alt="Maximize Pakete" class = "maximize_img"></a>
       Pakete

@@ -15,32 +15,32 @@
   }
   </script>
   
-  <form action ="index1.php">
+  <form action ="index.php">
   <input type="hidden"name="go" value="show_konvertierungform">
   </form>
   <h1>Konvertierungsformular</h1>
-  <form action ="index1.php?go=show_konvertierungform" method="post">
+  <form action ="index.php?go=show_konvertierungform" method="post">
   <input type="submit" name="neuerplan-submit" class="konvertmenue"value ="Neuer Plan">
   </form>
-  <form action ="index1.php?go=show_konvertierungform" method="post">
+  <form action ="index.php?go=show_konvertierungform" method="post">
   <input type="submit" name="neuertextabschnitt-submit" class="konvertmenue"value ="Neuer Textabschnitt">
   </form>
-  <form action ="index1.php?go=show_konvertierungform" method="post">
+  <form action ="index.php?go=show_konvertierungform" method="post">
   <input type="submit" name="neuerbereich-submit" class="konvertmenue"value ="Neuer Bereich">
   </form>
-  <form action ="index1.php?go=show_konvertierungform" method="post">
+  <form action ="index.php?go=show_konvertierungform" method="post">
   <input type="submit" name="planladen-submit" class="konvertmenue"value ="Plan laden">
   </form>
-  <form action ="index1.php?go=show_konvertierungform" method="post">
+  <form action ="index.php?go=show_konvertierungform" method="post">
   <input type="submit" name="textabschnittladen-submit" class="konvertmenue"value ="Textabschnitt laden">
   </form>
-  <form action ="index1.php?go=show_konvertierungform" method="post">
+  <form action ="index.php?go=show_konvertierungform" method="post">
   <input type="submit" name="bereichladen-submit" class="konvertmenue"value ="Bereich laden">
   </form>
   <?php
 
 function konverteingegebenerplan(){
-  echo '<form action ="index1.php?go=show_konvertierungform" method="post">';
+  echo '<form action ="index.php?go=show_konvertierungform" method="post">';
   echo '<div class="eingegebenerplan">';
   echo '<h2>Eingegebener Plan</h2>';
   echo '<h3>Konformitätsbedingungen</h3><ul>';
@@ -151,7 +151,7 @@ function konverteingegebenerplan(){
 
 function konverteingegebenertextabschnitt(){
   
-  echo '<form action ="index1.php?go=show_konvertierungform" method="post">';
+  echo '<form action ="index.php?go=show_konvertierungform" method="post">';
   echo '<div class="eingegebenertextabschnitt">';
   echo '<h2>Eingegebener Textabschnitt</h2>';
   echo '<h3>Konformitätsbedingungen</h3><ul>';
@@ -178,7 +178,7 @@ function konverteingegebenertextabschnitt(){
 }
 
 function konverteingegebenerbereich(){
-  echo '<form action ="index1.php?go=show_konvertierungform" method="post">';
+  echo '<form action ="index.php?go=show_konvertierungform" method="post">';
   echo '<div class="eingegebenerbereich">';
   echo '<h2>Eingegebener Bereich</h2>';
   echo '<h3>Konformitätsbedingungen</h3><ul>';
@@ -236,7 +236,7 @@ function konverteingabexpplan(){
   ?>
   <div class="featuretypeableitend">
     <a href="javascript:ReverseDisplay('minmaxxpplan')" class=hlink><h2>XP_Plan</h2></a>
-    <form action ="index1.php?go=show_konvertierungform" method="post">
+    <form action ="index.php?go=show_konvertierungform" method="post">
       <div id="minmaxxpplan">
         <b>name</b> [0..1]:CharacterString<br>
         <input type="text" name="xp_plan_name" value="<?php if (!empty($_SESSION["xp_plan_name"])) {echo $_SESSION["xp_plan_name"];}?>"><br>
@@ -799,7 +799,7 @@ function konverteingabexpplan(){
     ?>
       <div class="featuretype">
         <a href="javascript:ReverseDisplay('minmaxrpplan')" class=hlink><h2>RP_Plan</h2></a>
-        <form action ="index1.php?go=show_konvertierungform" method="post">
+        <form action ="index.php?go=show_konvertierungform" method="post">
           <div id="minmaxrpplan">
             <b>bundesland</b> [1..*]:XP_Bundeslaender<br>
               <select name="rp_plan_bundesland" required>
@@ -1090,7 +1090,7 @@ function konverteingabexptextabschnitt(){
   ?>
     <div class="featuretypeableitend">
       <a href="javascript:ReverseDisplay('minmaxxptextabschnitt')" class=hlink><h2>XP_Textabschnitt</h2></a>    
-      <form action ="index1.php?go=show_konvertierungform" method="post">
+      <form action ="index.php?go=show_konvertierungform" method="post">
         <div id="minmaxxptextabschnitt">
           <b>schluessel</b> [0..1]:CharacterString<br>
           <input type="text" name="xp_textabschnitt_schluessel"><br>
@@ -1171,7 +1171,7 @@ function konverteingaberptextabschnitt(){
   ?>
     <div class="featuretype">
       <a href="javascript:ReverseDisplay('minmaxrptextabschnitt')" class=hlink><h2>RP_Textabschnitt</h2></a>    
-        <form action ="index1.php?go=show_konvertierungform" method="post">
+        <form action ="index.php?go=show_konvertierungform" method="post">
         <div id="minmaxrptextabschnitt">
           <b>rechtscharakter</b> :RP_Rechtscharakter<br>
             <select name="rp_textabschnitt_rechtscharakter" required>
@@ -1200,7 +1200,7 @@ function konverteingabexpbereich(){
   ?>
     <div class="featuretypeableitend">
       <a href="javascript:ReverseDisplay('minmaxxpbereich')" class=hlink><h2>XP_Bereich</h2></a>    
-        <form action ="index1.php?go=show_konvertierungform" method="post">
+        <form action ="index.php?go=show_konvertierungform" method="post">
         <div id="minmaxxpbereich">
           <b>nummer</b> :integer<br>
           <input type="number" name="xp_bereich_nummer" placeholder="0" required></br>
@@ -1247,7 +1247,7 @@ function konverteingaberpbereich(){
   ?>
     <div class="featuretype">
       <a href="javascript:ReverseDisplay('minmaxrpbereich')" class=hlink><h2>RP_Bereich</h2></a>    
-        <form action ="index1.php?go=show_konvertierungform" method="post">
+        <form action ="index.php?go=show_konvertierungform" method="post">
           <div id="minmaxrpbereich">
             <b>versionBROG</b> [0..1]:Date<br>
             <input type="text" name="rp_bereich_versionbrog"><br>
