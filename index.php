@@ -8,7 +8,7 @@ $go = $params['go']; unset($params['go']);
 $action = $params['action']; unset($params['action']);
 $cwd = getcwd();
 $config = json_decode(
-  file_get_contents($cwd . 'config/database.conf'),
+  file_get_contents($cwd . '/config/database.conf'),
   true
 );
 $conn = pg_connect('dbname=' . $config['dbname'] . ' user=' . $config['user'] . ' password=' . $config['password']);
