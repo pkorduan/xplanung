@@ -1170,8 +1170,8 @@ function show_uml() {
     </script>
   
     <map name="RP_Basisobjekte">
-      <area shape="rect" coords="144,31,483,476" href="index.php?go=show_elements&package=Alle#xplan:XP_Plan" alt="XP_Plan" title="XP_Plan">
-      <area shape="rect" coords="159,566,470,689" href="index.php?go=show_elements&package=Alle#xplan:XP_Textabschnitt" alt="XP_Textabschnitt" title="XP_Textabschnitt">
+      <area shape="rect" coords="144,31,483,494" href="index.php?go=show_elements&package=Alle#xplan:XP_Plan" alt="XP_Plan" title="XP_Plan">
+      <area shape="rect" coords="159,568,470,689" href="index.php?go=show_elements&package=Alle#xplan:XP_Textabschnitt" alt="XP_Textabschnitt" title="XP_Textabschnitt">
       <area shape="rect" coords="176,728,450,882" href="index.php?go=show_elements&package=Alle#xplan:XP_Bereich" alt="XP_Bereich" title="XP_Bereich">
       <area shape="rect" coords="167,928,484,1202" href="index.php?go=show_elements&package=Alle#xplan:XP_Objekt" alt="XP_Objekt" title="XP_Objekt">
       <area shape="rect" coords="608,32,868,426" href="index.php?go=show_elements#xplan:RP_Plan" alt="RP_Plan" title="RP_Plan">
@@ -1319,12 +1319,12 @@ function show_uml() {
     </map>
 	 
     <map name="XP_Basisobjekte">
-      <area shape="rect" coords="137,97,475,540" href="index.php?go=show_elements&package=Alle#xplan:XP_Plan" alt="XP_Plan" title="XP_Plan">
+      <area shape="rect" coords="143,97,484,558" href="index.php?go=show_elements&package=Alle#xplan:XP_Plan" alt="XP_Plan" title="XP_Plan">
       <area shape="rect" coords="127,671,343,756" href="index.php?go=show_elements&package=Alle#xplan:XP_Begruendungsabschnitt" alt="XP_Begruendungsabschnitt" title="XP_Begruendungsabschnitt">
       <area shape="rect" coords="369,655,626,778" href="index.php?go=show_elements&package=Alle#xplan:XP_TextAbschnitt" alt="XP_TextAbschnitt" title="XP_TextAbschnitt">
       <area shape="rect" coords="167,903,487,1179" href="index.php?go=show_elements&package=Alle#xplan:XP_Objekt" alt="XP_Objekt" title="XP_Objekt">
       <area shape="rect" coords="167,1320,439,1476" href="index.php?go=show_elements&package=Alle#xplan:XP_Bereich" alt="XP_Bereich" title="XP_Bereich">
-  		<area shape="rect" coords="539,96,686,217" href="index.php?go=show_elements&package=Alle#xplan:XP_Verfahrensmerkmal" alt="XP_Verfahrensmerkmal" title="XP_Verfahrensmerkmal">
+  		<area shape="rect" coords="528,96,686,217" href="index.php?go=show_elements&package=Alle#xplan:XP_Verfahrensmerkmal" alt="XP_Verfahrensmerkmal" title="XP_Verfahrensmerkmal">
   		<area shape="rect" coords="505,257,744,463" href="index.php?go=show_elements&package=Alle#xplan:XP_ExterneReferenz" alt="XP_ExterneReferenz" title="XP_ExterneReferenz">
   		<area shape="rect" coords="1015,416,1367,521" href="index.php?go=show_elements&package=Alle#xplan:XP_VerbundenerPlan" alt="XP_VerbundenerPlan" title="XP_VerbundenerPlan">		
   		<area shape="rect" coords="657,735,950,909" href="index.php?go=show_elements&package=Alle#xplan:XP_Hoehenangabe" alt="XP_Hoehenangabe" title="XP_Hoehenangabe">
@@ -1364,7 +1364,7 @@ function show_uml() {
     </a>  
     <p>Version 2015-06-05 (Arbeitsversion)</p>
     <div id="basisobjekteuml" style="display:none;">
-    <p><img src="images/2015_06_22-Modell/RP_Basisobjekte.png" alt="RP_Basisobjekte" style="width:1995px;height:1476px;" usemap="#RP_Basisobjekte"></p>
+    <p><img src="images/2015_07_06-Modell/RP_Basisobjekte.png" alt="RP_Basisobjekte" style="width:1995px;height:1476px;" usemap="#RP_Basisobjekte"></p>
     </div>
 
     <a href="javascript:ReverseDisplay('freiraumstrukturuml')" class=hlink>
@@ -1372,7 +1372,7 @@ function show_uml() {
     </a>
     <p>Version 2015-06-05 (Arbeitsversion)</p>
     <div id="freiraumstrukturuml" style="display:none;">
-    <p><img src="images/2015_06_22-Modell/RP_KernmodellFreiraumstruktur.png" alt="RP_KernmodellFreiraumstruktur" style="width:2865px;height:1839px;" usemap="#RP_KernmodellFreiraumstruktur"></p>
+    <p><img src="images/2015_07_06-Modell/RP_KernmodellFreiraumstruktur.png" alt="RP_KernmodellFreiraumstruktur" style="width:2865px;height:1839px;" usemap="#RP_KernmodellFreiraumstruktur"></p>
     </div>
 
     <a href="javascript:ReverseDisplay('infrastrukturuml')" class=hlink>
@@ -1380,7 +1380,7 @@ function show_uml() {
     </a>
     <p>Version 2015-06-05 (Arbeitsversion)</p>
     <div id="infrastrukturuml" style="display:none;">
-    <p><img src="images/2015_06_22-Modell/RP_KernmodellInfrastruktur.png" alt="RP_KernmodellInfrastruktur" style="width:2648x;height:2046px;" usemap="#RP_KernmodellInfrastruktur"></p>
+    <p><img src="images/2015_07_06-Modell/RP_KernmodellInfrastruktur.png" alt="RP_KernmodellInfrastruktur" style="width:2648x;height:2046px;" usemap="#RP_KernmodellInfrastruktur"></p>
     </div>
 
     <a href="javascript:ReverseDisplay('siedlungsstrukturuml')" class=hlink>
@@ -1388,15 +1388,15 @@ function show_uml() {
     </a>
     <p>Version 2015-06-05 (Arbeitsversion)</p>
     <div id="siedlungsstrukturuml" style="display:none;">
-    <p><img src="images/2015_06_22-Modell/RP_KernmodellSiedlungsstruktur.png" alt="RP_KernmodellSiedlungsstruktur" style="width:2402px;height:1534px;" usemap="#RP_KernmodellSiedlungsstruktur"></p>
+    <p><img src="images/2015_07_06-Modell/RP_KernmodellSiedlungsstruktur.png" alt="RP_KernmodellSiedlungsstruktur" style="width:2402px;height:1534px;" usemap="#RP_KernmodellSiedlungsstruktur"></p>
     </div>
 
     <a href="javascript:ReverseDisplay('sonstigesuml')" class=hlink>
     <h2>RP_KernmodellSonstiges</h2>
     </a>
-    <p>Version 2015-06-05 (Arbeitsversion)</p>
+    <p>Version 2015-07-06 (Arbeitsversion)</p>
     <div id="sonstigesuml" style="display:none;">
-    <p><img src="images/2015_06_22-Modell/RP_KernmodellSonstiges.png" alt="RP_KernmodellSonstiges" style="width:1184px;height:662px;" usemap="#RP_KernmodellSonstiges"></p>
+    <p><img src="images/2015_07_06-Modell/RP_KernmodellSonstiges.png" alt="RP_KernmodellSonstiges" style="width:1184px;height:662px;" usemap="#RP_KernmodellSonstiges"></p>
     </div>
   
     <a href="javascript:ReverseDisplay('rasteruml')" class=hlink>
@@ -1404,7 +1404,7 @@ function show_uml() {
     </a>
     <p>Version XPlan 4.1</p>
     <div id="rasteruml" style="display:none;">
-    <p><img src="images/2015_06_22-Modell/RP_Raster.png" alt="RP_Raster" style="width:1226px;height:955px;" usemap="#RP_Raster"></p>
+    <p><img src="images/2015_07_06-Modell/RP_Raster.png" alt="RP_Raster" style="width:1226px;height:955px;" usemap="#RP_Raster"></p>
     </div>
   
     <a href="javascript:ReverseDisplay('xpbasisobjekteuml')" class=hlink>
@@ -1412,7 +1412,7 @@ function show_uml() {
     </a>
     <p>Version XPlan 4.1</p>
     <div id="xpbasisobjekteuml" style="display:none;">
-    <p><img src="images/2015_06_22-Modell/XP_Basisobjekte.png" alt="XP_Basisobjekte" style="width:1695px;height:1571px;"usemap="#XP_Basisobjekte"></p>
+    <p><img src="images/2015_07_06-Modell/XP_Basisobjekte.png" alt="XP_Basisobjekte" style="width:1695px;height:1571px;"usemap="#XP_Basisobjekte"></p>
     </div>
   
     <a href="javascript:ReverseDisplay('inspireuml')" class=hlink>
@@ -1420,7 +1420,7 @@ function show_uml() {
     </a>
     <p>Version 3.0</p>
     <div id="inspireuml" style="display:none;">
-    <p><img src="images/2015_06_22-Modell/inspireuml.jpg" alt="INSPIRE Modell" style="width:708px;height:665px;"></p>
+    <p><img src="images/2015_07_06-Modell/inspireuml.jpg" alt="INSPIRE Modell" style="width:708px;height:665px;"></p>
     </div>
   </div><?php
   output_footer();
