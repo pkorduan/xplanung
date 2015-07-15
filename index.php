@@ -991,7 +991,7 @@ function show_home() {
 				Im zweiten Schritt möchten wir Sie bitten, die von GDI-Service Rostock vorgenommene vorläufige Kategorisierung Ihrer Planzeichen in das XPlan-Schema zu überprüfen und uns gegebenenfalls falsche Kategorisierungen, Kommentare oder Erweiterungswünsche durch das dazugehörige Kommentarfeld der jeweiligen Zeile mitzuteilen. Dieses kann durch Klick auf die ID aufgerufen werden. Hierbei ist zu überprüfen, ob die Daten dem Inhalt und der Funktion der Pläne und Planzeichen gerecht eingeordnet sind. Dies erlaubt uns das Schema so zu ergänzen und zu verändern, dass alle bestehenden Pläne und Planzeichen eingeordnet werden können.
 			</p>
 			<p>
-				In Xplan werden Raumordnungspläne generell in das Regionalplan_Kernmodell (welches zukünftig in Raumordnungsplan_Kernmodell umbenannt werden soll) unter RP_Basisobjekte eingeordnet, was nach unserer vorläufigen Analyse alle Raumordnungspläne, welche im ROPLAMO enthalten sind, erfassen kann. Falls ein Plan hierbei nicht aufgenommen werden kann oder Erweiterungsbedarf des Pakets besteht, bitten wir um Rücksprache. Den nächsten Schritt wird dann die Überprüfung der Geodatenstruktur bei den Planungsträgern darstellen. Um eine optimale Konvertierung aller Datentypen in das XPlan-Schema sicherzustellen, gilt es möglicherweise notwendige Anpassungsschritte zu identifizieren.
+				In Xplan werden Raumordnungspläne generell in das Raumordnungsplan_Modell (welches früher Regionalplan_Kernmodell genannt wurde) unter RP_Basisobjekte eingeordnet, was nach unserer vorläufigen Analyse alle Raumordnungspläne, welche im ROPLAMO enthalten sind, erfassen kann. Falls ein Plan hierbei nicht aufgenommen werden kann oder Erweiterungsbedarf des Pakets besteht, bitten wir um Rücksprache. Den nächsten Schritt wird dann die Überprüfung der Geodatenstruktur bei den Planungsträgern darstellen. Um eine optimale Konvertierung aller Datentypen in das XPlan-Schema sicherzustellen, gilt es möglicherweise notwendige Anpassungsschritte zu identifizieren.
 			</p>
 			
 			<h3><a href=index.php?go=show_hilfe class=hlink>Hilfe</a></h3>
@@ -1100,7 +1100,7 @@ function show_hilfe() {
   			<br>
   			4. Die nun angezeigten Planzeichen enthalten alle im ROPLAMO erfassten Planzeichen dieses Plans, welche, soweit erfasst, den  Namen, die Gruppe, Untergruppe, Anmerkungen, den Rechtlicher Status, die Räumliche Konkretheit und den Gebietstyp des Plans enthalten. So enthält der  Plan  TH-LEPL-072014 zum Beispiel das Planzeichen Autobahn oder das Planzeichen Industriegroßfläche. Überprüfen Sie anhand Ihrer Pläne für jeden Plan ob diese Daten vollständig aufgenommen sind.
   			<br>
-  			5. Rechts in der Tabelle erkennen Sie gleichfalls die Spalten "Vorschlag XPlan Kernmodell Entsprechung", "Vorschlag XPlan Featuretype Entsprechung" und "Vorschlag XPlan Enumerations Entsprechung\. Diese Spalten beinhalten die von GDI-Service Rostock vorgenommenen XPlan-Kategorisierungsvorschläge. So ist zum Beispiel das Planzeichen Autobahn im Plan TH-LEPL-072014 in das RP_KernmodellInfrastruktur, den Featuretype RP_Strassenverkehrr und die Enumeration Autobahn = 1002 in RP_StrassenverkehrTypen kategorisiert. Nehmen Sie zum Überprüfen dieser Kategorisierung das UML-Kernmodell Infrastruktur, die Dokumentation der Elemente und Codelisten oder die <a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/Objektartenkatalog_XPlanGML%204.1.html" class=hlink>XPlan Dokumentation des Xplanung-Wikis</a> zu Hilfe.Falls Sie mit der vorgeschlagenen Kategorisierung nicht einverstanden sind, eine bessere Kategorie finden,  Kommentare oder Fragen haben, tragen Sie diese bitte im dazugehörigen Kommentarfeld ein. Dieses öffnen Sie durch Klicken auf die jeweilige ID des zu kommentierenden Planzeichens. Featuretypen und Enumerations können gegebenenfalls ergänzt werden, um eine komplette Abdeckung der Planzeichen zu gewährleisten. Hierzu ist noch anzumerken, dass Planzeichen multiplen Enumerations zugeordnet werden können. So könnte eine Autobahn gleichfalls vierstreifig = 1001 in RP_BesondereStrassenverkehrTypen sein. Hierbei wird bei der vorgenommenen Klassifizierung vorerst nur eine Klassifikation angezeigt.
+  			5. Rechts in der Tabelle erkennen Sie gleichfalls die Spalten "Vorschlag XPlan Kernmodell Entsprechung", "Vorschlag XPlan Featuretype Entsprechung" und "Vorschlag XPlan Enumerations Entsprechung\. Diese Spalten beinhalten die von GDI-Service Rostock vorgenommenen XPlan-Kategorisierungsvorschläge. So ist zum Beispiel das Planzeichen Autobahn im Plan TH-LEPL-072014 in das Paket RP_Infrastruktur, den Featuretype RP_Strassenverkehrr und die Enumeration Autobahn = 1002 in RP_StrassenverkehrTypen kategorisiert. Nehmen Sie zum Überprüfen dieser Kategorisierung das UML-Modell Infrastruktur, die Dokumentation der Elemente und Codelisten oder die <a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/Objektartenkatalog_XPlanGML%204.1.html" class=hlink>XPlan Dokumentation des Xplanung-Wikis</a> zu Hilfe.Falls Sie mit der vorgeschlagenen Kategorisierung nicht einverstanden sind, eine bessere Kategorie finden,  Kommentare oder Fragen haben, tragen Sie diese bitte im dazugehörigen Kommentarfeld ein. Dieses öffnen Sie durch Klicken auf die jeweilige ID des zu kommentierenden Planzeichens. Featuretypen und Enumerations können gegebenenfalls ergänzt werden, um eine komplette Abdeckung der Planzeichen zu gewährleisten. Hierzu ist noch anzumerken, dass Planzeichen multiplen Enumerations zugeordnet werden können. So könnte eine Autobahn gleichfalls vierstreifig = 1001 in RP_BesondereStrassenverkehrTypen sein. Hierbei wird bei der vorgenommenen Klassifizierung vorerst nur eine Klassifikation angezeigt.
   			<br><br>
   			Die vorgenommene Kategorisierung ist hierbei konzeptionell und benötigt keine Veränderung Ihrer Daten, erlaubt Ihnen jedoch den Vergleich und Austausch Ihrer Daten mit anderen Regionen, Ländern und, durch die geplante INSPIRE Konformität, innerhalb der Europäischen Union. Falls Ihre Daten jedoch nicht alle von XPlanung und INSPIRE erforderlichen Informationen enthalten, ergibt sich ein weiterer optionaler Aufwand, diese Daten vor der Konvertierung zu ergänzen und anzupassen.
   		</p>
@@ -1174,8 +1174,8 @@ function show_uml() {
       <area shape="rect" coords="159,568,470,689" href="index.php?go=show_elements&package=Alle#xplan:XP_Textabschnitt" alt="XP_Textabschnitt" title="XP_Textabschnitt">
       <area shape="rect" coords="176,728,450,882" href="index.php?go=show_elements&package=Alle#xplan:XP_Bereich" alt="XP_Bereich" title="XP_Bereich">
       <area shape="rect" coords="167,928,484,1202" href="index.php?go=show_elements&package=Alle#xplan:XP_Objekt" alt="XP_Objekt" title="XP_Objekt">
-      <area shape="rect" coords="608,32,868,426" href="index.php?go=show_elements#xplan:RP_Plan" alt="RP_Plan" title="RP_Plan">
-      <area shape="rect" coords="496,587,720,653" href="index.php?go=show_elements#xplan:RP_Textabschnitt" alt="RP_Textabschnitt" title="RP_Textabschnitt">
+      <area shape="rect" coords="608,32,866,442" href="index.php?go=show_elements#xplan:RP_Plan" alt="RP_Plan" title="RP_Plan">
+      <area shape="rect" coords="496,600,720,672" href="index.php?go=show_elements#xplan:RP_Textabschnitt" alt="RP_Textabschnitt" title="RP_Textabschnitt">
       <area shape="rect" coords="809,663,1107,785" href="index.php?go=show_elements#xplan:RP_Bereich" alt="RP_Bereich" title="RP_Bereich">
       <area shape="rect" coords="831,984,1084,1090" href="index.php?go=show_elements#xplan:RP_Objekt" alt="RP_Objekt" title="RP_Objekt">
       <area shape="rect" coords="224,1320,402,1390" href="index.php?go=show_elements#xplan:RP_Punktobjekt" alt="RP_Punktobjekt" title="RP_Punktobjekt">
@@ -1186,76 +1186,72 @@ function show_uml() {
       <area shape="rect" coords="911,225,1020,268" href="index.php?go=show_simple_types#xplan:RP_Status" alt="RP_Status" title="RP_Status">
       <area shape="rect" coords="911,295,1031,343" href="index.php?go=show_simple_types#xplan:SonstPlanArt" alt="SonstPlanArt" title="RP_SonstPlanArt">
       <area shape="rect" coords="1064,239,1398,582" href="index.php?go=show_simple_types#xplan:XP_Bundeslaender" alt="XP_Bundeslaender" title="XP_Bundeslaender">
-      <area shape="rect" coords="863,479,1044,601" href="index.php?go=show_simple_types#xplan:RP_Typ" alt="RP_Typ" title="RP_Typ">
+      <area shape="rect" coords="863,479,1044,618" href="index.php?go=show_simple_types#xplan:RP_Verfahren" alt="RP_Verfahren" title="RP_Verfahren">
       <area shape="rect" coords="1425,416,1711,657" href="index.php?go=show_simple_types#xplan:RP_Rechtsstand" alt="RP_Rechtsstand" title="RP_Rechtsstand">
       <area shape="rect" coords="1138,720,1399,926" href="index.php?go=show_simple_types#xplan:RP_Rechtscharakter" alt="RP_Rechtscharakter" title="RP_Rechtscharakter">
       <area shape="rect" coords="1136,1064,1342,1289" href="index.php?go=show_simple_types#xplan:RP_GebietsTyp" alt="RP_GebietsTyp" title="RP_GebietsTyp">
-      <area shape="rect" coords="1369,1304,1475,1390" href="index.php?go=show_simple_types#xplan:RP_Bestand" alt="RP_Bestand" title="RP_Bestand">
     </map>  
   
-    <map name="RP_KernmodellFreiraumstruktur">
+    <map name="RP_Freiraumstruktur">
       <area shape="rect" coords="809,144,1252,215" href="index.php?go=show_elements#xplan:RP_Geometrieobjekt" alt="RP_Geometrieobjekt" title="RP_Geometrieobjekt">
-      <area shape="rect" coords="391,167,766,273" href="index.php?go=show_elements#xplan:RP_Bodenschutz" alt="RP_Bodenschutz" title="RP_Bodenschutz">
-      <area shape="rect" coords="408,311,800,416" href="index.php?go=show_elements#xplan:RP_Forstwirtschaft" alt="RP_Forstwirtschaft" title="RP_Forstwirtschaft">
+      <area shape="rect" coords="535,177,745,264" href="index.php?go=show_elements#xplan:RP_Bodenschutz" alt="RP_Bodenschutz" title="RP_Bodenschutz">
+      <area shape="rect" coords="536,328,746,414" href="index.php?go=show_elements#xplan:RP_Forstwirtschaft" alt="RP_Forstwirtschaft" title="RP_Forstwirtschaft">
       <area shape="rect" coords="543,487,753,558" href="index.php?go=show_elements#xplan:RP_Gewaesser" alt="RP_Gewaesser" title="RP_Gewaesser">
-      <area shape="rect" coords="40,536,308,724" href="index.php?go=show_elements#xplan:RP_Rohstoffsicherung" alt="RP_Rohstoffsicherung" title="RP_Rohstoffsicherung">
-      <area shape="rect" coords="623,632,832,736" href="index.php?go=show_elements#xplan:RP_GruenzugGruenzaesur" alt="RP_GruenzugGruenzaesur" title="RP_GruenzugGruenzaesur">
-      <area shape="rect" coords="623,775,831,881" href="index.php?go=show_elements#xplan:RP_Klimaschutz" alt="RP_Klimaschutz" title="RP_Klimaschutz">
-      <area shape="rect" coords="615,911,823,1000" href="index.php?go=show_elements#xplan:RP_KulturellesSachgut" alt="RP_KulturellesSachgut" title="RP_KulturellesSachgut">
-      <area shape="rect" coords="600,1080,824,1202" href="index.php?go=show_elements#xplan:RP_Landwirtschaft" alt="RP_Landwirtschaft" title="RP_Landwirtschaft">
-      <area shape="rect" coords="808,1265,1270,1369" href="index.php?go=show_elements#xplan:RP_NaturschutzrechtlichesSchutzgebiet" alt="RP_NaturschutzrechtlichesSchutzgebiet" title="RP_NaturschutzrechtlichesSchutzgebiet">
-      <area shape="rect" coords="1103,1073,1365,1177" href="index.php?go=show_elements#xplan:RP_ErneuerbareEnergien" alt="RP_ErneuerbareEnergien" title="RP_ErneuerbareEnergien">
-      <area shape="rect" coords="1296,927,1681,1049" href="index.php?go=show_elements#xplan:RP_Wasserschutz" alt="RP_Wasserschutz" title="RP_Wasserschutz">
-      <area shape="rect" coords="1065,727,1413,832" href="index.php?go=show_elements#xplan:RP_VorbHochwasserschutz" alt="RP_VorbHochwasserschutz" title="RP_VorbHochwasserschutz">
-      <area shape="rect" coords="1105,439,1312,528" href="index.php?go=show_elements#xplan:RP_SonstigerFreiraumschutz" alt="RP_SonstigerFreiraumschutz" title="RP_SonstigerFreiraumschutz">
-      <area shape="rect" coords="1134,232,1443,336" href="index.php?go=show_elements#xplan:RP_NaturLandschaft" alt="RP_NaturLandschaft" title="RP_NaturLandschaft">
+      <area shape="rect" coords="40,553,312,724" href="index.php?go=show_elements#xplan:RP_Rohstoffsicherung" alt="RP_Rohstoffsicherung" title="RP_Rohstoffsicherung">
+      <area shape="rect" coords="648,625,857,712" href="index.php?go=show_elements#xplan:RP_GruenzugGruenzaesur" alt="RP_GruenzugGruenzaesur" title="RP_GruenzugGruenzaesur">
+      <area shape="rect" coords="719,777,928,862" href="index.php?go=show_elements#xplan:RP_Klimaschutz" alt="RP_Klimaschutz" title="RP_Klimaschutz">
+      <area shape="rect" coords="615,928,823,1000" href="index.php?go=show_elements#xplan:RP_KulturellesSachgut" alt="RP_KulturellesSachgut" title="RP_KulturellesSachgut">
+      <area shape="rect" coords="600,1104,823,1208" href="index.php?go=show_elements#xplan:RP_Landwirtschaft" alt="RP_Landwirtschaft" title="RP_Landwirtschaft">
+      <area shape="rect" coords="808,1265,1192,1369" href="index.php?go=show_elements#xplan:RP_NaturschutzrechtlichesSchutzgebiet" alt="RP_NaturschutzrechtlichesSchutzgebiet" title="RP_NaturschutzrechtlichesSchutzgebiet">
+      <area shape="rect" coords="1103,1073,1365,1159" href="index.php?go=show_elements#xplan:RP_ErneuerbareEnergien" alt="RP_ErneuerbareEnergien" title="RP_ErneuerbareEnergien">
+      <area shape="rect" coords="1296,927,1513,1033" href="index.php?go=show_elements#xplan:RP_Wasserschutz" alt="RP_Wasserschutz" title="RP_Wasserschutz">
+      <area shape="rect" coords="1065,727,1413,815" href="index.php?go=show_elements#xplan:RP_VorbHochwasserschutz" alt="RP_VorbHochwasserschutz" title="RP_VorbHochwasserschutz">
+      <area shape="rect" coords="1105,439,1312,511" href="index.php?go=show_elements#xplan:RP_SonstigerFreiraumschutz" alt="RP_SonstigerFreiraumschutz" title="RP_SonstigerFreiraumschutz">
+      <area shape="rect" coords="1134,232,1443,320" href="index.php?go=show_elements#xplan:RP_NaturLandschaft" alt="RP_NaturLandschaft" title="RP_NaturLandschaft">
       <area shape="rect" coords="1728,360,1942,464" href="index.php?go=show_elements#xplan:RP_FreizeitErholung" alt="RP_FreizeitErholung" title="RP_FreizeitErholung">
       <area shape="rect" coords="1439,495,1632,568" href="index.php?go=show_elements#xplan:RP_Erholung" alt="RP_Erholung" title="RP_Erholung">
-      <area shape="rect" coords="1735,495,1979,583" href="index.php?go=show_elements#xplan:RP_Sportanlage" alt="RP_Sportanlage" title="RP_Sportanlage">
+      <area shape="rect" coords="1735,495,1955,567" href="index.php?go=show_elements#xplan:RP_Sportanlage" alt="RP_Sportanlage" title="RP_Sportanlage">
       <area shape="rect" coords="2064,503,2277,575" href="index.php?go=show_elements#xplan:RP_Tourismus" alt="RP_Tourismus" title="RP_Tourismus">
-      <area shape="rect" coords="2336,503,2624,592" href="index.php?go=show_elements#xplan:RP_RadwegWanderweg" alt="RP_RadwegWanderweg" title="RP_RadwegWanderweg">
-  		<area shape="rect" coords="72,32,362,152" href="index.php?go=show_simple_types#xplan:RP_ZweckbestimmungBodenschutz" alt="RP_ZweckbestimmungBodenschutz" title="RP_ZweckbestimmungBodenschutz">
-      <area shape="rect" coords="72,160,362,385" href="index.php?go=show_simple_types#xplan:RP_ZweckbestimmungForstwirtschaft" alt="RP_ZweckbestimmungForstwirtschaft" title="RP_ZweckbestimmungForstwirtschaft">
+      <area shape="rect" coords="2336,503,2593,575" href="index.php?go=show_elements#xplan:RP_RadwegWanderweg" alt="RP_RadwegWanderweg" title="RP_RadwegWanderweg">
+  		<area shape="rect" coords="72,41,363,162" href="index.php?go=show_simple_types#xplan:RP_BodenschutzTypen" alt="RP_BodenschutzTypen" title="BodenschutzTypen">
+      <area shape="rect" coords="72,183,362,406" href="index.php?go=show_simple_types#xplan:RP_ForstwirtschaftTypen" alt="RP_ForstwirtschaftTypen" title="RP_ForstwirtschaftTypen">
       <area shape="rect" coords="816,383,967,490" href="index.php?go=show_simple_types#xplan:RP_ZaesurTypen" alt="RP_ZaesurTypen" title="RP_ZaesurTypen">
-      <area shape="rect" coords="328,608,436,712" href="index.php?go=show_simple_types#xplan:RP_LuftTypen" alt="RP_LuftTypen" title="RP_LuftTypen">
+      <area shape="rect" coords="353,599,458,705" href="index.php?go=show_simple_types#xplan:RP_LuftTypen" alt="RP_LuftTypen" title="RP_LuftTypen">
       <area shape="rect" coords="39,880,198,1783" href="index.php?go=show_simple_types#xplan:RP_Rohstoff" alt="RP_Rohstoff" title="RP_Rohstoff">
-      <area shape="rect" coords="249,881,492,968" href="index.php?go=show_simple_types#xplan:RP_BodenschatzTiefe" alt="RP_BodenschatzTiefe" title="RP_BodenschatzTiefe">
-      <area shape="rect" coords="224,1103,425,1294" href="index.php?go=show_simple_types#xplan:RP_TagebauFolgenutzung" alt="RP_TagebauFolgenutzung" title="RP_TagebauFolgenutzung">
+      <area shape="rect" coords="209,881,452,968" href="index.php?go=show_simple_types#xplan:RP_BodenschatzTiefe" alt="RP_BodenschatzTiefe" title="RP_BodenschatzTiefe">
+      <area shape="rect" coords="224,1103,465,1294" href="index.php?go=show_simple_types#xplan:RP_TagebauFolgenutzung" alt="RP_TagebauFolgenutzung" title="RP_TagebauFolgenutzung">
       <area shape="rect" coords="224,1319,464,1544" href="index.php?go=show_simple_types#xplan:RP_LandwirtschaftTypen" alt="RP_LandwirtschaftTypen" title="RP_LandwirtschaftTypen">
-      <area shape="rect" coords="545,1223,661,1311" href="index.php?go=show_simple_types#xplan:RP_Zeitstufe" alt="RP_Zeitstufe" title="RP_Zeitstufe">
-      <area shape="rect" coords="528,1393,768,1461" href="index.php?go=show_simple_types#xplan:RP_BesondereZweckbestimmungNSG" alt="RP_BesondereZweckbestimmungNSG" title="RP_BesondereZweckbestimmungNSG">
-      <area shape="rect" coords="975,1455,1443,1732" href="index.php?go=show_simple_types#xplan:XP_KlassifizSchutzgebietNaturschutzrecht" alt="XP_KlassifizSchutzgebietNaturschutzrecht" title="XP_KlassifizSchutzgebietNaturschutzrecht">
-      <area shape="rect" coords="1489,1471,1713,1612" href="index.php?go=show_simple_types#xplan:RP_ErneuerbareEnergienTypen" alt="RP_ErneuerbareEnergienTypen" title="RP_ErneuerbareEnergienTypen">
+      <area shape="rect" coords="560,1257,676,1341" href="index.php?go=show_simple_types#xplan:RP_Zeitstufe" alt="RP_Zeitstufe" title="RP_Zeitstufe">
+      <area shape="rect" coords="912,1463,1378,1736" href="index.php?go=show_simple_types#xplan:XP_KlassifizSchutzgebietNaturschutzrecht" alt="XP_KlassifizSchutzgebietNaturschutzrecht" title="XP_KlassifizSchutzgebietNaturschutzrecht">
+      <area shape="rect" coords="1431,1463,1656,1603" href="index.php?go=show_simple_types#xplan:RP_ErneuerbareEnergienTypen" alt="RP_ErneuerbareEnergienTypen" title="RP_ErneuerbareEnergienTypen">
       <area shape="rect" coords="1881,1377,2034,1479" href="index.php?go=show_simple_types#xplan:RP_WasserschutzZone" alt="RP_WasserschutzZone" title="RP_WasserschutzZone">  
-      <area shape="rect" coords="1521,1121,1754,1310" href="index.php?go=show_simple_types#xplan:RP_ZweckbestimmungWasserschutz" alt="RP_ZweckbestimmungWasserschutz" title="RP_ZweckbestimmungWasserschutz">
+      <area shape="rect" coords="1432,1080,1667,1270" href="index.php?go=show_simple_types#xplan:RP_WasserschutzTypen" alt="RP_WasserschutzTypen" title="RP_WasserschutzTypen">
       <area shape="rect" coords="1808,1128,2080,1300" href="index.php?go=show_simple_types#xplan:RP_TourismusTypen" alt="RP_TourismusTypen" title="RP_TourismusTypen">
       <area shape="rect" coords="2151,1159,2331,1348" href="index.php?go=show_simple_types#xplan:RP_SportanlageTypen" alt="RP_SportanlageTypen" title="RP_SportanlageTypen">
-      <area shape="rect" coords="2240,984,2732,1138" href="index.php?go=show_simple_types#xplan:RP_Bedeutsamkeit" alt="RP_Bedeutsamkeit" title="RP_Bedeutsamkeit">
-      <area shape="rect" coords="1759,879,2174,1104" href="index.php?go=show_simple_types#xplan:RP_GebietsTyp" alt="RP_GebietsTyp" title="RP_GebietsTyp">
+      <area shape="rect" coords="1735,936,2229,1092" href="index.php?go=show_simple_types#xplan:RP_Bedeutsamkeit" alt="RP_Bedeutsamkeit" title="RP_Bedeutsamkeit">
       <area shape="rect" coords="2415,670,2608,845" href="index.php?go=show_simple_types#xplan:RP_RadwegWanderwegTypen" alt="RP_RadwegWanderwegTypen" title="RP_RadwegWanderwegTypen">
       <area shape="rect" coords="1456,639,1743,915" href="index.php?go=show_simple_types#xplan:RP_HochwasserschutzTypen" alt="RP_HochwasserschutzTypen" title="RP_HochwasserschutzTypen">
       <area shape="rect" coords="1639,97,2009,337" href="index.php?go=show_simple_types#xplan:RP_ErholungTypen" alt="RP_ErholungTypen" title="RP_ErholungTypen">
       <area shape="rect" coords="2511,31,2833,426" href="index.php?go=show_simple_types#xplan:RP_NaturLandschaftTypen" alt="RP_NaturLandschaftTypen" title="RP_NaturLandschaftTypen">
     </map>
 
-    <map name="RP_KernmodellInfrastruktur">
+    <map name="RP_Infrastruktur">
       <area shape="rect" coords="937,184,1379,255" href="index.php?go=show_elements#xplan:RP_Geometrieobjekt" alt="RP_Geometrieobjekt" title="RP_Geometrieobjekt">
-      <area shape="rect" coords="703,8,947,147" href="index.php?go=show_elements#xplan:RP_Verkehr" alt="RP_Verkehr" title="RP_Verkehr">
+      <area shape="rect" coords="703,8,947,131" href="index.php?go=show_elements#xplan:RP_Verkehr" alt="RP_Verkehr" title="RP_Verkehr">
       <area shape="rect" coords="31,31,466,120" href="index.php?go=show_elements#xplan:RP_Strassenverkehr" alt="RP_Strassenverkehr" title="RP_Strassenverkehr">
       <area shape="rect" coords="33,272,465,360" href="index.php?go=show_elements#xplan:RP_Schienenverkehr" alt="RP_Schienenverkehr" title="RP_Schienenverkehr">
       <area shape="rect" coords="249,520,539,590" href="index.php?go=show_elements#xplan:RP_Wasserverkehr" alt="RP_Wasserverkehr" title="RP_Wasserverkehr">
       <area shape="rect" coords="545,160,794,230" href="index.php?go=show_elements#xplan:RP_Luftverkehr" alt="RP_Luftverkehr" title="RP_Luftverkehr">
       <area shape="rect" coords="545,344,820,415" href="index.php?go=show_elements#xplan:RP_SonstVerkehr" alt="RP_SonstVerkehr" title="RP_SonstVerkehr">
-      <area shape="rect" coords="559,496,795,617" href="index.php?go=show_elements#xplan:RP_Entsorgung" alt="RP_Entsorgung" title="RP_Entsorgung">
-      <area shape="rect" coords="424,680,729,800" href="index.php?go=show_elements#xplan:RP_Energieversorgung" alt="RP_Energieversorgung" title="RP_Energieversorgung">
-      <area shape="rect" coords="744,784,946,872" href="index.php?go=show_elements#xplan:RP_Kommunikation" alt="RP_Kommunikation" title="RP_Kommunikation">
-      <area shape="rect" coords="1584,57,1829,144" href="index.php?go=show_elements#xplan:RP_Laermschutzbereich" alt="RP_Laermschutzbereich" title="RP_Laermschutzbereich">
-      <area shape="rect" coords="1585,184,1804,270" href="index.php?go=show_elements#xplan:RP_Wasserwirtschaft" alt="RP_Wasserwirtschaft" title="RP_Wasserwirtschaft">
-      <area shape="rect" coords="1585,327,1815,432" href="index.php?go=show_elements#xplan:RP_SozialeInfrastruktur" alt="RP_SozialeInfrastruktur" title="RP_SozialeInfrastruktur">
-      <area shape="rect" coords="1585,520,1781,589" href="index.php?go=show_elements#xplan:RP_SonstigeInfrastruktur" alt="RP_SonstigeInfrastruktur" title="RP_SonstigeInfrastruktur">    
+      <area shape="rect" coords="559,496,795,603" href="index.php?go=show_elements#xplan:RP_Entsorgung" alt="RP_Entsorgung" title="RP_Entsorgung">
+      <area shape="rect" coords="424,680,729,784" href="index.php?go=show_elements#xplan:RP_Energieversorgung" alt="RP_Energieversorgung" title="RP_Energieversorgung">
+      <area shape="rect" coords="744,784,959,854" href="index.php?go=show_elements#xplan:RP_Kommunikation" alt="RP_Kommunikation" title="RP_Kommunikation">
+      <area shape="rect" coords="1584,57,1800,128" href="index.php?go=show_elements#xplan:RP_Laermschutzbereich" alt="RP_Laermschutzbereich" title="RP_Laermschutzbereich">
+      <area shape="rect" coords="1585,184,1802,254" href="index.php?go=show_elements#xplan:RP_Wasserwirtschaft" alt="RP_Wasserwirtschaft" title="RP_Wasserwirtschaft">
+      <area shape="rect" coords="1585,327,1815,414" href="index.php?go=show_elements#xplan:RP_SozialeInfrastruktur" alt="RP_SozialeInfrastruktur" title="RP_SozialeInfrastruktur">
+      <area shape="rect" coords="1585,520,1753,566" href="index.php?go=show_elements#xplan:RP_SonstigeInfrastruktur" alt="RP_SonstigeInfrastruktur" title="RP_SonstigeInfrastruktur">    
       <area shape="rect" coords="1864,15,2110,188" href="index.php?go=show_simple_types#xplan:RP_LaermschutzTypen" alt="RP_LaermschutzTypen" title="RP_LaermschutzTypen">
-      <area shape="rect" coords="1841,240,2042,429" href="index.php?go=show_simple_types#xplan:RP_WasserwirtschaftTypen" alt="RP_WasserwirtschaftTypen" title="RP_WasserwirtschaftTypen">
-      <area shape="rect" coords="1841,464,2254,686" href="index.php?go=show_simple_types#xplan:RP_GebietsTyp" alt="RP_GebietsTyp" title="RP_GebietsTyp">
+      <area shape="rect" coords="1841,250,2042,439" href="index.php?go=show_simple_types#xplan:RP_WasserwirtschaftTypen" alt="RP_WasserwirtschaftTypen" title="RP_WasserwirtschaftTypen">
       <area shape="rect" coords="1681,711,1934,900" href="index.php?go=show_simple_types#xplan:RP_SozialeInfrastrukturTypen" alt="RP_SozialeInfrastrukturTypen" title="RP_SozialeInfrastrukturTypen">
       <area shape="rect" coords="935,287,1179,613" href="index.php?go=show_simple_types#xplan:RP_EnergieversorgungTypen" alt="RP_EnergieversorgungTypen" title="RP_EnergieversorgungTypen">
       <area shape="rect" coords="1249,288,1440,546" href="index.php?go=show_simple_types#xplan:RP_PrimaerenergieTypen" alt="RP_PrimaerenergieTypen" title="RP_PrimaerenergieTypen">
@@ -1277,32 +1273,30 @@ function show_uml() {
       <area shape="rect" coords="632,1384,871,1727" href="index.php?go=show_simple_types#xplan:RP_LuftverkehrTypen" alt="RP_LuftverkehrTypen" title="RP_LuftverkehrTypen">
     </map>    
 
-    <map name="RP_KernmodellSiedlungsstruktur">
+    <map name="RP_Siedlungsstruktur">
       <area shape="rect" coords="624,96,1068,166" href="index.php?go=show_elements#xplan:RP_Geometrieobjekt" alt="RP_Geometrieobjekt" title="RP_Geometrieobjekt">
       <area shape="rect" coords="544,271,772,342" href="index.php?go=show_elements#xplan:RP_Raumkategorie" alt="RP_Raumkategorie" title="RP_Raumkategorie">
       <area shape="rect" coords="535,415,779,504" href="index.php?go=show_elements#xplan:RP_Achse" alt="RP_Achse" title="RP_Achse">
-      <area shape="rect" coords="687,657,1024,779" href="index.php?go=show_elements#xplan:RP_GemeindeFunktionSiedlungsentwicklung" alt="RP_GemeindeFunktionSiedlungsentwicklung" title="RP_GemeindeFunktionSiedlungsentwicklung">
+      <area shape="rect" coords="687,657,930,760" href="index.php?go=show_elements#xplan:RP_Siedlungsentwicklung" alt="RP_Siedlungsentwicklung" title="RP_Siedlungsentwicklung">
       <area shape="rect" coords="976,263,1234,352" href="index.php?go=show_elements#xplan:RP_Sperrgebiet" alt="RP_Sperrgebiet" title="RP_Sperrgebiet">
       <area shape="rect" coords="905,376,1246,464" href="index.php?go=show_elements#xplan:RP_ZentralerOrt" alt="RP_ZentralerOrt" title="RP_ZentralerOrt">
-      <area shape="rect" coords="936,527,1134,599" href="index.php?go=show_elements#xplan:RP_SonstigeSiedlungsstruktur" alt="RP_SonstigeSiedlungsstruktur" title="RP_SonstigeSiedlungsstruktur">
+      <area shape="rect" coords="936,527,1134,573" href="index.php?go=show_elements#xplan:RP_SonstigeSiedlungsstruktur" alt="RP_SonstigeSiedlungsstruktur" title="RP_SonstigeSiedlungsstruktur">
   		<area shape="rect" coords="176,923,510,991" href="index.php?go=show_elements#xplan:RP_WohnenSiedlung" alt="RP_WohnenSiedlung" title="RP_WohnenSiedlung">
   		<area shape="rect" coords="465,1090,733,1159" href="index.php?go=show_elements#xplan:RP_Einzelhandel" alt="RP_Einzelhandel" title="RP_Einzelhandel">
   		<area shape="rect" coords="793,1087,1134,1157" href="index.php?go=show_elements#xplan:RP_IndustrieGewerbe" alt="RP_IndustrieGewerbe" title="RP_IndustrieGewerbe">
   		<area shape="rect" coords="1072,935,1249,982" href="index.php?go=show_elements#xplan:RP_SonstSiedlungsbereich" alt="RP_SonstSiedlungsbereich" title="RP_SonstSiedlungsbereich">
-    
       <area shape="rect" coords="89,17,456,357" href="index.php?go=show_simple_types#xplan:RP_RaumkategorieTypen" alt="RP_RaumkategorieTypen" title="RP_RaumkategorieTypen">
-      <area shape="rect" coords="39,1023,341,1245" href="index.php?go=show_simple_types#xplan:RP_WohnenSiedlungTypen" alt="RP_WohnenSiedlungTypen" title="RP_WohnenSiedlungTypen">
+      <area shape="rect" coords="39,1023,336,1231" href="index.php?go=show_simple_types#xplan:RP_WohnenSiedlungTypen" alt="RP_WohnenSiedlungTypen" title="RP_WohnenSiedlungTypen">
       <area shape="rect" coords="406,1192,734,1399" href="index.php?go=show_simple_types#xplan:RP_EinzelhandelTypen" alt="RP_EinzelhandelTypen" title="RP_EinzelhandelTypen">
       <area shape="rect" coords="1359,17,1616,188" href="index.php?go=show_simple_types#xplan:RP_SperrgebietTypen" alt="RP_SperrgebietTypen" title="RP_SperrgebietTypen">
       <area shape="rect" coords="1696,8,1940,368" href="index.php?go=show_simple_types#xplan:RP_ZentralerOrtFunktionen" alt="RP_ZentralerOrtFunktionen" title="RP_ZentralerOrtFunktionen">
       <area shape="rect" coords="1969,16,2197,238" href="index.php?go=show_simple_types#xplan:RP_ZentralerOrtSonstigeFunktionen" alt="RP_ZentralerOrtSonstigeFunktionen" title="RP_ZentralerOrtSonstigeFuntkionen">
       <area shape="rect" coords="1711,633,1988,837" href="index.php?go=show_simple_types#xplan:RP_AchsenTypen" alt="RP_AchsenTypen" title="RP_AchsenTypen">
-      <area shape="rect" coords="1128,639,1542,862" href="index.php?go=show_simple_types#xplan:RP_GebietsTyp" alt="RP_GebietsTyp" title="RP_GebietsTyp">
       <area shape="rect" coords="1287,1048,1779,1204" href="index.php?go=show_simple_types#xplan:RP_Bedeutsamkeit" alt="RP_Bedeutsamkeit" title="RP_Bedeutsamkeit">
       <area shape="rect" coords="809,1199,1155,1456" href="index.php?go=show_simple_types#xplan:RP_IndustrieGewerbeTypen" alt="RP_IndustriegewerbeTypen" title="RP_IndustrieGewerbeTypen">
     </map>  
   
-    <map name="RP_KernmodellSonstiges">
+    <map name="RP_Sonstiges">
       <area shape="rect" coords="359,39,801,109" href="index.php?go=show_elements#xplan:RP_Geometrieobjekt" alt="RP_Geometrieobjekt" title="RP_Geometrieobjekt">
       <area shape="rect" coords="42,183,434,253" href="index.php?go=show_elements#xplan:RP_GenerischesObjekt" alt="RP_GenerischesObjekt" title="RP_GenerischesObjekt">
       <area shape="rect" coords="688,183,918,271" href="index.php?go=show_elements#xplan:RP_Grenze" alt="RP_Grenze" title="RP_Grenze">
@@ -1362,41 +1356,41 @@ function show_uml() {
     <a href="javascript:ReverseDisplay('basisobjekteuml')" class=hlink>
     <h2>RP_Basisobjekte</h2>
     </a>  
-    <p>Version 2015-06-05 (Arbeitsversion)</p>
+    <p>Version 2015-07-15 (Arbeitsversion)</p>
     <div id="basisobjekteuml" style="display:none;">
-    <p><img src="images/2015_07_06-Modell/RP_Basisobjekte.png" alt="RP_Basisobjekte" style="width:1995px;height:1476px;" usemap="#RP_Basisobjekte"></p>
+    <p><img src="images/2015_07_15-Modell/RP_Basisobjekte.png" alt="RP_Basisobjekte" style="width:1992px;height:1436px;" usemap="#RP_Basisobjekte"></p>
     </div>
 
     <a href="javascript:ReverseDisplay('freiraumstrukturuml')" class=hlink>
-    <h2>RP_KernmodellFreiraumstruktur</h2>
+    <h2>RP_Freiraumstruktur</h2>
     </a>
-    <p>Version 2015-06-05 (Arbeitsversion)</p>
+    <p>Version 2015-07-15 (Arbeitsversion)</p>
     <div id="freiraumstrukturuml" style="display:none;">
-    <p><img src="images/2015_07_06-Modell/RP_KernmodellFreiraumstruktur.png" alt="RP_KernmodellFreiraumstruktur" style="width:2865px;height:1839px;" usemap="#RP_KernmodellFreiraumstruktur"></p>
+    <p><img src="images/2015_07_15-Modell/RP_Freiraumstruktur.png" alt="RP_Freiraumstruktur" style="width:2865px;height:1847px;" usemap="#RP_Freiraumstruktur"></p>
     </div>
 
     <a href="javascript:ReverseDisplay('infrastrukturuml')" class=hlink>
-    <h2>RP_KernmodellInfrastruktur</h2>
+    <h2>RP_Infrastruktur</h2>
     </a>
-    <p>Version 2015-06-05 (Arbeitsversion)</p>
+    <p>Version 2015-07-16 (Arbeitsversion)</p>
     <div id="infrastrukturuml" style="display:none;">
-    <p><img src="images/2015_07_06-Modell/RP_KernmodellInfrastruktur.png" alt="RP_KernmodellInfrastruktur" style="width:2648x;height:2046px;" usemap="#RP_KernmodellInfrastruktur"></p>
+    <p><img src="images/2015_07_15-Modell/RP_Infrastruktur.png" alt="RP_Infrastruktur" style="width:2648x;height:2062px;" usemap="#RP_Infrastruktur"></p>
     </div>
 
     <a href="javascript:ReverseDisplay('siedlungsstrukturuml')" class=hlink>
-    <h2>RP_KernmodellSiedlungsstruktur</h2>
+    <h2>RP_Siedlungsstruktur</h2>
     </a>
-    <p>Version 2015-06-05 (Arbeitsversion)</p>
+    <p>Version 2015-07-15 (Arbeitsversion)</p>
     <div id="siedlungsstrukturuml" style="display:none;">
-    <p><img src="images/2015_07_06-Modell/RP_KernmodellSiedlungsstruktur.png" alt="RP_KernmodellSiedlungsstruktur" style="width:2402px;height:1534px;" usemap="#RP_KernmodellSiedlungsstruktur"></p>
+    <p><img src="images/2015_07_15-Modell/RP_Siedlungsstruktur.png" alt="RP_Siedlungsstruktur" style="width:2402px;height:1534px;" usemap="#RP_Siedlungsstruktur"></p>
     </div>
 
     <a href="javascript:ReverseDisplay('sonstigesuml')" class=hlink>
-    <h2>RP_KernmodellSonstiges</h2>
+    <h2>RP_Sonstiges</h2>
     </a>
-    <p>Version 2015-07-06 (Arbeitsversion)</p>
+    <p>Version 2015-07-15 (Arbeitsversion)</p>
     <div id="sonstigesuml" style="display:none;">
-    <p><img src="images/2015_07_06-Modell/RP_KernmodellSonstiges.png" alt="RP_KernmodellSonstiges" style="width:1184px;height:662px;" usemap="#RP_KernmodellSonstiges"></p>
+    <p><img src="images/2015_07_15-Modell/RP_Sonstiges.png" alt="RP_Sonstiges" style="width:1184px;height:662px;" usemap="#RP_Sonstiges"></p>
     </div>
   
     <a href="javascript:ReverseDisplay('rasteruml')" class=hlink>
@@ -1404,7 +1398,7 @@ function show_uml() {
     </a>
     <p>Version XPlan 4.1</p>
     <div id="rasteruml" style="display:none;">
-    <p><img src="images/2015_07_06-Modell/RP_Raster.png" alt="RP_Raster" style="width:1226px;height:955px;" usemap="#RP_Raster"></p>
+    <p><img src="images/2015_07_15-Modell/RP_Raster.png" alt="RP_Raster" style="width:1226px;height:955px;" usemap="#RP_Raster"></p>
     </div>
   
     <a href="javascript:ReverseDisplay('xpbasisobjekteuml')" class=hlink>
@@ -1412,7 +1406,7 @@ function show_uml() {
     </a>
     <p>Version XPlan 4.1</p>
     <div id="xpbasisobjekteuml" style="display:none;">
-    <p><img src="images/2015_07_06-Modell/XP_Basisobjekte.png" alt="XP_Basisobjekte" style="width:1695px;height:1571px;"usemap="#XP_Basisobjekte"></p>
+    <p><img src="images/2015_07_15-Modell/XP_Basisobjekte.png" alt="XP_Basisobjekte" style="width:1695px;height:1571px;"usemap="#XP_Basisobjekte"></p>
     </div>
   
     <a href="javascript:ReverseDisplay('inspireuml')" class=hlink>
@@ -1420,7 +1414,7 @@ function show_uml() {
     </a>
     <p>Version 3.0</p>
     <div id="inspireuml" style="display:none;">
-    <p><img src="images/2015_07_06-Modell/inspireuml.jpg" alt="INSPIRE Modell" style="width:708px;height:665px;"></p>
+    <p><img src="images/2015_07_15-Modell/inspireuml.jpg" alt="INSPIRE Modell" style="width:708px;height:665px;"></p>
     </div>
   </div><?php
   output_footer();
@@ -1683,10 +1677,10 @@ function show_simple_types() {
           Regionalplan</h3>
           <div id="regionalplanminmax" class="toggleable">
             RP_Basisobjekte<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_RP__Basisobjekte.html" target="_blank"><img src="images/Link.png" width="15"></a><br>
-            RP_KernmodellFreiraumstruktur<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_RP_KernmodellFreiraumstruktur.html" target="_blank"><img src="images/Link.png" width="15"></a><br>
-            RP_KernmodellInfrastruktur<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_RP_KernmodellInfrastruktur.html" target="_blank"><img src="images/Link.png" width="15"></a><br>
-            RP_KernmodellSiedlungsstruktur<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_RP_KernmodellSiedlungsstruktur.html" target="_blank"><img src="images/Link.png" width="15"></a><br>
-            RP_KernmodellSonstiges<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_RP_KernmodellSonstiges.html" target="_blank"><img src="images/Link.png" width="15"></a><br>
+            RP_Freiraumstruktur<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_RP_KernmodellFreiraumstruktur.html" target="_blank"><img src="images/Link.png" width="15"></a><br>
+            RP_Infrastruktur<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_RP_KernmodellInfrastruktur.html" target="_blank"><img src="images/Link.png" width="15"></a><br>
+            RP_Siedlungsstruktur<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_RP_KernmodellSiedlungsstruktur.html" target="_blank"><img src="images/Link.png" width="15"></a><br>
+            RP_Sonstiges<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_RP_KernmodellSonstiges.html" target="_blank"><img src="images/Link.png" width="15"></a><br>
           </div>
         <h3>
           <a href="javascript:toggleVisibility('landschaftsplanminmax')" class=hlink><img src="images/minimize.png" id="landschaftsplanminmax_minimize_img" alt="Minimize Landschaftsplan" class = "minimize_img"><img src="images/maximize.png" id="landschaftsplanminmax_maximize_img" alt="Maximize Landschaftsplan" class = "maximize_img"></a>  
