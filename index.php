@@ -201,6 +201,9 @@ switch ($go) {
      show_login();
     }
     break;
+  case 'show_calendar':
+    ($angemeldet) ? show_calendar() : show_login();
+    break;
   case 'show_hilfe':
     ($angemeldet) ? show_hilfe() : show_login();
     break;
@@ -748,6 +751,12 @@ function show_planzeichen() {
     </div>
   </div><?php
   output_footer();
+}
+
+function show_calendar() {
+  output_header(true); ?>
+  <iframe src="https://www.google.com/calendar/embed?src=gdi-service.de_k03497i3du1rqrusj9ldneerj0%40group.calendar.google.com&ctz=Europe/Berlin" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+  <?php output_footer();
 }
 
 function get_plaene($params) {
