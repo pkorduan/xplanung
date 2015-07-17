@@ -16,7 +16,6 @@ $angemeldet = angemeldet();
 #vars for konvertierungsform
 
 
-
 /*
   PHP Konstanten
 */
@@ -349,7 +348,7 @@ function output_header($with_menu) {
       <a href="index.php?go=show_plaene" class="menue">Pläne</a>
       <a href="index.php?go=show_planzeichen&planstatus=1" class="menue">Planzeichen</a>
       <a href="index.php?go=show_comments" class="menue">Kommentare</a>
-      <a href="index.php?go=show_konvertierungform" class="menue">Konvertierung</a>
+      <!--a href="index.php?go=show_konvertierungform" class="menue">Konvertierung</a-->
       <a href="index.php?go=show_hilfe" class="menue">Hilfe</a><?php
       if ($angemeldet) { ?>
         <a href="index.php?go=show_login" title="Abmelden"><img src="images/logout.png" alt="Neu einloggen" class = "logout-image"></a>
