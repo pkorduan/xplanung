@@ -1,2 +1,3 @@
 .gitignore
+config/environment.php
 config/database.conf
