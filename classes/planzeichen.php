@@ -13,7 +13,7 @@ class Planzeichen {
     $go = $params['go'];
     $url  = "index.php?go=".$go;
     $bundesland_abk = $params['bundesland_abk'];
-    $kernmodell = ($params['kernmodell'] == 'Alle' OR $params['kernmodell'] == '') ? '' : $params['kernmodell'] ;
+    $kernmodell = ($params['paket'] == 'Alle' OR $params['paket'] == '') ? '' : $params['paket'] ;
     $rechtscharakter = ($params['rechtscharakter'] == 'Alle' OR $params['rechtscharakter'] == '') ? '' : $params['rechtscharakter'] ;
     $planstatus = ($params['planstatus'] == 'Alle' OR $params['planstatus'] == '') ? '' : $params['planstatus'] ;
     $url .= "&bundesland=" . $bundesland;
@@ -39,7 +39,7 @@ class Planzeichen {
     $orderdir = $params['orderdir'];
     $package = $params['package'];
     $sql  = "
-      SELECT
+      SELECT DISTINCT
         p.objectid,
         p.legcode,
         p.planid,
@@ -47,12 +47,12 @@ class Planzeichen {
         p.gruppe,
         p.untergr,
         p.sonst,
-        p.kernmodelleigen,
+        p.paketeigen,
         p.featuretypeeigen,
         p.enumerationseigen,
-        p.xplan_rprechtscharakter_entwurf,
+        p.rprechtscharaktereigen,
         p.rprechtsstandeigen,
-        p.xplan_rpgebietstyp_entwurf,
+        p.rpgebietstypeigen,
         p.rstatus || ' (' || CASE WHEN r.beschreibung IS NULL THEN 'nicht erfasst' ELSE  r.beschreibung END || ')' rstatus,
         p.rkonkr || ' (' || CASE WHEN k.beschreibung IS NULL THEN 'nicht erfasst' ELSE  k.beschreibung END || ')' rkonkr,
         p.rogebtyp || ' (' || CASE WHEN g.beschreibung IS NULL THEN 'nicht erfasst' ELSE  g.beschreibung END || ')' rogebtyp,
@@ -60,16 +60,16 @@ class Planzeichen {
     		pl.status,
     		pl.plr
       FROM
-        roplamo.planzeichen AS p LEFT JOIN
-        roplamo.dom_recht r ON p.rstatus = r.code LEFT JOIN
-        roplamo.dom_rkonkr k ON p.rkonkr = k.code LEFT JOIN
-        roplamo.dom_rogeb g ON p.rogebtyp = g.code LEFT JOIN
-        (SELECT DISTINCT object_id FROM roplamo.comments WHERE object_type = 'Planzeichen') AS d ON p.objectid = d.object_id LEFT JOIN
-    		roplamo.plaene AS pl ON p.planid = pl.planid
+        " . SCHEMA_PREFIX . "roplamo.planzeichen AS p LEFT JOIN
+        " . SCHEMA_PREFIX . "roplamo.dom_recht r ON p.rstatus = r.code LEFT JOIN
+        " . SCHEMA_PREFIX . "roplamo.dom_rkonkr k ON p.rkonkr = k.code LEFT JOIN
+        " . SCHEMA_PREFIX . "roplamo.dom_rogeb g ON p.rogebtyp = g.code LEFT JOIN
+        (SELECT DISTINCT object_id FROM " . SCHEMA_PREFIX . "roplamo.comments WHERE object_type = 'Planzeichen') AS d ON p.objectid = d.object_id LEFT JOIN
+    		" . SCHEMA_PREFIX . "roplamo.plaene AS pl ON p.planid = pl.planid
       WHERE 1=1
     ";
     if ($bundesland_abk != '') $sql .= " AND p.legcode LIKE '" . $bundesland_abk . "%'";
-    if ($kernmodell != '') $sql .= " AND p.kernmodelleigen LIKE '" . $kernmodell . "'";
+    if ($kernmodell != '') $sql .= " AND p.paketeigen LIKE '" . $kernmodell . "'";
     if ($rechtscharakter != '') $sql .= " AND p.xplan_rprechtscharakter_entwurf LIKE '" . $rechtscharakter . " %'";
     if ($planid != '') $sql .= " AND p.planid = '" . $planid . "'";
     if ($rechtsstatus != '') $sql .= " AND rstatus = " . $rechtsstatus;

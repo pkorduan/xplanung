@@ -39,11 +39,11 @@ class Plan {
         CASE WHEN pz.planid IS NULL THEN false ELSE true END AS hat_planzeichen,
         CASE WHEN d.object_id IS NULL THEN false ELSE true END AS hat_comments
       FROM
-        roplamo.plaene AS p LEFT JOIN
-        roplamo.dom_planart a ON p.art = a.code LEFT JOIN
-        roplamo.dom_planstatus s ON p.status = s.code LEFT JOIN
-        (SELECT DISTINCT object_id FROM roplamo.comments WHERE object_type = 'Plan') AS d ON p.objectid = d.object_id LEFT JOIN
-        roplamo.planzeichen pz ON p.planid = pz.planid
+        " . SCHEMA_PREFIX . "roplamo.plaene AS p LEFT JOIN
+        " . SCHEMA_PREFIX . "roplamo.dom_planart a ON p.art = a.code LEFT JOIN
+        " . SCHEMA_PREFIX . "roplamo.dom_planstatus s ON p.status = s.code LEFT JOIN
+        (SELECT DISTINCT object_id FROM " . SCHEMA_PREFIX . "roplamo.comments WHERE object_type = 'Plan') AS d ON p.objectid = d.object_id LEFT JOIN
+        " . SCHEMA_PREFIX . "roplamo.planzeichen pz ON p.planid = pz.planid
       WHERE 1=1
     ";
     if ($planart != '') $sql .= " AND p.art = " . $planart;

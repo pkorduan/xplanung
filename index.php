@@ -2,6 +2,7 @@
 /*
 * Session und Parameterhandling
 */
+include('config/environment.php');
 session_start();
 $params = $_REQUEST;
 $go = $params['go']; unset($params['go']);
@@ -142,7 +143,7 @@ $sql  = "
   SELECT
     DISTINCT package
   FROM
-    devk_xplan.elements
+    " . SCHEMA_PREFIX . "xplan.elements
   ORDER BY
     package
 ";
@@ -151,7 +152,7 @@ $packages = pg_fetch_all($result);
 array_unshift($packages, array('package' => 'Alle'));
 
 $objectids = array();
-$sql  = "SELECT DISTINCT objectid FROM devk_roplamo.plaene ";
+$sql  = "SELECT DISTINCT objectid FROM  ". SCHEMA_PREFIX . "_roplamo.plaene ";
 $sql .= " ORDER BY objectid";
 $result = pg_query($conn, $sql);
 $objectids = pg_fetch_all($result);
@@ -246,7 +247,7 @@ function authentified($username, $passwort){
     SELECT
       true AS angemeldet
     FROM
-      devk_roplamo.users
+      " . SCHEMA_PREFIX . "roplamo.users
     WHERE
       username = '" . $username . "' AND
       passwort = '". md5($passwort) . "'
@@ -342,7 +343,7 @@ function output_header($with_menu) {
       <a href="index.php?go=show_elements" class="menue">XPlan&nbsp;Elemente</a>
       <a href="index.php?go=show_simple_types" class="menue">Codelisten</a>
       <a href="index.php?go=show_plaene" class="menue">Pläne</a>
-      <a href="index.php?go=show_planzeichen&planstatus=1" class="menue">Planzeichen</a>
+      <a href="index.php?go=show_planzeichen" class="menue">Planzeichen</a>
       <a href="index.php?go=show_comments" class="menue">Kommentare</a>
      <!-- <a href="index.php?go=show_konvertierungform" class="menue">Konvertierung</a>-->
       <a href="index.php?go=show_hilfe" class="menue">Hilfe</a><?php
@@ -389,12 +390,6 @@ function show_plaene() {
          <option value="<?php echo $planarten[$i][0]; ?>"<?php if ($params['planart'] == $planarten[$i][0]) { ?> selected<?php } ?>><?php echo $planarten[$i][1]; ?></option>
        <?php } ?>
        </select>
-      Planstatus:
-      <select id="planstatusselektor" name="planstatus" size="1">
-       <?php for ($i=0; $i < count($planstati); $i++) { ?>
-         <option value="<?php echo $planstati[$i][0]; ?>"<?php if ($params['planstatus'] == $planstati[$i][0]) { ?> selected<?php } ?>><?php echo $planstati[$i][1]; ?></option>
-       <?php } ?>
-      </select>
       Ebene:
       <select id="ebeneselektor" name="ebene" size="1">
         <?php for ($i=0; $i < count($ebenen); $i++) { ?>
@@ -476,11 +471,6 @@ function show_plaene() {
             data-align="left"
             data-visible="false"
           >Planart</th>
-          <th
-            data-field="statustext"
-            data-align="left"
-            data-visible="false"
-            >Planstatus</th>
           <th
             data-field="traeger"
             data-align="left"
@@ -564,16 +554,6 @@ function show_planzeichen() {
   				return value;
   			}
   		}
-
-  		function planstatusFormatter(value, row){
-        arrayPlanstati = [<?php
-          $planstati_with_numbers = array();
-          for ($i = 1; $i < count($planstati); $i++) {
-            $planstati_with_numbers[] = '"' . $planstati[$i][1] . '"';
-          }
-          echo implode(',', $planstati_with_numbers); ?>];
-  			return arrayPlanstati[value];
-  		}
     </script>
     <div id="planzeichen-container">
       <form method="Post" action="index.php">
@@ -601,13 +581,7 @@ function show_planzeichen() {
             <?php echo $rechtscharaktere[$i]; ?>
           </option>
           <?php } ?>
-        </select>
-        Planstatus:
-        <select id="planstatusselektor" name="planstatus" size="1">
-         <?php for ($i=0; $i < count($planstati); $i++) { ?>
-           <option value="<?php echo $planstati[$i][0]; ?>"<?php if ($params['planstatus'] == $planstati[$i][0]) { ?> selected<?php } ?>><?php echo $planstati[$i][1]; ?></option>
-         <?php } ?>
-        </select>			
+        </select>		
         <input type="submit" value="Aktualisieren">
       </form>
 
@@ -707,13 +681,6 @@ function show_planzeichen() {
   						data-sortable="true"
               data-visible="false"
             >RP_GebietsTyp</th>
-  				  <th
-              data-field="status"
-              data-align="left"
-  						data-sortable="true"
-              data-visible="true"
-              data-formatter="planstatusFormatter"
-            >Planstatus</th>
   					<th
               data-field="plr"
               data-align="left"
@@ -760,8 +727,8 @@ function show_comments() {
       u.id AS author_id,
       u.vorname || ' ' || u.nachname || ' (' || u.organisation || ')' AS author_name
     FROM
-      devk_roplamo.comments c,
-      devk_roplamo.users u
+       ". SCHEMA_PREFIX . "roplamo.comments c,
+      " . SCHEMA_PREFIX . "roplamo.users u
     WHERE
       u.id = c.user_id
     ORDER BY
@@ -960,9 +927,19 @@ function show_home() {
 		<div class="textsite">
 			<h1>Modellvorhaben der Raumordnung</h1>
 			<h2>Entwicklung und Implementierung eines Standards für den Datenaustausch in der Raumordnungsplanung</h2>
-
+      
 			<form action ="index.php">
 			<input type="hidden"name="go" value="show_home">
+      <p>
+      <h3>Änderungen zum 23.07.2015</h3>
+      <li>Änderungen des UML- und Datenbank-Modells auf Basis der Gespräche mit der AG E-Government der MKRO (in UML sind besprochene Änderungen als graue Kommentare gekennzeichnet)</li>
+      <li>Herausnahme von nicht-verbindlichen Plänen und Planzeichen aus den ROPLAMO-Tabellen</li>
+      <li>Änderungen in den ROPLAMO-Zuordnungen auf Basis der erhaltenen Kommentare</li>
+      <li>Erweiterte Dokumentation, zum Beispiel FeatureType-Definitionen in der UML-Modelldarstellung als Mouseover-Effekt</li>
+      <li>Ein Modelldownload als PDF ist nun auf der Modell-Sektion möglich</li>
+      <li>Weitere kleinere Änderungen und Bugfixes</li>
+      </p>
+      <h3>Einleitung</h3>
 			<p>
 				Um einen effektiven Austausch von Geodaten der Raumordnung im Bundesgebiet zu ermöglichen, der nicht nur die öffentliche Verwaltung, sondern auch Träger öffentlicher Belange, die Privatwirtschaft und Bürger mit einschließt, ist eine Standardisierung erforderlich, die auch den Umfang der bei den Geodaten zu dokumentierenden Sachattribute thematisiert. In dem Modellvorhaben der Raumordnung "Entwicklung und Implementierung eines Standards für den Datenaustausch in der Raumordnungsplanung" des Bundesinstituts für Bau-, Stadt- und Raumforschung (BBSR) wird das Datenaustauschformat für Raumordnungspläne (XPlanung) in enger Zusammenarbeit mit der AG eGovernment des Ausschusses für Struktur und Umwelt sowie der Länder weiterentwickelt.
 			</p>
@@ -1350,8 +1327,9 @@ function show_uml() {
     echo "<input type=\"hidden\"name=\"go\" value=\"show_uml\">";
     ?>
 
-    <!--  Javascript für Show und Hide () -->
 
+    <h3>Gesamtes Modell als PDF <a href="model/XPlan Raumordungsplan Arbeitsmodell (Version 15-07-21).pdf">herunterladen</a> (Version 2015-07-21)</h3>  
+     <!--  Javascript für Show und Hide () -->   
     <a href="javascript:ReverseDisplay('basisobjekteuml')" class=hlink>
     <h2>RP_Basisobjekte</h2>
     </a>  
@@ -1459,8 +1437,8 @@ function show_elements() {
   				a.altoderneuattributes,
           a.documentationattribute
         FROM
-          devk_xplan.elements e LEFT JOIN
-          devk_xplan.attributes a ON e.id = a.element_id
+          " . SCHEMA_PREFIX . "xplan.elements e LEFT JOIN
+          " . SCHEMA_PREFIX . "xplan.attributes a ON e.id = a.element_id
         WHERE
           e.name NOT LIKE '_GenericApplicationPropertyOf%'
         ";
@@ -1714,7 +1692,7 @@ function show_simple_types() {
     echo "<input type=\"hidden\" name=\"go\" value=\"show_simple_types\">";
     echo "Package: <input name=\"package\" value=\"" . $params['package']. "\" size=\"35\">";
 
-    $sql = "SELECT st.id simple_type_id, st.name simple_type_name, st.package, en.id enumeration_id, en.name enumeration_name, en.value enumeration_value, st.altoderneusimpletypes, en.altoderneuenumerations FROM devk_xplan.simple_types st, devk_xplan.enumerations en WHERE st.id = en.simple_type_id";
+    $sql = "SELECT st.id simple_type_id, st.name simple_type_name, st.package, en.id enumeration_id, en.name enumeration_name, en.value enumeration_value, st.altoderneusimpletypes, en.altoderneuenumerations FROM " . SCHEMA_PREFIX . "xplan.simple_types st, " . SCHEMA_PREFIX . "xplan.enumerations en WHERE st.id = en.simple_type_id";
     if ($params['package'] != '') $sql .= " AND package LIKE '" . $params['package'] ."'";
     $sql .= ' ORDER BY ';
     if ($params['order'] != '') {
@@ -1935,14 +1913,14 @@ function load_xsd($file_name, $truncate) {
   echo '<br>' . $file_name;
   
   if ($truncate == 1) {
-    $sql  = 'TRUNCATE devk_xplan.elements;';
-    $sql .= 'ALTER SEQUENCE devk_xplan.elements_id_seq RESTART;';
-    $sql .= 'TRUNCATE devk_xplan.attributes;';
-    $sql .= 'ALTER SEQUENCE devk_xplan.attributes_id_seq RESTART;';
-    $sql .= 'TRUNCATE devk_xplan.simple_types;';
-    $sql .= 'ALTER SEQUENCE devk_xplan.simple_types_id_seq RESTART;';
-    $sql .= 'TRUNCATE devk_xplan.enumerations;';
-    $sql .= 'ALTER SEQUENCE devk_xplan.enumerations_id_seq RESTART;';
+    $sql  = 'TRUNCATE " . SCHEMA_PREFIX . "xplan.elements;';
+    $sql .= 'ALTER SEQUENCE " . SCHEMA_PREFIX . "xplan.elements_id_seq RESTART;';
+    $sql .= 'TRUNCATE " . SCHEMA_PREFIX . "xplan.attributes;';
+    $sql .= 'ALTER SEQUENCE " . SCHEMA_PREFIX . "xplan.attributes_id_seq RESTART;';
+    $sql .= 'TRUNCATE " . SCHEMA_PREFIX . "xplan.simple_types;';
+    $sql .= 'ALTER SEQUENCE " . SCHEMA_PREFIX . "xplan.simple_types_id_seq RESTART;';
+    $sql .= 'TRUNCATE " . SCHEMA_PREFIX . "xplan.enumerations;';
+    $sql .= 'ALTER SEQUENCE " . SCHEMA_PREFIX . "xplan.enumerations_id_seq RESTART;';
     echo '<br><b>Leeren der Datentabellen und zurücksetzen der Autowerte.</b>';
     echo '<br>' . $sql;
     pg_query($conn, $sql);
@@ -2094,7 +2072,7 @@ function get_text_from_comment($line) {
 
 function write_element($package, $element) {
   global $conn;
-  $sql = "INSERT INTO devk_xplan.elements (name, type, \"substitutionGroup\", package) VALUES('" . $element['name'] . "', '" . $element['type'] . "', '" . $element['substitutionGroup'] . "', '" . $package . "') RETURNING id";
+  $sql = "INSERT INTO " . SCHEMA_PREFIX . "xplan.elements (name, type, \"substitutionGroup\", package) VALUES('" . $element['name'] . "', '" . $element['type'] . "', '" . $element['substitutionGroup'] . "', '" . $package . "') RETURNING id";
   echo '<br>' . $sql;
   $result = pg_query($conn, $sql);
   $row = pg_fetch_row($result);
@@ -2103,7 +2081,7 @@ function write_element($package, $element) {
 
 function write_simple_type($package, $simple_type) {
   global $conn;
-  $sql = "INSERT INTO devk_xplan.simple_types (name, package) VALUES('" . $simple_type['name'] . "', '" . $package . "') RETURNING id";
+  $sql = "INSERT INTO " . SCHEMA_PREFIX . "xplan.simple_types (name, package) VALUES('" . $simple_type['name'] . "', '" . $package . "') RETURNING id";
   echo '<br>' . $sql;
   $result = pg_query($conn, $sql);
   $row = pg_fetch_row($result);
@@ -2112,7 +2090,7 @@ function write_simple_type($package, $simple_type) {
 
 function write_enumeration($simple_type_id, $enumeration) {
   global $conn;
-  $sql = "INSERT INTO devk_xplan.enumerations (simple_type_id, value, name) VALUES(". $simple_type_id .", '" . $enumeration['value'] . "', '" . $enumeration['name'] . "') RETURNING id";
+  $sql = "INSERT INTO " . SCHEMA_PREFIX . "xplan.enumerations (simple_type_id, value, name) VALUES(". $simple_type_id .", '" . $enumeration['value'] . "', '" . $enumeration['name'] . "') RETURNING id";
   echo '<br>' . $sql;
   $result = pg_query($conn, $sql);
   $row = pg_fetch_row($result);
@@ -2123,7 +2101,7 @@ function update_documentation($element_id, $documentation) {
   global $conn;
   $documentation = str_replace('&lt;i&gt;', '', $documentation);
   $documentation = str_replace('&lt;/i&gt;', '', $documentation);  
-  $sql = "UPDATE devk_xplan.elements SET documentation = '" . $documentation . "' WHERE id = " . $element_id;
+  $sql = "UPDATE " . SCHEMA_PREFIX . "xplan.elements SET documentation = '" . $documentation . "' WHERE id = " . $element_id;
   echo '<br>' . $sql;
   $result = pg_query($conn, $sql);
 }
@@ -2131,7 +2109,7 @@ function update_documentation($element_id, $documentation) {
 function write_attributes($element_id, $attributes) {
   global $conn;
   for ($i = 0; $i < count($attributes); $i++) {
-    $sql = "INSERT INTO devk_xplan.attributes (\"name\", \"minOccurs\", \"maxOccurs\", \"type\", \"ref\", element_id) VALUES('" . $attributes[$i]['name'] . "', '" . $attributes[$i]['minOccurs'] . "', '" . $attributes[$i]['maxOccurs'] . "', '" . $attributes[$i]['type'] . "', '" . $attributes[$i]['ref'] . "', " . $element_id . ")";
+    $sql = "INSERT INTO " . SCHEMA_PREFIX . "xplan.attributes (\"name\", \"minOccurs\", \"maxOccurs\", \"type\", \"ref\", element_id) VALUES('" . $attributes[$i]['name'] . "', '" . $attributes[$i]['minOccurs'] . "', '" . $attributes[$i]['maxOccurs'] . "', '" . $attributes[$i]['type'] . "', '" . $attributes[$i]['ref'] . "', " . $element_id . ")";
     echo '<br>' . $sql;
     $result = pg_query($conn, $sql);
   }

@@ -224,9 +224,9 @@ function konverteingegebenerbereich(){
       {
         $_SESSION[$xp_bereich_attribute[$i]] = $_POST[$xp_bereich_attribute[$i]]; echo 'nummer: ' . $_POST[$xp_bereich_attribute[$i]]  . '<br>';
       } 
-      */
+      
   }
-   
+   */
   if (empty($_SESSION["xp_bereich_nummer"])){$_SESSION["xp_bereich_nummer"] = $_POST['xp_bereich_nummer'];}
   # if (!empty($_SESSION["xp_bereich_nummer"]) && empty($_POST["xp_bereich_nummer"])) {echo 'nummer: ' . $_SESSION["xp_bereich_nummer"] . '<br>';} else {$_SESSION["xp_bereich_nummer"] = $_POST['xp_bereich_nummer']; echo 'nummer: ' . $_POST["xp_bereich_nummer"]  . '<br>';}
   if (!empty($_SESSION["xp_bereich_nummer"])) {echo 'nummer: ' . $_SESSION["xp_bereich_nummer"] . '<br>';}
@@ -240,7 +240,6 @@ function konverteingegebenerbereich(){
   if (!empty($_SESSION["xp_bereich_erstellungsmasstab"])) {echo 'erstellungsMasstab: ' . $_SESSION["xp_bereich_erstellungsmasstab"] . '<br>';}
   if (empty($_SESSION["xp_bereich_geltungsbereich"])){$_SESSION["xp_bereich_geltungsbereich"] = $_POST['xp_bereich_geltungsbereich'];}
   if (!empty($_SESSION["xp_bereich_geltungsbereich"])) {echo 'geltungsbereich: ' . $_SESSION["xp_bereich_geltungsbereich"] . '<br>';}
-  */
   echo "<h3>RP_Bereich Daten</h3>";
   if (empty($_SESSION["rp_bereich_versionbrog"])){$_SESSION["rp_bereich_versionbrog"] = $_POST['rp_bereich_versionbrog'];}
   if (!empty($_SESSION["rp_bereich_versionbrog"])) {echo 'versionBROG: ' . $_SESSION["rp_bereich_versionbrog"] . '<br>';}
@@ -256,7 +255,7 @@ function konverteingegebenerbereich(){
   ###   damit er nach diesem später wieder gesucht werden kann
   echo '</div>';
   echo '</form>';
-}      
+}
       
 
 ##############################FUNKTIONEN#############################
