@@ -1251,7 +1251,7 @@ function show_uml() {
       <area shape="rect" coords="1249,288,1440,546" href="index.php?go=show_simple_types#xplan:RP_PrimaerenergieTypen" alt="RP_PrimaerenergieTypen" title="RP_PrimaerenergieTypen: Typ der Primärenergie">
       <area shape="rect" coords="984,784,1122,870" href="index.php?go=show_simple_types#xplan:RP_SpannungTypen" alt="RP_SpannungTypen" title="RP_SpannungTypen: Typ der Spannung">
       <area shape="rect" coords="1170,745,1359,862" href="index.php?go=show_simple_types#xplan:RP_KommunikationTyp" alt="RP_KommunikationTyp" title="KommunikationTyp: Typ der Kommunikationsinfrastruktur">
-      <area shape="rect" coords="1238,897,1630,1219" href="index.php?go=show_simple_types#xplan:RP_AbfallentsorgungTypen" alt="RP_AbfallentsorgungTypen" title="RP_AbfallentsorgungTypen: Typ der Abfallentsorgung">
+      <area shape="rect" coords="1240,897,1596,1222" href="index.php?go=show_simple_types#xplan:RP_AbfallentsorgungTypen" alt="RP_AbfallentsorgungTypen" title="RP_AbfallentsorgungTypen: Typ der Abfallentsorgung">
       <area shape="rect" coords="1241,1241,1513,1412" href="index.php?go=show_simple_types#xplan:RP_AbwasserTypen" alt="RP_AbwasserTypen" title="RP_AbwasserTypen: Typ der Abwasserinfrastruktur">
       <area shape="rect" coords="1536,1265,1748,1367" href="index.php?go=show_simple_types#xplan:RP_EntsorgungTypen" alt="RP_EntsorgungTypen" title="RP_EntsorgungTypen: Klassifikation von Entsorgungs-Arten.">    
       <area shape="rect" coords="895,936,1227,1126" href="index.php?go=show_simple_types#xplan:VerkehrStatus" alt="RP_VerkehrStatus" title="RP_VerkehrStatus: Klassifikation des Verkehrsstatus">
@@ -1261,7 +1261,7 @@ function show_uml() {
       <area shape="rect" coords="33,889,383,1179" href="index.php?go=show_simple_types#xplan:RP_StrassenverkehrTypen" alt="RP_StrassenverkehrTypen" title="RP_StrassenverkehrTypen: Klassifikation des Straßenverkehrs">
       <area shape="rect" coords="33,1200,267,1303" href="index.php?go=show_simple_types#xplan:RP_BesondereStrassenverkehrTypen" alt="RP_BesondereStrassenverkehrTypen" title="RP_BesondereStrassenverkehrTypen: Klassifikation des besonderen Straßenverkehrs">
       <area shape="rect" coords="40,1352,240,1508" href="index.php?go=show_simple_types#xplan:RP_Bedeutsamkeit" alt="RP_Bedeutsamkeit" title="RP_Bedeutsamkeit: Bedeutsamkeit des FeatureTypes">
-      <area shape="rect" coords="23,1512,311,1837" href="index.php?go=show_simple_types#xplan:RP_SchienenverkehrTypen" alt="RP_SchienenverkehrTypen" title="RP_SchienenverkehrTypen: Klassifikation des Schienenverkehrs">
+      <area shape="rect" coords="33,1529,320,1870" href="index.php?go=show_simple_types#xplan:RP_SchienenverkehrTypen" alt="RP_SchienenverkehrTypen" title="RP_SchienenverkehrTypen: Klassifikation des Schienenverkehrs">
       <area shape="rect" coords="343,1536,614,1742" href="index.php?go=show_simple_types#xplan:RP_BesondereSchienenverkehrTypen" alt="RP_BesondereSchienenverkehrTypen" title="RP_BesondereSchienenverkehrTypen: Klassifikation von besonderen Schienenverkehrtypen">
       <area shape="rect" coords="632,1384,871,1727" href="index.php?go=show_simple_types#xplan:RP_LuftverkehrTypen" alt="RP_LuftverkehrTypen" title="RP_LuftverkehrTypen: Klassifikation des Luftverkehrs">
     </map>    
@@ -1373,7 +1373,7 @@ function show_uml() {
     </a>
     <p>Version 2015-07-21 (Arbeitsversion)</p>
     <div id="infrastrukturuml" style="display:none;">
-    <p><img src="images/2015_07_21-Modell/RP_Infrastruktur.png" alt="RP_Infrastruktur" style="width:2648x;height:2062px;" usemap="#RP_Infrastruktur"></p>
+    <p><img src="images/2015_07_21-Modell/RP_Infrastruktur.png" alt="RP_Infrastruktur" style="width:2648x;height:2110px;" usemap="#RP_Infrastruktur"></p>
     </div>
 
     <a href="javascript:ReverseDisplay('siedlungsstrukturuml')" class=hlink>
