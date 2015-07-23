@@ -151,7 +151,7 @@ $packages = pg_fetch_all($result);
 array_unshift($packages, array('package' => 'Alle'));
 
 $objectids = array();
-$sql  = "SELECT DISTINCT objectid FROM  ". SCHEMA_PREFIX . "_roplamo.plaene ";
+$sql  = "SELECT DISTINCT objectid FROM  ". SCHEMA_PREFIX . "roplamo.plaene ";
 $sql .= " ORDER BY objectid";
 $result = pg_query($conn, $sql);
 $objectids = pg_fetch_all($result);
@@ -1902,6 +1902,7 @@ function show_simple_types() {
   output_footer();
 }
 
+
 function load_xsd($file_name, $truncate) {
   global $conn;
   output_header(true);?>
@@ -1919,7 +1920,7 @@ function load_xsd($file_name, $truncate) {
   echo '<h1>Laden des XPlanung-Schemas von XSD-Dateien</h1>';
   echo '<br><b>Lade Datei:</b>';
   echo '<br>' . $file_name;
-  
+
   if ($truncate == 1) {
     $sql  = 'TRUNCATE " . SCHEMA_PREFIX . "xplan.elements;';
     $sql .= 'ALTER SEQUENCE " . SCHEMA_PREFIX . "xplan.elements_id_seq RESTART;';
