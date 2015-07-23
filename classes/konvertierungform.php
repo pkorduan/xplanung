@@ -21,20 +21,10 @@
   <h1>Konvertierungsformular</h1>
   <form action ="index.php?go=show_konvertierungform" method="post">
   <input type="submit" name="neuerplan-submit" class="konvertmenue"value ="Neuer Plan">
-  </form>
-  <form action ="index.php?go=show_konvertierungform" method="post">
   <input type="submit" name="neuertextabschnitt-submit" class="konvertmenue"value ="Neuer Textabschnitt">
-  </form>
-  <form action ="index.php?go=show_konvertierungform" method="post">
   <input type="submit" name="neuerbereich-submit" class="konvertmenue"value ="Neuer Bereich">
-  </form>
-  <form action ="index.php?go=show_konvertierungform" method="post">
   <input type="submit" name="planladen-submit" class="konvertmenue"value ="Plan laden">
-  </form>
-  <form action ="index.php?go=show_konvertierungform" method="post">
   <input type="submit" name="textabschnittladen-submit" class="konvertmenue"value ="Textabschnitt laden">
-  </form>
-  <form action ="index.php?go=show_konvertierungform" method="post">
   <input type="submit" name="bereichladen-submit" class="konvertmenue"value ="Bereich laden">
   </form>
   <?php
@@ -42,12 +32,14 @@
 function konverteingegebenerplan(){
   echo '<form action ="index.php?go=show_konvertierungform" method="post">';
   echo '<div class="eingegebenerplan">';
-  echo '<h2>Eingegebener Plan</h2>';
+  echo '<h1>Eingegebener Plan</h1>';
+  echo '<div class="konformitaetsbedingungen">';
   echo '<h3>Konformitätsbedingungen</h3><ul>';
   echo '<li>Die Relation texte darf nur auf Instanzen der Klasse <a href="index.php?go=show_elements&package=Alle#xplan:XP_BegruendungAbschnitt">XP_BegruendungAbschnitt</a> verweisen</li>';
   echo '<li>Die Relation begruendungstexte darf nur auf Instanzen der Klasse <a href="index.php?go=show_elements&package=Alle#xplan:XP_BegruendungAbschnitt">XP_BegruendungAbschnitt</a> verweisen</li>';
   echo '<li>Eine Instanz der Klasse <a href="index.php?go=show_elements&package=Alle#xplan:RP_Plan">RP_Plan</a> darf über die Relation bereich nur Instanzen der Klasse <a href="index.php?go=show_elements&package=Alle#xplan:RP_Bereicht">RP_Bereich</a> aggregieren.<img src="images/neu.png" height="13"></li>';
   echo '</ul>';
+  echo '</div>';
   echo '<h3>Assoziationen</h3>';
   echo '<b><span title="Assoziert den Plan mit Bereichen (RP_Bereich).">bereich [0..*]</span>:</b> gml:ReferenceType<br>';
   echo ' <input type="text" name="assoziation_plan_bereich"><br>';
@@ -154,9 +146,11 @@ function konverteingegebenertextabschnitt(){
   echo '<form action ="index.php?go=show_konvertierungform" method="post">';
   echo '<div class="eingegebenertextabschnitt">';
   echo '<h2>Eingegebener Textabschnitt</h2>';
+  echo '<div class="konformitaetsbedingungen">';
   echo '<h3>Konformitätsbedingungen</h3><ul>';
   echo '<li>Das Attribut text oder die Relation refText muss belegt sein, es dürfen aber nicht gleichzeitig text und refText belegt sein.</li>';
   echo '</ul>';
+  echo '</div>';
   echo "<h3>XP_Textabschnitt Daten</h3>";
   if (empty($_SESSION["xp_textabschnitt_schluessel"])){$_SESSION["xp_textabschnitt_schluessel"] = $_POST['xp_textabschnitt_schluessel'];}
   if (!empty($_SESSION["xp_textabschnitt_schluessel"])) {echo 'schluessel: ' . $_SESSION["xp_textabschnitt_schluessel"] . '<br>';}
@@ -178,9 +172,26 @@ function konverteingegebenertextabschnitt(){
 }
 
 function konverteingegebenerbereich(){
+    $xp_bereich_attribute = array(
+    "xp_bereich_nummer",
+    "xp_bereich_name",
+    "xp_bereich_bedeutung",
+    "xp_bereich_detailliertebedeutungen",
+    "xp_bereich_erstellungsmassstab",
+    "xp_bereich_geltungsbereich"  
+  );
+  $xp_bereich_attribute = array(
+    "xp_bereich_nummer",
+    "xp_bereich_name",
+    "xp_bereich_bedeutung",
+    "xp_bereich_detailliertebedeutungen",
+    "xp_bereich_erstellungsmassstab",
+    "xp_bereich_geltungsbereich"  
+  );
   echo '<form action ="index.php?go=show_konvertierungform" method="post">';
   echo '<div class="eingegebenerbereich">';
   echo '<h2>Eingegebener Bereich</h2>';
+  echo '<div class="konformitaetsbedingungen">';
   echo '<h3>Konformitätsbedingungen</h3><ul>';
   echo '<li>Die Relation praesentationsobjekt darf nur auf Instanzen von Klassen verweisen, die von<a href="index.php?go=show_elements&package=Alle#xplan:XP_AbstraktesPraesentationsobjekt">XP_AbstraktesPraesentationsobjekt</a> abgeleitet sind.</li>';
   echo '<li>Die Relation nachrichtlich darf nur auf Instanzen der Klasse <a href="index.php?go=show_elements&package=Alle#xplan:XP_Objekt">XP_Objekt</a> verweisen.</li>';
@@ -189,6 +200,7 @@ function konverteingegebenerbereich(){
   echo '<li>Eine Instanz der Klasse RP_Bereich darf über die Relation rasterAenderung nur Instanzen der Klasse <a href="index.php?go=show_elements&package=Alle#xplan:RP_RasterplanAenderung">RP_RasterplanAenderung</a> referieren<img src="images/neu.png" height="13"></li>';
   echo '<li>Eine Instanz der Klasse RP_Bereich muss über die Relation gehoertZuPlan genau eine Instanz der Klasse <a href="index.php?go=show_elements&package=Alle#xplan:RP_Plan">RP_Plan</a> referieren. Diese Instanz referiert über die Relation bereich die Bereichs-Instanz.<img src="images/neu.png" height="13"></li>';
   echo '</ul>';
+  echo '</div>';
   echo '<h3>Assoziationen</h3>';
   echo '<b><span title="Assoziert den Bereich mit einem Plan (RP_Plan). Jeder Bereich muss einem Plan zugeordnet werden">gehoertZuPlan:</span></b> gml:ReferenceType<br>';
   echo ' <input type="text" name="assoziation_bereich_gehoertzuplan" required><br>';
@@ -197,7 +209,26 @@ function konverteingegebenerbereich(){
   echo '<b><span title="Assoziert den Bereich mit einem rasterbasisobjekt (XP_RasterplanBasis).">rasterBasis [0..1]:</span></b> gml:ReferenceType<br>';
   echo ' <input type="text" name="assoziation_bereich_rasterbasis"><br>';
   echo "<h3>XP_Bereich Daten</h3>";
+   /*for ($i = 1; $i < count($xp_bereich_attribute); $i++) {
+    echo $_SESSION[$xp_bereich_attribute[$i];
+   
+    if (empty($_SESSION[$xp_bereich_attribute[$i]]))
+      {
+        $_SESSION[$xp_bereich_attribute[$i]] = $_POST[$xp_bereich_attribute[$i]];
+      }
+    if (!empty($_SESSION[$xp_bereich_attribute[$i]]) && empty($_POST[$xp_bereich_attribute[$i]]))
+      {
+        echo 'nummer: ' . $_SESSION[$xp_bereich_attribute[$i]] . '<br>';
+      }
+    else
+      {
+        $_SESSION[$xp_bereich_attribute[$i]] = $_POST[$xp_bereich_attribute[$i]]; echo 'nummer: ' . $_POST[$xp_bereich_attribute[$i]]  . '<br>';
+      } 
+      
+  }
+   */
   if (empty($_SESSION["xp_bereich_nummer"])){$_SESSION["xp_bereich_nummer"] = $_POST['xp_bereich_nummer'];}
+  # if (!empty($_SESSION["xp_bereich_nummer"]) && empty($_POST["xp_bereich_nummer"])) {echo 'nummer: ' . $_SESSION["xp_bereich_nummer"] . '<br>';} else {$_SESSION["xp_bereich_nummer"] = $_POST['xp_bereich_nummer']; echo 'nummer: ' . $_POST["xp_bereich_nummer"]  . '<br>';}
   if (!empty($_SESSION["xp_bereich_nummer"])) {echo 'nummer: ' . $_SESSION["xp_bereich_nummer"] . '<br>';}
   if (empty($_SESSION["xp_bereich_name"])){$_SESSION["xp_bereich_name"] = $_POST['xp_bereich_name'];}
   if (!empty($_SESSION["xp_bereich_name"])) {echo 'name: ' . $_SESSION["xp_bereich_name"] . '<br>';}
@@ -224,7 +255,7 @@ function konverteingegebenerbereich(){
   ###   damit er nach diesem später wieder gesucht werden kann
   echo '</div>';
   echo '</form>';
-}      
+}
       
 
 ##############################FUNKTIONEN#############################
@@ -289,7 +320,7 @@ function konverteingabexpplan(){
             <b>Flaeche</b> :GM_Surface<br>
             <input type="text" name="xp_flaechengeometrie_gmsurface"><br>
             <b>MultiFlaeche</b> :GM_MultiSurface<br>
-            <input type="text" name="xp_flaechengeometrie_gmsurface"><br>
+            <input type="text" name="xp_flaechengeometrie_gmmultisurface"><br>
           </div>
         <b>verfahrensMerkmale</b> [0..*]:<a href="javascript:ReverseDisplay('minmaxvermerkxp_verfahrensmerkmal')" class=hlink><b>XP_Verfahrensmerkmal</b></a><br>
           <div id="minmaxvermerkxp_verfahrensmerkmal" class="enumeration" style="display:none;">
@@ -1093,11 +1124,11 @@ function konverteingabexptextabschnitt(){
       <form action ="index.php?go=show_konvertierungform" method="post">
         <div id="minmaxxptextabschnitt">
           <b>schluessel</b> [0..1]:CharacterString<br>
-          <input type="text" name="xp_textabschnitt_schluessel"><br>
+          <input type="text" name="xp_textabschnitt_schluessel" value="<?php if (!empty($_SESSION["xp_textabschnitt_schluessel"])) {echo $_SESSION["xp_textabschnitt_schluessel"];}?>"><br>
           <b>gesetzlicheGrundlage</b> [0..1]:CharacterString<br>
-          <input type="text" name="xp_textabschnitt_gesetzlichegrundlage"><br>
+          <input type="text" name="xp_textabschnitt_gesetzlichegrundlage" value="<?php if (!empty($_SESSION["xp_textabschnitt_gesetzlichegrundlage"])) {echo $_SESSION["xp_textabschnitt_gesetzlichegrundlage"];}?>"><br>
           <b>text</b> [0..1]:CharacterString<br>
-          <input type="text" name="xp_textabschnitt_text"><br>
+          <input type="text" name="xp_textabschnitt_text" value="<?php if (!empty($_SESSION["xp_textabschnitt_text"])) {echo $_SESSION["xp_textabschnitt_text"];}?>"><br>
           <b>refText</b> [0..1]:<a href="javascript:ReverseDisplay('minmaxreftextxp_externereferenz')" class=hlink><b>XP_ExterneReferenz</b></a><br>
             <div id="minmaxreftextxp_externereferenz" class="enumeration" style="display:none;">
               <b>georefURL</b> [0..1]:URI<br>
@@ -1203,9 +1234,9 @@ function konverteingabexpbereich(){
         <form action ="index.php?go=show_konvertierungform" method="post">
         <div id="minmaxxpbereich">
           <b>nummer</b> :integer<br>
-          <input type="number" name="xp_bereich_nummer" placeholder="0" required></br>
+          <input type="number" name="xp_bereich_nummer" placeholder="0" required value="<?php if (!empty($_SESSION["xp_bereich_nummer"])) {echo $_SESSION["xp_bereich_nummer"];}?>"></br>
           <b>name</b> [0..1]:CharacterString<br>
-          <input type="text" name="xp_bereich_name"></br>
+          <input type="text" name="xp_bereich_name" value="<?php if (!empty($_SESSION["xp_bereich_name"])) {echo $_SESSION["xp_bereich_name"];}?>"></br>
           <b>bedeutung</b> [0..1]:XP_BedeutungenBereich<br>
           <select name="xp_bereich_bedeutungenbereich">
             <option value="aenderungsbereich1000">Aenderungsbereich = 1000</option>
@@ -1222,15 +1253,15 @@ function konverteingabexpbereich(){
             <option value="sonstiges9999">Sonstiges = 9999</option>
             </select><br>
           <b>detaillierteBedeutungen</b> [0..1]CharacterString<br>
-          <input type="text" name="xp_bereich_detailliertebedeutungen"></br>
+          <input type="text" name="xp_bereich_detailliertebedeutungen" value="<?php if (!empty($_SESSION["xp_bereich_detailliertebedeutungen"])) {echo $_SESSION["xp_bereich_detailliertebedeutungen"];}?>"></br>
           <b>erstellungsMasstab</b> [0..1]Integer<br>
-          <input type="number" name="xp_bereich_erstellungsmassstab"></br>
+          <input type="number" name="xp_bereich_erstellungsmassstab" value="<?php if (!empty($_SESSION["xp_bereich_erstellungsmassstab"])) {echo $_SESSION["xp_bereich_erstellungsmassstab"];}?>"></br>
           <b>geltungsbereich</b> [0..1]:<a href="javascript:ReverseDisplay('minmaxgeltungsbereichxp_flaechengeometrie')" class=hlink><b>XP_Flaechengeometrie</b></a><br>
             <div id="minmaxgeltungsbereichxp_flaechengeometrie" class="enumeration" style="display:none;">
               <b>Flaeche</b> :GM_Surface<br>
-              <input type="text" name="xp_flaechengeometrie_gmsurface"><br>
+              <input type="text" name="xp_flaechengeometrie_gmsurface" value="<?php if (!empty($_SESSION["xp_flaechengeometrie_gmsurface"])) {echo $_SESSION["xp_flaechengeometrie_gmsurface"];}?>"><br>
               <b>MultiFlaeche</b> :GM_MultiSurface<br>
-              <input type="text" name="xp_flaechengeometrie_gmsurface"><br>
+              <input type="text" name="xp_flaechengeometrie_gmmultisurface" value="<?php if (!empty($_SESSION["xp_flaechengeometrie_gmmultisurface"])) {echo $_SESSION["xp_flaechengeometrie_gmmultisurface"];}?>"><br>
             </div>
         </div>
       <input type="submit" name="xpbereich-submit" value="XP_Bereich Daten eingeben!">
@@ -1250,13 +1281,13 @@ function konverteingaberpbereich(){
         <form action ="index.php?go=show_konvertierungform" method="post">
           <div id="minmaxrpbereich">
             <b>versionBROG</b> [0..1]:Date<br>
-            <input type="text" name="rp_bereich_versionbrog"><br>
+            <input type="text" name="rp_bereich_versionbrog" value="<?php if (!empty($_SESSION["rp_bereich_versionbrog"])) {echo $_SESSION["rp_bereich_versionbrog"];}?>"><br>
             <b>versionBROGText</b> [0..1]:CharacterString<br>
-            <input type="text" name="rp_bereich_versionbrogtext"><br>
+            <input type="text" name="rp_bereich_versionbrogtext" value="<?php if (!empty($_SESSION["rp_bereich_versionbrogtext"])) {echo $_SESSION["rp_bereich_versionbrogtext"];}?>"><br>
             <b>versionLPLG</b> [0..1]:Date<br>
-            <input type="text" name="rp_bereich_versionlplg"><br>
+            <input type="text" name="rp_bereich_versionlplg" value="<?php if (!empty($_SESSION["rp_bereich_versionlplg"])) {echo $_SESSION["rp_bereich_versionlplg"];}?>"><br>
             <b>versionLPLGText</b> [0..1]:CharacterString<br>
-            <input type="text" name="rp_bereich_versionlplgtext"><br>
+            <input type="text" name="rp_bereich_versionlplgtext" value="<?php if (!empty($_SESSION["rp_bereich_versionlplgtext"])) {echo $_SESSION["rp_bereich_versionlplgtext"];}?>"><br>
           </div>
         <input type="submit" name = "rpbereich-submit" value="RP_Bereich Daten eingeben!">
         </form>
