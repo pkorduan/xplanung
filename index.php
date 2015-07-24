@@ -160,35 +160,17 @@ $objectids = pg_fetch_all($result);
 *                        Anwendungsfälle                                                        *
 *************************************************************************************************/
 switch ($go) {
-  case 'load_xsd':
-    ($angemeldet) ? load_xsd($_REQUEST['file'], $_REQUEST['truncate']) : show_login();
-    break;
-  case 'show_uml':
-    ($angemeldet) ? show_uml() : show_login();
-    break;
-  case 'show_elements':
-    ($angemeldet) ? show_elements() : show_login();
-    break;
-  case 'show_simple_types':
-    ($angemeldet) ? show_simple_types() : show_login();
-    break;
-  case 'get_plaene':
-    ($angemeldet) ? get_plaene($params) : show_login();
-    break;
-  case 'show_plaene':
-    ($angemeldet) ? show_plaene() : show_login();
+  case 'get_comments':
+    ($angemeldet) ? get_comments($params) : show_login();
     break;
   case 'get_planzeichen':
     ($angemeldet) ? get_planzeichen($params) : show_login();
     break;
-  case 'show_planzeichen':
-    ($angemeldet) ? show_planzeichen() : show_login();
+  case 'get_plaene':
+    ($angemeldet) ? get_plaene($params) : show_login();
     break;
-  #case 'show_konvertierungform':
-  #  ($angemeldet) ? show_konvertierungform() : show_login();
- #   break;
-  case 'get_comments':
-    ($angemeldet) ? get_comments($params) : show_login();
+  case 'load_xsd':
+    ($angemeldet) ? load_xsd($_REQUEST['file'], $_REQUEST['truncate']) : show_login();
     break;
   case 'show_comments':
     if ($angemeldet) {
@@ -202,6 +184,9 @@ switch ($go) {
   case 'show_calendar':
     ($angemeldet) ? show_calendar() : show_login();
     break;
+  case 'show_elements':
+    ($angemeldet) ? show_elements() : show_login();
+    break;
   case 'show_hilfe':
     ($angemeldet) ? show_hilfe() : show_login();
     break;
@@ -211,6 +196,18 @@ switch ($go) {
   case 'show_login':
     session_destroy();
     show_login();
+    break;
+  case 'show_plaene':
+    ($angemeldet) ? show_plaene() : show_login();
+    break;
+  case 'show_planzeichen':
+    ($angemeldet) ? show_planzeichen() : show_login();
+    break;
+  case 'show_simple_types':
+    ($angemeldet) ? show_simple_types() : show_login();
+    break;
+  case 'show_uml':
+    ($angemeldet) ? show_uml() : show_login();
     break;
   default:
     ($angemeldet) ? show_home() : show_login();
@@ -239,10 +236,6 @@ function angemeldet() {
   return $angemeldet;
 }
 
-function debug($msg) {
-  echo 'Message:<br>' . $msg . '<br>';
-}
-
 function authentified($username, $passwort){
   global $conn;
   $sql = "
@@ -266,6 +259,61 @@ function authentified($username, $passwort){
   }
 }
 
+function debug($msg) {
+  echo 'Message:<br>' . $msg . '<br>';
+}
+
+function get_plaene($params) {
+  include('classes/plaene.php');
+  $plan = new Plan;
+  output_data(
+    $plan->get($params),
+    $params['format']
+  );
+}
+
+function get_planzeichen($params) {
+  include('classes/planzeichen.php');
+  $planzeichen = new Planzeichen;
+  output_data(
+    $planzeichen->get($params),
+    $params['format']
+  );
+}
+
+function output_csv($data) {
+  # insert the column names as the first row into the data
+  array_unshift(
+    $data,
+    array_keys($data[0])
+  );
+  header("Content-type: text/csv");
+  header("Content-Disposition: attachment; filename=planzeichen.csv");
+  header("Pragma: no-cache");
+  header("Expires: 0");
+  $outputBuffer = fopen("php://output", 'w');
+  foreach($data as $val) {
+    fputcsv($outputBuffer, $val);
+  }
+  fclose($outputBuffer);
+}
+
+/*
+* This function output the array in $data in the given $format
+* @params {array} $data: The array that should be output to the client
+* @params {string} $format: The format that should be used for output
+* currently only csv and json is supported. json is default if $format is empty
+*/
+function output_data($data, $format) {
+  switch ($format) {
+    case 'csv' :
+      output_csv($data);
+      break;
+    default:
+      echo json_encode($data);
+  }
+}
+
 function output_header($with_menu) {
   global $angemeldet; ?>
 <html>
@@ -274,13 +322,18 @@ function output_header($with_menu) {
     <meta name="author" content="GDI-Service" />
     <meta http-equiv="Access-Control-Allow-Origin" content="*" />
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="styles/bootstrap-table.css" type="text/css">
     <link rel="stylesheet" href="styles/design.css" type="text/css">
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.7.0/bootstrap-table.min.js"></script>
-
+    <script src="javascript/tableExport.js"></script>
+    <script src="javascript/jquery.base64.js"></script>
+    <script src="javascript/bootstrap-table.js"></script>
+    <script src="javascript/bootstrap-table-export.js"></script>
+    <script src="javascript/bootstrap-table-flatJSON.js"></script>
     <script language="javascript" type="text/javascript">
       /*
       * Konvertiert den Zeitstempel aus einem Javascript Date Objekt in ein Objekt mit formatierten Elementen für Jahr, Monat, Tag etc.
@@ -366,8 +419,6 @@ function output_footer() {?>
 </html><?php
 }
 
-
-
 function show_plaene() {
   output_header(true); ?>
   <div id="main"><?php
@@ -375,7 +426,6 @@ function show_plaene() {
   echo "<h1>Pläne";
   include('views/helptable.php');
   echo "</h1>";
-  
   ?>
   <div id="plaene-container">
     <form method="Post" action="index.php">
@@ -397,7 +447,7 @@ function show_plaene() {
         <?php for ($i=0; $i < count($ebenen); $i++) { ?>
           <option value="<?php echo $ebenen[$i]; ?>"<?php if ($params['ebene'] == $ebenen[$i]) { ?> selected<?php } ?>><?php echo $ebenen[$i]; ?></option>
         <?php } ?>
-      </select>			
+      </select>
       <input type="submit" value="Aktualisieren">
     </form>
   </div>
@@ -433,6 +483,8 @@ function show_plaene() {
       data-query-params="queryParams"
       data-pagination="true"
       data-page-size="25"
+      data-show-export="true"
+      data-export_types=['json', 'xml', 'csv', 'txt', 'sql', 'excel']
       >
       <thead>
         <tr>
@@ -500,16 +552,6 @@ function show_plaene() {
   </div><?php
   output_footer();
 }
-
-function get_planzeichen($params) {
-  include('classes/planzeichen.php');
-  $planzeichen = new Planzeichen;
-  echo json_encode(
-    $planzeichen->get($params)
-  );
-}
-
-
 
 function show_planzeichen() {
   output_header(true); ?>
@@ -602,6 +644,8 @@ function show_planzeichen() {
         data-query-params="queryParams"
         data-pagination="true"
         data-page-size="25"
+        data-show-export="true"
+        data-export_types=['json', 'xml', 'csv', 'txt', 'sql', 'excel']
         >
         <thead>
           <tr>
@@ -717,14 +761,6 @@ function show_calendar() {
   output_header(true); ?>
   <iframe src="https://www.google.com/calendar/embed?src=gdi-service.de_k03497i3du1rqrusj9ldneerj0%40group.calendar.google.com&ctz=Europe/Berlin" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
   <?php output_footer();
-}
-
-function get_plaene($params) {
-  include('classes/plaene.php');
-  $plan = new Plan;
-  echo json_encode(
-    $plan->get($params)
-  );
 }
 
 function show_comments() {
@@ -844,6 +880,7 @@ function show_comments() {
         data-show-refresh="true"
         data-show-toggle="true"
         data-show-columns="true"
+        data-query-params="queryParams"
         data-pagination="true"
         data-page-size="25"
         >
@@ -890,8 +927,9 @@ function show_comments() {
 function get_comments($params) {
   include('classes/comments.php');
   $comment = new Comment;
-  echo json_encode(
-    $comment->get($params)
+  output_data(
+    $comment->get($params),
+    $params['format']
   );
 }
 
@@ -2077,6 +2115,33 @@ function get_kvps_from_tag($line) {
 function get_text_from_comment($line) {
   $line_parts = explode('--', $line);
   return trim($line_parts[1]);
+}
+
+/**
+  * Formats a line (passed as a fields  array) as CSV and returns the CSV as a string.
+  * Adapted from http://us3.php.net/manual/en/function.fputcsv.php#87120
+  */
+function csv_encode( array &$fields, $delimiter = ';', $enclosure = '"', $encloseAll = false, $nullToMysqlNull = false ) {
+  $delimiter_esc = preg_quote($delimiter, '/');
+  $enclosure_esc = preg_quote($enclosure, '/');
+
+  $output = array();
+  foreach ( $fields as $field ) {
+    if ($field === null && $nullToMysqlNull) {
+      $output[] = 'NULL';
+      continue;
+    }
+
+    // Enclose fields containing $delimiter, $enclosure or whitespace
+    if ( $encloseAll || preg_match( "/(?:${delimiter_esc}|${enclosure_esc}|\s)/", $field ) ) {
+      $output[] = $enclosure . str_replace($enclosure, $enclosure . $enclosure, $field) . $enclosure;
+    }
+    else {
+      $output[] = $field;
+    }
+  }
+
+  return implode( $delimiter, $output );
 }
 
 function write_element($package, $element) {
