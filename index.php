@@ -1377,11 +1377,11 @@ function show_uml() {
     <h3>Gesamtes Modell als PDF <a href="model/XPlan Raumordungsplan Arbeitsmodell (Version 15-07-21).pdf">herunterladen</a> (Version 2015-07-21)</h3>  
      <!--  Javascript für Show und Hide () -->   
     <a href="javascript:ReverseDisplay('basisobjekteuml')" class=hlink>
-    <h2>RP_Basisobjekte</h2>
+    <h2>XP_Basisobjekte</h2>
     </a>  
     <p>Version 2015-07-21 (Arbeitsversion)</p>
     <div id="basisobjekteuml" style="display:none;">
-    <p><img src="images/2015_07_21-Modell/RP_Basisobjekte.png" alt="RP_Basisobjekte" style="width:1992px;height:1436px;" usemap="#RP_Basisobjekte"></p>
+    <p><img src="images/2015_07_21-Modell/XP_Basisobjekte.png" alt="RP_Basisobjekte" style="width:1992px;height:1436px;" usemap="#RP_Basisobjekte"></p>
     </div>
 
     <a href="javascript:ReverseDisplay('freiraumstrukturuml')" class=hlink>
