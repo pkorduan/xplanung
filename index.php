@@ -978,6 +978,7 @@ function show_home() {
 			<input type="hidden"name="go" value="show_home">
       <p>
       <h3>Änderungen zum 23.07.2015</h3>
+      <li>Funktionen zum Export der Tabellen der Pläne und Planzeichen in die Formate (JSON, XML, CSV, TXT, SQL und MS-Excel)</li>      
       <li>Änderungen des UML- und Datenbank-Modells auf Basis der Gespräche mit der AG E-Government der MKRO (in UML sind besprochene Änderungen als graue Kommentare gekennzeichnet)</li>
       <li>Herausnahme von nicht-verbindlichen Plänen und Planzeichen aus den ROPLAMO-Tabellen</li>
       <li>Änderungen in den ROPLAMO-Zuordnungen auf Basis der erhaltenen Kommentare</li>
