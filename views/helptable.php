@@ -30,6 +30,8 @@
 				Das Zeilenauswahlfeld erlaubt mehr oder weniger Zeilen pro Seite anzuzeigen.<br><br>
 			<img src="images/help/pagenumber.png"><br>
 				Das Seitenauswahlfeld erlaubt die Auswahl verschiedener Seiten der angezeigten Daten.<br><br>
+			<img src="images/help/export.png"><br>
+				Das Seitenauswahlfeld erlaubt den Export in verschiedene Formate.<br><br>        
 		</p>
   </div>
   <h1>
