@@ -31,7 +31,7 @@
 			<img src="images/help/pagenumber.png"><br>
 				Das Seitenauswahlfeld erlaubt die Auswahl verschiedener Seiten der angezeigten Daten.<br><br>
 			<img src="images/help/export.png"><br>
-				Das Seitenauswahlfeld erlaubt den Export in verschiedene Formate.<br><br>        
+				Das Seitenauswahlfeld erlaubt den Export in verschiedene Formate (Nur verfügbar für Pläne und Planzeichen).<br><br>        
 		</p>
   </div>
   <h1>
