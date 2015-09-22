@@ -30,8 +30,7 @@
       <img src="images/help/farbe2.png"> Diese Farbe stellt eine Enumeration dar.<br>
       <img src="images/help/farbe3.png"> Diese Farbe stellt einen FeatureType eines fremden Pakets dar, welches in Bezug zu diesem Paket steht.<br>
       <img src="images/help/farbe4.png"> Diese Farbe stellt eine Union dar (kann nicht angeklickt werden).<br>
-      <img src="images/help/kommentar.png"> Diese Farbe stellt einen Kommentar dar. Dieser ist im eigentlichen Modell nicht enthalten, erläutert aber die Änderungsschritte gegenüber früheren Versionen.<br>
-      <img src="images/help/kommentarangenommen.png"> Diese Farbe stellt eine bereits mit der AG E-Government durchgesprochene Änderung dar. Änderungen dieser Art werden als Basis für die Entwicklung der Software verwendet.<br><br>
+      <img src="images/help/kommentar.png"> Diese Farbe stellt einen Kommentar dar. Dieser ist im eigentlichen Modell nicht enthalten, erläutert aber die Änderungsschritte gegenüber früheren Versionen.<br><br>
       <img src="images/help/ableitung.png"> Dieser Pfeil stellt eine Ableitung dar. Ein abgeleitetes Objekt enthält alle Attribute des Originalobjekts.<br>
       <img src="images/help/assoziation.png"> Dieser Pfeil stellt eine Assoziation dar. Assoziierte Objekte stehen miteinander in Verbindung (z.B. 0..1).<br><br>
       </p>
