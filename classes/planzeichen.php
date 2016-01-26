@@ -33,8 +33,10 @@ class Planzeichen {
     $url .= "&objectid=" . $objectid;
     $planstatus = $params['planstatus'];
     $url .= "&planstatus=" . $planstatus;
-    $plr= $params['plr'];
+    $plr = $params['plr'];
     $url .= "&plr=" . $plr;
+    $hsrcl = $params['hsrcl'];
+    $url .= "&hsrcl=" . $hsrcl;
     $order = $params['order'];
     $orderdir = $params['orderdir'];
     $package = $params['package'];
@@ -58,7 +60,8 @@ class Planzeichen {
         p.rogebtyp || ' (' || CASE WHEN g.beschreibung IS NULL THEN 'nicht erfasst' ELSE  g.beschreibung END || ')' rogebtyp,
         CASE WHEN d.object_id IS NULL THEN false ELSE true END AS hat_comments,
     		pl.status,
-    		pl.plr
+    		pl.plr,
+        p.hsrcl
       FROM
         " . SCHEMA_PREFIX . "roplamo.planzeichen AS p LEFT JOIN
         " . SCHEMA_PREFIX . "roplamo.dom_recht r ON p.rstatus = r.code LEFT JOIN
@@ -77,6 +80,7 @@ class Planzeichen {
     if ($gebietstyp != '') $sql .= " AND rogebtyp = " . $gebietstyp;
     if ($planstatus != '') $sql .= " AND pl.status = " . $planstatus;
     if ($plr != '') $sql .= " AND pl.plr = " .$plr;
+    if ($hsrcl != '') $sql .= " AND p.hsrcl = " .$hsrcl;
     $sql .= " ORDER BY ";
     if ($order == '') {
     	$sql .= "p.legcode";
