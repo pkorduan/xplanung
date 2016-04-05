@@ -429,14 +429,14 @@ function output_header($with_menu) {
       <span class="spacer">&nbsp;</span>
       <a href="index.php?go=show_home" class="menue">Home</a>
       <ul>
-        <li><a>XPlan</a>
+        <li><a class="menue">XPlan</a>
           <ul>
             <li><a href="index.php?go=show_uml">XPlan-Modell</a></li>
             <li><a href="index.php?go=show_elements">XPlan&nbsp;Elemente</a></li>
             <li><a href="index.php?go=show_simple_types">Codelisten</a></li>
           </ul>
         </li>
-        <li><a>ROPLAMO</a>
+        <li><a class="menue">ROPLAMO</a>
           <ul>
             <li><a href="index.php?go=show_plaene">Pläne</a></li>
             <li><a href="index.php?go=show_planzeichen">Planzeichen</a></li>
@@ -450,7 +450,7 @@ function output_header($with_menu) {
       <a href="index.php?go=show_inspire" class="menue">INSPIRE</a>
       <a href="index.php?go=show_ontologie" class="menue">Ontologie</a>
       <a href="index.php?go=show_comments" class="menue">Kommentare</a>
-      <!--<a href="index.php?go=show_konvertierungform" class="menue">Konverter</a>-->
+      <a href="http://xplan-raumordnung.de/kvwmap/index.php?go=xplankonverter_konvertierungen_index" class="menue">Konverter</a>
       <a href="index.php?go=show_hilfe" class="menue">Hilfe</a>
       </nav>
         
