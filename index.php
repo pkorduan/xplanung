@@ -1438,7 +1438,7 @@ function show_hilfe() {
           <a href="http://inspire.ec.europa.eu/codelist/HILUCSValue/" class=hlink>Codeliste land use categories des Hierarchical INSPIRE Land Use Classifiation System (HILUCS)</a>
           <br>
         <h3>Beispielpläne</h3>
-          <a href="http://www.gera.ihk.de/Standortpolitik/Raumordnung/LEP_Thueringen/331612" class=hlink>Landesentwicklungsprogramm Thüringen 2025 (Beispiel)</a>
+          <a href="http://www.thueringen.de/th9/tmil/landesentwicklung/rolp/lep2025/" class=hlink>Landesentwicklungsprogramm Thüringen 2025 (Beispiel)</a>
           <br>
           <a href="http://www.regionalplanung.thueringen.de/rpg/ost/regionalplan/rrop/index.asp" class=hlink>Regionalplan Ostthüringen (Beispiel)</a>
   			<br>
