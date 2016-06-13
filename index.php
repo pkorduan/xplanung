@@ -1050,8 +1050,8 @@ function show_home() {
       </center>
       <p>
         <h3>Änderungen zum 06.05.2016</h3>
-        <li>Bereitstellung von XPlan-konformen Beispiel-Shapefiles zum <a href="/devk/files/Beispiel_Shapefiles_XPlan-konform.zip">herunterladen</a> (Version 2016-04-25)</li>
-        <li>Bereitstellung des XPlan-Modells als <a href="/devk/EA/">Enterprise Architect Feature-Katalog</a></li>
+        <li>Bereitstellung von XPlan-konformen Beispiel-Shapefiles zum <a href="/files/Beispiel_Shapefiles_XPlan-konform.zip">herunterladen</a> (Version 2016-04-25)</li>
+        <li>Bereitstellung des XPlan-Modells als <a href="/EA/">Enterprise Architect Feature-Katalog</a></li>
         <li>Modelländerungen (Stand 05.06.2016):</li>
         <ul>
           <li>Umbenennung von RP_Gemeindefunktion zu RP_Funktionszuweisung (Grundlage: BBSR)</li>
@@ -1813,9 +1813,9 @@ function show_uml() {
       XSD(XML Schema Definition)-Dateien definieren die Strukturen von XML-Dokumenten. Für das Projekt sind diese zur Definition der Struktur eines XPlanGML-Dokuments nötig. Anbei werden die XSD-Dateien aller relevanten Pakete des Modells als .zip bereitgestellt.
       <h3>Modell Report zum <a href="/model/2016_01_26_model_report.pdf">herunterladen</a> (Arbeitsversion 2016-01-26)</h3>
       Der Modellreport aus Enterprise Architect zeigt eine textliche Gesamtübersicht über das gesamte Modell zu Dokumentationszwecken.
-      <h3>XPlan-konforme Beispiel-Shapefiles zum <a href="/devk/files/Beispiel_Shapefiles_XPlan-konform.zip">herunterladen</a> (Version 2016-04-25)</h3>
+      <h3>XPlan-konforme Beispiel-Shapefiles zum <a href="/files/Beispiel_Shapefiles_XPlan-konform.zip">herunterladen</a> (Version 2016-04-25)</h3>
       XPlan-konforme Shapefiles erlauben die Aufnahme von Geodaten in XPlan-konformen Shapefiles. Diese können in der Konvertierungssoftware durch eine einzelne Standardabfrage in eine GML-Klasse umgewandelt werden. Die hier dargestellten Shapefiles sind Beispiele und können in Teilen verändert werden. So sind z.B. für jede XPlan-Klasse alle (nicht-gemischten) Geometrietypen zulässig.
-      <h3>Bereitstellung des XPlan-Modells als <a href="/devk/EA/">Enterprise Architect Feature-Katalog</a> (Version 2016-05-03)</h3>
+      <h3>Bereitstellung des XPlan-Modells als <a href="/EA/">Enterprise Architect Feature-Katalog</a> (Version 2016-05-03)</h3>
       Die aus Enterprise Architect hergeleitete Online-Modellversion enthält das vollständige XPlan-Modell sowie alle dazugehörigen ISO-Pakete als interaktiven Feature-Katalog.
     </div>
   </div><?php
