@@ -1,0 +1,5 @@
+tocTab[tocTab.length] = new Array("0.2.3.2.13:1", "", "BP_Wasser", "EARoot/EA2/EA3/EA2/EA13/EA2337.htm", "175.png", "720", "0", "", "class diagram0","{9BDFB5A6-C056-4d42-B578-32C66DEF16CE}");
+tocTab[tocTab.length] = new Array("0.2.3.2.13:2", "", "«CodeList» BP_DetailZweckbestGewaesser", "EARoot/EA2/EA3/EA2/EA13/EA2340.htm", "5.png", "E797", "0", "", "Class0","{362D3978-1A73-4af3-B4A0-DC0CE5440662}");
+tocTab[tocTab.length] = new Array("0.2.3.2.13:3", "", "«CodeList» BP_DetailZweckbestWasserwirtschaft", "EARoot/EA2/EA3/EA2/EA13/EA2341.htm", "5.png", "E795", "0", "", "Class0","{2205E9FA-431A-45de-8293-9C58D4C27E91}");
+tocTab[tocTab.length] = new Array("0.2.3.2.13:4", "", "«FeatureType» BP_GewaesserFlaeche", "EARoot/EA2/EA3/EA2/EA13/EA2342.htm", "5.png", "E798", "0", "", "Class0","{21365759-CEE0-4216-BC2C-E244DDD27427}");
+tocTab[tocTab.length] = new Array("0.2.3.2.13:5", "", "«FeatureType» BP_WasserwirtschaftsFlaeche", "EARoot/EA2/EA3/EA2/EA13/EA2343.htm", "5.png", "E796", "0", "", "Class0","{3E898D79-4680-4b62-B9BF-74E95FB0B52C}");

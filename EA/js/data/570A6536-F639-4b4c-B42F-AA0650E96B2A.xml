@@ -1,0 +1,4 @@
+tocTab[tocTab.length] = new Array("0.2:1", "", "XPlanung", "EARoot/EA2/EA2040.htm", "175.png", "695", "0", "", "Logical diagram0","{818E8F85-557B-4f1a-A667-334A685A583A}");
+tocTab[tocTab.length] = new Array("0.2.1", "1", "«ApplicationSchema» XPlanung-Operationen", "EARoot/EA2/EA1/EA2048.htm", "4.png", "", "", "{B06CA435-4280-489f-A806-F5B267E178F5}", "Package");
+tocTab[tocTab.length] = new Array("0.2.2", "1", "Weitere Diagramme", "EARoot/EA2/EA2/EA2064.htm", "4.png", "", "", "{29E0BB72-39FD-4387-9B74-3612A600D93A}", "Package");
+tocTab[tocTab.length] = new Array("0.2.3", "1", "«ApplicationSchema» XPlanGML 4.1", "EARoot/EA2/EA3/EA2067.htm", "4.png", "", "", "{ABB8A8A5-B6CE-4632-8C87-BC94158846A3}", "Package");

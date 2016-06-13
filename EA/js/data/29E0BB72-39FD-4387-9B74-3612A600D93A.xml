@@ -1,0 +1,7 @@
+tocTab[tocTab.length] = new Array("0.2.2:1", "", "Pakete", "EARoot/EA2/EA2/EA2050.htm", "175.png", "796", "0", "", "Logical diagram0","{7BF38B57-AD00-4fbe-BF0E-A9AF1D02FF79}");
+tocTab[tocTab.length] = new Array("0.2.2:2", "", "Planklasse", "EARoot/EA2/EA2/EA2052.htm", "175.png", "791", "0", "", "Logical diagram0","{E427423E-D87F-4a86-80DF-E7BF6553511D}");
+tocTab[tocTab.length] = new Array("0.2.2:3", "", "Planobjekt", "EARoot/EA2/EA2/EA2054.htm", "175.png", "793", "0", "", "Logical diagram0","{CE3EE368-DE3E-497f-B3F3-9995D4751A7B}");
+tocTab[tocTab.length] = new Array("0.2.2:4", "", "Präsentationsobjekt", "EARoot/EA2/EA2/EA2056.htm", "175.png", "794", "0", "", "Logical diagram0","{51509282-D6E9-48df-88A4-8684D1373B31}");
+tocTab[tocTab.length] = new Array("0.2.2:5", "", "Raster", "EARoot/EA2/EA2/EA2058.htm", "175.png", "792", "0", "", "Logical diagram0","{2F7AD557-0782-4862-909F-7A3F8F823B18}");
+tocTab[tocTab.length] = new Array("0.2.2:6", "", "RechtlicheCharakterisierung", "EARoot/EA2/EA2/EA2060.htm", "175.png", "795", "0", "", "Logical diagram0","{9DE7993A-388E-4e93-A350-4D0E6028AC2B}");
+tocTab[tocTab.length] = new Array("0.2.2:7", "", "Struktur", "EARoot/EA2/EA2/EA2062.htm", "177.png", "790", "0", "", "Object diagram0","{5959F4CC-ADB8-4412-9C39-896DF27F2846}");

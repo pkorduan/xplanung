@@ -1,0 +1,5 @@
+tocTab[tocTab.length] = new Array("0.2.3.2.4:1", "", "BP_Erhaltungssatzung_und_Denkmalschutz", "EARoot/EA2/EA3/EA2/EA4/EA2252.htm", "175.png", "710", "0", "", "class diagram0","{6C0689D3-C94F-4e6c-A060-AE4F068546BE}");
+tocTab[tocTab.length] = new Array("0.2.3.2.4:2", "", "«FeatureType» BP_DenkmalschutzEinzelanlage", "EARoot/EA2/EA3/EA2/EA4/EA2255.htm", "5.png", "E741", "0", "", "Class0","{95FDEBA3-755F-4730-83E7-BC28E8C5887F}");
+tocTab[tocTab.length] = new Array("0.2.3.2.4:3", "", "«FeatureType» BP_DenkmalschutzEnsembleFlaeche", "EARoot/EA2/EA3/EA2/EA4/EA2256.htm", "5.png", "E742", "0", "", "Class0","{96CE1061-1F88-42ca-9FEF-B1874113032F}");
+tocTab[tocTab.length] = new Array("0.2.3.2.4:4", "", "«FeatureType» BP_ErhaltungsBereichFlaeche", "EARoot/EA2/EA3/EA2/EA4/EA2257.htm", "5.png", "E743", "0", "", "Class0","{F9D2C098-7947-45cb-B897-BB71235A08B4}");
+tocTab[tocTab.length] = new Array("0.2.3.2.4:5", "", "«enumeration» BP_ErhaltungsGrund", "EARoot/EA2/EA3/EA2/EA4/EA2258.htm", "5.png", "E744", "0", "", "Class0","{E919933F-9E2B-48b1-BFB4-75C5274A2139}");

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:annotation>
+		<xs:documentation>Festsetzungen von Flächen für Aufschüttungen, Abgrabungen oder für die Gewinnung von Steinen, Erden und anderen Bodenschätzen (§9, Abs. 1, Nr. 17 BauGB).</xs:documentation>
+	</xs:annotation>
+	<xs:include/>
+	<xs:include schemaLocation="BP__Basisobjekte.xsd"/>
+	<xs:element name="BP_AbgrabungsFlaeche" type="BP_AbgrabungsFlaeche"/>
+	<xs:complexType name="BP_AbgrabungsFlaeche">
+		<xs:annotation>
+			<xs:documentation>Flächen für Aufschüttungen, Abgrabungen oder für die Gewinnung von Bodenschätzen (§9, Abs. 1, Nr. 17 BauGB)). Hier: Flächen für Abgrabungen.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="BP_Flaechenobjekt">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="BP_BodenschaetzeFlaeche" type="BP_BodenschaetzeFlaeche"/>
+	<xs:complexType name="BP_BodenschaetzeFlaeche">
+		<xs:annotation>
+			<xs:documentation>Flächen für Aufschüttungen, Abgrabungen oder für die Gewinnung von Bodenschätzen (§ 9 Abs. 1 Nr. 17 und Abs. 6 BauGB). Hier: Flächen für Gewinnung von Bodenschätzen</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="BP_Flaechenobjekt">
+				<xs:sequence>
+					<xs:element name="abbaugut" type="CharacterString" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Bezeichnung des Abbauguts.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="BP_RekultivierungsFlaeche" type="BP_RekultivierungsFlaeche"/>
+	<xs:complexType name="BP_RekultivierungsFlaeche">
+		<xs:annotation>
+			<xs:documentation>Rekultivierungs-Fläche</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="BP_Flaechenobjekt">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="BP_AufschuettungsFlaeche" type="BP_AufschuettungsFlaeche"/>
+	<xs:complexType name="BP_AufschuettungsFlaeche">
+		<xs:annotation>
+			<xs:documentation>Flächen für Aufschüttungen, Abgrabungen oder für die Gewinnung von Bodenschätzen (§ 9 Abs. 1 Nr. 17 und Abs. 6 BauGB). Hier: Flächen für Aufschüttungen</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="BP_Flaechenobjekt">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

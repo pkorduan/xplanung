@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:annotation>
+		<xs:documentation>Darstellung von Flächen für Maßnahmen zum Schutz, zur Pflege und zur Entwicklung von Boden, Natur und Landschaft (§5 Abs. 2 Nr. 10 BauGB).</xs:documentation>
+	</xs:annotation>
+	<xs:include/>
+	<xs:include schemaLocation="XP_Basisobjekte.xsd"/>
+	<xs:include schemaLocation="XP_Enumerationen.xsd"/>
+	<xs:include schemaLocation="P__Basisobjekte.xsd"/>
+	<xs:element name="FP_AusgleichsFlaeche" type="FP_AusgleichsFlaeche"/>
+	<xs:complexType name="FP_AusgleichsFlaeche">
+		<xs:annotation>
+			<xs:documentation>Flächen und Maßnahmen zum Ausgleich gemäß §5, Abs. 2a  BauBG.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="FP_Flaechenobjekt">
+				<xs:sequence>
+					<xs:element name="ziel" type="XP_SPEZiele" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Unterscheidung nach den Zielen "Schutz, Pflege" und "Entwicklung".</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="massnahme" type="XP_SPEMassnahmenDaten" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Auf der Fläche durchzuführende Maßnahmen.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="weitereMassnahme1" type="XP_SPEMassnahmenDaten" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Weitere durchzuführende Massnahme. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen massnahme mehrfach belegt werden.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="weitereMassnahme2" type="XP_SPEMassnahmenDaten" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Weitere durchzufühende Massnahme. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen massnahme mehrfach belegt werden.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="refMassnahmenText" type="XP_ExterneReferenz" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Referenz auf ein Dokument in dem die Massnahmen beschrieben werden.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="refLandschaftsplan" type="XP_ExterneReferenz" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Referenz auf den Landschaftsplan.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="FP_SchutzPflegeEntwicklung" type="FP_SchutzPflegeEntwicklung"/>
+	<xs:complexType name="FP_SchutzPflegeEntwicklung">
+		<xs:annotation>
+			<xs:documentation>Umgrenzung von Flächen für Maßnahmen zum Schutz, zur Pflege und zur Entwicklung von Natur und Landschaft (§5 Abs. 2, Nr. 10 BauGB)</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="FP_Geometrieobjekt">
+				<xs:sequence>
+					<xs:element name="ziel" type="XP_SPEZiele" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Unterscheidung nach den Zielen "Schutz, Pflege" und "Entwicklung".</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="massnahme" type="XP_SPEMassnahmenDaten" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Durchzuführende Maßnahmen.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="weitereMassnahme1" type="XP_SPEMassnahmenDaten" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Weitere durchzuführende Massnahme. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen massnahme mehrfach belegt werden.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="weitereMassnahme2" type="XP_SPEMassnahmenDaten" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Weitere durchzuführende Massnahme. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen massnahme mehrfach belegt werden.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="istAusgleich" type="Boolean" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Gibt an, ob die Maßnahme zum Ausgkeich eines Eingriffs benutzt wird.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

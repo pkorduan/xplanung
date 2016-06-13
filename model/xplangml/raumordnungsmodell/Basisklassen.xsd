@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://xplan-raumordnung.de/devk/model/xplangml/raumordnungsmodell" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="4.2">
+	<xs:annotation>
+		<xs:documentation>Das XPLanGML Basisschema enthält abstrakte Oberklassen, von denen alle Klassen der Fachschemata abgeleitet sind, sowie allgemeine Feature-Types, DataTypes und Enumerationen, die in verschiedenen Fach-Schemata verwendet werden.</xs:documentation>
+	</xs:annotation>
+</xs:schema>

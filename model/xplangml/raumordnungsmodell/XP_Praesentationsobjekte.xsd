@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:annotation>
+		<xs:documentation>Das Paket Praesentationsobjekte modelliert Klassen, die lediglich der graphischen Ausgestaltung eines Plans dienen und selbst keine eigentlichen Plan-Inhalte repräsentieren. Die entsprechenden Fachobjekte können unmittelbar instanziiert werden.</xs:documentation>
+	</xs:annotation>
+	<xs:include/>
+	<xs:include/>
+	<xs:include schemaLocation="XP_Basisobjekte.xsd"/>
+	<xs:include/>
+	<xs:simpleType name="XP_HorizontaleAusrichtung">
+		<xs:annotation>
+			<xs:documentation>Enumeration der definierten horizontalen Fontausrichtungen</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:CharacterString">
+			<xs:enumeration value="linksbündig">
+				<xs:annotation>
+					<xs:documentation>Text linksbündig am Textpunkt bzw. am ersten Punkt der Linie.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="rechtsbündig">
+				<xs:annotation>
+					<xs:documentation>Text rechtsbündig am Textpunkt bzw. am letzten Punkt der Linie.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="zentrisch">
+				<xs:annotation>
+					<xs:documentation>Text zentriert am Textpunkt bzw. in der Mitte der Textstandlinie.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="XP_VertikaleAusrichtung">
+		<xs:annotation>
+			<xs:documentation>Enumeration der definierten vertikalen Fontausrichtungen</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:CharacterString">
+			<xs:enumeration value="Basis">
+				<xs:annotation>
+					<xs:documentation>Textgeometrie bezieht sich auf die Basis- bzw. Grundlinie der Buchstaben.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Mitte">
+				<xs:annotation>
+					<xs:documentation>Textgeometrie bezieht sich auf die Mittellinie der Buchstaben.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Oben">
+				<xs:annotation>
+					<xs:documentation>Textgeometrie bezieht sich auf die Oberlinie der Großbuchstaben.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="XP_Nutzungsschablone" type="XP_Nutzungsschablone"/>
+	<xs:complexType name="XP_Nutzungsschablone">
+		<xs:annotation>
+			<xs:documentation>Modelliert eine Nutzungsschablone. Die darzustellenden Attributwerte werden zeilenweise in die Nutzungsschablone geschrieben.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="XP_PTO">
+				<xs:sequence>
+					<xs:element name="spaltenAnz" type="Integer" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Anzahl der Spalten in der Nutzungsschablone</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="zeilenAnz" type="Integer" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Anzahl der Zeilen in der Nutzungsschablone</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="XP_Praesentationsobjekt" type="XP_Praesentationsobjekt"/>
+	<xs:complexType name="XP_Praesentationsobjekt">
+		<xs:annotation>
+			<xs:documentation>Entspricht der ALKIS-Objektklasse AP_Darstellung mit dem Unterschied, dass auf das Attribut "positionierungssregel" verzichtet wurde.  Die Klasse darf nur als gebundenes Präsentationsobjekt verwendet werden. Die Standard-Darstellung des verbundenen Fachobjekts wird dann durch die über stylesheetId spezifizierte Darstellung ersetzt. Die Umsetzung dieses Konzeptes ist der Implementierung überlassen.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="XP_AbstraktesPraesentationsobjekt">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="XP_PPO" type="XP_PPO"/>
+	<xs:complexType name="XP_PPO">
+		<xs:annotation>
+			<xs:documentation>Punktförmiges Präsentationsobjekt. Entspricht der ALKIS-Objektklasse AP_PPO.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="XP_AbstraktesPraesentationsobjekt">
+				<xs:sequence>
+					<xs:element name="position" type="XP_Punktgeometrie" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="drehwinkel" type="Angle" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Winkel um den der Text oder die Signatur mit punktförmiger Bezugsgeometrie aus der Horizontalen gedreht ist. Angabe im Bogenmaß; Zählweise im mathematisch positiven Sinn (von Ost über Nord nach West und Süd).</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="skalierung" type="Decimal" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Skalierungsfaktor für Symbole.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="XP_LTO" type="XP_LTO"/>
+	<xs:complexType name="XP_LTO">
+		<xs:annotation>
+			<xs:documentation>Textförmiges Präsentationsobjekt mit linienförmiger Textgeometrie. Entspricht der ALKIS-Objektklasse AP_LTO.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="XP_TPO">
+				<xs:sequence>
+					<xs:element name="position" type="XP_Liniengeometrie" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="XP_LPO" type="XP_LPO"/>
+	<xs:complexType name="XP_LPO">
+		<xs:annotation>
+			<xs:documentation>Linienförmiges Präsentationsobjekt Entspricht der ALKIS Objektklasse AP_LPO.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="XP_AbstraktesPraesentationsobjekt">
+				<xs:sequence>
+					<xs:element name="position" type="XP_Liniengeometrie" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="XP_TPO" type="XP_TPO"/>
+	<xs:complexType name="XP_TPO" abstract="true">
+		<xs:annotation>
+			<xs:documentation>Abstrakte Oberklasse für textliche Präsentationsobjekte. Entspricht der ALKIS Objektklasse AP_TPO</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="XP_AbstraktesPraesentationsobjekt">
+				<xs:sequence>
+					<xs:element name="schriftinhalt" type="CharacterString" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Schriftinhalt; enthält die darzustellenden Zeichen</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="fontSperrung" type="Decimal" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Die Zeichensperrung steuert den zusätzlichen Raum, der zwischen 2 aufeinanderfolgende Zeichenkörper geschoben wird. Er ist ein Faktor, der mit der angegebenen Zeichenhöhe mulitpliziert wird, um den einzufügenden Zusatzabstand zu erhalten. Mit der Abhängigkeit von der Zeichenhöhe wird erreicht, dass das Schriftbild unabhängig von der Zeichenhöhe gleich wirkt. Der Defaultwert ist 0.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="skalierung" type="Decimal" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Skalierungsfaktor für die Schriftgröße (fontGroesse * skalierung).</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="horizontaleAusrichtung" type="XP_HorizontaleAusrichtung" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Gibt die Ausrichtung des Textes bezüglich der Textgeometrie an.
+linksbündig : Der Text beginnt an der Punktgeometrie bzw. am Anfangspunkt der Liniengeometrie.
+rechtsbündig: Der Text endet an der Punktgeometrie bzw. am Endpunkt der Liniengeometrie
+zentrisch: Der Text erstreckt sich von der Punktgeometrie gleich weit nach links und rechts bzw. steht auf der Mitte der Standlinie.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="vertikaleAusrichtung" type="XP_VertikaleAusrichtung" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Die vertikale Ausrichtung eines Textes gibt an, ob die Bezugsgeometrie die Basis (Grundlinie) des Textes, die Mitte oder obere Buchstabenbegrenzung betrifft.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="hat" type="XP_LPO" minOccurs="0" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="XP_FPO" type="XP_FPO"/>
+	<xs:complexType name="XP_FPO">
+		<xs:annotation>
+			<xs:documentation>Flächenförmiges Präsentationsobjekt. Entspricht der ALKIS Objektklasse AP_FPO.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="XP_AbstraktesPraesentationsobjekt">
+				<xs:sequence>
+					<xs:element name="position" type="XP_Flaechengeometrie" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="XP_StylesheetListe" type="XP_StylesheetListe"/>
+	<xs:complexType name="XP_StylesheetListe">
+		<xs:sequence/>
+	</xs:complexType>
+	<xs:element name="XP_PTO" type="XP_PTO"/>
+	<xs:complexType name="XP_PTO">
+		<xs:annotation>
+			<xs:documentation>Textförmiges Präsentationsobjekt mit punktförmiger Festlegung der Textposition. Entspricht der ALKIS-Objektklasse AP_PTO.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="XP_TPO">
+				<xs:sequence>
+					<xs:element name="position" type="XP_Punktgeometrie" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="drehwinkel" type="Angle" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Winkel um den der Text oder die Signatur mit punktförmiger Bezugsgeometrie aus der Horizontalen gedreht ist. Angabe im Bogenmaß; Zählweise im mathematisch positiven Sinn (von Ost über Nord nach West und Süd).</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="XP_AbstraktesPraesentationsobjekt" type="XP_AbstraktesPraesentationsobjekt"/>
+	<xs:complexType name="XP_AbstraktesPraesentationsobjekt" abstract="true">
+		<xs:annotation>
+			<xs:documentation>Abstrakte Basisklasse für alle Präsentationsobjekte. Die Attribute entsprechen dem ALKIS-Objekt AP_GPO, wobei das Attribut "signaturnummer" in stylesheetId umbenannt wurde. Bei freien Präsentationsobjekten ist die Relation "dientZurDarstellungVon" unbelegt, bei gebundenen Präsentationsobjekten zeigt die Relation auf ein von XP_Objekt abgeleitetes Fachobjekt.
+Freie Präsentationsobjekte dürfen ausschließlich zur graphischen Annotation eines Plans verwendet werden
+Gebundene Präsentationsobjekte mit Raumbezug dienen ausschließlich dazu, Attributwerte des verbundenen Fachobjekts im Plan darzustellen. Die Namen der darzustellenden Fachobjekt-Attribute werden über das Attribut "art" spezifiziert.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="stylesheetId" type="XP_StylesheetListe" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Das Attribut "stylesheetId" zeigt auf ein extern definierte Stylesheet, das Parameter zur Visualisierung von Flächen, Linien, Punkten und Texten enthält. Jedem Stylesheet ist weiterhin eine Darstellungspriorität zugeordnet.  Ausserdem kann ein Stylesheet logische Elemente enthalten,  die die Visualisierung abhängig machen vom Wert des durch "art" definierten Attributes des Fachobjektes, das durch die Relation "dientZurDarstellungVon" referiert wird.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="darstellungsprioritaet" type="Integer" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Enthält die Darstellungspriorität für Elemente der Signatur. Eine vom Standardwert abweichende Priorität wird über dieses Attribut definiert und nicht über eine neue Signatur.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="art" type="CharacterString" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>'Art' gibt die Namen der Attribute an, die mit dem Präsentationsobjekt dargestellt werden sollen. 
+
+Die Attributart 'Art' darf nur bei "Freien Präsentationsobjekten (dientZurDarstellungVon = NULL) nicht belegt sein.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="index" type="Integer" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Wenn das Attribut art des Fachobjektes mehrfach belegt ist gibt index an, auf welche Instanz des Attributs sich das Präsentationsobjekt bezieht.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

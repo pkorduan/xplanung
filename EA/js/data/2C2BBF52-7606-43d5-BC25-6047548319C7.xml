@@ -1,0 +1,13 @@
+tocTab[tocTab.length] = new Array("0.2.3.6.1:1", "", "SO_Basisobjekte_2", "EARoot/EA2/EA3/EA6/EA1/EA2712.htm", "175.png", "754", "0", "", "Logical diagram0","{5538B012-6C8A-4304-AEC6-DE97E1F85794}");
+tocTab[tocTab.length] = new Array("0.2.3.6.1:2", "", "SO_Basisobjekte_1", "EARoot/EA2/EA3/EA6/EA1/EA2714.htm", "175.png", "753", "0", "", "class diagram0","{FA025877-63AB-48b1-8A4F-E4D0AF302408}");
+tocTab[tocTab.length] = new Array("0.2.3.6.1:3", "", "«FeatureType» SO_Bereich", "EARoot/EA2/EA3/EA6/EA1/EA2717.htm", "5.png", "E1020", "0", "", "Class0","{9FD04D0A-DF00-4e86-AA18-8941920F5FE6}");
+tocTab[tocTab.length] = new Array("0.2.3.6.1:4", "", "«FeatureType» SO_Flaechenobjekt", "EARoot/EA2/EA3/EA6/EA1/EA2718.htm", "5.png", "E1015", "0", "", "Class0","{C8C8F767-56A5-4f83-A75D-032BB55CD411}");
+tocTab[tocTab.length] = new Array("0.2.3.6.1:5", "", "«FeatureType» SO_Geometrieobjekt", "EARoot/EA2/EA3/EA6/EA1/EA2719.htm", "5.png", "E1016", "0", "", "Class0","{D31EBA7B-C27F-46bd-A338-418FA2A4F78A}");
+tocTab[tocTab.length] = new Array("0.2.3.6.1:6", "", "«FeatureType» SO_Linienobjekt", "EARoot/EA2/EA3/EA6/EA1/EA2720.htm", "5.png", "E1021", "0", "", "Class0","{6FC60E92-637B-46c0-9C93-2E87B62BDAB1}");
+tocTab[tocTab.length] = new Array("0.2.3.6.1:7", "", "«FeatureType» SO_Objekt", "EARoot/EA2/EA3/EA6/EA1/EA2721.htm", "5.png", "E1018", "0", "", "Class0","{E9F567FA-C902-44dc-A9F6-9C948D498AA3}");
+tocTab[tocTab.length] = new Array("0.2.3.6.1:8", "", "«FeatureType» SO_Plan", "EARoot/EA2/EA3/EA6/EA1/EA2722.htm", "5.png", "E1022", "0", "", "Class0","{8DE74DC6-B999-4321-BE24-2E487A00AC39}");
+tocTab[tocTab.length] = new Array("0.2.3.6.1:9", "", "«CodeList» SO_PlanTyp", "EARoot/EA2/EA3/EA6/EA1/EA2723.htm", "5.png", "E1019", "0", "", "Class0","{DDB3785A-C78E-4544-A037-2E0D17E3E370}");
+tocTab[tocTab.length] = new Array("0.2.3.6.1:10", "", "«FeatureType» SO_Punktobjekt", "EARoot/EA2/EA3/EA6/EA1/EA2724.htm", "5.png", "E1014", "0", "", "Class0","{760D6A09-66E3-43f0-9CE7-FD3AB2042FA5}");
+tocTab[tocTab.length] = new Array("0.2.3.6.1:11", "", "«enumeration» SO_Rechtscharakter", "EARoot/EA2/EA3/EA6/EA1/EA2725.htm", "5.png", "E1017", "0", "", "Class0","{0B7DA905-AA1D-482a-B286-BECC92C1B439}");
+tocTab[tocTab.length] = new Array("0.2.3.6.1:12", "", "«CodeList» SO_SonstRechtscharakter", "EARoot/EA2/EA3/EA6/EA1/EA2726.htm", "5.png", "E1013", "0", "", "Class0","{CEF5C3D5-98D8-4a61-BF8A-8F8E6A6B4388}");
+tocTab[tocTab.length] = new Array("0.2.3.6.1:13", "", "«FeatureType» SO_TextAbschnitt", "EARoot/EA2/EA3/EA6/EA1/EA2727.htm", "5.png", "E1023", "0", "", "Class0","{C941F9AE-9500-47d0-8B3E-1D60B5DE6338}");

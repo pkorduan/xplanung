@@ -1,0 +1,1350 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:annotation>
+		<xs:documentation>Festlegungen im Bereich Infrastruktur.</xs:documentation>
+	</xs:annotation>
+	<xs:include schemaLocation="RP__Basisobjekte.xsd"/>
+	<xs:element name="RP_Energieversorgung" type="RP_Energieversorgung"/>
+	<xs:complexType name="RP_Energieversorgung">
+		<xs:annotation>
+			<xs:documentation>Infrastruktur zur Energieversorgung</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="RP_Geometrieobjekt">
+				<xs:sequence>
+					<xs:element name="typ" type="RP_EnergieversorgungTypen" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Klassifikation von Energieversorgungs-Einrichtungen.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="primaerenergieTyp" type="RP_PrimaerenergieTypen" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Klassifikation von der mit der Infrastruktur in Beziehung stehenden Primärenergie.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="spannung" type="RP_SpannungTypen" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Klassifikation von Spannungen.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="RP_Wasserwirtschaft" type="RP_Wasserwirtschaft"/>
+	<xs:complexType name="RP_Wasserwirtschaft">
+		<xs:annotation>
+			<xs:documentation>Wasserwirtschaft</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="RP_Geometrieobjekt">
+				<xs:sequence>
+					<xs:element name="typ" type="RP_WasserwirtschaftTypen" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Klassifikation von Anlagen und Einrichtungen der Wasserwirtschaft</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="RP_SozialeInfrastruktur" type="RP_SozialeInfrastruktur"/>
+	<xs:complexType name="RP_SozialeInfrastruktur">
+		<xs:annotation>
+			<xs:documentation>Soziale Infrastruktur</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="RP_Geometrieobjekt">
+				<xs:sequence>
+					<xs:element name="typ" type="RP_SozialeInfrastrukturTypen" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Klassifikation von Sozialer Infrastruktur.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="RP_Kommunikation" type="RP_Kommunikation"/>
+	<xs:complexType name="RP_Kommunikation">
+		<xs:annotation>
+			<xs:documentation>Infrastruktur zur Telekommunikation</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="RP_Geometrieobjekt">
+				<xs:sequence>
+					<xs:element name="typ" type="RP_KommunikationTypen" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Klassifikation von Kommunikations-Infrastruktur.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="RP_EnergieversorgungTypen">
+		<xs:annotation>
+			<xs:documentation>Typen der Energieversorgung.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:&lt;undefined&gt;">
+			<xs:enumeration value="Leitungstrasse">
+				<xs:annotation>
+					<xs:documentation>Leitungstrasse.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Hochspannungsleitung">
+				<xs:annotation>
+					<xs:documentation>Hochspannungsleitung.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="KabeltrasseNetzanbindung">
+				<xs:annotation>
+					<xs:documentation>Kabeltrasse-Netzanbindung.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Pipeline">
+				<xs:annotation>
+					<xs:documentation>Pipeline.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Uebergabestation">
+				<xs:annotation>
+					<xs:documentation>Übergabestation.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Kraftwerk">
+				<xs:annotation>
+					<xs:documentation>Kraftwerk.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Grosskraftwerk">
+				<xs:annotation>
+					<xs:documentation>Großkraftwerk.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Energiegewinnung">
+				<xs:annotation>
+					<xs:documentation>Energiegewinnung.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Energiespeicherung">
+				<xs:annotation>
+					<xs:documentation>Energiespeicherung.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VerstetigungSpeicherung">
+				<xs:annotation>
+					<xs:documentation>Verstetigung-Speicherung.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Untergrundspeicher">
+				<xs:annotation>
+					<xs:documentation>Untergrundspeicher.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Umspannwerk">
+				<xs:annotation>
+					<xs:documentation>Umspannwerk.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Raffinerie">
+				<xs:annotation>
+					<xs:documentation>Raffinerie.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Leitungsabbau">
+				<xs:annotation>
+					<xs:documentation>Leitungsabbau.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SonstigeEnergieversorgung">
+				<xs:annotation>
+					<xs:documentation>Sonstige Energieversorgung.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="RP_LaermschutzBauschutz" type="RP_LaermschutzBauschutz"/>
+	<xs:complexType name="RP_LaermschutzBauschutz">
+		<xs:annotation>
+			<xs:documentation>Infrastruktur zum Lärmschutz und/oder Bauschutz.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="RP_Geometrieobjekt">
+				<xs:sequence>
+					<xs:element name="typ" type="RP_LaermschutzTypen" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Klassifikation von Lärmschutztypen.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="RP_WasserwirtschaftTypen">
+		<xs:annotation>
+			<xs:documentation>Typen von Wasserwirtschaftsinfrastruktur.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:&lt;undefined&gt;">
+			<xs:enumeration value="Wasserleitung">
+				<xs:annotation>
+					<xs:documentation>Wasserleitung.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Wasserwerk">
+				<xs:annotation>
+					<xs:documentation>Wasserwerk.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="StaudammDeich">
+				<xs:annotation>
+					<xs:documentation>Staudamm und/oder Deich.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Speicherbecken">
+				<xs:annotation>
+					<xs:documentation>Speicherbecken.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Rueckhaltebecken">
+				<xs:annotation>
+					<xs:documentation>Rückhaltebecken.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Talsperre">
+				<xs:annotation>
+					<xs:documentation>Talsperre.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PumpwerkSchoepfwerk">
+				<xs:annotation>
+					<xs:documentation>Pumpwerk und/oder Schöpfwerk.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SonstigeWasserwirtschaft">
+				<xs:annotation>
+					<xs:documentation>Sonstige Wasserwirtschaft.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="RP_Verkehr" type="RP_Verkehr"/>
+	<xs:complexType name="RP_Verkehr">
+		<xs:annotation>
+			<xs:documentation>Modelliert allgemeine Verkehrs-Infrastruktur, die auch multiple Typen (etwa Straße und Schiene) beinhalten kann.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="RP_Geometrieobjekt">
+				<xs:sequence>
+					<xs:element name="allgemeinerTyp" type="RP_VerkehrTypen" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Allgemeine Klassifikation der Verkehrs-Arten.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="status" type="RP_VerkehrStatus" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Klassifikation von Verkehrsstati.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="bezeichnung" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Bezeichnung eines Verkehrstyps.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="RP_SozialeInfrastrukturTypen">
+		<xs:annotation>
+			<xs:documentation>Typen von Sozialer Infrastruktur.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:&lt;undefined&gt;">
+			<xs:enumeration value="Kultur">
+				<xs:annotation>
+					<xs:documentation>Kulturbezogene Infrastruktur.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Sozialeinrichtung">
+				<xs:annotation>
+					<xs:documentation>Sozialeinrichtung.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Gesundheit">
+				<xs:annotation>
+					<xs:documentation>Gesundheitsinfrastruktur.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Krankenhaus">
+				<xs:annotation>
+					<xs:documentation>Krankenhaus.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="BildungForschung">
+				<xs:annotation>
+					<xs:documentation>Bildungs- und/oder Forschungsinfrastruktur.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Hochschule">
+				<xs:annotation>
+					<xs:documentation>Hochschule.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Polizei">
+				<xs:annotation>
+					<xs:documentation>Polizeiliche Infrastruktur</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SonstigeSozialeInfrastruktur">
+				<xs:annotation>
+					<xs:documentation>Sonstige Soziale Infrastruktur.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RP_VerkehrTypen">
+		<xs:annotation>
+			<xs:documentation>Allgemeine Verkehrstypen.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:&lt;undefined&gt;">
+			<xs:enumeration value="Schienenverkehr">
+				<xs:annotation>
+					<xs:documentation>Schienenverkehr.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Strassenverkehr">
+				<xs:annotation>
+					<xs:documentation>Straßenverkehr.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Luftverkehr">
+				<xs:annotation>
+					<xs:documentation>Luftverkehr.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Wasserverkehr">
+				<xs:annotation>
+					<xs:documentation>Wasserverkehr.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SonstigerVerkehr">
+				<xs:annotation>
+					<xs:documentation>Sonstiger Verkehr.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RP_AbfallentsorgungTypen">
+		<xs:annotation>
+			<xs:documentation>Typen der Abfallentsorgung.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:&lt;undefined&gt;">
+			<xs:enumeration value="BeseitigungEntsorgung">
+				<xs:annotation>
+					<xs:documentation>Beseitung beziehungsweise Entsorgung von Abfall.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Abfallbeseitigungsanlage">
+				<xs:annotation>
+					<xs:documentation>Abfallbeseitigungsanlage</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ZentraleAbfallbeseitigungsanlage">
+				<xs:annotation>
+					<xs:documentation>Zentrale Abfallbeseitungsanlage.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Deponie">
+				<xs:annotation>
+					<xs:documentation>Deponie.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Untertageeinlagerung">
+				<xs:annotation>
+					<xs:documentation>Untertageeinlagerung von Abfall.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Behandlung">
+				<xs:annotation>
+					<xs:documentation>Behandlung von Abfall.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Kompostierung">
+				<xs:annotation>
+					<xs:documentation>Kompostierung von Abfall.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Verbrennung">
+				<xs:annotation>
+					<xs:documentation>Verbrennung von Abfall.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Umladestation">
+				<xs:annotation>
+					<xs:documentation>Umladestation.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Standortsicherung">
+				<xs:annotation>
+					<xs:documentation>Standortsicherung.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SonstigeAbfallentsorgung">
+				<xs:annotation>
+					<xs:documentation>Sonstige Abfallentsorgung.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="RP_SonstigeInfrastruktur" type="RP_SonstigeInfrastruktur"/>
+	<xs:complexType name="RP_SonstigeInfrastruktur">
+		<xs:annotation>
+			<xs:documentation>Sonstige Infrastruktur</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="RP_Geometrieobjekt">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="RP_Entsorgung" type="RP_Entsorgung"/>
+	<xs:complexType name="RP_Entsorgung">
+		<xs:annotation>
+			<xs:documentation>Entsorgungs-Infrastruktur</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="RP_Geometrieobjekt">
+				<xs:sequence>
+					<xs:element name="typAE" type="RP_AbfallentsorgungTypen" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Klassifikation von Abfallentsorgung-Infrastruktur.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="abfallTyp" type="RP_AbfallTypen" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Klassifikation von mit der Entsorgungsinfrastruktur in Beziehung stehenden Abfalltypen</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="typAW" type="RP_AbwasserTypen" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Klassifikation von Abwasser-Infrastruktur.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="RP_Strassenverkehr" type="RP_Strassenverkehr"/>
+	<xs:complexType name="RP_Strassenverkehr">
+		<xs:annotation>
+			<xs:documentation>Strassenverkehr-Infrastruktur.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="RP_Verkehr">
+				<xs:sequence>
+					<xs:element name="typ" type="RP_StrassenverkehrTypen" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Klassifikation von Strassenverkehr-Infrastruktur.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="besondererTyp" type="RP_BesondererStrassenverkehrTypen" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Klassifikation von besonderer Strassenverkehr-Infrastruktur.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="RP_Schienenverkehr" type="RP_Schienenverkehr"/>
+	<xs:complexType name="RP_Schienenverkehr">
+		<xs:annotation>
+			<xs:documentation>Schienenverkehr-Infrastruktur.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="RP_Verkehr">
+				<xs:sequence>
+					<xs:element name="typ" type="RP_SchienenverkehrTypen" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Klassifikation von Schienenverkehr-Infrastruktur.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="besondererTyp" type="RP_BesondererSchienenverkehrTypen" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Klassifikation von besonderer Schienenverkehr-Infrastruktur.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="RP_Luftverkehr" type="RP_Luftverkehr"/>
+	<xs:complexType name="RP_Luftverkehr">
+		<xs:annotation>
+			<xs:documentation>Luftverkehr-Infrastruktur.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="RP_Verkehr">
+				<xs:sequence>
+					<xs:element name="typ" type="RP_LuftverkehrTypen" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Klassifikation von Luftverkehr-Infrastruktur.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="RP_Wasserverkehr" type="RP_Wasserverkehr"/>
+	<xs:complexType name="RP_Wasserverkehr">
+		<xs:annotation>
+			<xs:documentation>Wasserverkehr-Infrastruktur.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="RP_Verkehr">
+				<xs:sequence>
+					<xs:element name="typ" type="RP_WasserverkehrTypen" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Klassifikation von Wasserverkehr-Infrastruktur.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="RP_SonstVerkehr" type="RP_SonstVerkehr"/>
+	<xs:complexType name="RP_SonstVerkehr">
+		<xs:annotation>
+			<xs:documentation>Sonstige Verkehrsinfrastruktur, die sich nicht eindeutig einem anderen Typ zuordnen lässt.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="RP_Verkehr">
+				<xs:sequence>
+					<xs:element name="typ" type="RP_SonstVerkehrTypen" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Sonstige Klassifikation von Verkehrs-Infrastruktur.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="RP_AbfallTypen">
+		<xs:annotation>
+			<xs:documentation>Abfalltypen.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:&lt;undefined&gt;">
+			<xs:enumeration value="Siedlungsabfall">
+				<xs:annotation>
+					<xs:documentation>Siedlungsabfall.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Mineralstoffabfall">
+				<xs:annotation>
+					<xs:documentation>Mineralstoffabfall.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Industrieabfall">
+				<xs:annotation>
+					<xs:documentation>Industrieabfall.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Sonderabfall">
+				<xs:annotation>
+					<xs:documentation>Sonderabfall.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RadioaktiverAbfall">
+				<xs:annotation>
+					<xs:documentation>Radioaktiver Abfall.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SonstigerAbfall">
+				<xs:annotation>
+					<xs:documentation>Sonstiger Abfall.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RP_AbwasserTypen">
+		<xs:annotation>
+			<xs:documentation>Typen von Abwasserinfrastruktur.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:&lt;undefined&gt;">
+			<xs:enumeration value="Klaeranlage">
+				<xs:annotation>
+					<xs:documentation>Kläranlage.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ZentraleKlaeranlage">
+				<xs:annotation>
+					<xs:documentation>Zentrale Kläranlage.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Grossklaerwerk">
+				<xs:annotation>
+					<xs:documentation>Großklärwerk.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Hauptwasserableitung">
+				<xs:annotation>
+					<xs:documentation>Hauptwasserableitung.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Abwasserverwertungsflaeche">
+				<xs:annotation>
+					<xs:documentation>Abwasserverwertungsfläche.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Abwasserbehandlungsanlage">
+				<xs:annotation>
+					<xs:documentation>Abwasserbehandlungsanlage.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SonstigeAbwasserinfrastruktur">
+				<xs:annotation>
+					<xs:documentation>Sonstige Abwasserinfrastruktur.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RP_SpannungTypen">
+		<xs:annotation>
+			<xs:documentation>Spannungstypen.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:&lt;undefined&gt;">
+			<xs:enumeration value="110KV">
+				<xs:annotation>
+					<xs:documentation>110 Kilovolt.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="220KV">
+				<xs:annotation>
+					<xs:documentation>220 Kilovolt.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="330KV">
+				<xs:annotation>
+					<xs:documentation>330 Kilovolt.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="380KV">
+				<xs:annotation>
+					<xs:documentation>380 Kilovolt.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RP_VerkehrStatus">
+		<xs:annotation>
+			<xs:documentation>Verkehrsstati.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:&lt;undefined&gt;">
+			<xs:enumeration value="Ausbau">
+				<xs:annotation>
+					<xs:documentation>Ausbau.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="LinienfuehrungOffen">
+				<xs:annotation>
+					<xs:documentation>Linienführung offen.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Sicherung">
+				<xs:annotation>
+					<xs:documentation>Sicherung.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Neubau">
+				<xs:annotation>
+					<xs:documentation>Neubau.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ImBau">
+				<xs:annotation>
+					<xs:documentation>Im Bau befindliche Verkehrsinfrastruktur.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VorhPlanfestgestLinienbestGrobtrasse">
+				<xs:annotation>
+					<xs:documentation>Vorhandene planfestgestellte linienbestimmte Grobtrasse.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="BedarfsplanmassnahmeOhneRaeumlFestlegung">
+				<xs:annotation>
+					<xs:documentation>Bedarfsplanmassnahme ohne räumliche Festlegung.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Korridor">
+				<xs:annotation>
+					<xs:documentation>Korridor.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Verlegung">
+				<xs:annotation>
+					<xs:documentation>Verlegung.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SonstigerVerkehrStatus">
+				<xs:annotation>
+					<xs:documentation>Sonstiger Verkehrsstatus.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RP_PrimaerenergieTypen">
+		<xs:annotation>
+			<xs:documentation>Typen der Primärenergie.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:&lt;undefined&gt;">
+			<xs:enumeration value="Erdoel">
+				<xs:annotation>
+					<xs:documentation>Erdöl.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Gas">
+				<xs:annotation>
+					<xs:documentation>Gas.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Ferngas">
+				<xs:annotation>
+					<xs:documentation>Ferngas.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Fernwaerme">
+				<xs:annotation>
+					<xs:documentation>Fernwärme.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Kraftstoff">
+				<xs:annotation>
+					<xs:documentation>Kraftstoff.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Kohle">
+				<xs:annotation>
+					<xs:documentation>Kohle.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Wasser">
+				<xs:annotation>
+					<xs:documentation>Wasser.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Kernenergie">
+				<xs:annotation>
+					<xs:documentation>Kernenergie.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Reststoffverwertung">
+				<xs:annotation>
+					<xs:documentation>Reststoffverwertung.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ErneuerbareEnergie">
+				<xs:annotation>
+					<xs:documentation>Erneuerbare Energie.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Windenergie">
+				<xs:annotation>
+					<xs:documentation>Windenergie.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SonstigePrimaerenergie">
+				<xs:annotation>
+					<xs:documentation>Sonstige Primärenergie.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RP_LaermschutzTypen">
+		<xs:annotation>
+			<xs:documentation>Typen von Lärmschutz.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:&lt;undefined&gt;">
+			<xs:enumeration value="Laermbereich">
+				<xs:annotation>
+					<xs:documentation>Lärmbereich.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Laermschutzbereich">
+				<xs:annotation>
+					<xs:documentation>Lärmschutzbereich</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Siedlungsbeschraenkungsbereich">
+				<xs:annotation>
+					<xs:documentation>Siedlungsbeschränkungsbereich.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ZoneA">
+				<xs:annotation>
+					<xs:documentation>Zone A.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ZoneB">
+				<xs:annotation>
+					<xs:documentation>Zone B.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ZoneC">
+				<xs:annotation>
+					<xs:documentation>Zone C.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SonstigerLaermschutzBauschutz">
+				<xs:annotation>
+					<xs:documentation>Sonstiger Lärmschutz oder Bauschutz.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RP_KommunikationTypen">
+		<xs:annotation>
+			<xs:documentation>Typen von Kommunikationsinfrastruktur.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:&lt;undefined&gt;">
+			<xs:enumeration value="Richtfunkstrecke">
+				<xs:annotation>
+					<xs:documentation>Richtfunkstrecke.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Fernmeldeanlage">
+				<xs:annotation>
+					<xs:documentation>Fernmeldeanlage.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SendeEmpfangsstation">
+				<xs:annotation>
+					<xs:documentation>Sende- und/oder Empfangsstation.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TonFernsehsender">
+				<xs:annotation>
+					<xs:documentation>Ton- und/oder Fernsehsender.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SonstigeKommunikation">
+				<xs:annotation>
+					<xs:documentation>Sonstige Kommunikationstypen.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RP_StrassenverkehrTypen">
+		<xs:annotation>
+			<xs:documentation>Typen von Straßenverkehr.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:&lt;undefined&gt;">
+			<xs:enumeration value="Strassenverkehr">
+				<xs:annotation>
+					<xs:documentation>Straßenverkehr.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Hauptverkehrsstrasse">
+				<xs:annotation>
+					<xs:documentation>Hauptverkehrsstraße.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Autobahn">
+				<xs:annotation>
+					<xs:documentation>Autobahn.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Bundesstrasse">
+				<xs:annotation>
+					<xs:documentation>Bundesstraße.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Staatsstrasse">
+				<xs:annotation>
+					<xs:documentation>Staatsstraße.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Landesstrasse">
+				<xs:annotation>
+					<xs:documentation>Landesstraße.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Kreisstrasse">
+				<xs:annotation>
+					<xs:documentation>Kreisstraße.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Fernstrasse">
+				<xs:annotation>
+					<xs:documentation>Fernstraße.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Trasse">
+				<xs:annotation>
+					<xs:documentation>Trasse.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Strassennetz">
+				<xs:annotation>
+					<xs:documentation>Straßennetz.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Busverkehr">
+				<xs:annotation>
+					<xs:documentation>Busverkehr.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Anschlussstelle">
+				<xs:annotation>
+					<xs:documentation>Anschlussstelle.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Strassentunnel">
+				<xs:annotation>
+					<xs:documentation>Straßentunnel.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SonstigerStrassenverkehr">
+				<xs:annotation>
+					<xs:documentation>Sonstiger Straßenverkehr.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RP_SchienenverkehrTypen">
+		<xs:annotation>
+			<xs:documentation>Typen von Schienenverkehr.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:&lt;undefined&gt;">
+			<xs:enumeration value="Schienenverkehr">
+				<xs:annotation>
+					<xs:documentation>Schienenverkehr.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Eisenbahnstrecke">
+				<xs:annotation>
+					<xs:documentation>Eisenbahnstrecke.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Haupteisenbahnstrecke">
+				<xs:annotation>
+					<xs:documentation>Haupteisenbahnstrecke.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Trasse">
+				<xs:annotation>
+					<xs:documentation>Trasse.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Schienennetz">
+				<xs:annotation>
+					<xs:documentation>Schienennetz.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Stadtbahn">
+				<xs:annotation>
+					<xs:documentation>Stadtbahn.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Strassenbahn">
+				<xs:annotation>
+					<xs:documentation>Straßenbahn.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SBahn">
+				<xs:annotation>
+					<xs:documentation>S-Bahn.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="UBahn">
+				<xs:annotation>
+					<xs:documentation>U-Bahn.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="AnschlussgleisIndustrieGewerbe">
+				<xs:annotation>
+					<xs:documentation>Anschlussgleis für Industrie und Gewerbe.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Haltepunkt">
+				<xs:annotation>
+					<xs:documentation>Haltepunkt.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Bahnhof">
+				<xs:annotation>
+					<xs:documentation>Bahnhof.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Hochgeschwindigkeitsverkehr">
+				<xs:annotation>
+					<xs:documentation>Hochgeschwindigkeitsverkehr.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Bahnbetriebsgelaende">
+				<xs:annotation>
+					<xs:documentation>Bahnbetriebsgelände.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="AnlagemitgrossemFlaechenbedarf">
+				<xs:annotation>
+					<xs:documentation>Anlage mit großem Flächenbedarf.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SonstigerSchienenverkehr">
+				<xs:annotation>
+					<xs:documentation>Sonstiger Schienenverkehr.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RP_BesondererStrassenverkehrTypen">
+		<xs:annotation>
+			<xs:documentation>Typen von besonderem Straßenverkehr.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:&lt;undefined&gt;">
+			<xs:enumeration value="Zweistreifig">
+				<xs:annotation>
+					<xs:documentation>Zweistreifig.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Dreistreifig">
+				<xs:annotation>
+					<xs:documentation>Dreistreifig.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Vierstreifig">
+				<xs:annotation>
+					<xs:documentation>Vierstreifig.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Sechsstreifig">
+				<xs:annotation>
+					<xs:documentation>Sechsstreifig.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Problembereich">
+				<xs:annotation>
+					<xs:documentation>Problembereich.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GruenbrueckeQuerungsmoeglichkeit">
+				<xs:annotation>
+					<xs:documentation>Grünbrückenquerungsmöglichkeit.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RP_WasserverkehrTypen">
+		<xs:annotation>
+			<xs:documentation>Typen von Wasserverkehr.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:&lt;undefined&gt;">
+			<xs:enumeration value="Hafen">
+				<xs:annotation>
+					<xs:documentation>Hafen.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Seehafen">
+				<xs:annotation>
+					<xs:documentation>Seehafen.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Binnenhafen">
+				<xs:annotation>
+					<xs:documentation>Binnenhafen.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Sportboothafen">
+				<xs:annotation>
+					<xs:documentation>Sportboothafen.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Laende">
+				<xs:annotation>
+					<xs:documentation>Lände.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Umschlagplatz">
+				<xs:annotation>
+					<xs:documentation>Umschlagplatz.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SchleuseHebewerk">
+				<xs:annotation>
+					<xs:documentation>Schleuse und/oder Hebewerk.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Schifffahrt">
+				<xs:annotation>
+					<xs:documentation>Schifffahrt.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="WichtigerSchifffahrtsweg">
+				<xs:annotation>
+					<xs:documentation>Wichtiger Schifffahrtsweg.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SonstigerSchifffahrtsweg">
+				<xs:annotation>
+					<xs:documentation>Sonstiger Schifffahrtsweg.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Wasserstrasse">
+				<xs:annotation>
+					<xs:documentation>Wasserstraße.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Reede">
+				<xs:annotation>
+					<xs:documentation>Reede.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SonstigerWasserverkehr">
+				<xs:annotation>
+					<xs:documentation>Sonstiger Wasserverkehr.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RP_BesondererSchienenverkehrTypen">
+		<xs:annotation>
+			<xs:documentation>Typen von besonderem Schienenverkehr.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:&lt;undefined&gt;">
+			<xs:enumeration value="Eingleisig">
+				<xs:annotation>
+					<xs:documentation>Eingleisig.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Zweigleisig">
+				<xs:annotation>
+					<xs:documentation>Zweigleisig.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Mehrgleisig">
+				<xs:annotation>
+					<xs:documentation>Mehrgleisig.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="OhneBetrieb">
+				<xs:annotation>
+					<xs:documentation>Schienenverkehrsinfrastruktur ohne Betrieb.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MitFernverkehrsfunktion">
+				<xs:annotation>
+					<xs:documentation>Schienenverkehrsinfrastruktur mit Fernverkehrsfunktion.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MitVerknuepfungsfunktionFuerOEPNV">
+				<xs:annotation>
+					<xs:documentation>Schienenverkehrsinfrastruktur mit Verknüpfungsfunktion für den öffentlichen Personennahverkehr.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ElektrischerBetrieb">
+				<xs:annotation>
+					<xs:documentation>Elektrischer Betrieb.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ZuElektrifizieren">
+				<xs:annotation>
+					<xs:documentation>Zu Elektrifizieren.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VerbesserungLeistungsfaehigkeit">
+				<xs:annotation>
+					<xs:documentation>Verbesserung der Leistungsfähigkeit.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RaeumlicheFreihaltungentwidmeterBahntrassen">
+				<xs:annotation>
+					<xs:documentation>Räumliche Freihaltung entwidmeter Bahntrassen.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="NachnutzungstillgelegterStrecken">
+				<xs:annotation>
+					<xs:documentation>Nachnutzung stillgelegter Strecken.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Personenverkehr">
+				<xs:annotation>
+					<xs:documentation>Personenverkehr.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Gueterverkehr">
+				<xs:annotation>
+					<xs:documentation>Güterverkehr.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Nahverkehr">
+				<xs:annotation>
+					<xs:documentation>Nahverkehr.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Fernverkehr">
+				<xs:annotation>
+					<xs:documentation>Fernverkehr.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RP_LuftverkehrTypen">
+		<xs:annotation>
+			<xs:documentation>Typen von Luftverkehr.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:&lt;undefined&gt;">
+			<xs:enumeration value="Flughafen">
+				<xs:annotation>
+					<xs:documentation>Flughafen.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Verkehrsflughafen">
+				<xs:annotation>
+					<xs:documentation>Verkehrsflughafen.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Regionalflughafen">
+				<xs:annotation>
+					<xs:documentation>Regionalflughafen.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="InternationalerFlughafen">
+				<xs:annotation>
+					<xs:documentation>Internationaler Flughafen.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="InternationalerVerkehrsflughafen">
+				<xs:annotation>
+					<xs:documentation>Internationaler Verkehrsflughafen.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Flughafenentwicklung">
+				<xs:annotation>
+					<xs:documentation>Flughafenentwicklung.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Flugplatz">
+				<xs:annotation>
+					<xs:documentation>Flugplatz.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Regionalflugplatz">
+				<xs:annotation>
+					<xs:documentation>Regionalflugplatz.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Segelflugplatz">
+				<xs:annotation>
+					<xs:documentation>Segelflugplatz.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SonstigerFlugplatz">
+				<xs:annotation>
+					<xs:documentation>Sonstiger Flugplatz.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Bauschutzbereich">
+				<xs:annotation>
+					<xs:documentation>Bauschutzbereich.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Militaerflughafen">
+				<xs:annotation>
+					<xs:documentation>Militärflughafen.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Landeplatz">
+				<xs:annotation>
+					<xs:documentation>Landeplatz.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Verkehrslandeplatz">
+				<xs:annotation>
+					<xs:documentation>Verkehrslandeplatz.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Hubschrauberlandeplatz">
+				<xs:annotation>
+					<xs:documentation>Hubschrauberlandeplatz.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Landebahn">
+				<xs:annotation>
+					<xs:documentation>Landebahn.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SonstigerLuftverkehr">
+				<xs:annotation>
+					<xs:documentation>Sonstiger Luftverkehr.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RP_SonstVerkehrTypen">
+		<xs:annotation>
+			<xs:documentation>Typen von sonstigem Verkehr.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:&lt;undefined&gt;">
+			<xs:enumeration value="Verkehrsanlage">
+				<xs:annotation>
+					<xs:documentation>Verkehrsanlage.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Gueterverkehrszentrum">
+				<xs:annotation>
+					<xs:documentation>Güterverkehrszentrum.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Logistikzentrum">
+				<xs:annotation>
+					<xs:documentation>Logistikzentrum.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TerminalkombinierterVerkehr">
+				<xs:annotation>
+					<xs:documentation>Terminal des kombinierten Verkehrs.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="OEPNV">
+				<xs:annotation>
+					<xs:documentation>ÖPNV.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VerknuepfungspunktBahnBus">
+				<xs:annotation>
+					<xs:documentation>Verknüpfungspunkt Bahn-Bus.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ParkandRideBikeandRide">
+				<xs:annotation>
+					<xs:documentation>Park-and-Ride und/oder Bike-and-Ride.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Faehrverkehr">
+				<xs:annotation>
+					<xs:documentation>Fährverkehr.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Infrastrukturkorridor">
+				<xs:annotation>
+					<xs:documentation>Infrastrukturkorridor.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Tunnel">
+				<xs:annotation>
+					<xs:documentation>Tunnel.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="NeueVerkehrstechniken">
+				<xs:annotation>
+					<xs:documentation>Neue Verkehrstechniken.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SonstigerVerkehr">
+				<xs:annotation>
+					<xs:documentation>Sonstiger Verkehr.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

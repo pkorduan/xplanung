@@ -1,0 +1,537 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:annotation>
+		<xs:documentation>Das Paket enthält die Klassen zur Modellierung eines BPlans (abgeleitet von XP_Plan) und eines BPlan-Bereichs (abgeleitet von XP_Bereich), sowie die Basisklassen für BPlan-Fachobjekte.</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://xplan-raumordnung.de/devk/model/xplangml/raumordnungsmodell" schemaLocation="BP_Naturschutz_Landschaftsbild_Naturhaushalt.xsd"/>
+	<xs:include schemaLocation="XP_Enumerationen.xsd"/>
+	<xs:include/>
+	<xs:include/>
+	<xs:include/>
+	<xs:include/>
+	<xs:include schemaLocation="BP_Raster.xsd"/>
+	<xs:include schemaLocation="XP_Basisobjekte.xsd"/>
+	<xs:simpleType name="BP_Rechtscharakter">
+		<xs:restriction base="xs:&lt;undefined&gt;">
+			<xs:enumeration value="Festsetzung"/>
+			<xs:enumeration value="Hinweis"/>
+			<xs:enumeration value="Vermerk"/>
+			<xs:enumeration value="Kennzeichnung"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="BP_Flaechenobjekt" type="BP_Flaechenobjekt"/>
+	<xs:complexType name="BP_Flaechenobjekt" abstract="true">
+		<xs:annotation>
+			<xs:documentation>Basisklasse für alle Objekte eines Bebauungsplans mit flächenhaftem Raumbezug. Die von BP_Flaechenobjekt abgeleiteten Fachobjekte können sowohl als Flächenschlussobjekte als auch als Überlagerungsobjekte auftreten.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="BP_Objekt">
+				<xs:sequence>
+					<xs:element name="position" type="XP_Flaechengeometrie" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Flächenhafter Raumbezug des Objektes (Eine Einzelfläche oder eine Menge von Flächen, die sich nicht überlappen dürfen). .</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="flaechenschluss" type="Boolean" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Zeigt an, ob das Objekt als Flächenschlussobjekt oder Überlagerungsobjekt gebildet werden soll.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="BP_SonstPlanArt" type="BP_SonstPlanArt"/>
+	<xs:complexType name="BP_SonstPlanArt">
+		<xs:sequence/>
+	</xs:complexType>
+	<xs:element name="BP_Plan" type="BP_Plan"/>
+	<xs:complexType name="BP_Plan">
+		<xs:annotation>
+			<xs:documentation>Die Klasse modelliert einen Bebauungsplan</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="XP_Plan">
+				<xs:sequence>
+					<xs:element name="gemeinde" type="XP_Gemeinde" minOccurs="1" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Die für den Plan zuständige Gemeinde.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="plangeber" type="XP_Plangeber" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Für den BPlan verantwortliche Stelle.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="planArt" type="BP_PlanArt" minOccurs="1" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Typ des vorliegenden BPlans.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="sonstPlanArt" type="BP_SonstPlanArt" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Spezifikation einer "Sonstigen Planart", wenn kein Plantyp aus der Enumeration BP_PlanArt zutraffend ist.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="verfahren" type="BP_Verfahren" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Verfahrensart der BPlan-Aufstellung oder -Änderung.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="rechtsstand" type="BP_Rechtsstand" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Aktueller Rechtsstand des Plans</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="status" type="BP_Status" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Über eine CodeList definieter aktueller Status des Plans.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="hoehenbezug" type="CharacterString" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Bei Höhenangaben im Plan standardmäßig verwendeter Höhenbezug (z.B. Höhe über NN).</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="aenderungenBisDatum" type="Date" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Datum der berücksichtigten Plan-Änderungen.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="aufstellungsbeschlussDatum" type="Date" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Datum des Aufstellungsbeschlusses.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="veraenderungssperreDatum" type="Date" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Datum der Veränderungssperre</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="auslegungsStartDatum" type="Date" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Start-Datum des Auslegungs-Zeitraums. Bei mehrfacher öffentlicher Auslegung können mehrere Datumsangeben spezifiziert werden.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="auslegungsEndDatum" type="Date" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>End-Datum des Auslegungs-Zeitraums. Bei mehrfacher öffentlicher Auslegung können mehrere Datumsangeben spezifiziert werden.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="traegerbeteiligungsStartDatum" type="Date" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Start-Datum der Trägerbeteiligung. Bei mehrfacher Trägerbeteiligung können mehrere Datumsangeben spezifiziert werden.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="traegerbeteiligungsEndDatum" type="Date" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>End-Datum der Trägerbeteiligung. Bei mehrfacher Trägerbeteiligung können mehrere Datumsangeben spezifiziert werden.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="satzungsbeschlussDatum" type="Date" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Datum des Satzungsbeschlusses</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="rechtsverordnungsDatum" type="Date" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Datum der Rechtsverordnung.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="inkrafttretensDatum" type="Date" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Datum des Inkrafttretens.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ausfertigungsDatum" type="Date" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Datum der Ausfertigung</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="veraenderungssperre" type="Boolean" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Gibt an ob es im gesamten Geltungsbereich des Plans eine Veränderungssperre gibt.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="staedtebaulicherVertrag" type="Boolean" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Gibt an, ob es zum Plan einen städtebaulichen Vertrag gibt.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="erschliessungsVertrag" type="Boolean" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Gibt an, ob es für den Plan einen Erschließungsvertrag gibt.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="durchfuehrungsVertrag" type="Boolean" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Gibt an, ob für das gebiet ein Durchführungsvertrag (Kombination aus Städtebaulichen Vertrag und Erschließungsvertrag) existiert.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="gruenordnungsplan" type="Boolean" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Gibt an, ob für den BPlan ein zugehöriger Grünordnungsplan existiert.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="refKoordinatenListe" type="XP_ExterneReferenz" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Referenz auf eine Koordinaten-Liste.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="refGrundstuecksverzeichnis" type="XP_ExterneReferenz" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Referenz auf ein Grundstücksverzeichnis.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="refPflanzliste" type="XP_ExterneReferenz" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Referenz auf eine Pflanzliste.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="refUmweltbericht" type="XP_ExterneReferenz" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Referenz auf den Umweltbericht.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="refSatzung" type="XP_ExterneReferenz" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Referenz auf die Satzung</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="refGruenordnungsplan" type="XP_ExterneReferenz" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Referenz auf den Grünordnungsplan</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="bereich" type="BP_Bereich" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="BP_Flaechenschlussobjekt" type="BP_Flaechenschlussobjekt"/>
+	<xs:complexType name="BP_Flaechenschlussobjekt" abstract="true">
+		<xs:annotation>
+			<xs:documentation>Basisklasse für alle Objekte eines Bebauungsplans mit flächenhaftem Raumbezug, die immer Flächenschlussobjekte sind.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="BP_Flaechenobjekt">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="BP_PlanArt">
+		<xs:restriction base="xs:&lt;undefined&gt;">
+			<xs:enumeration value="BPlan">
+				<xs:annotation>
+					<xs:documentation>Unspezifizierter Bebauungsplan</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EinfacherBPlan">
+				<xs:annotation>
+					<xs:documentation>Einfacher BPlan, §30 Abs. 3 BauGB.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="QualifizierterBPlan">
+				<xs:annotation>
+					<xs:documentation>Qualifizierter BPlan, §30 Abs. 1 BauGB.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VorhabenbezogenerBPlan">
+				<xs:annotation>
+					<xs:documentation>Vorhabensbezogener Bebauungsplan</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="InnenbereichsSatzung">
+				<xs:annotation>
+					<xs:documentation>Eine Innenbereichssatzung kann entweder eine Klarstellungssatzung, eine Entwicklungssatzung oder eine Ergänzungssatzung sein.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="KlarstellungsSatzung">
+				<xs:annotation>
+					<xs:documentation>Klarstellungssatzung nach  § 34 Abs.4 Nr.1 BauGB.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EntwicklungsSatzung">
+				<xs:annotation>
+					<xs:documentation>Entwicklungssatzung nach  § 34 Abs.4 Nr. 2 BauGB.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ErgaenzungsSatzung">
+				<xs:annotation>
+					<xs:documentation>Ergänzungssatzung nach  § 34 Abs.4 Nr. 3 BauGB.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="AussenbereichsSatzung">
+				<xs:annotation>
+					<xs:documentation>Außenbereichssatzung nach § 35 Abs. 6 BauGB.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="OertlicheBauvorschrift">
+				<xs:annotation>
+					<xs:documentation>Örtliche Bauvorschrift.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Sonstiges">
+				<xs:annotation>
+					<xs:documentation>Sonstige Planart.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BP_Verfahren">
+		<xs:restriction base="xs:&lt;undefined&gt;">
+			<xs:enumeration value="Normal">
+				<xs:annotation>
+					<xs:documentation>Nomales BPlan Verfahren.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Parag13">
+				<xs:annotation>
+					<xs:documentation>BPlan Verfahren nach Parag. 13 BauGB.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Parag13a">
+				<xs:annotation>
+					<xs:documentation>BPlan Verfahren nach Parag 13a BauGB.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="BP_Objekt" type="BP_Objekt"/>
+	<xs:complexType name="BP_Objekt" abstract="true">
+		<xs:annotation>
+			<xs:documentation>Basisklasse für alle raumbezogenen Festsetzungen, Hinweise, Vermerke und Kennzeichnungen eines Bebauungsplans.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="XP_Objekt">
+				<xs:sequence>
+					<xs:element name="rechtscharakter" type="BP_Rechtscharakter" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Rechtliche Charakterisierung des Planinhaltes.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="startBedingung" type="BP_WirksamkeitBedingung" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Notwendige Bedingung für die Wirksamkeit einer Festsetzung.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="endeBedingung" type="BP_WirksamkeitBedingung" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Notwendige Bedingung für das Ende der Wirksamkeit einer Festsetzung</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="wirdAusgeglichenDurchABE" type="BP_AnpflanzungBindungErhaltung" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="wirdAusgeglichenDurchFlaeche" type="BP_AusgleichsFlaeche" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="wirdAusgeglichenDurchSPEFlaeche" type="BP_SchutzPflegeEntwicklungsFlaeche" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="wirdAusgeglichenDurchMassnahme" type="BP_AusgleichsMassnahme" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="wirdAusgeglichenDurchSPEMassnahme" type="BP_SchutzPflegeEntwicklungsMassnahme" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="BP_Rechtsstand">
+		<xs:annotation>
+			<xs:documentation>Aufzählung der möglichen Rechtsstände eines BPlans</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:&lt;undefined&gt;">
+			<xs:enumeration value="Aufstellungsbeschluss">
+				<xs:annotation>
+					<xs:documentation>Ein Aufstellungsbeschluss der Gemeinde liegt vor</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Entwurf">
+				<xs:annotation>
+					<xs:documentation>Ein Planentwurf liegt vor</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FruehzeitigeBehoerdenBeteiligung">
+				<xs:annotation>
+					<xs:documentation>Die frühzeitige Beteiligung der Behörden (§ 4 Abs. 1 BauGB) hat stattgefunden.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FruehzeitigeOeffentlichkeitsBeteiligung">
+				<xs:annotation>
+					<xs:documentation>Die frühzeitige Beteiligung der Öffentlichkeit (§ 3 Abs. 1 BauGB), bzw. bei einem Verfahren nach § 13a BauGB die Unterrichtung der Öffentlichkeit (§ 13a Abs. 3 BauGB) hat stattgefunden.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="BehoerdenBeteiligung">
+				<xs:annotation>
+					<xs:documentation>Die Beteiligung der Behörden hat stattgefunden (§ 4 Abs. 2 BauGB).</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="OeffentlicheAuslegung">
+				<xs:annotation>
+					<xs:documentation>Der Plan hat öffentlich ausgelegen. (§ 3 Abs. 2 BauGB).</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Satzung">
+				<xs:annotation>
+					<xs:documentation>Die Satzung wurde durch Beschluss der Gemeinde verabschiedet.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="InkraftGetreten">
+				<xs:annotation>
+					<xs:documentation>Der Plan ist inkraft getreten.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TeilweiseUntergegangen">
+				<xs:annotation>
+					<xs:documentation>Der Plan ist, z. B. durch einen Gerichtsbeschluss oder neuen Plan, teilweise untergegangen.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Untergegangen">
+				<xs:annotation>
+					<xs:documentation>Der Plan wurde aufgehoben oder für nichtig erklärt.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="BP_Punktobjekt" type="BP_Punktobjekt"/>
+	<xs:complexType name="BP_Punktobjekt" abstract="true">
+		<xs:annotation>
+			<xs:documentation>Basisklasse für alle Objekte eines Bebauungsplans mit punktförmigem Raumbezug (Einzelpunkt oder Punktmenge).</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="BP_Objekt">
+				<xs:sequence>
+					<xs:element name="position" type="XP_Punktgeometrie" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Punktförmiger Raumbezug (Einzelpunkt oder Punktmenge).</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="BP_Ueberlagerungsobjekt" type="BP_Ueberlagerungsobjekt"/>
+	<xs:complexType name="BP_Ueberlagerungsobjekt" abstract="true">
+		<xs:annotation>
+			<xs:documentation>Basisklasse für alle Objekte eines Bebauungsplans mit flächenhaftem Raumbezug, die immer Überlagerungsobjekte sind.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="BP_Flaechenobjekt">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="BP_WirksamkeitBedingung" type="BP_WirksamkeitBedingung"/>
+	<xs:complexType name="BP_WirksamkeitBedingung">
+		<xs:annotation>
+			<xs:documentation>Spezifikation von Bedingungen für die Wirksamkeit oder Unwirksamkeit einer Festsetzung.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="bedingung" type="CharacterString" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Textlich formulierte Bedingung für die Wirksamkeit oder Unwirksamkeit einer Festsetzung.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="datumAbsolut" type="Date" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Datum an dem eine Festsetzung wirksam oder unwirksam wird.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="datumRelativ" type="TM_Duration" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Zeitspanne, nach der eine Festsetzung wirksam oder unwirksam wird, wenn die im Attribut bedingung spezifizierte Bedingung erfüllt ist.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="BP_Status" type="BP_Status"/>
+	<xs:complexType name="BP_Status">
+		<xs:annotation>
+			<xs:documentation>Aufzählung der möglichen Stati eines BPlans</xs:documentation>
+		</xs:annotation>
+		<xs:sequence/>
+	</xs:complexType>
+	<xs:element name="BP_TextAbschnitt" type="BP_TextAbschnitt"/>
+	<xs:complexType name="BP_TextAbschnitt">
+		<xs:annotation>
+			<xs:documentation>Texlich formulierter Inhalt eines Bebauungsplans, der einen anderen Rechtscharakter als das zugrunde liegende Fachobjekt hat (Attribut rechtscharakter des Fachobjektes), oder dem Plan als Ganzes zugeordnet ist.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="XP_TextAbschnitt">
+				<xs:sequence>
+					<xs:element name="rechtscharakter" type="BP_Rechtscharakter" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Rechtscharakter des textlich formulierten Planinhalts.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="BP_Linienobjekt" type="BP_Linienobjekt"/>
+	<xs:complexType name="BP_Linienobjekt" abstract="true">
+		<xs:annotation>
+			<xs:documentation>Basisklasse für alle Objekte eines Bebauungsplans mit linienförmigem Raumbezug (Eine einzelne zusammenhängende Kurve, die aus Linienstücken und Kreisbögen zusammengesetzt sein kann, oder eine Menge derartiger Kurven).</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="BP_Objekt">
+				<xs:sequence>
+					<xs:element name="position" type="XP_Liniengeometrie" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Linienförmiger Raumbezug (Einzelne zusammenhängende Kurve, die aus Linienstücken und Kreisbögen aufgebaut sit, oder eine Menge derartiger Kurven),</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="BP_Bereich" type="BP_Bereich"/>
+	<xs:complexType name="BP_Bereich">
+		<xs:annotation>
+			<xs:documentation>Diese Klasse modelliert einen Bereich eines Bebauungsplans, z.B. eine vertikale Ebene.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="XP_Bereich">
+				<xs:sequence>
+					<xs:element name="versionBauNVO" type="XP_VersionBauNVO" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Benutzte Version der BauNVO</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="versionBauNVOText" type="CharacterString" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Textliche Spezifikation einer anderen Gesetzesgrundlage als der BauNVO. In diesem Fall muss das Attribut versionBauNVO den Wert 9999 haben.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="versionBauGB" type="Date" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Datum der zugrunde liegenden Version des BauGB.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="versionBauGBText" type="CharacterString" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Zugrunde liegende Version des BauGB.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="rasterAenderung" type="BP_RasterplanAenderung" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="inhaltBPlan" type="BP_Objekt" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="BP_Geometrieobjekt" type="BP_Geometrieobjekt"/>
+	<xs:complexType name="BP_Geometrieobjekt" abstract="true">
+		<xs:annotation>
+			<xs:documentation>Basisklasse für alle Objekte eines Bebauungsplans mit variablem Raumbezug.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="BP_Objekt">
+				<xs:sequence>
+					<xs:element name="position" type="XP_VariableGeometrie" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Raumbezug - Entweder punktförmig, linienförmig oder flächenhaft, gemischte Geometrie ist nicht zugelassen.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="flaechenschluss" type="Boolean" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Zeigt bei flächenhaftem Raumbezug an, ob das Objekt als Flächenschlussobjekt oder Überlagerungsobjekt gebildet werden soll.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:annotation>
+		<xs:documentation>Sonstige Festlegungen.</xs:documentation>
+	</xs:annotation>
+	<xs:include schemaLocation="XP_Enumerationen.xsd"/>
+	<xs:include schemaLocation="RP__Basisobjekte.xsd"/>
+	<xs:element name="RP_SonstGrenzeTypen" type="RP_SonstGrenzeTypen"/>
+	<xs:complexType name="RP_SonstGrenzeTypen">
+		<xs:sequence/>
+	</xs:complexType>
+	<xs:element name="RP_Grenze" type="RP_Grenze"/>
+	<xs:complexType name="RP_Grenze">
+		<xs:annotation>
+			<xs:documentation>Grenzen.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="RP_Geometrieobjekt">
+				<xs:sequence>
+					<xs:element name="typ" type="XP_GrenzeTypen" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Typ der Grenze</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="spezifischerTyp" type="RP_SpezifischeGrenzeTypen" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Spezifischer Typ der Grenze</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="sonstTyp" type="RP_SonstGrenzeTypen" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Erweiterter Typ.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="RP_GenerischesObjekt" type="RP_GenerischesObjekt"/>
+	<xs:complexType name="RP_GenerischesObjekt">
+		<xs:annotation>
+			<xs:documentation>Klasse zur Modellierung aller Inhalte des Raumordnungsplans, die durch keine andere Klasse des RPlan-Fachschemas dargestellt werden können.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="RP_Geometrieobjekt">
+				<xs:sequence>
+					<xs:element name="typ" type="RP_GenerischesObjektTypen" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Über eine CodeList definierte Zweckbestimmung der Festlegung.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="RP_GenerischesObjektTypen" type="RP_GenerischesObjektTypen"/>
+	<xs:complexType name="RP_GenerischesObjektTypen">
+		<xs:sequence/>
+	</xs:complexType>
+	<xs:simpleType name="RP_SpezifischeGrenzeTypen">
+		<xs:annotation>
+			<xs:documentation>Aufzählung der verschiedenen spezifischen Typen von Grenzen aus Raumordnungsplänen.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:&lt;undefined&gt;">
+			<xs:enumeration value="Zwoelfmeilenzone">
+				<xs:annotation>
+					<xs:documentation>Grenze der Zwölf-Seemeilen-Zone, in der Küstenstaaten das Recht haben, ihre Hoheitsgewässer auf bis zu 12 Seemeilen auszudehnen (nach Seerechtsübereinkommen der UN vom 10. Dezember 1982).</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="BegrenzungDesKuestenmeeres">
+				<xs:annotation>
+					<xs:documentation>Begrenzung des Küstenmeeres.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VerlaufUmstritten">
+				<xs:annotation>
+					<xs:documentation>Grenze mit umstrittenem Verlauf, beispielsweise zwischen Deutschland und den Niederlanden im Ems-Ästuar.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GrenzeDtAusschlWirtschaftszone">
+				<xs:annotation>
+					<xs:documentation>Grenze der Deutschen Ausschließlichen Wirtschaftszone (AWZ).</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MittlereTideHochwasserlinie">
+				<xs:annotation>
+					<xs:documentation>Maß von Küstenlinien bei langjährig gemitteltem Küstenhochwasser.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PlanungsregionsgrenzeRegion">
+				<xs:annotation>
+					<xs:documentation>Grenze einer regionalen Planungsregion (z.B. Grenze eines Regionalplans).</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PlanungsregionsgrenzeLand">
+				<xs:annotation>
+					<xs:documentation>Grenze einer landesweiten Planungsregion (z.B. Grenze eines Landesentwicklungsplans).</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GrenzeBraunkohlenplan">
+				<xs:annotation>
+					<xs:documentation>Grenze eines Braunkohlenplans.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Grenzuebergangsstelle">
+				<xs:annotation>
+					<xs:documentation>Grenzübergangsstelle</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="RP_Planungsraum" type="RP_Planungsraum"/>
+	<xs:complexType name="RP_Planungsraum">
+		<xs:annotation>
+			<xs:documentation>Modelliert einen allgemeinen Planungsraum.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="RP_Geometrieobjekt">
+				<xs:sequence>
+					<xs:element name="planungsraumBeschreibung" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Textliche Beschreibung eines Planungsrauminhalts.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>
