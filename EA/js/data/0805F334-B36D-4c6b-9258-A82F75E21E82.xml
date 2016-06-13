@@ -1,0 +1,4 @@
+tocTab[tocTab.length] = new Array("0.1.6.4:1", "", "Context Diagram: TemporalDatum", "EARoot/EA1/EA6/EA4/EA1805.htm", "175.png", "621", "0", "", "Logical diagram0","{60B546AD-0F54-48ce-811A-B0393DD12393}");
+tocTab[tocTab.length] = new Array("0.1.6.4:2", "", "Figure D.53 ? TemporalDatum", "EARoot/EA1/EA6/EA4/EA1807.htm", "175.png", "622", "0", "", "Logical diagram0","{0C71E6D0-6D29-4f2b-AC99-8A9A0ECF628D}");
+tocTab[tocTab.length] = new Array("0.1.6.4:3", "", "Figure D.54 ? Association between TemporalCRS and TemporalDatum", "EARoot/EA1/EA6/EA4/EA1809.htm", "175.png", "620", "0", "", "Logical diagram0","{AF3AC3AA-5204-45c5-B107-D88067168A47}");
+tocTab[tocTab.length] = new Array("0.1.6.4:4", "", "«type» TemporalDatum", "EARoot/EA1/EA6/EA4/EA1812.htm", "5.png", "E513", "0", "", "Class0","{94E8C077-FC0E-4bb9-BABE-D158AB663481}");

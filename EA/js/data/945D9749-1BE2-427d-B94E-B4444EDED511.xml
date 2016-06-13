@@ -1,0 +1,4 @@
+tocTab[tocTab.length] = new Array("0.2.3.3.3:1", "", "FP_Bebauung", "EARoot/EA2/EA3/EA3/EA3/EA2391.htm", "175.png", "725", "0", "", "class diagram0","{50F13180-E197-4078-B6E5-1C4BD04D2412}");
+tocTab[tocTab.length] = new Array("0.2.3.3.3:2", "", "«FeatureType» FP_BebauungsFlaeche", "EARoot/EA2/EA3/EA3/EA3/EA2394.htm", "5.png", "E835", "0", "", "Class0","{3D17E031-A804-426d-B4CE-99D9E720D32E}");
+tocTab[tocTab.length] = new Array("0.2.3.3.3:3", "", "«CodeList» FP_DetailArtDerBaulNutzung", "EARoot/EA2/EA3/EA3/EA3/EA2395.htm", "5.png", "E836", "0", "", "Class0","{95AD9727-198B-42e7-BEE0-EB99106FA9A1}");
+tocTab[tocTab.length] = new Array("0.2.3.3.3:4", "", "«FeatureType» FP_KeineZentrAbwasserBeseitigungFlaeche", "EARoot/EA2/EA3/EA3/EA3/EA2396.htm", "5.png", "E837", "0", "", "Class0","{3949B440-44E1-4500-A86F-AA5B50CFCF16}");

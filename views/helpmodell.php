@@ -35,6 +35,5 @@
       <img src="images/help/assoziation.png"> Dieser Pfeil stellt eine Assoziation dar. Assoziierte Objekte stehen miteinander in Verbindung (z.B. 0..1).<br><br>
       </p>
   </div>
-  <h1>
 <?php
 ?>
