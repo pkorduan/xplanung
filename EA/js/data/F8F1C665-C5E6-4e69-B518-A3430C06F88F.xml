@@ -1,0 +1,5 @@
+tocTab[tocTab.length] = new Array("0.2.3.5.2:1", "", "LP__Erholung", "EARoot/EA2/EA3/EA5/EA2/EA2633.htm", "175.png", "745", "0", "", "class diagram0","{133D26D3-E17B-440b-B8DD-1CF4EAEBF42B}");
+tocTab[tocTab.length] = new Array("0.2.3.5.2:2", "", "«FeatureType» LP_AllgGruenflaeche", "EARoot/EA2/EA3/EA5/EA2/EA2636.htm", "5.png", "E956", "0", "", "Class0","{F60A5770-3EEA-4a94-B39B-CB6B803E9FFB}");
+tocTab[tocTab.length] = new Array("0.2.3.5.2:3", "", "«FeatureType» LP_ErholungFreizeit", "EARoot/EA2/EA3/EA5/EA2/EA2637.htm", "5.png", "E958", "0", "", "Class0","{C9D0B277-03C4-4399-AC7D-D9BEBE925FB0}");
+tocTab[tocTab.length] = new Array("0.2.3.5.2:4", "", "«CodeList» LP_ErholungFreizeitDetailFunktionen", "EARoot/EA2/EA3/EA5/EA2/EA2638.htm", "5.png", "E957", "0", "", "Class0","{8CB15CB4-F7A0-46fc-BF66-2A7FDF6AA2A5}");
+tocTab[tocTab.length] = new Array("0.2.3.5.2:5", "", "«enumeration» LP_ErholungFreizeitFunktionen", "EARoot/EA2/EA3/EA5/EA2/EA2639.htm", "5.png", "E959", "0", "", "Class0","{8BDAF091-BBED-46d0-93FB-98FECB0411F5}");

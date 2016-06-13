@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:annotation>
+		<xs:documentation>Grünflächen und Flächen, Zweckbestimmungen, Erfordernisse und Maßnahmen für die Erholung in Natur und Landschaft.</xs:documentation>
+	</xs:annotation>
+	<xs:include schemaLocation="LP__Basisobjekte.xsd"/>
+	<xs:element name="LP_AllgGruenflaeche" type="LP_AllgGruenflaeche"/>
+	<xs:complexType name="LP_AllgGruenflaeche">
+		<xs:annotation>
+			<xs:documentation>Allgemeine Grünflächen.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="LP_Flaechenobjekt">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="LP_ErholungFreizeitDetailFunktionen" type="LP_ErholungFreizeitDetailFunktionen"/>
+	<xs:complexType name="LP_ErholungFreizeitDetailFunktionen">
+		<xs:sequence/>
+	</xs:complexType>
+	<xs:element name="LP_ErholungFreizeit" type="LP_ErholungFreizeit"/>
+	<xs:complexType name="LP_ErholungFreizeit">
+		<xs:annotation>
+			<xs:documentation>Sonstige Gebiete, Objekte, Zweckbestimmungen oder Maßnahmen mit besonderen Funktionen für die landschaftsgebundene Erholung und Freizeit.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="LP_Geometrieobjekt">
+				<xs:sequence>
+					<xs:element name="funktion" type="LP_ErholungFreizeitFunktionen" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Funktion der Fläche.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="weitereFunktion1" type="LP_ErholungFreizeitFunktionen" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Weitere Funktion der Fläche. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen funktion mehrfach belegt werden.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="weitereFunktion2" type="LP_ErholungFreizeitFunktionen" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Weitere Funktion der Fläche. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen funktion mehrfach belegt werden.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="detaillierteFunktion" type="LP_ErholungFreizeitDetailFunktionen" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Über eine CodeList definierte zusätzliche Funktion der Fläche.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="weitereDetailFunktion1" type="LP_ErholungFreizeitDetailFunktionen" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Über eine CodeList definierte zusätzliche Funktion der Fläche. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen detaillierteFunktion mehrfach belegt werden.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="weitereDetailFunktion2" type="LP_ErholungFreizeitDetailFunktionen" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Über eine CodeList definierte zusätzliche Funktion der Fläche. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen detaillierteFunktion mehrfach belegt werden.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="LP_ErholungFreizeitFunktionen">
+		<xs:restriction base="xs:&lt;undefined&gt;">
+			<xs:enumeration value="Parkanlage"/>
+			<xs:enumeration value="Dauerkleingaerten"/>
+			<xs:enumeration value="Sportplatz"/>
+			<xs:enumeration value="Spielplatz"/>
+			<xs:enumeration value="Zeltplatz"/>
+			<xs:enumeration value="BadeplatzFreibad"/>
+			<xs:enumeration value="Schutzhuette"/>
+			<xs:enumeration value="Rastplatz"/>
+			<xs:enumeration value="Informationstafel"/>
+			<xs:enumeration value="FeuerstelleGrillplatz"/>
+			<xs:enumeration value="Liegewiese"/>
+			<xs:enumeration value="Aussichtsturm"/>
+			<xs:enumeration value="Aussichtspunkt"/>
+			<xs:enumeration value="Angelteich"/>
+			<xs:enumeration value="Modellflugplatz"/>
+			<xs:enumeration value="WildgehegeSchaugatter"/>
+			<xs:enumeration value="JugendzeltplatzEinzelcamp"/>
+			<xs:enumeration value="Gleitschirmplatz"/>
+			<xs:enumeration value="Wandern"/>
+			<xs:enumeration value="Wanderweg"/>
+			<xs:enumeration value="Lehrpfad"/>
+			<xs:enumeration value="Reitweg"/>
+			<xs:enumeration value="Radweg"/>
+			<xs:enumeration value="Wintersport"/>
+			<xs:enumeration value="Skiabfahrt"/>
+			<xs:enumeration value="Skilanglaufloipe"/>
+			<xs:enumeration value="RodelbahnBobbahn"/>
+			<xs:enumeration value="Wassersport"/>
+			<xs:enumeration value="Wasserwanderweg"/>
+			<xs:enumeration value="Schifffahrtsroute"/>
+			<xs:enumeration value="AnlegestelleMitMotorbooten"/>
+			<xs:enumeration value="AnlegestelleOhneMotorboote"/>
+			<xs:enumeration value="SesselliftSchlepplift"/>
+			<xs:enumeration value="Kabinenseilbahn"/>
+			<xs:enumeration value="Parkplatz"/>
+			<xs:enumeration value="Sonstiges"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

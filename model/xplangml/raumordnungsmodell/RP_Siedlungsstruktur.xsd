@@ -1,0 +1,882 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:annotation>
+		<xs:documentation>Festlegungen im Bereich Siedlungsstruktur.</xs:documentation>
+	</xs:annotation>
+	<xs:include schemaLocation="RP__Basisobjekte.xsd"/>
+	<xs:element name="RP_ZentralerOrt" type="RP_ZentralerOrt"/>
+	<xs:complexType name="RP_ZentralerOrt">
+		<xs:annotation>
+			<xs:documentation>Zentrale Orte</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="RP_Geometrieobjekt">
+				<xs:sequence>
+					<xs:element name="typ" type="RP_ZentralerOrtTypen" minOccurs="1" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Klassifikation von Zentralen Orten.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="sonstigerTyp" type="RP_ZentralerOrtSonstigeTypen" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Sonstige Klassifikation von Zentralen Orten.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="RP_Funktionszuweisung" type="RP_Funktionszuweisung"/>
+	<xs:complexType name="RP_Funktionszuweisung">
+		<xs:annotation>
+			<xs:documentation>Gebiets- und Gemeindefunktionen.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="RP_Geometrieobjekt">
+				<xs:sequence>
+					<xs:element name="typ" type="RP_FunktionszuweisungTypen" minOccurs="1" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Klassifikation des Gebietes nach Bundesraumordnungsgesetz.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="bezeichnung" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Bezeichnung und/oder Erörterung einer Gebietsfunktion.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="RP_Achse" type="RP_Achse"/>
+	<xs:complexType name="RP_Achse">
+		<xs:annotation>
+			<xs:documentation>Achsen und Siedlungsachsen.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="RP_Geometrieobjekt">
+				<xs:sequence>
+					<xs:element name="typ" type="RP_AchsenTypen" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Klassifikation verschiedener Achsen.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="RP_Siedlung" type="RP_Siedlung"/>
+	<xs:complexType name="RP_Siedlung">
+		<xs:annotation>
+			<xs:documentation>Allgemeines Siedlungsobjekt</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="RP_Geometrieobjekt">
+				<xs:sequence>
+					<xs:element name="istZweckbindung" type="xs:boolean" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Abfrage, ob der FeatureType eine Zweckbindung ist.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="bauhoehenbeschraenkung" type="xs:integer" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Assoziierte Bauhöhenbeschränkung.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="istSiedlungsbeschraenkung" type="xs:boolean" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Abfrage, ob der FeatureType eine Siedlungsbeschränkung ist.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="RP_FunktionszuweisungTypen">
+		<xs:annotation>
+			<xs:documentation>Typen von Funktionszuweisungen.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:&lt;undefined&gt;">
+			<xs:enumeration value="Wohnen">
+				<xs:annotation>
+					<xs:documentation>Wohnfunktion.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Arbeit">
+				<xs:annotation>
+					<xs:documentation>Arbeitsfunktion.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GewerbeDienstleistung">
+				<xs:annotation>
+					<xs:documentation>Gewerbe- und/oder Dienstleistungsfunktion.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Einzelhandel">
+				<xs:annotation>
+					<xs:documentation>Einzelhandelsfunktion.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Landwirtschaft">
+				<xs:annotation>
+					<xs:documentation>Landwirtschaftliche Funktion.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ErholungFremdenverkehr">
+				<xs:annotation>
+					<xs:documentation>Erholungs-, Fremdenverkehrs- und/oder Tourismusfunktion.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Verteidigung">
+				<xs:annotation>
+					<xs:documentation>Verteidigungsfunktion.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="UeberoertlicheVersorgungsfunktionLaendlicherRaum">
+				<xs:annotation>
+					<xs:documentation>Überörtliche Versorgungsfunktion.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SonstigeFunktion">
+				<xs:annotation>
+					<xs:documentation>Sonstige Funktion.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RP_ZentralerOrtTypen">
+		<xs:annotation>
+			<xs:documentation>Typen von Zentralen Orten.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:&lt;undefined&gt;">
+			<xs:enumeration value="Oberzentrum">
+				<xs:annotation>
+					<xs:documentation>Oberzentrum.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GemeinsamesOberzentrum">
+				<xs:annotation>
+					<xs:documentation>Gemeinsames Oberzentrum.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Oberbereich">
+				<xs:annotation>
+					<xs:documentation>Oberbereich.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Mittelzentrum">
+				<xs:annotation>
+					<xs:documentation>Mittelzentrum.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Mittelbereich">
+				<xs:annotation>
+					<xs:documentation>Mittelbereich.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Grundzentrum">
+				<xs:annotation>
+					<xs:documentation>Grundzentrum</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Unterzentrum">
+				<xs:annotation>
+					<xs:documentation>Unterzentrum.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Nahbereich">
+				<xs:annotation>
+					<xs:documentation>Nahbereich.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Kleinzentrum">
+				<xs:annotation>
+					<xs:documentation>Kleinzentrum.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="LaendlicherZentralort">
+				<xs:annotation>
+					<xs:documentation>Ländlicher Zentralort.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Stadtrandkern1Ordnung">
+				<xs:annotation>
+					<xs:documentation>Stadtrandkern 1. Ordnung</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Stadtrandkern2Ordnung">
+				<xs:annotation>
+					<xs:documentation>Stadtrandkern 2. Ordnung</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VersorgungskernSiedlungskern">
+				<xs:annotation>
+					<xs:documentation>Versorgungskern und/oder Siedlungskern</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ZentralesSiedlungsgebiet">
+				<xs:annotation>
+					<xs:documentation>Zentrales Siedlungsgebiet.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Metropole">
+				<xs:annotation>
+					<xs:documentation>Metropole.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SonstigerZentralerOrt">
+				<xs:annotation>
+					<xs:documentation>Sonstiger Zentraler Ort.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RP_AchsenTypen">
+		<xs:annotation>
+			<xs:documentation>Typen von Achsen.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:&lt;undefined&gt;">
+			<xs:enumeration value="Achse">
+				<xs:annotation>
+					<xs:documentation>Achsen.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Siedlungsachse">
+				<xs:annotation>
+					<xs:documentation>Siedlungsachse.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Entwicklungsachse">
+				<xs:annotation>
+					<xs:documentation>Entwicklungsachse.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Landesentwicklungsachse">
+				<xs:annotation>
+					<xs:documentation>Landesentwicklungsachse.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Verbindungsachse">
+				<xs:annotation>
+					<xs:documentation>Verbindungsachse.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Entwicklungskorridor">
+				<xs:annotation>
+					<xs:documentation>Entwicklungskorridor.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="AbgrenzungEntwicklungsEntlastungsorte">
+				<xs:annotation>
+					<xs:documentation>Abgrenzung von Entwicklungs- und Entlastungsorten.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Achsengrundrichtung">
+				<xs:annotation>
+					<xs:documentation>Achsengrundrichtung.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="AuessererAchsenSchwerpunkt">
+				<xs:annotation>
+					<xs:documentation>Äußerer Achsenschwerpunkt.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SonstigeAchse">
+				<xs:annotation>
+					<xs:documentation>Sonstige Achse.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="RP_Raumkategorie" type="RP_Raumkategorie"/>
+	<xs:complexType name="RP_Raumkategorie">
+		<xs:annotation>
+			<xs:documentation>Raumkategorien</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="RP_Geometrieobjekt">
+				<xs:sequence>
+					<xs:element name="typ" type="RP_RaumkategorieTypen" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Klassifikation verschiedener Raumkategorien.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="besondererTyp" type="RP_BesondereRaumkategorieTypen" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Klassifikation verschiedener besonderer Raumkategorien.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="RP_Sperrgebiet" type="RP_Sperrgebiet"/>
+	<xs:complexType name="RP_Sperrgebiet">
+		<xs:annotation>
+			<xs:documentation>Sperrgebiet</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="RP_Geometrieobjekt">
+				<xs:sequence>
+					<xs:element name="typ" type="RP_SperrgebietTypen" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Klassifikation verschiedener Sperrgebiettypen.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="RP_ZentralerOrtSonstigeTypen">
+		<xs:annotation>
+			<xs:documentation>Sonstige Typen von Zentralen Orten.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:&lt;undefined&gt;">
+			<xs:enumeration value="Doppelzentrum">
+				<xs:annotation>
+					<xs:documentation>Doppelzentrum.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Funktionsteilig">
+				<xs:annotation>
+					<xs:documentation>Funktionsteiliger Zentraler Ort.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MitOberzentralerTeilfunktion">
+				<xs:annotation>
+					<xs:documentation>Zentraler Ort mit oberzentraler Teilfunktion.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MitMittelzentralerTeilfunktion">
+				<xs:annotation>
+					<xs:documentation>Zentraler Ort mit mittelzentraler Teilfunktion.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ImVerbund">
+				<xs:annotation>
+					<xs:documentation>Zentraler Ort im Verbund.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Kooperierend">
+				<xs:annotation>
+					<xs:documentation>Kooperierender Zentraler Ort.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="KooperierendFreiwillig">
+				<xs:annotation>
+					<xs:documentation>Freiwillig kooperierender Zentraler Ort.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="KooperierendVerpflichtend">
+				<xs:annotation>
+					<xs:documentation>Verpflichtend kooperierender Zentraler Ort.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ImVerdichtungsraum">
+				<xs:annotation>
+					<xs:documentation>Zentraler Ort im Verdichtungsraum.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SiedlungsGrundnetz">
+				<xs:annotation>
+					<xs:documentation>Siedlungsgrundnetz.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SiedlungsErgaenzungsnetz">
+				<xs:annotation>
+					<xs:documentation>Siedlungsergänzungsnetz.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Entwicklungsschwerpunkt">
+				<xs:annotation>
+					<xs:documentation>Entwicklungsschwerpunkt.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Ueberschneidungsbereich">
+				<xs:annotation>
+					<xs:documentation>Überschneidungsbereich.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Ergaenzungsfunktion">
+				<xs:annotation>
+					<xs:documentation>Zentraler Ort mit Ergänzungsfunktion.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Nachbar">
+				<xs:annotation>
+					<xs:documentation>Zentraler Ort in Nachbarregionen oder Ländern.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MoeglichesZentrum">
+				<xs:annotation>
+					<xs:documentation>Mögliches Zentrum, zum Beispiel "mögliches Mittelzentrum".</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FunktionsraumEindeutigeAusrichtung">
+				<xs:annotation>
+					<xs:documentation>Funktionsraum, eindeutige Ausrichtung.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FunktionsraumBilateraleAusrichtung">
+				<xs:annotation>
+					<xs:documentation>Funktionsraum, bilaterale Ausrichtung.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SonstigeSonstigerZentralerOrt">
+				<xs:annotation>
+					<xs:documentation>Sonstiger Sonstiger Zentraler Ort.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="RP_WohnenSiedlung" type="RP_WohnenSiedlung"/>
+	<xs:complexType name="RP_WohnenSiedlung">
+		<xs:annotation>
+			<xs:documentation>Wohn- und Siedlungsstruktur und -funktionen.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="RP_Siedlung">
+				<xs:sequence>
+					<xs:element name="typ" type="RP_WohnenSiedlungTypen" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Klassifikation von Wohnen- und Siedlungstypen.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="RP_Einzelhandel" type="RP_Einzelhandel"/>
+	<xs:complexType name="RP_Einzelhandel">
+		<xs:annotation>
+			<xs:documentation>Einzelhandelsstruktur und -funktionen.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="RP_Siedlung">
+				<xs:sequence>
+					<xs:element name="typ" type="RP_EinzelhandelTypen" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Klassifikation von Einzelhandelstypen.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="RP_IndustrieGewerbe" type="RP_IndustrieGewerbe"/>
+	<xs:complexType name="RP_IndustrieGewerbe">
+		<xs:annotation>
+			<xs:documentation>Industrie- und Gewerbestrukturen und -funktionen.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="RP_Siedlung">
+				<xs:sequence>
+					<xs:element name="typ" type="RP_IndustrieGewerbeTypen" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Klassifikation von Industrie- und Gewerbetypen.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="RP_SonstigerSiedlungsbereich" type="RP_SonstigerSiedlungsbereich"/>
+	<xs:complexType name="RP_SonstigerSiedlungsbereich">
+		<xs:annotation>
+			<xs:documentation>Sonstiger Siedlungsbereich.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="RP_Siedlung">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="RP_WohnenSiedlungTypen">
+		<xs:annotation>
+			<xs:documentation>Typen von Wohnen und Siedlungen.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:&lt;undefined&gt;">
+			<xs:enumeration value="Wohnen">
+				<xs:annotation>
+					<xs:documentation>Wohnen</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Baugebietsgrenze">
+				<xs:annotation>
+					<xs:documentation>Baugebietsgrenze.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Siedlungsgebiet">
+				<xs:annotation>
+					<xs:documentation>Siedlungsgebiet.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Siedlungsschwerpunkt">
+				<xs:annotation>
+					<xs:documentation>Siedlungsschwerpunkt.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Siedlungsentwicklung">
+				<xs:annotation>
+					<xs:documentation>Siedlungsentwicklung.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Siedlungsbeschraenkung">
+				<xs:annotation>
+					<xs:documentation>Siedlungsbeschränkung.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SicherungEntwicklungWohnstaetten">
+				<xs:annotation>
+					<xs:documentation>Sonstige WohnenSiedlungstypen.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SonstigeWohnenSiedlung"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RP_EinzelhandelTypen">
+		<xs:annotation>
+			<xs:documentation>Typen von Einzelhandel.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:&lt;undefined&gt;">
+			<xs:enumeration value="Einzelhandel">
+				<xs:annotation>
+					<xs:documentation>Einzelhandel.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ZentralerVersorgungsbereich">
+				<xs:annotation>
+					<xs:documentation>Zentraler Versorgungsbereich.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ZentralerEinkaufsbereich">
+				<xs:annotation>
+					<xs:documentation>Zentraler Einkaufsbereich.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ZentrenrelevantesGrossprojekt">
+				<xs:annotation>
+					<xs:documentation>Zentrenrelevantes Großprojekt.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="NichtzentrenrelevantesGrossprojekt">
+				<xs:annotation>
+					<xs:documentation>Nichtzentrenrelevantes Großprojekt.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GrossflaechigerEinzelhandel">
+				<xs:annotation>
+					<xs:documentation>Großflächiger Einzelhandel.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Fachmarktstandort">
+				<xs:annotation>
+					<xs:documentation>Fachmarktstandort.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Ergaenzungsstandort">
+				<xs:annotation>
+					<xs:documentation>Ergänzungsstandort.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="StaedtischerKernbereich">
+				<xs:annotation>
+					<xs:documentation>Städtischer Kernbereich.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SonstigerEinzelhandel">
+				<xs:annotation>
+					<xs:documentation>Sonstiger Einzelhandel.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RP_IndustrieGewerbeTypen">
+		<xs:annotation>
+			<xs:documentation>Typen von Industrie und Gewerbe.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:&lt;undefined&gt;">
+			<xs:enumeration value="Industrie">
+				<xs:annotation>
+					<xs:documentation>Industrie.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IndustrielleAnlage">
+				<xs:annotation>
+					<xs:documentation>Industrielle Anlage.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Gewerbe">
+				<xs:annotation>
+					<xs:documentation>Gewerbe</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GewerblicherBereich">
+				<xs:annotation>
+					<xs:documentation>Gewerblicher Bereich.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Gewerbepark">
+				<xs:annotation>
+					<xs:documentation>Gewerbepark.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GewerbeIndustrie">
+				<xs:annotation>
+					<xs:documentation>Gewerbe-Industrie.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="BedeutsamerEntwicklungsstandortGewerbeIndustrie">
+				<xs:annotation>
+					<xs:documentation>Bedeutsamer Entwicklungsstandort von Gewerbe-Industrie.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SicherungundEntwicklungvonArbeitsstaetten">
+				<xs:annotation>
+					<xs:documentation>Sicherung und Entwicklung von Arbeitsstätten.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FlaechenintensivesGrossvorhaben">
+				<xs:annotation>
+					<xs:documentation>Flächenintensives Großvorhaben.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="BetriebsanlageBergbau">
+				<xs:annotation>
+					<xs:documentation>Betriebsanlage des Bergbaus.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="HafenorientierteWirtschaftlicheAnlage">
+				<xs:annotation>
+					<xs:documentation>Hafenorientierte wirtschaftliche Anlage.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TankRastanlage">
+				<xs:annotation>
+					<xs:documentation>Tankanlagen und Rastanlagen.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SonstigeIndustrieGewerbe">
+				<xs:annotation>
+					<xs:documentation>Sonstige Typen von Industrie und Gewerbe.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RP_SperrgebietTypen">
+		<xs:annotation>
+			<xs:documentation>Typen von Sperrgebieten.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:&lt;undefined&gt;">
+			<xs:enumeration value="Verteidigung">
+				<xs:annotation>
+					<xs:documentation>Verteidigung.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SondergebietBund">
+				<xs:annotation>
+					<xs:documentation>Sondergebiet Bund.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Warngebiet">
+				<xs:annotation>
+					<xs:documentation>Warngebiet.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MilitaerischeEinrichtung">
+				<xs:annotation>
+					<xs:documentation>Militärische Einrichtung.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GrosseMilitaerischeAnlage">
+				<xs:annotation>
+					<xs:documentation>Große militärische Anlage.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MilitaerischeLiegenschaft">
+				<xs:annotation>
+					<xs:documentation>Militärische Liegenschaft.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Konversionsflaeche">
+				<xs:annotation>
+					<xs:documentation>Konversionsfläche.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SonstigesSperrgebiet">
+				<xs:annotation>
+					<xs:documentation>Sonstige Sperrgebiete.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RP_RaumkategorieTypen">
+		<xs:annotation>
+			<xs:documentation>Typen von Raumkategorien.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:&lt;undefined&gt;">
+			<xs:enumeration value="Ordnungsraum">
+				<xs:annotation>
+					<xs:documentation>Ordnungsraum. Von der Ministerkonferenz für Raumordnung nach einheitlichen Abgrenzungskritierien definierter Strukturraum. Besteht aus Verdichtungsraum und der Randzone des Verdichtungsraums.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="OrdnungsraumTourismusErholung">
+				<xs:annotation>
+					<xs:documentation>Ordnungsraum in Bezug auf Tourismus und Erholung.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Verdichtungsraum">
+				<xs:annotation>
+					<xs:documentation>Verdichtungsraum mit höherer Dichte an Siedlungen und Infrastruktur.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="KernzoneVerdichtungsraum">
+				<xs:annotation>
+					<xs:documentation>Kernzone des Verdichtungsraum.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RandzoneVerdichtungsraum">
+				<xs:annotation>
+					<xs:documentation>Randzone des Verdichtungsraums.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Ballungskernzone">
+				<xs:annotation>
+					<xs:documentation>Ballungskernzone.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Ballungsrandzone">
+				<xs:annotation>
+					<xs:documentation>Ballungsrandzone.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="HochverdichteterRaum">
+				<xs:annotation>
+					<xs:documentation>Hochverdichteter Raum</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="StadtUmlandBereichVerdichtungsraum">
+				<xs:annotation>
+					<xs:documentation>Stadt-Umland-Bereich im Verdichtungsraum</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="LaendlicherRaum">
+				<xs:annotation>
+					<xs:documentation>Ländlicher Raum.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VerdichteterBereichimLaendlichenRaum">
+				<xs:annotation>
+					<xs:documentation>Verdichteter Bereich im ländlichen Raum.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Gestaltungsraum">
+				<xs:annotation>
+					<xs:documentation>Gestaltungsraum.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="LaendlicherGestaltungsraum">
+				<xs:annotation>
+					<xs:documentation>Ländlicher Gestaltungsraum.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="StadtUmlandRaum">
+				<xs:annotation>
+					<xs:documentation>Stadt-Umland-Raum</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="StadtUmlandBereichLaendlicherRaum">
+				<xs:annotation>
+					<xs:documentation>Stadt-Umland-Bereich im ländlichen Raum.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="AbgrenzungOrdnungsraum">
+				<xs:annotation>
+					<xs:documentation>Abgrenzung eines Ordnungsraums.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DuennbesiedeltesAbgelegenesGebiet">
+				<xs:annotation>
+					<xs:documentation>Dünnbesiedeltes, abgelegenes Gebiet.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Umkreis10KM">
+				<xs:annotation>
+					<xs:documentation>Umkreis von zehn Kilometern.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RaummitbesonderemHandlungsbedarf">
+				<xs:annotation>
+					<xs:documentation>Raum mit besonderem Handlungsbedarf, zum Beispiel vor dem Hintergrund des demographischen Wandels.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Funktionsraum">
+				<xs:annotation>
+					<xs:documentation>Funktionsraum.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GrenzeWirtschaftsraum">
+				<xs:annotation>
+					<xs:documentation>Grenze eines Wirtschaftsraums.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Funktionsschwerpunkt">
+				<xs:annotation>
+					<xs:documentation>Funktionsschwerpunkt.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Grundversorgung">
+				<xs:annotation>
+					<xs:documentation>Grundversorgung-Raumkategorie</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Alpengebiet">
+				<xs:annotation>
+					<xs:documentation>Alpengebiet-Raumkategorie.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RaeumeMitGuenstigenEntwicklungsvoraussetzungen">
+				<xs:annotation>
+					<xs:documentation>Räume mit günstigen Entwicklungsaufgaben.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RaeumeMitAusgeglichenenEntwicklungspotenzialen">
+				<xs:annotation>
+					<xs:documentation>Raeume mit ausgeglichenen Entwicklungsvoraussetzungen.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RaeumeMitBesonderenEntwicklungsaufgaben">
+				<xs:annotation>
+					<xs:documentation>Räume mit besonderen Entwicklungspotentialen.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SonstigeRaumkategorie">
+				<xs:annotation>
+					<xs:documentation>Sonstige Raumkategorien</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RP_BesondereRaumkategorieTypen">
+		<xs:annotation>
+			<xs:documentation>Besondere Typen von Raumkategorien.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:&lt;undefined&gt;">
+			<xs:enumeration value="Grenzgebiet">
+				<xs:annotation>
+					<xs:documentation>Grenzgebiete.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Bergbaufolgelandschaft">
+				<xs:annotation>
+					<xs:documentation>Bergbaufolgelandschaft.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Braunkohlenfolgelandschaft">
+				<xs:annotation>
+					<xs:documentation>Braunkohlenfolgelandschaften.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

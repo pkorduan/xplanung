@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:annotation>
+		<xs:documentation>Sonstige Klassen von FPlan-Objekten.</xs:documentation>
+	</xs:annotation>
+	<xs:include schemaLocation="XP_Enumerationen.xsd"/>
+	<xs:include/>
+	<xs:include schemaLocation="P__Basisobjekte.xsd"/>
+	<xs:element name="FP_NutzungsbeschraenkungsFlaeche" type="FP_NutzungsbeschraenkungsFlaeche"/>
+	<xs:complexType name="FP_NutzungsbeschraenkungsFlaeche">
+		<xs:annotation>
+			<xs:documentation>Umgrenzungen der Flächen für besondere Anlagen und Vorkehrungen zum Schutz vor schädlichen Umwelteinwirkungen im Sinne des Bundes-
+Immissionsschutzgesetzes (§ 5, Abs. 2, Nr. 6 BauGB)</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="FP_Ueberlagerungsobjekt">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="FP_UnverbindlicheVormerkung" type="FP_UnverbindlicheVormerkung"/>
+	<xs:complexType name="FP_UnverbindlicheVormerkung">
+		<xs:annotation>
+			<xs:documentation>Unverbindliche Vormerkung späterer Planungsabsichten</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="FP_Geometrieobjekt">
+				<xs:sequence>
+					<xs:element name="vormerkung" type="CharacterString" minOccurs="0" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="FP_BesondZweckbestPrivilegiertesVorhaben">
+		<xs:restriction base="xs:&lt;undefined&gt;">
+			<xs:enumeration value="Aussiedlerhof"/>
+			<xs:enumeration value="Altenteil"/>
+			<xs:enumeration value="Reiterhof"/>
+			<xs:enumeration value="Gartenbaubetrieb"/>
+			<xs:enumeration value="Baumschule"/>
+			<xs:enumeration value="Wasser">
+				<xs:annotation>
+					<xs:documentation>Öffentliche Wasserversorgung</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Gas">
+				<xs:annotation>
+					<xs:documentation>Gasversorgung</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Waerme">
+				<xs:annotation>
+					<xs:documentation>Wärmeversorgung</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Elektrizitaet">
+				<xs:annotation>
+					<xs:documentation>Versorgung mit Elektrizität.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Telekommunikation">
+				<xs:annotation>
+					<xs:documentation>Versorgung mit Telekommunikations-Dienstleistungen.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Abwasser">
+				<xs:annotation>
+					<xs:documentation>Abwasser Entsorgung</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="BesondereUmgebungsAnforderung">
+				<xs:annotation>
+					<xs:documentation>Vorhaben dass wegen seiner besonderen Anforderungen an die Umgebung nur im Aussenbereich durchgeführt werden soll.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="NachteiligeUmgebungsWirkung">
+				<xs:annotation>
+					<xs:documentation>Vorhaben dass wegen seiner nachteiligen Wirkung auf die Umgebung nur im Aussenbereich durchgeführt werden soll.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="BesondereZweckbestimmung">
+				<xs:annotation>
+					<xs:documentation>Vorhaben dass wegen seiner besonderen Zweckbestimmung nur im Aussenbereich durchgeführt werden soll.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Windenergie">
+				<xs:annotation>
+					<xs:documentation>Vorhaben zur Erforschung, Entwicklung oder Nutzung der Windenergie.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Wasserenergie">
+				<xs:annotation>
+					<xs:documentation>Vorhaben zur Erforschung, Entwicklung oder Nutzung der Wasserenergie.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Solarenergie">
+				<xs:annotation>
+					<xs:documentation>Vorhaben zur Erforschung, Entwicklung oder Nutzung der Solarenergie.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Biomasse">
+				<xs:annotation>
+					<xs:documentation>Vorhaben zur energetischen Nutzung der Biomasse.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="NutzungKernerergie">
+				<xs:annotation>
+					<xs:documentation>Vorhaben der Erforschung, Entwicklung oder Nutzung der Kernenergie zu friedlichen Zwecken.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EntsorgungRadioaktiveAbfaelle">
+				<xs:annotation>
+					<xs:documentation>Vorhaben zur Entsorgung radioaktiver Abfälle.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="StandortEinzelhof"/>
+			<xs:enumeration value="BebauteFlaecheAussenbereich"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="FP_ZweckbestimmungGenerischeObjekte" type="FP_ZweckbestimmungGenerischeObjekte"/>
+	<xs:complexType name="FP_ZweckbestimmungGenerischeObjekte">
+		<xs:sequence/>
+	</xs:complexType>
+	<xs:element name="FP_VorbehalteFlaeche" type="FP_VorbehalteFlaeche"/>
+	<xs:complexType name="FP_VorbehalteFlaeche">
+		<xs:complexContent>
+			<xs:extension base="FP_Flaechenobjekt">
+				<xs:sequence>
+					<xs:element name="vorbehalt" type="CharacterString" minOccurs="0" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="FP_PrivilegiertesVorhaben" type="FP_PrivilegiertesVorhaben"/>
+	<xs:complexType name="FP_PrivilegiertesVorhaben">
+		<xs:annotation>
+			<xs:documentation>Standorte für privilegierte Außenbereichsvorhaben und für sonstige Anlagen in Außenbereichen gem. § 35 Abs. 1 und 2 BauGB.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="FP_Geometrieobjekt">
+				<xs:sequence>
+					<xs:element name="zweckbestimmung" type="FP_ZweckbestimmungPrivilegiertesVorhaben" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Zweckbestimmungen des Vorhabens.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="weitereZweckbestimmung1" type="FP_ZweckbestimmungPrivilegiertesVorhaben" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Weitere Zweckbestimmung des Vorhabens. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen zweckbestimmung mehrfach belegt werden.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="weitereZweckbestimmung2" type="FP_ZweckbestimmungPrivilegiertesVorhaben" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Weitere Zweckbestimmung des Vorhabens.Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen zweckbestimmung mehrfach belegt werden.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="besondereZweckbestimmung" type="FP_BesondZweckbestPrivilegiertesVorhaben" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Besondere Zweckbestimmungendes Vorhabens, die die spezifizierten allgemeinen Zweckbestimmungen detaillieren. </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="weitereBesondZweckbestimmung1" type="FP_BesondZweckbestPrivilegiertesVorhaben" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Besondere Zweckbestimmung des Vorhabens, die die spezifizierte allgemeine Zweckbestimmung detaillieren. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen besondereZweckbestimmung mehrfach belegt werden.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="weitereBesondZweckbestimmung2" type="FP_BesondZweckbestPrivilegiertesVorhaben" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Besondere Zweckbestimmung des Vorhabens, die die spezifizierte allgemeine Zweckbestimmung detaillieren. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen besondereZweckbestimmung mehrfach belegt werden.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="vorhaben" type="CharacterString" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Nähere Beschreibung des Vorhabens.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="FP_ZweckbestimmungPrivilegiertesVorhaben">
+		<xs:restriction base="xs:&lt;undefined&gt;">
+			<xs:enumeration value="LandForstwirtschaft">
+				<xs:annotation>
+					<xs:documentation>Vorhaben nach §35 Abs. 1 Nr. 1 oder 2 BauGB: Vorhaben, dass "einem land- oder forstwirtschaftlichen Betrieb dient und nur einen untergeordnetenTeil der Betriebsfläche einnimmt", oder "einem Betrieb der gartenbaulichen Erzeugung dient".</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="OeffentlicheVersorgung">
+				<xs:annotation>
+					<xs:documentation>Vorhaben nach §35 Abs. 1 Nr. 3 BauBG: Vorhaben dass "der öffentlichen Versorgung mit Elektrizität, Gas,
+Telekommunikationsdienstleistungen, Wärme und Wasser, der Abwasserwirtschaft" ... dient.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="OrtsgebundenerGewerbebetrieb">
+				<xs:annotation>
+					<xs:documentation>Vorhaben nach §35 Abs. 1 Nr. 3 BauGB: Vorhaben das ...."einem ortsgebundenen gewerblichen Betrieb dient".</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="BesonderesVorhaben">
+				<xs:annotation>
+					<xs:documentation>Vorhaben nach §35 Abs. 1 Nr. 4 BauGB: Vorhaben, dass "wegen seiner besonderen Anforderungen an die Umgebung, wegen seiner nachteiligen Wirkung auf die Umgebung oder wegen seiner besonderen Zweckbestimmung nur im Außenbereich ausgeführt werden soll".</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ErneuerbareEnergie">
+				<xs:annotation>
+					<xs:documentation>Vorhaben nach §35 Abs 1 Nr.. 5 oder 6 BauGB: Vorhaben  dass "der Erforschung, Entwicklung oder Nutzung der Wind- oder Wasserenergie dient" oder "der energetischen Nutzung von Biomasse ...".</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Kernenergie">
+				<xs:annotation>
+					<xs:documentation>Vorhaben nach §35 Abs. 1 Nr. 7 BauGB: Vorhaben das "der Erforschung, Entwicklung oder Nutzung der Kernenergie zu friedlichen Zwecken oder der Entsorgung radioaktiver Abfälle dient".</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Sonstiges">
+				<xs:annotation>
+					<xs:documentation>Sonstiges Vorhaben im Aussenbereich nach §35 Abs. 2 BauGB.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="FP_Kennzeichnung" type="FP_Kennzeichnung"/>
+	<xs:complexType name="FP_Kennzeichnung">
+		<xs:annotation>
+			<xs:documentation>Kennzeichnungen gemäß §5 Abs. 3 BauGB.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="FP_Geometrieobjekt">
+				<xs:sequence>
+					<xs:element name="zweckbestimmung" type="XP_ZweckbestimmungKennzeichnung" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Zweckbestimmungen der Kennzeichnung.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="weitereZweckbestimmung1" type="XP_ZweckbestimmungKennzeichnung" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Weitere Zweckbestimmung der Kennzeichnung. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen zweckbestimmung mehrfach belegt werden.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="FP_GenerischesObjekt" type="FP_GenerischesObjekt"/>
+	<xs:complexType name="FP_GenerischesObjekt">
+		<xs:annotation>
+			<xs:documentation>Klasse zur Modellierung aller Inhalte des FPlans, die keine nachrichtliche Übernahmen aus anderen Rechts-bereichen sind, aber durch keine andere Klasse des FPlan-Fachschemas dargestellt werden können.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="FP_Geometrieobjekt">
+				<xs:sequence>
+					<xs:element name="zweckbestimmung" type="FP_ZweckbestimmungGenerischeObjekte" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Über eine ExternalCodeList. definierte Zweckbestimmungen des Objekts.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="weitereZweckbestimmung1" type="FP_ZweckbestimmungGenerischeObjekte" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Über eine ExternalCodeList definierte weitere Zweckbestimmung des Objekts. Besondere Zweckbestimmung des Vorhabens, die die spezifizierte allgemeine Zweckbestimmung detaillieren. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen zweckbestimmung mehrfach belegt werden.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="weitereZweckbestimmung2" type="FP_ZweckbestimmungGenerischeObjekte" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Über eine ExternalCodeList definierte weitere Zweckbestimmung des Objekts. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen zweckbestimmung mehrfach belegt werden.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="weitereZweckbestimmung3" type="FP_ZweckbestimmungGenerischeObjekte" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Über eine ExternalCodeList definierte weitere Zweckbestimmung des Objekts. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen zweckbestimmung mehrfach belegt werden.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="FP_TextlicheDarstellungsFlaeche" type="FP_TextlicheDarstellungsFlaeche"/>
+	<xs:complexType name="FP_TextlicheDarstellungsFlaeche">
+		<xs:annotation>
+			<xs:documentation>Bereich in dem bestimmte Textliche Darstellungen gültig sind, die über die Relation "refTextInhalt" (Basisklasse XP_Objekt) spezifiziert werden.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="FP_Ueberlagerungsobjekt">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

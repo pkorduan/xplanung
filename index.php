@@ -1049,18 +1049,35 @@ function show_home() {
       <hr>
       </center>
       <p>
-        <h3>Änderungen zum 15.01.2016</h3>
-        <li>Bereitstellung der <a href="http://xplan-raumordnung.de/iqvoc/de.html">Ontologie</a></li>
-        <li>Bereitstellung einer <a href="http://xplan-raumordnung.de/index.php?go=show_inspire">INSPIRE-Sektion</a> mit Mapping-Tables von XPlan nach INSPIRE</li>
-        <li>Die HSRCL-Zuordnung aller Planzeichen des ROPLAMO kann auf Wunsch ausgewählt werden</li>
-        <li>Bereitstellung einer Liste aller Modelländerungen zum <a href="/model/2015_12_03_Aenderungsliste_XPlan_Raumordnungsmodell.doc">herunterladen</a></li>
-        <li>Bereitstellung der Raumordnungsplan Konformitätsbedingungen <a href="/model/2016_01_11_Konformitaetsbedingungen.doc">herunterladen</a></li>
-        <li>Zusammenfassung XPlan und ROPLAMO für XPlan Elemente und Codelisten sowie Pläne und Planzeichen im Menü mit Unterpunkten</li>
+        <h3>Änderungen zum 06.05.2016</h3>
+        <li>Bereitstellung von XPlan-konformen Beispiel-Shapefiles zum <a href="/files/Beispiel_Shapefiles_XPlan-konform.zip">herunterladen</a> (Version 2016-04-25)</li>
+        <li>Bereitstellung des XPlan-Modells als <a href="/EA/">Enterprise Architect Feature-Katalog</a></li>
+        <li>Modelländerungen (Stand 05.06.2016):</li>
+        <ul>
+          <li>Umbenennung von RP_Gemeindefunktion zu RP_Funktionszuweisung (Grundlage: BBSR)</li>
+          <li>Aufnahme von SicherungEntwicklungWohnstaetten in RP_WohnenSiedlungTypen (Grundlage: RROP_Heidekreis)</li>
+          <li>Aufnahme von RaeumeMitGuenstigenEntwicklungsvoraussetzungen, RaeumeMitAusgeglichenenEntwicklungspotentialen und RaeumeMitBesonderenEntwicklungsaufgaben in RP_RaumkategorieTypen (Grundlage: Thüringen)</li>
+          <li>Änderung von typ[0..1] in RP_RadwegWanderweg auf typ[0..*](Grundlage RROP_Heidekreis)</li>
+          <li>Erweiterung einiger Modellelementdefinitionen</li>
+          <li>Erweiterung von tagged values/Attributs-Sequenzen zur Softwaretechnischen Nutzung des Modells.</li> 
+        </ul>
+        <li>Einarbeitung der Modelländerungen in die Ontologie, INSPIRE-Zuordnungen und Nationale Codeliste</li>
+        <li>Neue Version Nationale Codeliste (2016-05-03) mit Wasserschutzzonen (1_7_12, 1_7_13, 1_7_14) in Nationale Codeliste (nach RP_WasserschutzZonen) und Bereinigung kleinerer Fehler</li>
+        <li>Neue Version der Konformitätsbedingungen (Fehlerbehebung)</li>
       </p>
       <a href="javascript:ReverseDisplay('aeltereupdates')" class=hlink>
       Ältere Änderungen
       </a>
       <div id="aeltereupdates" style="display:none;">
+        <p>
+          <h3>Änderungen zum 15.01.2016</h3>
+          <li>Bereitstellung der <a href="http://xplan-raumordnung.de/iqvoc/de.html">Ontologie</a></li>
+          <li>Bereitstellung einer <a href="http://xplan-raumordnung.de/index.php?go=show_inspire">INSPIRE-Sektion</a> mit Mapping-Tables von XPlan nach INSPIRE</li>
+          <li>Die HSRCL-Zuordnung aller Planzeichen des ROPLAMO kann auf Wunsch ausgewählt werden</li>
+          <li>Bereitstellung einer Liste aller Modelländerungen zum <a href="/model/2015_12_03_Aenderungsliste_XPlan_Raumordnungsmodell.doc">herunterladen</a></li>
+          <li>Bereitstellung der Raumordnungsplan Konformitätsbedingungen <a href="/model/2016_05_06_Konformitaetsbedingungen.doc">herunterladen</a></li>
+          <li>Zusammenfassung XPlan und ROPLAMO für XPlan Elemente und Codelisten sowie Pläne und Planzeichen im Menü mit Unterpunkten</li>
+        </p>
         <p>
           <h3>Änderungen zum 11.12.2015</h3>
           <li>Erweiterung des UML- und Datenbank-Modells, inklusive Änderungen auf Basis der Gespräche mit der AG E-Government und der Länder</li>      
@@ -1332,7 +1349,7 @@ function show_inspire() {
      Dieser im Laufe des Projekts herausgearbeitete Übersetzungsvorschlag wird den Ländern und der AG E-Government zur Besichtigung und zur Verbesserung bereitgestellt werden.
      </p>
      <p>
-     <h3>INSPIRE HSRCL Nationale Codeliste zum <a href="inspire/2016-01-18_NationaleCodeliste.ods">herunterladen</a></h3>
+     <h3>INSPIRE HSRCL Nationale Codeliste zum <a href="inspire/2016-05-03_NationaleCodeliste.ods">herunterladen</a> (Version 2016-05-03)</h3>
      Die bereitgestellte INSPIRE HSRCL Nationale Codeliste bietet einen Vorschlag zur Abbildung der Nationalen Raumordnungselemente in XPlan. Diese Liste lehnt sich dabei streng an XPlan und soll bei einer Konvertierung automatisch für das Attribut SpecificSupplementaryRegulation des FeatureTypes SupplementaryRegulation befüllt werden. Hiermit können INSPIRE-Daten theoretisch auch teilweise nach XPlan rückkonvertiert werden. Davon ausgenommen sind Elemente wie etwa der Rechtscharakter eines Planzeichens, welche gesondert von den HSRCL-Listen im FeatureType SupplementaryRegulation festgehalten werden.
      </p>
       <h3>Dokument zu INSPIRE und XPlan Attributen, Pflichtelementen und Definitionen zum <a href="inspire/2015-10-13_INSPIRE_Pflichtelemente und XPlan-Formulare.xls">herunterladen</a></h3>
@@ -1602,14 +1619,14 @@ function show_uml() {
       <area shape="rect" coords="115,237,282,297" href="index.php?go=show_elements#xplan:RP_Achse" alt="RP_Achse" title="RP_Achse: Siedlungsachse. Früher Linienobjekt, nun Geometrieobjekt">
       <area shape="rect" coords="402,141,589,199" href="index.php?go=show_elements#xplan:RP_Sperrgebiet" alt="RP_Sperrgebiet" title="RP_Sperrgebiet: Sperrgebiet">
       <area shape="rect" coords="401,228,675,299" href="index.php?go=show_elements#xplan:RP_ZentralerOrt" alt="RP_ZentralerOrt" title="RP_ZentralerOrt: Zentrale Orte">
-      <area shape="rect" coords="385,318,591,389" href="index.php?go=show_elements#xplan:RP_Funktionszuweisung" alt="RP_Funktionszuweisung" title="RP_Funktionszuweisung: Funktionen von Gemeinden und Gebieten.">
-      <area shape="rect" coords="34,363,310,736" href="index.php?go=show_simple_types#xplan:RP_RaumkategorieTypen" alt="RP_RaumkategorieTypen" title="RP_RaumkategorieTypen: Klassifikation von Raumkategorien">
-      <area shape="rect" coords="52,783,259,868" href="index.php?go=show_simple_types#xplan:RP_BesondereRaumkategorieTypen" alt="RP_BesondereRaumkategorieTypen" title="RP_BesondereRaumkategorieTypen: Klassifikation von Besonderen Raumkategorien">    
-       <area shape="rect" coords="357,426,557,576" href="index.php?go=show_simple_types#xplan:RP_SperrgebietTypen" alt="RP_SperrgebietTypen" title="RP_SperrgebietTypen: Klassifikation von Sperrgebieten">
-      <area shape="rect" coords="339,615,555,870" href="index.php?go=show_simple_types#xplan:RP_ZentralerOrtTypen" alt="RP_ZentralerOrtTypen" title="RP_ZentralerOrtTypen: Klassifikation von Zentralen Orten">
-      <area shape="rect" coords="569,616,783,884" href="index.php?go=show_simple_types#xplan:RP_ZentralerOrtSonstigeTypen" alt="RP_ZentralerOrtSonstigeTypen" title="RP_ZentralerOrtSonstigeTypen: Klassifikation von sonstigen Typen zentraler Orte">
-      <area shape="rect" coords="450,912,776,1076" href="index.php?go=show_simple_types#xplan:RP_FunktionszuweisungTypen" alt="RP_FunktionszuweisungTypen" title="RP_FunktionszuweisungTypen">
-      <area shape="rect" coords="53,906,324,1083" href="index.php?go=show_simple_types#xplan:RP_AchsenTypen" alt="RP_AchsenTypen" title="RP_AchsenTypen: Klassifikation von Achsentypen">
+      <area shape="rect" coords="385,318,600,390" href="index.php?go=show_elements#xplan:RP_Funktionszuweisung" alt="RP_Funktionszuweisung" title="RP_Funktionszuweisung: Funktionen von Gemeinden und Gebieten.">
+      <area shape="rect" coords="43,370,365,781" href="index.php?go=show_simple_types#xplan:RP_RaumkategorieTypen" alt="RP_RaumkategorieTypen" title="RP_RaumkategorieTypen: Klassifikation von Raumkategorien">
+      <area shape="rect" coords="45,800,252,887" href="index.php?go=show_simple_types#xplan:RP_BesondereRaumkategorieTypen" alt="RP_BesondereRaumkategorieTypen" title="RP_BesondereRaumkategorieTypen: Klassifikation von Besonderen Raumkategorien">    
+       <area shape="rect" coords="452,404,653,554" href="index.php?go=show_simple_types#xplan:RP_SperrgebietTypen" alt="RP_SperrgebietTypen" title="RP_SperrgebietTypen: Klassifikation von Sperrgebieten">
+      <area shape="rect" coords="318,826,533,1081" href="index.php?go=show_simple_types#xplan:RP_ZentralerOrtTypen" alt="RP_ZentralerOrtTypen" title="RP_ZentralerOrtTypen: Klassifikation von Zentralen Orten">
+      <area shape="rect" coords="549,792,789,1085" href="index.php?go=show_simple_types#xplan:RP_ZentralerOrtSonstigeTypen" alt="RP_ZentralerOrtSonstigeTypen" title="RP_ZentralerOrtSonstigeTypen: Klassifikation von sonstigen Typen zentraler Orte">
+      <area shape="rect" coords="447,568,774,732" href="index.php?go=show_simple_types#xplan:RP_FunktionszuweisungTypen" alt="RP_FunktionszuweisungTypen" title="RP_FunktionszuweisungTypen">
+      <area shape="rect" coords="37,906,306,1083" href="index.php?go=show_simple_types#xplan:RP_AchsenTypen" alt="RP_AchsenTypen" title="RP_AchsenTypen: Klassifikation von Achsentypen">
     </map>
    
     <map name="RP_Siedlungsstruktur2">
@@ -1619,7 +1636,7 @@ function show_uml() {
       <area shape="rect" coords="107,457,305,516" href="index.php?go=show_elements#xplan:RP_Einzelhandel" alt="RP_Einzelhandel" title="RP_Einzelhandel: Einzelhandelsstruktur und -funktionen">
       <area shape="rect" coords="468,458,686,516" href="index.php?go=show_elements#xplan:RP_IndustrieGewerbe" alt="RP_IndustrieGewerbe" title="RP_IndustrieGewerbe: Industrie- und Gewerbestrukturen und -funktionen">
       <area shape="rect" coords="541,334,718,368" href="index.php?go=show_elements#xplan:RP_SonstigerSiedlungsbereich" alt="RP_SonstigerSiedlungsbereich" title="RP_SonstigerSiedlungsbereich: Sonstiger Siedlungsbereich">
-      <area shape="rect" coords="42,650,248,787" href="index.php?go=show_simple_types#xplan:RP_WohnenSiedlungTypen" alt="RP_WohnenSiedlungTypen" title="RP_WohnenSiedlungTypen: Klassifikation von Wohntypen und Siedlungen">
+      <area shape="rect" coords="42,650,274,800" href="index.php?go=show_simple_types#xplan:RP_WohnenSiedlungTypen" alt="RP_WohnenSiedlungTypen" title="RP_WohnenSiedlungTypen: Klassifikation von Wohntypen und Siedlungen">
       <area shape="rect" coords="314,856,560,1033" href="index.php?go=show_simple_types#xplan:RP_EinzelhandelTypen" alt="RP_EinzelhandelTypen" title="RP_EinzelhandelTypen: Klassifikation von Einzelhandel">
       <area shape="rect" coords="304,597,628,813" href="index.php?go=show_simple_types#xplan:RP_IndustrieGewerbeTypen" alt="RP_IndustriegewerbeTypen" title="RP_IndustrieGewerbeTypen: Klassifikation von Industrie oder Gewerbe">
     </map>
@@ -1712,41 +1729,41 @@ function show_uml() {
       <a href="javascript:ReverseDisplay('basisobjekteuml')" class=hlink>
       <h3>RP_Basisobjekte</h3>
       </a>  
-      <p>Arbeitsversion 2015-12-03</p>
+      <p>Arbeitsversion 2016-05-06</p>
       <div id="basisobjekteuml" style="display:none;">
-      <p><img src="images/2015_12_03-Modell/RP_Basisobjekte_1.png" alt="RP_Basisobjekte1" style="width:826px;height:1168px;" usemap="#RP_Basisobjekte1"><img src="images/2015_12_03-Modell/RP_Basisobjekte_2.png" alt="RP_Basisobjekte2" style="width:826px;height:1168px;" usemap="#RP_Basisobjekte2"></p>
+      <p><img src="images/2016_05_06-Modell/RP_Basisobjekte_1.png" alt="RP_Basisobjekte1" style="width:826px;height:1168px;" usemap="#RP_Basisobjekte1"><img src="images/2016_05_06-Modell/RP_Basisobjekte_2.png" alt="RP_Basisobjekte2" style="width:826px;height:1168px;" usemap="#RP_Basisobjekte2"></p>
       </div>
 
       <a href="javascript:ReverseDisplay('freiraumstrukturuml')" class=hlink>
       <h3>RP_Freiraumstruktur</h3>
       </a>
-      <p>Arbeitsversion 2015-12-03</p>
+      <p>Arbeitsversion 2016-05-06</p>
       <div id="freiraumstrukturuml" style="display:none;">
-      <p><img src="images/2015_12_03-Modell/RP_Freiraumstruktur_1.png" alt="RP_Freiraumstruktur1" style="width:826px;height:1168px;" usemap="#RP_Freiraumstruktur1"><img src="images/2015_12_03-Modell/RP_Freiraumstruktur_2.png" alt="RP_Freiraumstruktur2" style="width:826px;height:1168px;" usemap="#RP_Freiraumstruktur2"><img src="images/2015_12_03-Modell/RP_Freiraumstruktur_3.png" alt="RP_Freiraumstruktur3" style="width:826px;height:1168px;" usemap="#RP_Freiraumstruktur3"></p>
+      <p><img src="images/2016_05_06-Modell/RP_Freiraumstruktur_1.png" alt="RP_Freiraumstruktur1" style="width:826px;height:1168px;" usemap="#RP_Freiraumstruktur1"><img src="images/2016_05_06-Modell/RP_Freiraumstruktur_2.png" alt="RP_Freiraumstruktur2" style="width:826px;height:1168px;" usemap="#RP_Freiraumstruktur2"><img src="images/2016_05_06-Modell/RP_Freiraumstruktur_3.png" alt="RP_Freiraumstruktur3" style="width:826px;height:1168px;" usemap="#RP_Freiraumstruktur3"></p>
       </div>
 
       <a href="javascript:ReverseDisplay('infrastrukturuml')" class=hlink>
       <h3>RP_Infrastruktur</h3>
       </a>
-      <p>Arbeitsversion 2015-12-03</p>
+      <p>Arbeitsversion 2016-05-06</p>
       <div id="infrastrukturuml" style="display:none;">
-      <p><img src="images/2015_12_03-Modell/RP_Infrastruktur_1.png" alt="RP_Infrastruktur1" style="width:826px;height:1168px;" usemap="#RP_Infrastruktur1"><img src="images/2015_12_03-Modell/RP_Infrastruktur_2.png" alt="RP_Infrastruktur2" style="width:826px;height:1168px;" usemap="#RP_Infrastruktur2"></p>
+      <p><img src="images/2016_05_06-Modell/RP_Infrastruktur_1.png" alt="RP_Infrastruktur1" style="width:826px;height:1168px;" usemap="#RP_Infrastruktur1"><img src="images/2016_05_06-Modell/RP_Infrastruktur_2.png" alt="RP_Infrastruktur2" style="width:826px;height:1168px;" usemap="#RP_Infrastruktur2"></p>
       </div>
 
       <a href="javascript:ReverseDisplay('siedlungsstrukturuml')" class=hlink>
       <h3>RP_Siedlungsstruktur</h3>
       </a>
-      <p>Arbeitsversion 2015-12-03</p>
+      <p>Arbeitsversion 2016-05-06</p>
       <div id="siedlungsstrukturuml" style="display:none;">
-      <p><img src="images/2015_12_03-Modell/RP_Siedlungsstruktur_1.png" alt="RP_Siedlungsstruktur1" style="width:826px;height:1168px;" usemap="#RP_Siedlungsstruktur1"><img src="images/2015_12_03-Modell/RP_Siedlungsstruktur_2.png" alt="RP_Siedlungsstruktur1" style="width:826px;height:1168px;" usemap="#RP_Siedlungsstruktur2"></p>
+      <p><img src="images/2016_05_06-Modell/RP_Siedlungsstruktur_1.png" alt="RP_Siedlungsstruktur1" style="width:826px;height:1168px;" usemap="#RP_Siedlungsstruktur1"><img src="images/2016_05_06-Modell/RP_Siedlungsstruktur_2.png" alt="RP_Siedlungsstruktur1" style="width:826px;height:1168px;" usemap="#RP_Siedlungsstruktur2"></p>
       </div>
 
       <a href="javascript:ReverseDisplay('sonstigesuml')" class=hlink>
       <h3>RP_Sonstiges</h3>
       </a>
-      <p>Arbeitsversion 2015-12-03</p>
+      <p>Arbeitsversion 2016-05-06</p>
       <div id="sonstigesuml" style="display:none;">
-      <p><img src="images/2015_12_03-Modell/RP_Sonstiges.png" alt="RP_Sonstiges" style="width:826px;height:1168px;" usemap="#RP_Sonstiges"></p>
+      <p><img src="images/2016_05_06-Modell/RP_Sonstiges.png" alt="RP_Sonstiges" style="width:826px;height:1168px;" usemap="#RP_Sonstiges"></p>
       </div>
     
       <a href="javascript:ReverseDisplay('rasteruml')" class=hlink>
@@ -1754,7 +1771,7 @@ function show_uml() {
       </a>
       <p>XPlan 4.1</p>
       <div id="rasteruml" style="display:none;">
-      <p><img src="images/2015_12_03-Modell/RP_Raster.png" alt="RP_Raster" style="width:826px;height:1168px;" usemap="#RP_Raster"></p>
+      <p><img src="images/2016_05_06-Modell/RP_Raster.png" alt="RP_Raster" style="width:826px;height:1168px;" usemap="#RP_Raster"></p>
       </div>
     
       <a href="javascript:ReverseDisplay('xpbasisobjekteuml')" class=hlink>
@@ -1762,7 +1779,7 @@ function show_uml() {
       </a>
       <p>XPlan 4.1</p>
       <div id="xpbasisobjekteuml" style="display:none;">
-      <p><img src="images/2015_12_03-Modell/XP_Basisobjekte_1.png" alt="XP_Basisobjekte1" style="width:826px;height:1168px;"usemap="#XP_Basisobjekte1"><img src="images/2015_12_03-Modell/XP_Basisobjekte_2.png" alt="XP_Basisobjekte2" style="width:826px;height:1168px;"usemap="#XP_Basisobjekte2"><p>
+      <p><img src="images/2016_05_06-Modell/XP_Basisobjekte_1.png" alt="XP_Basisobjekte1" style="width:826px;height:1168px;"usemap="#XP_Basisobjekte1"><img src="images/2016_05_06-Modell/XP_Basisobjekte_2.png" alt="XP_Basisobjekte2" style="width:826px;height:1168px;"usemap="#XP_Basisobjekte2"><p>
       </div>
       
       <a href="javascript:ReverseDisplay('xppraesentationsobjekteuml')" class=hlink>
@@ -1770,7 +1787,7 @@ function show_uml() {
       </a>
       <p>XPlan 4.1</p>
       <div id="xppraesentationsobjekteuml" style="display:none;">
-      <p><img src="images/2015_12_03-Modell/XP_Praesentationsobjekte.png" alt="XP_Praesentationsobjekte" style="width:826px;height:1168px;"usemap="#XP_Praesentationsobjekte"><p>
+      <p><img src="images/2016_05_06-Modell/XP_Praesentationsobjekte.png" alt="XP_Praesentationsobjekte" style="width:826px;height:1168px;"usemap="#XP_Praesentationsobjekte"><p>
       </div>
     
       <a href="javascript:ReverseDisplay('inspireuml')" class=hlink>
@@ -1782,22 +1799,24 @@ function show_uml() {
       </div>
       
       <center><h2>Modell-Downloads</h2></center><hr>
-      <h3>UML-Modell als PDF zum <a href="/model/XPlan Raumordnungsplan Arbeitsmodell (Version 15-12-03).pdf">herunterladen</a> (Arbeitsversion 2015-12-03)</h3>
+      <h3>UML-Modell als PDF zum <a href="/model/XPlan Raumordnungsplan Arbeitsmodell (Version 16-05-06).pdf">herunterladen</a> (Arbeitsversion 2016-05-06)</h3>
       Diese Datei enthält alle Pakete des XP- und RP-Schemas. Die UML-Repräsentation in PDF-Form ist eine graphische Darstellung der relevanten Modellelemente und erlaubt die Suche von Begriffen innerhalb des Modells.
-      <h3>Liste aller Modelländerungen zum <a href="/model/2015_12_03_Aenderungsliste_XPlan_Raumordnungsmodell.doc">herunterladen</a> (Arbeitsversion 2015-12-03)</h3>
+      <h3>Liste aller Modelländerungen zum <a href="/model/2016_05_06_Aenderungsliste_XPlan_Raumordnungsmodell.doc">herunterladen</a> (Arbeitsversion 2016-05-06)</h3>
       Änderungen am RP-Schema von XPlanGML4.1 seit Projektbeginn sind hier textlich dokumentiert und werden mit jeder Modelländerung aktualisiert.
-      <h3>Konformitätsbedingungen für das Raumordnungsschema zum <a href="/model/2016_01_11_Konformitaetsbedingungen.doc">herunterladen</a> (Arbeitsversion 2015-12-03)</h3>
+      <h3>Konformitätsbedingungen für das Raumordnungsschema zum <a href="/model/2016_05_06_Konformitaetsbedingungen.doc">herunterladen</a> (Arbeitsversion 2016-05-06)</h3>
       Konformitätsbedingungen beschreiben Regeln und Relationen des Modells, welche nicht direkt in UML festgehalten werden können. Diese sind jedoch für eine vollständige und valide Konvertierung wichtig. Da XPlanGML4.1 keine Konformitätsbedingungen für das RP-Schema besitzt, wurden für das Projekt neue Konformitätsbedingungen für die Raumordnung zur Integration in die bestehenden Konformitätsbedingungen von XPlan aufgestellt.
-      <h3>Enterprise Architect Modell zum <a href="/model/2016-01-18_Modell_EA.eap">herunterladen</a> (Arbeitsversion 2015-01-18)</h3>
+      <h3>Enterprise Architect Modell zum <a href="/model/2016-05-06_Modell_EA.eap">herunterladen</a> (Arbeitsversion 2016-05-06)</h3>
       Die Modellierung und Erweiterung des Modells erfolgt anhand der UML-Modellierungssoftware Enterprise Architect von SparxSystems. Durch die .eap Datei kann das derzeitige Modell in Enterprise Architect genutzt werden. Änderungen von Projektseite fanden dabei nur im Paket Raumordnungsplanung (früher: Kernmodell_Regionalplanung) statt.
-      <h3>XMI-Datei zum <a href="/model/xplan.xmi">herunterladen</a> (Arbeitsversion 2016-01-18)</h3>
-      XMI (XML Metadata Interchange) ist ein anbieterneutrales Format des Modells, welches zum Austausch zwischen Software-Entwicklungswerkzeugen benutzt werden kann. Die dazugehörige Datei erlaubt die Nutzung des Modells mit jeglicher Software.
-     <!--<h3>Featurekatalog</h3>
-      Diese Sektion enthält den Featurekatalog des Modells zum herunterladen.-->
-      <h3>XSD-Dateien zum <a href="/model/2016_01_18_XSD_Modell.zip">herunterladen</a> (Arbeitsversion 2016-01-18)</h3>
+      <h3>XMI-Datei zum <a href="/model/xplan.xmi">herunterladen</a> (Arbeitsversion 2016-05-06)</h3>
+      XMI (XML Metadata Interchange) ist ein anbieterneutrales Format des Modells, welches zum Austausch zwischen Software-Entwicklungswerkzeugen genutzt werden kann. Die dazugehörige Datei erlaubt die Nutzung des Modells jenseits von Enterprise Architect.
+      <h3>XSD-Dateien zum <a href="/model/2016_05_06_XSD_Modell.zip">herunterladen</a> (Arbeitsversion 2016-05-06)</h3>
       XSD(XML Schema Definition)-Dateien definieren die Strukturen von XML-Dokumenten. Für das Projekt sind diese zur Definition der Struktur eines XPlanGML-Dokuments nötig. Anbei werden die XSD-Dateien aller relevanten Pakete des Modells als .zip bereitgestellt.
       <h3>Modell Report zum <a href="/model/2016_01_26_model_report.pdf">herunterladen</a> (Arbeitsversion 2016-01-26)</h3>
       Der Modellreport aus Enterprise Architect zeigt eine textliche Gesamtübersicht über das gesamte Modell zu Dokumentationszwecken.
+      <h3>XPlan-konforme Beispiel-Shapefiles zum <a href="/files/Beispiel_Shapefiles_XPlan-konform.zip">herunterladen</a> (Version 2016-04-25)</h3>
+      XPlan-konforme Shapefiles erlauben die Aufnahme von Geodaten in XPlan-konformen Shapefiles. Diese können in der Konvertierungssoftware durch eine einzelne Standardabfrage in eine GML-Klasse umgewandelt werden. Die hier dargestellten Shapefiles sind Beispiele und können in Teilen verändert werden. So sind z.B. für jede XPlan-Klasse alle (nicht-gemischten) Geometrietypen zulässig.
+      <h3>Bereitstellung des XPlan-Modells als <a href="/EA/">Enterprise Architect Feature-Katalog</a> (Version 2016-05-03)</h3>
+      Die aus Enterprise Architect hergeleitete Online-Modellversion enthält das vollständige XPlan-Modell sowie alle dazugehörigen ISO-Pakete als interaktiven Feature-Katalog.
     </div>
   </div><?php
   output_footer();

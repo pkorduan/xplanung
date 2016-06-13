@@ -1,0 +1,5 @@
+tocTab[tocTab.length] = new Array("0.2.3.2.2:1", "", "BP_Aufschuettung_Abgrabung_Bodenschaetze", "EARoot/EA2/EA3/EA2/EA2/EA2203.htm", "175.png", "706", "0", "", "class diagram0","{D8121046-2092-4051-B88C-AD39A3CEBF90}");
+tocTab[tocTab.length] = new Array("0.2.3.2.2:2", "", "«FeatureType» BP_AbgrabungsFlaeche", "EARoot/EA2/EA3/EA2/EA2/EA2206.htm", "5.png", "E702", "0", "", "Class0","{8096C7E7-6339-456b-BDDE-569C86BF0482}");
+tocTab[tocTab.length] = new Array("0.2.3.2.2:3", "", "«FeatureType» BP_AufschuettungsFlaeche", "EARoot/EA2/EA3/EA2/EA2/EA2207.htm", "5.png", "E705", "0", "", "Class0","{F610AA8A-C02B-4723-BCA5-6AFE069BC13B}");
+tocTab[tocTab.length] = new Array("0.2.3.2.2:4", "", "«FeatureType» BP_BodenschaetzeFlaeche", "EARoot/EA2/EA3/EA2/EA2/EA2208.htm", "5.png", "E703", "0", "", "Class0","{8E5027C7-6CE9-4bf1-BACF-668A0EE95375}");
+tocTab[tocTab.length] = new Array("0.2.3.2.2:5", "", "«FeatureType» BP_RekultivierungsFlaeche", "EARoot/EA2/EA3/EA2/EA2/EA2209.htm", "5.png", "E704", "0", "", "Class0","{0FA1810C-B844-4d6f-A35A-584E5D222E05}");

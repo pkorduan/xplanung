@@ -1,0 +1,5 @@
+tocTab[tocTab.length] = new Array("0.1.6.5:1", "", "Context Diagram: Definition", "EARoot/EA1/EA6/EA5/EA1813.htm", "175.png", "625", "0", "", "Logical diagram0","{E7299BFB-9144-415a-A75F-35BE26A3F802}");
+tocTab[tocTab.length] = new Array("0.1.6.5:2", "", "Context Diagram: Dictionary", "EARoot/EA1/EA6/EA5/EA1815.htm", "175.png", "623", "0", "", "Logical diagram0","{E26D6CD8-0AEC-4e57-A615-1ED7AAB75827}");
+tocTab[tocTab.length] = new Array("0.1.6.5:3", "", "Figure D.57 ? Dictionaries", "EARoot/EA1/EA6/EA5/EA1817.htm", "175.png", "624", "0", "", "Logical diagram0","{9EC9388A-A76C-43c4-8451-29265B60650E}");
+tocTab[tocTab.length] = new Array("0.1.6.5:4", "", "«type» Definition", "EARoot/EA1/EA6/EA5/EA1821.htm", "5.png", "E516", "0", "", "Class0","{E3B55C4C-4823-4168-A433-B7ED01C9F68E}");
+tocTab[tocTab.length] = new Array("0.1.6.5:5", "", "«type» Dictionary", "EARoot/EA1/EA6/EA5/EA1822.htm", "5.png", "E515", "0", "", "Class0","{A27DF88D-E162-4d64-9E24-BB03A5FDB66C}");
