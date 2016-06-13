@@ -1,0 +1,8 @@
+tocTab[tocTab.length] = new Array("0.2.3.2.6:1", "", "BP_Landwirtschaft_Wald_und_Gruenflaechen", "EARoot/EA2/EA3/EA2/EA6/EA2266.htm", "175.png", "712", "0", "", "class diagram0","{BA5C4519-A235-4836-882A-A77336E6B668}");
+tocTab[tocTab.length] = new Array("0.2.3.2.6:2", "", "«CodeList» BP_DetailZweckbestGruenFlaeche", "EARoot/EA2/EA3/EA2/EA6/EA2269.htm", "5.png", "E755", "0", "", "Class0","{EB4C5300-A7B4-4e01-A70B-7307FCCBB5F7}");
+tocTab[tocTab.length] = new Array("0.2.3.2.6:3", "", "«CodeList» BP_DetailZweckbestLandwirtschaft", "EARoot/EA2/EA3/EA2/EA6/EA2270.htm", "5.png", "E751", "0", "", "Class0","{F2C4B894-4354-40eb-A3E0-4236ABC585F2}");
+tocTab[tocTab.length] = new Array("0.2.3.2.6:4", "", "«CodeList» BP_DetailZweckbestWaldFlaeche", "EARoot/EA2/EA3/EA2/EA6/EA2271.htm", "5.png", "E753", "0", "", "Class0","{867B606F-5901-4b4d-864F-24D96B94DBDC}");
+tocTab[tocTab.length] = new Array("0.2.3.2.6:5", "", "«FeatureType» BP_GruenFlaeche", "EARoot/EA2/EA3/EA2/EA6/EA2272.htm", "5.png", "E750", "0", "", "Class0","{9C417CDB-4D75-4b58-806C-32B82BC12198}");
+tocTab[tocTab.length] = new Array("0.2.3.2.6:6", "", "«FeatureType» BP_KleintierhaltungFlaeche", "EARoot/EA2/EA3/EA2/EA6/EA2273.htm", "5.png", "E749", "0", "", "Class0","{C6B6C5E7-1580-41b7-835E-9D9E3D613CB5}");
+tocTab[tocTab.length] = new Array("0.2.3.2.6:7", "", "«FeatureType» BP_Landwirtschaft", "EARoot/EA2/EA3/EA2/EA6/EA2274.htm", "5.png", "E752", "0", "", "Class0","{CBA04187-8E34-4039-9E23-8700DFEBF378}");
+tocTab[tocTab.length] = new Array("0.2.3.2.6:8", "", "«FeatureType» BP_WaldFlaeche", "EARoot/EA2/EA3/EA2/EA6/EA2275.htm", "5.png", "E754", "0", "", "Class0","{76DAA9B3-9E8C-4bb5-87B4-60C27838AE8F}");

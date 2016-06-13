@@ -1,0 +1,3 @@
+tocTab[tocTab.length] = new Array("0.1.6.2:1", "", "Context Diagram: TemporalCRS", "EARoot/EA1/EA6/EA2/EA1788.htm", "175.png", "615", "0", "", "Logical diagram0","{9AAA2B82-380A-4290-8811-549C0F59D6AB}");
+tocTab[tocTab.length] = new Array("0.1.6.2:2", "", "Figure D.50 ? Defining elements of TemporalCRS class", "EARoot/EA1/EA6/EA2/EA1790.htm", "175.png", "614", "0", "", "Logical diagram0","{D810BE70-1F22-4195-964E-9AA3D4B3DADD}");
+tocTab[tocTab.length] = new Array("0.1.6.2:3", "", "«type» TemporalCRS", "EARoot/EA1/EA6/EA2/EA1793.htm", "5.png", "E510", "0", "", "Class0","{A9C720C3-B3AC-4375-8E88-252C8C54A84C}");

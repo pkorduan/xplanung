@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:include schemaLocation="XP_Enumerationen.xsd"/>
+	<xs:include schemaLocation="SO_Basisobjekte.xsd"/>
+	<xs:element name="SO_Grenze" type="SO_Grenze"/>
+	<xs:complexType name="SO_Grenze">
+		<xs:annotation>
+			<xs:documentation>Grenze einer Verwaltungseinheit oder sonstige Grenze in rambezogenen Plänen..</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="SO_Linienobjekt">
+				<xs:sequence>
+					<xs:element name="typ" type="XP_GrenzeTypen" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Typ der Grenze</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="sonstTyp" type="SO_SonstGrenzeTypen" minOccurs="0" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="SO_SonstGrenzeTypen" type="SO_SonstGrenzeTypen"/>
+	<xs:complexType name="SO_SonstGrenzeTypen">
+		<xs:sequence/>
+	</xs:complexType>
+</xs:schema>

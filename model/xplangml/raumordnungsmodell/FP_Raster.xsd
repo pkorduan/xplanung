@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:annotation>
+		<xs:documentation>Raster-Darstellung von FPlänen</xs:documentation>
+	</xs:annotation>
+	<xs:include/>
+	<xs:include schemaLocation="P_Raster.xsd"/>
+	<xs:element name="FP_RasterplanAenderung" type="FP_RasterplanAenderung"/>
+	<xs:complexType name="FP_RasterplanAenderung">
+		<xs:annotation>
+			<xs:documentation>Georeferenziertes Rasterbild der Änderung eines Basisplans. Die abgeleitete Klasse besitzt Datums-Attribute, die spezifisch für Flächennutzungspläne sind.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="XP_RasterplanAenderung">
+				<xs:sequence>
+					<xs:element name="aufstellungbeschlussDatum" type="Date" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="auslegungsStartDatum" type="Date" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Start-Datum der öffentlichen Auslegung.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="auslegungsEndDatum" type="Date" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>End-Datum der öffentlichen Auslegung.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="traegerbeteiligungsStartDatum" type="Date" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Start-Datum der Trägerbeteiligung.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="traegerbeteiligungsEndDatum" type="Date" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>End-Datum der Trägerbeteiligung.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="aenderungenBisDatum" type="Date" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="entwurfsbeschlussDatum" type="Date" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="planbeschlussDatum" type="Date" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="wirksamkeitsDatum" type="Date" minOccurs="0" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

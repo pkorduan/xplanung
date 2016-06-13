@@ -1,0 +1,5 @@
+tocTab[tocTab.length] = new Array("0.1.6.6:1", "", "Context Diagram: CompassPoint", "EARoot/EA1/EA6/EA6/EA1823.htm", "175.png", "628", "0", "", "Logical diagram0","{FA74F565-7828-495b-9154-872BB0F9D464}");
+tocTab[tocTab.length] = new Array("0.1.6.6:2", "", "Context Diagram: Direction", "EARoot/EA1/EA6/EA6/EA1825.htm", "175.png", "627", "0", "", "Logical diagram0","{4660EB2F-4219-482a-8ACE-00BCA6ABDFDB}");
+tocTab[tocTab.length] = new Array("0.1.6.6:3", "", "Figure D.65 ? Direction", "EARoot/EA1/EA6/EA6/EA1827.htm", "175.png", "626", "0", "", "Logical diagram0","{FEC1374E-1FA3-4f00-95F7-25FD7BB37F37}");
+tocTab[tocTab.length] = new Array("0.1.6.6:4", "", "«enumeration» CompassPoint", "EARoot/EA1/EA6/EA6/EA1830.htm", "5.png", "E517", "0", "", "Class0","{9D4F7DE7-DE67-487a-8B15-25F82DD0DCE1}");
+tocTab[tocTab.length] = new Array("0.1.6.6:5", "", "«Union» Direction", "EARoot/EA1/EA6/EA6/EA1831.htm", "5.png", "E518", "0", "", "Class0","{E725F854-4F96-45e4-869B-37460E794C2B}");

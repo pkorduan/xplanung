@@ -1,0 +1,3 @@
+tocTab[tocTab.length] = new Array("0.2.3.1.4:1", "", "XP_Raster", "EARoot/EA2/EA3/EA1/EA4/EA2158.htm", "175.png", "702", "0", "", "class diagram0","{AD42CCA3-1B5F-44a5-9A11-5F8936F4AC01}");
+tocTab[tocTab.length] = new Array("0.2.3.1.4:2", "", "«FeatureType» XP_RasterplanAenderung", "EARoot/EA2/EA3/EA1/EA4/EA2161.htm", "5.png", "E668", "0", "", "Class0","{93EFFDF6-7D58-47c8-8703-FF545466CD68}");
+tocTab[tocTab.length] = new Array("0.2.3.1.4:3", "", "«FeatureType» XP_RasterplanBasis", "EARoot/EA2/EA3/EA1/EA4/EA2162.htm", "5.png", "E669", "0", "", "Class0","{D97F4DE6-5B4F-44d0-9882-5ABD0D5496D8}");

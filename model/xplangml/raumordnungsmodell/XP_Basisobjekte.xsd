@@ -1,0 +1,841 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:annotation>
+		<xs:documentation>Dies Paket enthält die Basisklassen des XPlanGML Schemas.</xs:documentation>
+	</xs:annotation>
+	<xs:include/>
+	<xs:include/>
+	<xs:include/>
+	<xs:include/>
+	<xs:include/>
+	<xs:include/>
+	<xs:include schemaLocation="P_Raster.xsd"/>
+	<xs:include schemaLocation="XP_Praesentationsobjekte.xsd"/>
+	<xs:simpleType name="XP_ArtHoehenbezugspunkt">
+		<xs:restriction base="xs:&lt;undefined&gt;">
+			<xs:enumeration value="TH">
+				<xs:annotation>
+					<xs:documentation>Traufhöhe als Höhenbezugspunkt</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FH">
+				<xs:annotation>
+					<xs:documentation>Firsthöhe als Höhenbezugspunkt.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="OK">
+				<xs:annotation>
+					<xs:documentation>Oberkante als Höhenbezugspunkt.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="LH">
+				<xs:annotation>
+					<xs:documentation>Lichte Höhe</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SH">
+				<xs:annotation>
+					<xs:documentation>Sockelhöhe</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EFH">
+				<xs:annotation>
+					<xs:documentation>Erdgeschoss Fußbodenhöhe</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="HBA">
+				<xs:annotation>
+					<xs:documentation>Höhe Baulicher Anlagen</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="UK">
+				<xs:annotation>
+					<xs:documentation>Unterkante</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GBH">
+				<xs:annotation>
+					<xs:documentation>Gebäudehöhe</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="XP_ExterneReferenzArt" type="XP_ExterneReferenzArt"/>
+	<xs:complexType name="XP_ExterneReferenzArt">
+		<xs:annotation>
+			<xs:documentation>Typisierung von referierten Dokumenten.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Dokument" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Referenz auf ein Dokument.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PlanMitGeoreferenz" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Referenz auf einen georeferenzierten Plan.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="XP_GesetzlicheGrundlage" type="XP_GesetzlicheGrundlage"/>
+	<xs:complexType name="XP_GesetzlicheGrundlage">
+		<xs:annotation>
+			<xs:documentation>Aufzählung der gesetzlichen Grundlagen möglicher Planinhalte.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence/>
+	</xs:complexType>
+	<xs:element name="XP_URLAttribut" type="XP_URLAttribut"/>
+	<xs:complexType name="XP_URLAttribut">
+		<xs:annotation>
+			<xs:documentation>Generische Attribute vom Datentyp "URL"</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="XP_GenerAttribut">
+				<xs:sequence>
+					<xs:element name="wert" type="URI" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="XP_IntegerAttribut" type="XP_IntegerAttribut"/>
+	<xs:complexType name="XP_IntegerAttribut">
+		<xs:annotation>
+			<xs:documentation>Generische Attribute vom Datentyp "Integer".</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="XP_GenerAttribut">
+				<xs:sequence>
+					<xs:element name="wert" type="Integer" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="XP_Liniengeometrie" type="XP_Liniengeometrie"/>
+	<xs:complexType name="XP_Liniengeometrie">
+		<xs:sequence>
+			<xs:element name="Linie" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="MultiLinie" type="xs:string" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="XP_SPEMassnahmenDaten" type="XP_SPEMassnahmenDaten"/>
+	<xs:complexType name="XP_SPEMassnahmenDaten">
+		<xs:annotation>
+			<xs:documentation>Spezifikation der Attribute für einer Schutz-, Pflege- oder Entwicklungsmaßnahme.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="klassifizMassnahme" type="XP_SPEMassnahmenTypen" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Klassifikation der Maßnahme</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="massnahmeText" type="CharacterString" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Durchzuführende Maßnahme als freier Text.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="massnahmeKuerzel" type="CharacterString" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Kürzel der durchzuführenden Maßnahme.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="XP_TextAbschnitt" type="XP_TextAbschnitt"/>
+	<xs:complexType name="XP_TextAbschnitt">
+		<xs:annotation>
+			<xs:documentation>Ein Abschnitt der textlich formulierten Inhalte  des Plans.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="schluessel" type="CharacterString" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Schlüssel zur Referenzierung des Abschnitts.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="gesetzlicheGrundlage" type="CharacterString" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Gesetzliche Grundlage des Text-Abschnittes</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="text" type="CharacterString" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Inhalt eines Abschnitts der textlichen Planinhalte</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="refText" type="XP_ExterneReferenz" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Referenz auf ein externes Dokument das den zug Textabschnitt enthält.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="XP_DoubleAttribut" type="XP_DoubleAttribut"/>
+	<xs:complexType name="XP_DoubleAttribut">
+		<xs:annotation>
+			<xs:documentation>Generisches Attribut vom Datentyp "Double".</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="XP_GenerAttribut">
+				<xs:sequence>
+					<xs:element name="wert" type="Decimal" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="XP_VerfahrensMerkmal" type="XP_VerfahrensMerkmal"/>
+	<xs:complexType name="XP_VerfahrensMerkmal">
+		<xs:annotation>
+			<xs:documentation>Vermerk eines am Planungsverfahrens beteiligten Akteurs.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="vermerk" type="CharacterString" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Inhat des Vermerks</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="datum" type="Date" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Datum des Vermerks</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="signatur" type="CharacterString" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Unterschrift</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="signiert" type="Boolean" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Angabe, ob die Unterschrift erfolgt ist.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="XP_SPEMassnahmenTypen">
+		<xs:annotation>
+			<xs:documentation>Aufzählung der Typen von Ausgleichs- und Ersatzmaßnahmen.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:&lt;undefined&gt;">
+			<xs:enumeration value="ArtentreicherGehoelzbestand"/>
+			<xs:enumeration value="NaturnaherWald"/>
+			<xs:enumeration value="ExtensivesGruenland"/>
+			<xs:enumeration value="Feuchtgruenland"/>
+			<xs:enumeration value="Obstwiese"/>
+			<xs:enumeration value="NaturnaherUferbereich"/>
+			<xs:enumeration value="Roehrichtzone"/>
+			<xs:enumeration value="Ackerrandstreifen"/>
+			<xs:enumeration value="Ackerbrache"/>
+			<xs:enumeration value="Gruenlandbrache"/>
+			<xs:enumeration value="Sukzessionsflaeche"/>
+			<xs:enumeration value="Hochstaudenflur"/>
+			<xs:enumeration value="Trockenrasen"/>
+			<xs:enumeration value="Heide"/>
+			<xs:enumeration value="Sonstiges"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="XP_GenerAttribut" type="XP_GenerAttribut"/>
+	<xs:complexType name="XP_GenerAttribut" abstract="true">
+		<xs:annotation>
+			<xs:documentation>Abstrakte Basisklasse für Generische Attribute.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name" type="CharacterString" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="XP_DatumAttribut" type="XP_DatumAttribut"/>
+	<xs:complexType name="XP_DatumAttribut">
+		<xs:annotation>
+			<xs:documentation>Generische Attribute vom Datentyp "Datum"</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="XP_GenerAttribut">
+				<xs:sequence>
+					<xs:element name="wert" type="Date" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="XP_BegruendungAbschnitt" type="XP_BegruendungAbschnitt"/>
+	<xs:complexType name="XP_BegruendungAbschnitt">
+		<xs:annotation>
+			<xs:documentation>Ein Abschnitt der Begründung des Plans.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="schluessel" type="CharacterString" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Schlüssel zur Referenzierung des Abschnitts von einem Fachobjekt aus.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="text" type="CharacterString" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Inhalt eines Abschnitts der Begründung.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="refText" type="XP_ExterneReferenz" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Referenz auf ein externes Dokument das den Begründungs-Abschnitt enthält.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="XP_Rechtsstand">
+		<xs:annotation>
+			<xs:documentation>Aufzählung der Planungszustände eines Planinhalts.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:&lt;undefined&gt;">
+			<xs:enumeration value="Geplant">
+				<xs:annotation>
+					<xs:documentation>Der Planinhalt bezieht sich auf eine Planung</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Bestehend">
+				<xs:annotation>
+					<xs:documentation>Der Planinhalt stellt den altuellen Zustand dar.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Fortfallend">
+				<xs:annotation>
+					<xs:documentation>Der Planinhalt beschreibt einen zukünftig fortfallenden Zustand.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="XP_ArtHoehenbezug">
+		<xs:restriction base="xs:&lt;undefined&gt;">
+			<xs:enumeration value="absolutNHN">
+				<xs:annotation>
+					<xs:documentation>Absolute Höhenangabe</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="relativGelaendeoberkante">
+				<xs:annotation>
+					<xs:documentation>Höhenangabe relativ zur Geländeoberkante an der Position des Planinhalts.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="relativGehwegOberkante">
+				<xs:annotation>
+					<xs:documentation>Höhenangabe relativ zur Gehweg-Oberkante an der Position des Planinhalts.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="relativBezugshoehe">
+				<xs:annotation>
+					<xs:documentation>Höhenangabe relativ zu der auf Planebene festgelegten absoluten Bezugshöhe (Attribut bezugshoehe von XP_Plan).</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="XP_StringAttribut" type="XP_StringAttribut"/>
+	<xs:complexType name="XP_StringAttribut">
+		<xs:annotation>
+			<xs:documentation>Generisches Attribut vom Datentyp "CharacterString"</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="XP_GenerAttribut">
+				<xs:sequence>
+					<xs:element name="wert" type="CharacterString" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="XP_Punktgeometrie" type="XP_Punktgeometrie"/>
+	<xs:complexType name="XP_Punktgeometrie">
+		<xs:sequence>
+			<xs:element name="Punkt" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="MultiPunkt" type="xs:string" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="XP_Plangeber" type="XP_Plangeber"/>
+	<xs:complexType name="XP_Plangeber">
+		<xs:annotation>
+			<xs:documentation>Spezifikation der Institution, die für den Plan verantwortlich ist.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name" type="CharacterString" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Name des Plangebers.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="kennziffer" type="CharacterString" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Kennziffer des Plangebers.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="XP_Hoehenangabe" type="XP_Hoehenangabe"/>
+	<xs:complexType name="XP_Hoehenangabe">
+		<xs:annotation>
+			<xs:documentation>Spezifikation einer Angabe zur vertikalen Höhe oder zu einem Bereich vertikaler Höhen. Es ist möglich, spezifische Höhenangaben (z.B. die First- oder Traufhöhe eines Gebäudes) vorzugeben oder einzuschränken, oder den Gültigkeitsbereich eines Planinhalts auf eine bestimmte Höhe (hZwingend) bzw. einen Höhenbereich (hMin - hMax) zu beschränken, was vor allem bei der höhenabhängigen Festsetzung einer überbaubaren Grundstücksfläche (BP_UeberbaubareGrundstuecksflaeche), einer Baulinie (BP_Baulinie) oder einer Baugrenze (BP_Baugrenze) relevant ist. In diesem Fall bleibt das Attribut bezugspunkt unbelegt.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="abweichenderHoehenbezug" type="CharacterString" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="hoehenbezug" type="XP_ArtHoehenbezug" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Art des Höhenbezuges.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="bezugspunkt" type="XP_ArtHoehenbezugspunkt" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Bestimmung des Bezugspunktes der Höhenangaben. Wenn dies Attribut nicht belegt ist, soll die Höhenangabe als verikale Einschränkung des zugeordneten Planinhalts interpretiert werden.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="hMin" type="Length" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Minimal zulassige Höhe des Bezugspunktes (bezugspunkt) bei einer Bereichsangabe, bzw. untere Grenze des vertikalen Gültigkeitsbereiches eines Planinhalts, wenn bezugspunkt nicht belegt ist. In diesem Fall gilt: Ist  hMax nicht belegt, gilt die Festlegung ab der Höhe hMin.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="hMax" type="Length" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Maximal zulässige Höhe des Bezugspunktes (bezugspunkt) bei einer Bereichsangabe, bzw. obere Grenze des vertikalen Gültigkeitsbereiches eines Planinhalts, wenn bezugspunkt nicht belegt ist.  In diesem Fall gilt: Ist  hMin nicht belegt, gilt die Festlegung bis zur Höhe hMax.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="hZwingend" type="Length" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Zwingend einzuhaltende Höhe des Bezugspunktes (bezugspunkt) , bzw. Beschränkung der vertikalen Gültigkeitsbereiches eines Planinhalts auf eine bestimmte Höhe.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="h" type="Length" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Maximal zulässige Höhe des Bezugspunktes (bezugspunkt) .</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="XP_Objekt" type="XP_Objekt"/>
+	<xs:complexType name="XP_Objekt" abstract="true">
+		<xs:annotation>
+			<xs:documentation>Abstrakte Oberklasse für alle XPlanGML-Fachobjekte. Die Attribute dieser Klasse werden über den Vererbungs-Mechanismus an alle Fachobjekte weitergegeben.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="uuid" type="CharacterString" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Eindeutiger Identifier des Objektes.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="text" type="CharacterString" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Beliebiger Text</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="rechtsstand" type="XP_Rechtsstand" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Gibt an ob der Planinhalt bereits besteht, geplant ist, oder zukünftig wegfallen soll.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="gesetzlicheGrundlage" type="XP_GesetzlicheGrundlage" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Angagbe der Gesetzlichen Grundlage des Planinhalts.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="textSchluessel" type="CharacterString" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Abschnitts- oder Schlüsselnummer der Text-Abschnitte (XP_TextAbschnitt), die dem Objekt explizit zugeordnet sind.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="textSchluesselBegruendung" type="CharacterString" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Abschnitts- oder Schlüsselnummer der Abschnitte der Begründung (XP_BegruendungAbschnitt), die dem Objekt explizit zugeordnet sind.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="gliederung1" type="CharacterString" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Kennung im Plan für eine erste Gliederungsebene (z.B. GE-E für ein "Eingeschränktes Gewerbegebiet")</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="gliederung2" type="CharacterString" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Kennung im Plan für eine zweite Gliederungsebene (z.B. GE-E 3 für die "Variante 3 eines eingeschränkten Gewerbegebiets")</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ebene" type="Integer" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Zuordnung des Objektes zu einer vertikalen Ebene. Der Standard-Ebene 0 sind Objekte auf der Erdoberfläche zugeordnet. Nur unter diesen Objekten wird der Flächenschluss hergestellt. Bei Plan-Objekten, die unterirdische Bereiche (z.B. Tunnel) modellieren, ist ebene &lt; 0. Bei "überirdischen" Objekten (z.B. Festsetzungen auf Brücken) ist ebene &gt; 0.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="rechtsverbindlich" type="XP_ExterneReferenz" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Referenz auf rechtsverbindliche Dokumente.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="informell" type="XP_ExterneReferenz" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Referenz auf nicht-rechtsverbindliche Dokumente.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="hatGenerAttribut" type="XP_GenerAttribut" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Erweiterung des definierten Attributsatzes eines Objektes durch generische Attribute.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="hoehenangabe" type="XP_Hoehenangabe" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Angaben zur vertikalen Lage eines Planinhalts.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="wirdDargestelltDurch" type="XP_AbstraktesPraesentationsobjekt" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="refBegruendungInhalt" type="XP_BegruendungAbschnitt" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="refTextInhalt" type="XP_TextAbschnitt" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="XP_MimeTypes" type="XP_MimeTypes"/>
+	<xs:complexType name="XP_MimeTypes">
+		<xs:sequence>
+			<xs:element name="application/pdf" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="application/zip" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="application/xml" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="application/msword" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="application/msexcel" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="application/vnd.ogc.sld+xml" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="application/vnd.ogc.wms_xml" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="application/vnd.ogc.gml" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="application/odt" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="image/jpg" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="image/png" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="image/tiff" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="image/ecw" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="image/svg+xml" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="text/html" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="text/plain" type="xs:string" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="XP_RechtscharakterPlanaenderung">
+		<xs:annotation>
+			<xs:documentation>Rechtscharakter einer Planänderung</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:&lt;undefined&gt;">
+			<xs:enumeration value="Aenderung">
+				<xs:annotation>
+					<xs:documentation>Änderung des Plans</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Ergaenzung">
+				<xs:annotation>
+					<xs:documentation>Ergänzung eines Plans</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Aufhebung">
+				<xs:annotation>
+					<xs:documentation>Aufhebung des Plans</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="XP_Bereich" type="XP_Bereich"/>
+	<xs:complexType name="XP_Bereich" abstract="true">
+		<xs:annotation>
+			<xs:documentation>Abstrakte Oberklasse für die Modellierung von Planbereichen. Ein Planbereich fasst die Inhalte eines Plans nach bestimmten Kriterien zusammen.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="nummer" type="Integer" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Nummer des Bereichs. Wenn der Bereich als Ebene eines BPlans interpretiert wird, kann aus dem Attribut die vertikale Reihenfolge der Ebenen rekonstruiert werden.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name" type="CharacterString" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Bezeichnung des Bereiches</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="bedeutung" type="XP_BedeutungenBereich" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Spezifikation der semantischen Bedeutung eines Bereiches.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="detaillierteBedeutung" type="CharacterString" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Detaillierte Erklärung der semantischen Bedeutung eines Bereiches, in Ergänzung des Attributs bedeutung.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="erstellungsMasstab" type="Integer" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Der bei der Erstellung der Inhalte des Planbereichs benutzte Kartenmassstab. Wenn dieses Attribut nicht spezifiziert ist, gilt für den Bereich der auf Planebene (XP_Plan) spezifizierte Masstab.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="geltungsbereich" type="XP_Flaechengeometrie" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Räumliche Abgrenzung des Bereiches. Wenn dieses Attribut nicht spezifiziert ist, gilt für den Bereich der auf Planebene (XP_Plan) spezifizierte Geltungsbereich.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="rasterBasis" type="XP_RasterplanBasis" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="praesentationsobjekt" type="XP_AbstraktesPraesentationsobjekt" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="nachrichtlich" type="XP_Objekt" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="XP_Plan" type="XP_Plan"/>
+	<xs:complexType name="XP_Plan" abstract="true">
+		<xs:annotation>
+			<xs:documentation>Abstrakte Oberklasse für alle Klassen von raumbezogenen Plänen..</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name" type="CharacterString" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Name des Plans.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nummer" type="CharacterString" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Nummer des Plans.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="internalId" type="CharacterString" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Interner Identifikator des Plans.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="beschreibung" type="CharacterString" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Kommentierende Beschreibung des Plans.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="kommentar" type="CharacterString" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Beliebiger Kommentar zum Plan</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="technHerstellDatum" type="Date" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Datum, an dem der Plan technisch ausgefertigt wurde.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="genehmigungsDatum" type="Date" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Datum der Genehmigung des Plans</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="untergangsDatum" type="Date" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Datum, an dem der Plan (z.B. durch Ratsbeschluss oder Gerichtsurteil) aufgehoben oder für nichtig erklärt wurde.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="aendert" type="XP_VerbundenerPlan" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Bezeichnung eines anderen Planes der Gemeinde, der durch den vorliegenden Plan geändert wird.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="wurdeGeaendertVon" type="XP_VerbundenerPlan" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Bezeichnung eines anderen Plans , durch den der vorliegende Plan geändert wurde.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="erstellungsMassstab" type="Integer" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Der bei der Erstellung des Plans benutzte Kartenmassstab.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="xPlanGMLVersion" type="CharacterString" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Version des XPlanGML-Schemas, nach dem der Datensatz erstellt wurde. Da diese Version auch aus dem Namespace des GML-Datensatzes ermittelt werden kann ist dies Attribut redundant und wird in einer zukünftiger Version des Standards wegfallen.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="bezugshoehe" type="Length" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Standard Bezugshöhe (absolut NhN) für relative Höhenangaben von Planinhalten.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="raeumlicherGeltungsbereich" type="XP_Flaechengeometrie" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Grenze des räumlichen Geltungsbereiches des Plans.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="verfahrensMerkmale" type="XP_VerfahrensMerkmal" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Vermerke der am Planungssverfahrens beteiligten Akteure.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="rechtsverbindlich" type="XP_ExterneReferenz" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Referenz ein rechtsverbindliche Dokumente</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="informell" type="XP_ExterneReferenz" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Referenz auf nicht-rechtsverbindliche Dokumente</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="hatGenerAttribut" type="XP_GenerAttribut" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Erweiterung der vorgegebenen Attribute durch generische Attribute.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="refBeschreibung" type="XP_ExterneReferenz" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Referenz auf die Beschreibung des Plans.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="refBegruendung" type="XP_ExterneReferenz" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Referenz auf die Bebründung des Plans.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="refExternalCodeList" type="XP_ExterneReferenz" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Referenz auf ein GML-Dictionary mit Codelists.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="refLegende" type="XP_ExterneReferenz" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Referenz auf die Legende des Plans.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="refRechtsplan" type="XP_ExterneReferenz" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Referenz auf eine elektronische Version des rechtsverbindlichen Plans.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="refPlangrundlage" type="XP_ExterneReferenz" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Referenz auf eine elektronische Version der Plangrundlage, z.B. ein Katasterplan.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="begruendungsTexte" type="XP_BegruendungAbschnitt" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="texte" type="XP_TextAbschnitt" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="XP_VerbundenerPlan" type="XP_VerbundenerPlan"/>
+	<xs:complexType name="XP_VerbundenerPlan">
+		<xs:annotation>
+			<xs:documentation>Spezifikation eines anderen Plans, der mit dem Ausgangsplan verbunden ist und diesen ändert bzw. von ihm geändert wird.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="planName" type="CharacterString" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Name (Attribut name von XP_Plan) des verbundenen Plans.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="rechtscharakter" type="XP_RechtscharakterPlanaenderung" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Rechtscharakter der Planänderung.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nummer" type="CharacterString" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Nummer des verbundenen Plans</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="XP_VariableGeometrie" type="XP_VariableGeometrie"/>
+	<xs:complexType name="XP_VariableGeometrie">
+		<xs:annotation>
+			<xs:documentation>Geometrische Basisklasse, die wahlweise als Punkt, Linie oder Fläche instanziiert werden kann.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Punkt" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="MultiPunkt" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Linie" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="MultiLinie" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Flaeche" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="MultiFlaeche" type="xs:string" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="XP_Gemeinde" type="XP_Gemeinde"/>
+	<xs:complexType name="XP_Gemeinde">
+		<xs:annotation>
+			<xs:documentation>Spezifikation einer Gemeinde</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ags" type="CharacterString" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Amtlicher Gemeindsschlüssel (früher Gemeinde-Kennziffer)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="rs" type="CharacterString" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Regionalschlüssel</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="gemeindeName" type="CharacterString" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Name der Gemeinde.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ortsteilName" type="CharacterString" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Name des Ortsteils</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="XP_ExterneReferenz" type="XP_ExterneReferenz"/>
+	<xs:complexType name="XP_ExterneReferenz">
+		<xs:annotation>
+			<xs:documentation>Verweis auf ein extern gespeichertes Dokument, einen extern gespeicherten, georeferenzierten Plan oder einen Datenbank-Eintrag. Einer der beiden Attribute "referenzName" bzw. "referenzURL" muss belegt sein.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="georefURL" type="URI" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Referenz auf eine Georeferenzierungs-Datei. Das Arrtibut ist nur relevant bei Verweisen auf georeferenzierte Rasterbilder.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="georefMimeType" type="XP_MimeTypes" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Mime-Type der Georeferenzierungs-Datei. Das Arrtibut ist nur relevant bei Verweisen auf georeferenzierte Rasterbilder.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="art" type="XP_ExterneReferenzArt" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Typisierung der referierten Dokumente</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="informationssystemURL" type="URI" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>URI des des zugehörigen Informationssystems</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="referenzName" type="CharacterString" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Name des referierten Dokuments.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="referenzURL" type="URI" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>URI des referierten Dokuments, bzw. Datenbank-Schlüssel.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="referenzMimeType" type="XP_MimeTypes" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Mime-Type des referierten Dokumentes</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="beschreibung" type="CharacterString" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Beschreibung des referierten Dokuments</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="datum" type="Date" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Datum des referierten Dokuments</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="XP_BedeutungenBereich">
+		<xs:annotation>
+			<xs:documentation>Aufzählung möglicher Bedeutungen eines Planbereichs.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:Integer">
+			<xs:enumeration value="Aenderungsbereich"/>
+			<xs:enumeration value="Ergaenzungsbereich"/>
+			<xs:enumeration value="Teilbereich"/>
+			<xs:enumeration value="Gesamtbereich">
+				<xs:annotation>
+					<xs:documentation>Gesamtbereich</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Eingriffsbereich"/>
+			<xs:enumeration value="Ausgleichsbereich"/>
+			<xs:enumeration value="Nebenzeichnung"/>
+			<xs:enumeration value="Variante"/>
+			<xs:enumeration value="VertikaleGliederung"/>
+			<xs:enumeration value="Erstnutzung"/>
+			<xs:enumeration value="Folgenutzung"/>
+			<xs:enumeration value="Sonstiges"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="XP_Flaechengeometrie" type="XP_Flaechengeometrie"/>
+	<xs:complexType name="XP_Flaechengeometrie">
+		<xs:sequence>
+			<xs:element name="Flaeche" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="MultiFlaeche" type="xs:string" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

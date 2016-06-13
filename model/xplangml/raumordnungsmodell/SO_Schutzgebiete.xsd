@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:annotation>
+		<xs:documentation>Schutzgebiete nach verschiedenen gesetzlichen Bestimmungen.</xs:documentation>
+	</xs:annotation>
+	<xs:include schemaLocation="XP_Enumerationen.xsd"/>
+	<xs:include/>
+	<xs:include schemaLocation="SO_NachrichtlicheUebernahme.xsd"/>
+	<xs:include schemaLocation="SO_Basisobjekte.xsd"/>
+	<xs:element name="SO_DetailKlassifizSchutzgebietSonstRecht" type="SO_DetailKlassifizSchutzgebietSonstRecht"/>
+	<xs:complexType name="SO_DetailKlassifizSchutzgebietSonstRecht">
+		<xs:sequence/>
+	</xs:complexType>
+	<xs:element name="SO_DetailKlassifizSchutzgebietWasserrecht" type="SO_DetailKlassifizSchutzgebietWasserrecht"/>
+	<xs:complexType name="SO_DetailKlassifizSchutzgebietWasserrecht">
+		<xs:annotation>
+			<xs:documentation>Aufzählung spezieller, z.B. länderspezifischer Klassifizierungen.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence/>
+	</xs:complexType>
+	<xs:simpleType name="SO_SchutzzonenWasserrecht">
+		<xs:annotation>
+			<xs:documentation>Wasserschutzgebietszonen nach WasserSchutzgesetz (WSG) bzw. Heilquellenschutzzonen nach HeilQuellenSchutzGesetz (HQSG)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:&lt;undefined&gt;">
+			<xs:enumeration value="Zone_1"/>
+			<xs:enumeration value="Zone_2"/>
+			<xs:enumeration value="Zone_3"/>
+			<xs:enumeration value="Zone_3a">
+				<xs:annotation>
+					<xs:documentation>Zone 3a existiert nur bei Wasserschutzgebieten.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Zone_3b">
+				<xs:annotation>
+					<xs:documentation>Zone 3b existiert nur bei Wasserschutzgebieten.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Zone_4">
+				<xs:annotation>
+					<xs:documentation>Zone 4 existiert nur bei Heilquellen.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="SO_DetailKlassifizSchutzgebietNaturschutzrecht" type="SO_DetailKlassifizSchutzgebietNaturschutzrecht"/>
+	<xs:complexType name="SO_DetailKlassifizSchutzgebietNaturschutzrecht">
+		<xs:annotation>
+			<xs:documentation>Aufzählung spezieller, z.B. länderspezifischer Klassifizierungen.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence/>
+	</xs:complexType>
+	<xs:element name="SO_SchutzgebietSonstigesRecht" type="SO_SchutzgebietSonstigesRecht"/>
+	<xs:complexType name="SO_SchutzgebietSonstigesRecht">
+		<xs:annotation>
+			<xs:documentation>Sonstige Schutzgebiete nach unterschiedlichen rechtlichen Bestimmungen.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="SO_Geometrieobjekt">
+				<xs:sequence>
+					<xs:element name="artDerFestlegung" type="SO_KlassifizSchutzgebietSonstRecht" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Klassifizierung des Schutzgebietes oder Schutzbereichs.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="detailArtDerFestlegung" type="SO_DetailKlassifizSchutzgebietSonstRecht" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Detaillierte Klassifizierung</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="zone" type="SO_LaermschutzzoneTypen" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Zugeordnete Schutzzone (wenn artDerFestlegung == 1000). Das Attribut wird als "veraltet" klassifiziert und wird zukünftig wegfallen. Lärmschutbereiche nach LuftVGsollen als SO_Luftverkehrsrecht modelliert werden.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="name" type="CharacterString" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Informelle Bezeichnung des Gebiets</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="nummer" type="CharacterString" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Amtliche Bezeichnung / Kennziffer des Gebiets</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="SO_SchutzgebietNaturschutzrecht" type="SO_SchutzgebietNaturschutzrecht"/>
+	<xs:complexType name="SO_SchutzgebietNaturschutzrecht">
+		<xs:annotation>
+			<xs:documentation>Schutzgebiet nach Naturschutzrecht.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="SO_Geometrieobjekt">
+				<xs:sequence>
+					<xs:element name="artDerFestlegung" type="XP_KlassifizSchutzgebietNaturschutzrecht" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Klassizizierung des Naturschutzgebietes</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="detailArtDerFestlegung" type="SO_DetailKlassifizSchutzgebietNaturschutzrecht" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Weitere Klassifizierung</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="zone" type="SO_SchutzzonenNaturschutzrecht" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Klassifizierung der Schutzzone</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="name" type="CharacterString" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Informeller Name des Schutzgebiets</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="nummer" type="CharacterString" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Amtlicher Name / Kennziffer des Gebiets.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="SO_KlassifizSchutzgebietSonstRecht">
+		<xs:restriction base="xs:&lt;undefined&gt;">
+			<xs:enumeration value="Laermschutzbereich">
+				<xs:annotation>
+					<xs:documentation>Lärmschutzbereich nach anderen gesetzlichen Regelungen als dem Luftverkehrsrecht.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SchutzzoneLeitungstrasse">
+				<xs:annotation>
+					<xs:documentation>Schutzzone um eine Leitungstrasse nach Bundes-Immissionsschutzgesetz.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Sonstiges"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SO_KlassifizSchutzgebietWasserrecht">
+		<xs:annotation>
+			<xs:documentation>Aufzählung wasserrechtlicher Zweckbestimmungen.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:&lt;undefined&gt;">
+			<xs:enumeration value="Wasserschutzgebiet"/>
+			<xs:enumeration value="QuellGrundwasserSchutzgebiet">
+				<xs:annotation>
+					<xs:documentation>Ausgewiesenes Schutzgebiet für Quell- und Grundwasser</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="OberflaechengewaesserSchutzgebiet">
+				<xs:annotation>
+					<xs:documentation>Ausgewiesenes Schutzgebiet für Oberflächengewässer</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Heilquellenschutzgebiet"/>
+			<xs:enumeration value="Sonstiges">
+				<xs:annotation>
+					<xs:documentation>Sonstige Zweckbestimmung</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SO_SchutzzonenNaturschutzrecht">
+		<xs:annotation>
+			<xs:documentation>Schutzzoneneinteilung in Nationalparks, naturparks und Biosphärenreservaten.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:&lt;undefined&gt;">
+			<xs:enumeration value="Schutzzone_1"/>
+			<xs:enumeration value="Schutzzone_2"/>
+			<xs:enumeration value="Schutzzone_3"/>
+			<xs:enumeration value="Kernzone"/>
+			<xs:enumeration value="Pflegezone"/>
+			<xs:enumeration value="Entwicklungszone"/>
+			<xs:enumeration value="Regenerationszone"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="SO_SchutzgebietWasserrecht" type="SO_SchutzgebietWasserrecht"/>
+	<xs:complexType name="SO_SchutzgebietWasserrecht">
+		<xs:annotation>
+			<xs:documentation>Schutzgebiet nach WasserSchutzGesetz (WSG) bzw. HeilQuellenSchutzGesetz (HQSG).</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="SO_Geometrieobjekt">
+				<xs:sequence>
+					<xs:element name="artDerFestlegung" type="SO_KlassifizSchutzgebietWasserrecht" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Klassifizierung des Schutzgebietes</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="detailArtDerFestlegung" type="SO_DetailKlassifizSchutzgebietWasserrecht" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Detaillierte Klassifizierung</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="zone" type="SO_SchutzzonenWasserrecht" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Klassifizierung der Schutzzone</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="name" type="CharacterString" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Informelle Bezeichnung des Gebiets</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="nummer" type="CharacterString" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Amtliche Bezeichnung / Kennziffer des Gebiets.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

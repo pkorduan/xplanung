@@ -1,0 +1,5 @@
+tocTab[tocTab.length] = new Array("0.2.3.2.5:1", "", "BP_Gemeinbedarf_Spiel_und_Sportanlagen", "EARoot/EA2/EA3/EA2/EA5/EA2259.htm", "175.png", "711", "0", "", "class diagram0","{EDC8CC86-AFE1-401b-84E7-0926789D6092}");
+tocTab[tocTab.length] = new Array("0.2.3.2.5:2", "", "«CodeList» BP_DetailZweckbestGemeinbedarf", "EARoot/EA2/EA3/EA2/EA5/EA2262.htm", "5.png", "E745", "0", "", "Class0","{FDFD2762-2172-47a2-BDA1-FBE52C9C1C51}");
+tocTab[tocTab.length] = new Array("0.2.3.2.5:3", "", "«CodeList» BP_DetailZweckbestSpielSportanlage", "EARoot/EA2/EA3/EA2/EA5/EA2263.htm", "5.png", "E747", "0", "", "Class0","{436E806E-1AF4-4f97-ADB9-4DD7AC62391F}");
+tocTab[tocTab.length] = new Array("0.2.3.2.5:4", "", "«FeatureType» BP_GemeinbedarfsFlaeche", "EARoot/EA2/EA3/EA2/EA5/EA2264.htm", "5.png", "E748", "0", "", "Class0","{FCD4DE63-AD91-4bff-80A3-89D2F715045C}");
+tocTab[tocTab.length] = new Array("0.2.3.2.5:5", "", "«FeatureType» BP_SpielSportanlagenFlaeche", "EARoot/EA2/EA3/EA2/EA5/EA2265.htm", "5.png", "E746", "0", "", "Class0","{E683D8D6-5DB1-4aec-A9DD-17073C626271}");
