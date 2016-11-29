@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:xplan="http://www.xplanung.de/xplangml/4/1" elementFormDefault="qualified" targetNamespace="http://www.xplanung.de/xplangml/5/0" version="5.0" xmlns:="">
+  <annotation>
+    <documentation>Das Fachschema BPlan enthält alle Klassen von BPlan-Fachobjekten. Jede dieser Klassen modelliert eine nach BauGB mögliche Festsetzung, Kennzeichnung oder einen Vermerk in einem Bebauungsplan.</documentation>
+  </annotation>
+  <import namespace=""/>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <import namespace="http://www.xplanung.de/xplangml/4/1"/>
+  <!--XML Schema document created by ShapeChange - http://shapechange.net/-->
+</schema>

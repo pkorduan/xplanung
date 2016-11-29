@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:xplan="http://www.xplan-raumordnung.de/model/xplangml/raumordnungsmodell" elementFormDefault="qualified">
+  <annotation>
+    <documentation>Dies Paket enthält Basisklassen für die Rasterdarstellung von Bebauungsplänen, Flächennutzungsplänen, Landschafts- und Regionalplänen.</documentation>
+  </annotation>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <!--XML Schema document created by ShapeChange - http://shapechange.net/-->
+  <element abstract="true" name="XP_RasterplanAenderung" substitutionGroup="gml:AbstractFeature" type="xplan:XP_RasterplanAenderungType">
+    <annotation>
+      <documentation>Basisklasse für georeferenzierte Rasterdarstellungen von Änderungen des Basisplans, die nicht in die Rasterdarstellung XP_RasterplanBasis integriert sind.
+Im Standard sind nur georeferenzierte Rasterpläne zugelassen. Die über refScan referierte externe Referenz muss deshalb entweder vom Typ "PlanMitGeoreferenz" sein oder einen WMS-Request enthalten.</documentation>
+    </annotation>
+  </element>
+  <complexType abstract="true" name="XP_RasterplanAenderungType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence>
+          <element minOccurs="0" name="nameAenderung" type="string">
+            <annotation>
+              <documentation>Bezeichnung des Plan-Änderung</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="nummerAenderung" type="integer">
+            <annotation>
+              <documentation>Nummer der Änderung</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="beschreibung" type="string">
+            <annotation>
+              <documentation>Nähere Beschreibung der Plan-Änderung</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="refBeschreibung" type="xplan:XP_ExterneReferenzPropertyType">
+            <annotation>
+              <documentation>Referenz auf das Beschreibungs-Dokument</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="refBegruendung" type="xplan:XP_ExterneReferenzPropertyType">
+            <annotation>
+              <documentation>Referenz auf das Begründungs-Dokument</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" name="refScan" type="xplan:XP_ExterneReferenzPropertyType">
+            <annotation>
+              <documentation>Referenz auf eine Rasterversion der Plan-Änderung.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="refText" type="xplan:XP_ExterneReferenzPropertyType">
+            <annotation>
+              <documentation>Referenz auf die textlichen Inhalte der Planänderung.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="refLegende" type="xplan:XP_ExterneReferenzPropertyType">
+            <annotation>
+              <documentation>Referenz auf die Legende der Plan-Änderung.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="geltungsbereichAenderung" type="xplan:XP_FlaechengeometriePropertyType">
+            <annotation>
+              <documentation>Raeumlicher Bereich des georeferenzierten Rasterbildes, in dem die Änderung wirksam ist.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="besonderheit" type="string">
+            <annotation>
+              <documentation>Besonderheiten der Änderung</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="XP_RasterplanBasis" substitutionGroup="gml:AbstractFeature" type="xplan:XP_RasterplanBasisType">
+    <annotation>
+      <documentation>Georeferenzierte Rasterdarstellung eines Plans. Das über refScan referierte Rasterbild zeigt den Basisplan, dessen Geltungsbereich durch den Geltungsbereich des Gesamtplans (Attribut geltungsbereich von XP_Plan) repräsentiert ist. Diesem Basisplan können Änderungen überlagert sein, denen jeweils eigene Rasterbilder und Geltungsbereiche zugeordnet sind (XP_RasterplanAenderung und abgeleitete Klassen).
+
+Im Standard sind nur georeferenzierte Rasterpläne zugelassen. Die über refScan referierte externe Referenz muss deshalb entweder vom Typ "PlanMitGeoreferenz" sein oder einen WMS-Request enthalten.</documentation>
+    </annotation>
+  </element>
+  <complexType name="XP_RasterplanBasisType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence>
+          <element maxOccurs="unbounded" name="refScan" type="xplan:XP_ExterneReferenzPropertyType">
+            <annotation>
+              <documentation>Referenz auf eine georeferenzierte Rasterversion des Basisplans</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="refText" type="xplan:XP_ExterneReferenzPropertyType">
+            <annotation>
+              <documentation>Referenz auf die textlich fprmulierten Inhalte des Plans.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="refLegende" type="xplan:XP_ExterneReferenzPropertyType">
+            <annotation>
+              <documentation>Referenz auf die Legende des Plans.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+</schema>

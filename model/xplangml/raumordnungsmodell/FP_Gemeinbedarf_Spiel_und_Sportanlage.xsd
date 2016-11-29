@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" elementFormDefault="qualified" targetNamespace="" version="" xmlns:="">
+  <annotation>
+    <documentation>Darstellung der Ausstattung des Gemeindegebiets mit Einrichtungen und Anlagen zur Versorgung mit Gütern und Dienstleistungen des öffentlichen und privaten Bereichs, sowie die Flächen für Spiel- und Sportanlagen (§5, Abs. 2, Nr. 2 BauGB).</documentation>
+  </annotation>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <!--XML Schema document created by ShapeChange - http://shapechange.net/-->
+  <element name="FP_Gemeinbedarf" substitutionGroup=":FP_Geometrieobjekt" type=":FP_GemeinbedarfType">
+    <annotation>
+      <documentation>Darstellung von Flächen für den Gemeinbedarf nach §5,  Abs. 2, Nr. 2 BauGB.</documentation>
+    </annotation>
+  </element>
+  <complexType name="FP_GemeinbedarfType">
+    <complexContent>
+      <extension base=":FP_GeometrieobjektType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="zweckbestimmung" type=":XP_ZweckbestimmungGemeinbedarfType">
+            <annotation>
+              <documentation>Allgemeine Zweckbestimmungen der Fläche</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="besondereZweckbestimmung" type=":XP_BesondereZweckbestGemeinbedarfType">
+            <annotation>
+              <documentation>Besondere Zweckbestimmungen der Fläche, die die zugehörigen allgemeinen Zweckbestimmungen detaillieren oder ersetzen..</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="detaillierteZweckbestimmung" type="gml:CodeType">
+            <annotation>
+              <documentation>Über eine ExternalCodeList definierte zusätzliche Zweckbestimmungen.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="FP_SpielSportanlage" substitutionGroup=":FP_Geometrieobjekt" type=":FP_SpielSportanlageType">
+    <annotation>
+      <documentation>Darstellung von Flächen für Spiel- und Sportanlagen nach §5,  Abs. 2, Nr. 2 BauGB.</documentation>
+    </annotation>
+  </element>
+  <complexType name="FP_SpielSportanlageType">
+    <complexContent>
+      <extension base=":FP_GeometrieobjektType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="zweckbestimmung" type=":XP_ZweckbestimmungSpielSportanlageType">
+            <annotation>
+              <documentation>Zweckbestimmungen der Fläche</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="detaillierteZweckbestimmung" type="gml:CodeType">
+            <annotation>
+              <documentation>Über eine CodeList definierte zusätzliche Zweckbestimmungen.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+</schema>

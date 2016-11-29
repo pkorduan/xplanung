@@ -1,3 +1,0 @@
-tocTab[tocTab.length] = new Array("0.2.3.3.6:1", "", "FP_Naturschutz", "EARoot/EA2/EA3/EA3/EA6/EA2414.htm", "175.png", "728", "0", "", "class diagram0","{828CA85F-0E2C-4ca6-98FC-4E205BE20BC2}");
-tocTab[tocTab.length] = new Array("0.2.3.3.6:2", "", "«FeatureType» FP_AusgleichsFlaeche", "EARoot/EA2/EA3/EA3/EA6/EA2417.htm", "5.png", "E849", "0", "", "Class0","{EE8A1984-5D4E-46f4-9979-0171E7C96107}");
-tocTab[tocTab.length] = new Array("0.2.3.3.6:3", "", "«FeatureType» FP_SchutzPflegeEntwicklung", "EARoot/EA2/EA3/EA3/EA6/EA2418.htm", "5.png", "E850", "0", "", "Class0","{7D554269-4901-4b52-B310-61D96996955C}");

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" elementFormDefault="qualified" targetNamespace="" version="" xmlns:="">
+  <annotation>
+    <documentation>Festsetzung von Flächen für den Gemeinbedarf sowie für Sport- und Spielanlagen.</documentation>
+  </annotation>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <!--XML Schema document created by ShapeChange - http://shapechange.net/-->
+  <element name="BP_GemeinbedarfsFlaeche" substitutionGroup=":BP_Flaechenschlussobjekt" type=":BP_GemeinbedarfsFlaecheType">
+    <annotation>
+      <documentation>Einrichtungen und Anlagen zur Versorgung mit Gütern und Dienstleistungen des öffentlichen und privaten Bereichs, hier Flächen für den Gemeindebedarf (§9, Abs. 1, Nr.5 und Abs. 6 BauGB).</documentation>
+    </annotation>
+  </element>
+  <complexType name="BP_GemeinbedarfsFlaecheType">
+    <complexContent>
+      <extension base=":BP_FlaechenschlussobjektType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="zweckbestimmung" type=":XP_ZweckbestimmungGemeinbedarfType">
+            <annotation>
+              <documentation>Allgemeine Zweckbestimmungen der festgesetzten Fläche</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="besondereZweckbestimmung" type=":XP_BesondereZweckbestGemeinbedarfType">
+            <annotation>
+              <documentation>Besondere Zweckbestimmungen der festgesetzten Fläche, die die zugehörigen allgemeinen Zweckbestimmungen detaillieren oder ersetzen.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="detaillierteZweckbestimmung" type="gml:CodeType">
+            <annotation>
+              <documentation>Über eine CodeList definierte zusätzliche Zweckbestimmungen.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="zugunstenVon" type="string">
+            <annotation>
+              <documentation>Angabe des Begünstigten einer Ausweisung.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="BP_SpielSportanlagenFlaeche" substitutionGroup=":BP_Flaechenschlussobjekt" type=":BP_SpielSportanlagenFlaecheType">
+    <annotation>
+      <documentation>Einrichtungen und Anlagen zur Versorgung mit Gütern und Dienstleistungen des öffentlichen und privaten Bereichs, hier Flächen für Sport- und Spielanlagen (§9, Abs. 1, Nr. 5 und Abs. 6 BauGB).</documentation>
+    </annotation>
+  </element>
+  <complexType name="BP_SpielSportanlagenFlaecheType">
+    <complexContent>
+      <extension base=":BP_FlaechenschlussobjektType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="zweckbestimmung" type=":XP_ZweckbestimmungSpielSportanlageType">
+            <annotation>
+              <documentation>Zweckbestimmungen der festgesetzten Fläche.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="detaillierteZweckbestimmung" type="gml:CodeType">
+            <annotation>
+              <documentation>Über eine CodeList definierte zusätzliche Zweckbestimmungen.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="zugunstenVon" type="string">
+            <annotation>
+              <documentation>Angabe des Begünstigten einer Ausweisung.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+</schema>

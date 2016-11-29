@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" elementFormDefault="qualified" targetNamespace="" version="" xmlns:="">
+  <annotation>
+    <documentation>Klassen zur Modellierung nachrichtlicher Übernahmen aus anderen Rechtsbereichen.</documentation>
+  </annotation>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <!--XML Schema document created by ShapeChange - http://shapechange.net/-->
+  <simpleType name="SO_BesondereKlassifizNachSchienenverkehrsrechtType">
+    <annotation>
+      <documentation>Aufzählung der besonderen Zweckbestimmungen einer Bahnfläche ,Bahnlinie oder Bahnanlage.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="10000"/>
+      <enumeration value="10001"/>
+      <enumeration value="10002"/>
+      <enumeration value="10003"/>
+      <enumeration value="12000"/>
+      <enumeration value="12001"/>
+      <enumeration value="12002"/>
+      <enumeration value="12003"/>
+      <enumeration value="12004"/>
+      <enumeration value="12005"/>
+      <enumeration value="14000"/>
+      <enumeration value="14001"/>
+      <enumeration value="14002"/>
+      <enumeration value="14003"/>
+    </restriction>
+  </simpleType>
+  <element name="SO_Bodenschutzrecht" substitutionGroup=":SO_Geometrieobjekt" type=":SO_BodenschutzrechtType">
+    <annotation>
+      <documentation>Festlegung nach Bodenschutzrecht.</documentation>
+    </annotation>
+  </element>
+  <complexType name="SO_BodenschutzrechtType">
+    <complexContent>
+      <extension base=":SO_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="artDerFestlegung" type=":SO_KlassifizNachBodenschutzrechtType">
+            <annotation>
+              <documentation>Grundlegende Klassifizierung der Festlegung.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="detailArtDerFestlegung" type="gml:CodeType">
+            <annotation>
+              <documentation>Detaillierte Klassifizierung der Festlegung</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="istVerdachtsflaeche" type="boolean">
+            <annotation>
+              <documentation>Angabe ob es sich um eine Verdachtsfläche handelt.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="name" type="string">
+            <annotation>
+              <documentation>Informelle Bezeichnung der Festlegung.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="nummer" type="string"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="SO_Denkmalschutzrecht" substitutionGroup=":SO_Geometrieobjekt" type=":SO_DenkmalschutzrechtType">
+    <annotation>
+      <documentation>Festlegung nach Denkmalschutzrecht</documentation>
+    </annotation>
+  </element>
+  <complexType name="SO_DenkmalschutzrechtType">
+    <complexContent>
+      <extension base=":SO_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="artDerFestlegung" type=":SO_KlassifizNachDenkmalschutzrechtType">
+            <annotation>
+              <documentation>Grundlegende rechtliche Klassifizierung der Festlegung</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="detailArtDerFestlegung" type="gml:CodeType">
+            <annotation>
+              <documentation>Detaillierte rechtliche Klassifizierung der Festlegung</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="weltkulturerbe" type="boolean"/>
+          <element minOccurs="0" name="name" type="string">
+            <annotation>
+              <documentation>Informelle Bezeichnung der Festlegung</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="nummer" type="string">
+            <annotation>
+              <documentation>Amtliche Bezeichnung / Kennziffer der Festlegung</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="SO_Forstrecht" substitutionGroup=":SO_Geometrieobjekt" type=":SO_ForstrechtType">
+    <annotation>
+      <documentation>Festlegung nach Forstrecht</documentation>
+    </annotation>
+  </element>
+  <complexType name="SO_ForstrechtType">
+    <complexContent>
+      <extension base=":SO_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="artDerFestlegung" type=":SO_KlassifizNachForstrechtType">
+            <annotation>
+              <documentation>Grundlegende Klassifizierung der Festlegung</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="detailArtDerFestlegung" type="gml:CodeType">
+            <annotation>
+              <documentation>Detaillierte Klassifizierung der Festlegung</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="name" type="string">
+            <annotation>
+              <documentation>Informelle Bezeichnung der Festlegung</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="nummer" type="string">
+            <annotation>
+              <documentation>Amtliche Bezeichnung / Kennziffer der Festlegung</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <simpleType name="SO_KlassifizNachBodenschutzrechtType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="20000"/>
+      <enumeration value="20001"/>
+      <enumeration value="20002"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="SO_KlassifizNachDenkmalschutzrechtType">
+    <annotation>
+      <documentation>Basis Klassifizierung von Ausweisungen nach Denkmalschutzrecht.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="1100"/>
+      <enumeration value="1200"/>
+      <enumeration value="1300">
+        <annotation>
+          <documentation>Engere Pufferzone um eine Welterbestätte</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1400">
+        <annotation>
+          <documentation>Weitere Pufferzone um eine Welterbestätte</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="SO_KlassifizNachForstrechtType">
+    <annotation>
+      <documentation>Basis Klassifizierung nach Forstrecht</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="SO_KlassifizNachLuftverkehrsrechtType">
+    <annotation>
+      <documentation>Aufzählung der möglichen Zweckbestimmungen einer Luftverkehrs-Fläche.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="3000"/>
+      <enumeration value="4000"/>
+      <enumeration value="5000"/>
+      <enumeration value="5200"/>
+      <enumeration value="5400"/>
+      <enumeration value="6000">
+        <annotation>
+          <documentation>Lärmschutzbereich nach LuftVG</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="7000">
+        <annotation>
+          <documentation>Höhenbeschränkung nach §12 LuftVG</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="SO_KlassifizNachSchienenverkehrsrechtType">
+    <annotation>
+      <documentation>Aufzählung der Zweckbestimmungen einer BAHNFLÄCHE</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>Bahnanlage</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1200">
+        <annotation>
+          <documentation>Bahnlinie</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1400">
+        <annotation>
+          <documentation>Öffentlichen Personen Nahverkehr</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="9999">
+        <annotation>
+          <documentation>Sonstige Zweckbestimmung</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <simpleType name="SO_KlassifizNachSonstigemRechtType">
+    <annotation>
+      <documentation>Basis Klassifizierung der sonstigen Ausweisungen.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>Bauschutzbereich nach anderen Rechtsverordnungen als dem LuftVG</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1100">
+        <annotation>
+          <documentation>Beschränkung nach Berggesetz</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1200">
+        <annotation>
+          <documentation>Baubeschränkungen durch Richtfunkverbindungen</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1300"/>
+      <enumeration value="1400">
+        <annotation>
+          <documentation>Beschränkungen nach Vermessungs- und Katasterrecht</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="SO_KlassifizNachStrassenverkehrsrechtType">
+    <annotation>
+      <documentation>Aufzählung von Basis-Klassifizierungen der Festlegungen nach Straßenrecht.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="1100"/>
+      <enumeration value="1200"/>
+      <enumeration value="1300"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="SO_KlassifizNachWasserrechtType">
+    <annotation>
+      <documentation>Basis Klassifizierung von Festlegungen nach Wasserrecht.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>Gewässer 1. Ordnung.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1100">
+        <annotation>
+          <documentation>Gewässer 2. Ordnung.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1300">
+        <annotation>
+          <documentation>Gewässer 3. Ordnung</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2000">
+        <annotation>
+          <documentation>'Überschwemmungsgebiet' nach . § 31b Abs. 1 WHG  ist ein durch Rechtsverordnung festgesetztes oder natürliches Gebiet, das bei Hochwasser überschwemmt werden kann bzw. überschwemmt wird.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="20000">
+        <annotation>
+          <documentation>'Festgesetztes Überschwemmungsgebiet ist ein per Verordnung festgesetzte Überschwemmungsgebiete auf Basis HQ100</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="20001">
+        <annotation>
+          <documentation>Noch nicht festgesetztes Überschwemmungsgebiet nach §31b Abs. 5 WHG.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="20002">
+        <annotation>
+          <documentation>Überschwemmungsgefährdetes Gebiet gemäß §31 c WHG.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="SO_LaermschutzzoneTypenType">
+    <annotation>
+      <documentation>Einteilung von Lärmschutzzonen</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="3000"/>
+    </restriction>
+  </simpleType>
+  <element name="SO_Luftverkehrsrecht" substitutionGroup=":SO_Geometrieobjekt" type=":SO_LuftverkehrsrechtType">
+    <annotation>
+      <documentation>Festlegung nach Luftverkehrsrecht.</documentation>
+    </annotation>
+  </element>
+  <complexType name="SO_LuftverkehrsrechtType">
+    <complexContent>
+      <extension base=":SO_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="artDerFestlegung" type=":SO_KlassifizNachLuftverkehrsrechtType"/>
+          <element minOccurs="0" name="detailArtDerFestlegung" type="gml:CodeType"/>
+          <element minOccurs="0" name="name" type="string"/>
+          <element minOccurs="0" name="nummer" type="string"/>
+          <element minOccurs="0" name="laermschutzzone" type=":SO_LaermschutzzoneTypenType">
+            <annotation>
+              <documentation>Lärmschutzzone nach LuftVG</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="SO_Schienenverkehrsrecht" substitutionGroup=":SO_Geometrieobjekt" type=":SO_SchienenverkehrsrechtType">
+    <annotation>
+      <documentation>Festlegung nach Schienenverkehrsrecht.</documentation>
+    </annotation>
+  </element>
+  <complexType name="SO_SchienenverkehrsrechtType">
+    <complexContent>
+      <extension base=":SO_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="artDerFestlegung" type=":SO_KlassifizNachSchienenverkehrsrechtType"/>
+          <element minOccurs="0" name="besondereArtDerFestlegung" type=":SO_BesondereKlassifizNachSchienenverkehrsrechtType"/>
+          <element minOccurs="0" name="detailArtDerFestlegung" type="gml:CodeType"/>
+          <element minOccurs="0" name="name" type="string"/>
+          <element minOccurs="0" name="nummer" type="string"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="SO_SonstigesRecht" substitutionGroup=":SO_Geometrieobjekt" type=":SO_SonstigesRechtType">
+    <annotation>
+      <documentation>Sonstige Festlegung.</documentation>
+    </annotation>
+  </element>
+  <complexType name="SO_SonstigesRechtType">
+    <complexContent>
+      <extension base=":SO_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="nummer" type="string">
+            <annotation>
+              <documentation>Amtliche Bezeichnung / Kennziffer der Festlegung</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="artDerFestlegung" type=":SO_KlassifizNachSonstigemRechtType">
+            <annotation>
+              <documentation>Grundlegende rechtliche Klassifizierung der Festlegung</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="detailArtDerFestlegung" type="gml:CodeType">
+            <annotation>
+              <documentation>Detaillierte rechtliche Klassifizierung der Festlegung</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="name" type="string">
+            <annotation>
+              <documentation>Informelle Bezeichnung der Festlegung</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="SO_Strassenverkehrsrecht" substitutionGroup=":SO_Geometrieobjekt" type=":SO_StrassenverkehrsrechtType">
+    <annotation>
+      <documentation>Festlegung nach Straßenverkehrsrecht.</documentation>
+    </annotation>
+  </element>
+  <complexType name="SO_StrassenverkehrsrechtType">
+    <complexContent>
+      <extension base=":SO_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="artDerFestlegung" type=":SO_KlassifizNachStrassenverkehrsrechtType">
+            <annotation>
+              <documentation>Grobe rechtliche Klassifizierung der Festlegung</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="detailArtDerFestlegung" type="gml:CodeType">
+            <annotation>
+              <documentation>Detaillierte rechtliche Klassifizierung der Festlegung.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="name" type="string">
+            <annotation>
+              <documentation>Informelle Bezeichnung der Festlegung.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="nummer" type="string">
+            <annotation>
+              <documentation>Amtliche Bezeichnung / Kennziffer der Festlegung.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="SO_Wasserrecht" substitutionGroup=":SO_Geometrieobjekt" type=":SO_WasserrechtType">
+    <annotation>
+      <documentation>Festlegung nach Wasserrecht</documentation>
+    </annotation>
+  </element>
+  <complexType name="SO_WasserrechtType">
+    <complexContent>
+      <extension base=":SO_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="artDerFestlegung" type=":SO_KlassifizNachWasserrechtType">
+            <annotation>
+              <documentation>Grundlegende rechtliche Klassifizierung der Festlegung.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="detailArtDerFestlegung" type="gml:CodeType">
+            <annotation>
+              <documentation>Detaillierte rechtliche Klassifizierung der Festlegung.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="istNatuerlichesUberschwemmungsgebiet" type="boolean">
+            <annotation>
+              <documentation>Gibt an, ob es sich bei der Fläche um ein natürliches Überschwemmungsgebiet handelt.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="name" type="string">
+            <annotation>
+              <documentation>Informelle Bezeichnung der Festlegung</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="nummer" type="string">
+            <annotation>
+              <documentation>Amtliche Bezeichnung / Kennziffer der Festlegung</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+</schema>

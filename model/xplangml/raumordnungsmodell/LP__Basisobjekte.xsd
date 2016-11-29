@@ -1,298 +1,264 @@
-<?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-	<xs:annotation>
-		<xs:documentation>Dies Paket enthält die Basisklassen des Kernmodells Landschaftsplanung.</xs:documentation>
-	</xs:annotation>
-	<xs:import namespace="http://www.xplanung.de/xplangml/4/1" schemaLocation="LP__Raster.xsd"/>
-	<xs:include/>
-	<xs:include/>
-	<xs:include schemaLocation="XP_Enumerationen.xsd"/>
-	<xs:include schemaLocation="XP_Basisobjekte.xsd"/>
-	<xs:element name="LP_Linienobjekt" type="LP_Linienobjekt"/>
-	<xs:complexType name="LP_Linienobjekt" abstract="true">
-		<xs:annotation>
-			<xs:documentation>Basisklasse für alle Objekte eines Landschaftsplans mit linienförmigem Raumbezug (eine einzelne zusammenhängende Kurve, die aus Linienstücken und Kreisbögen zusammengesetzt sein kann, oder eine Menge derartiger Kurven).</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="LP_Objekt">
-				<xs:sequence>
-					<xs:element name="position" type="XP_Liniengeometrie" minOccurs="1" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Linienförmiger Raumbezug (Einzelne zusammenhängende Kurve, die aus Linienstücken und Kreisbögen aufgebaut sit, oder eine Menge derartiger Kurven),</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="LP_Plan" type="LP_Plan"/>
-	<xs:complexType name="LP_Plan">
-		<xs:annotation>
-			<xs:documentation>Die Klasse modelliert ein Planwerk mit landschaftsplanerischen Festlegungen, Darstellungen bzw. Festsetzungen.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="XP_Plan">
-				<xs:sequence>
-					<xs:element name="bundesland" type="XP_Bundeslaender" minOccurs="1" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Zuständiges Bundesland</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="rechtlicheAussenwirkung" type="Boolean" minOccurs="1" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Gibt an, ob der Plan eine rechtliche Außenwirkung hat.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="planArt" type="LP_PlanArt" minOccurs="1" maxOccurs="unbounded">
-						<xs:annotation>
-							<xs:documentation>Typ des vorliegenden Landschaftsplans.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="sonstPlanArt" type="LP_SonstPlanArt" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Spezifikation einer "Sonstigen Planart", wenn kein Plantyp aus der Enumeration LP_PlanArt zutreffend ist.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="planungstraegerGKZ" type="xs:string" minOccurs="1" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Gemeindekennziffer des Planungsträgers.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="planungstraeger" type="xs:string" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Bezeichnung des Planungsträgers.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="rechtsstand" type="LP_Rechtsstand" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Rechtsstand des Plans</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="aufstellungsbeschlussDatum" type="Date" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Datum des Aufstellungsbeschlusses</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="auslegungsDatum" type="Date" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Datum der öffentlichen Auslegung.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="tOeBbeteiligungsDatum" type="Date" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Datum der Beteiligung der Träger öffentlicher Belange.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="oeffentlichkeitsbeteiligungDatum" type="Date" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Datum der Öffentlichkeits-Beteiligung.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="aenderungenBisDatum" type="Date" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Datum, bis zum Planänderungen berücksichtigt wurden.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="entwurfsbeschlussDatum" type="Date" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Datum des Entwurfsbeschlusses.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="planbeschlussDatum" type="Date" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Datum des Planbeschlusses.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="inkrafttretenDatum" type="Date" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Datum des Inkrafttretens.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="sonstVerfahrensDatum" type="Date" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Sonstiges Verfahrens-Datum.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="bereich" type="LP_Bereich" minOccurs="0" maxOccurs="unbounded"/>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:simpleType name="LP_PlanArt">
-		<xs:restriction base="xs:&lt;undefined&gt;">
-			<xs:enumeration value="Landschaftsprogramm">
-				<xs:annotation>
-					<xs:documentation>Die überörtlichen konkretisierten Ziele, Erfordernisse und Maßnahmen des Naturschutzes und der Landschaftspflege werden für den Bereich eines Landes im Landschaftsprogramm dargestellt (§ 10, Abs .1 BNatSchG)
-Landschaftspflege werden für den Bereich eines Landes im Landschaftsprogramm o</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Landschaftsrahmenplan">
-				<xs:annotation>
-					<xs:documentation>Die überörtlichen konkretisierten Ziele, Erfordernisse und Maßnahmen des Naturschutzes und der Landschaftspflege werden für Teile des Landes in Landschaftsrahmenplänen dargestellt (§ 10, Abs .1 BNatSchG)</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Landschaftsplan">
-				<xs:annotation>
-					<xs:documentation>Die für die örtliche Ebene konkretisierten Ziele, Erfordernisse und Maßnahmen des Naturschutzes und der Landschaftspflege werden auf der Grundlage der Landschaftsrahmenpläne für die Gebiete der Gemeinden in Landschaftsplänen  dargestellt. (§ 11, Abs .1 BNatSchG)</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Gruenordnungsplan">
-				<xs:annotation>
-					<xs:documentation>Die für die örtliche Ebene konkretisierten Ziele, Erfordernisse und Maßnahmen des Naturschutzes und der Landschaftspflege werden für Teile eines Gemeindegebiets in Grünordnungsplänen dargestellt. (§ 11, Abs .1  BNatSchG)</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Sonstiges">
-				<xs:annotation>
-					<xs:documentation>sonstige Planart</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:element name="LP_SonstPlanArt" type="LP_SonstPlanArt"/>
-	<xs:complexType name="LP_SonstPlanArt">
-		<xs:sequence/>
-	</xs:complexType>
-	<xs:element name="LP_Punktobjekt" type="LP_Punktobjekt"/>
-	<xs:complexType name="LP_Punktobjekt" abstract="true">
-		<xs:annotation>
-			<xs:documentation>Basisklasse für alle Objekte eines Landschaftsplans mit punktförmigem Raumbezug (Einzelpunkt oder Punktmenge).</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="LP_Objekt">
-				<xs:sequence>
-					<xs:element name="position" type="XP_Punktgeometrie" minOccurs="1" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Punktförmiger Raumbezug (Einzelpunkt oder Punktmenge).</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="LP_Flaechenobjekt" type="LP_Flaechenobjekt"/>
-	<xs:complexType name="LP_Flaechenobjekt" abstract="true">
-		<xs:annotation>
-			<xs:documentation>Basisklasse für alle Objekte eines Landschaftsplans mit flächenhaftem Raumbezug (eine Einzelfläche oder eine Menge von Flächen, die sich nicht überlappen dürfen).</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="LP_Objekt">
-				<xs:sequence>
-					<xs:element name="position" type="XP_Flaechengeometrie" minOccurs="1" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Flächenhafter Raumbezug des Objektes (Eine Einzelfläche oder eine Menge von Flächen, die sich nicht überlappen dürfen). .</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:simpleType name="LP_Status">
-		<xs:restriction base="xs:&lt;undefined&gt;">
-			<xs:enumeration value="Festsetzung">
-				<xs:annotation>
-					<xs:documentation>Festsetzung im Landschaftsplan</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Geplant">
-				<xs:annotation>
-					<xs:documentation>Geplante Festsetzung im Landschaftsplan</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="NachrichtlichUebernommen">
-				<xs:annotation>
-					<xs:documentation>Nachrichtliche Übernahmen im Landschaftsplan</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="DarstellungKennzeichnung">
-				<xs:annotation>
-					<xs:documentation>Darstellungen und Kennzeichnungen im Landschaftsplan.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="FestsetzungInBPlan">
-				<xs:annotation>
-					<xs:documentation>Planinhalt aus dem Bereich Naturschutzrecht, der in einem BPlan festgesetzt wird.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="SonstigerStatus"/>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:element name="LP_TextAbschnitt" type="LP_TextAbschnitt"/>
-	<xs:complexType name="LP_TextAbschnitt">
-		<xs:annotation>
-			<xs:documentation>Texlich formulierter Inhalt eines Landschaftsplans, der einen anderen Rechtscharakter als das zugrunde liegende Fachobjekt hat (Attribut rechtscharakter des Fachobjektes), oder dem Plan als Ganzes zugeordnet ist.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="XP_TextAbschnitt">
-				<xs:sequence>
-					<xs:element name="status" type="LP_Status" minOccurs="1" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Rechtscharakter des textlich formulierten Planinhalts.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:simpleType name="LP_Rechtsstand">
-		<xs:restriction base="xs:&lt;undefined&gt;">
-			<xs:enumeration value="Aufstellungsbeschluss"/>
-			<xs:enumeration value="Entwurf"/>
-			<xs:enumeration value="Plan"/>
-			<xs:enumeration value="Wirksamkeit"/>
-			<xs:enumeration value="Untergegangen"/>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:element name="LP_Geometrieobjekt" type="LP_Geometrieobjekt"/>
-	<xs:complexType name="LP_Geometrieobjekt" abstract="true">
-		<xs:annotation>
-			<xs:documentation>Basisklasse für alle Objekte eines Landschaftsplans mit variablem Raumbezug. Ein konkretes Objekt muss entweder punktförmigen, linienförmigen oder flächenhaften Raumbezug haben, gemischte Geometrie ist nicht zugelassen.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="LP_Objekt">
-				<xs:sequence>
-					<xs:element name="position" type="XP_VariableGeometrie" minOccurs="1" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Raumbezug - Entweder punktförmig, linienförmig oder flächenhaft, gemischte Geometrie ist nicht zugelassen.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="LP_Bereich" type="LP_Bereich"/>
-	<xs:complexType name="LP_Bereich">
-		<xs:annotation>
-			<xs:documentation>Ein Bereich eines Landschaftsplans.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="XP_Bereich">
-				<xs:sequence>
-					<xs:element name="rasterAenderung" type="LP_RasterplanAenderung" minOccurs="0" maxOccurs="unbounded"/>
-					<xs:element name="inhaltLPlan" type="LP_Objekt" minOccurs="0" maxOccurs="unbounded"/>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="LP_Objekt" type="LP_Objekt"/>
-	<xs:complexType name="LP_Objekt" abstract="true">
-		<xs:annotation>
-			<xs:documentation>Basisklasse für alle spezifischen Inhalte eines Landschaftsplans.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="XP_Objekt">
-				<xs:sequence>
-					<xs:element name="status" type="xs:string" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Rechtliche Charakterisierung des Planinhalts.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="konkretisierung" type="xs:string" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Textliche Konkretisierung der rechtlichen Charakterisierung.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-</xs:schema>
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" elementFormDefault="qualified" targetNamespace="" version="" xmlns:="">
+  <annotation>
+    <documentation>Dies Paket enthält die Basisklassen des Kernmodells Landschaftsplanung.</documentation>
+  </annotation>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <!--XML Schema document created by ShapeChange - http://shapechange.net/-->
+  <element name="LP_Bereich" substitutionGroup=":XP_Bereich" type=":LP_BereichType">
+    <annotation>
+      <documentation>Ein Bereich eines Landschaftsplans.</documentation>
+    </annotation>
+  </element>
+  <complexType name="LP_BereichType">
+    <complexContent>
+      <extension base=":XP_BereichType">
+        <sequence>
+          <element name="gehoertZuPlan" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">:LP_Plan</targetElement>
+                <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">:bereich</reversePropertyName>
+              </appinfo>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="rasterAenderung"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element abstract="true" name="LP_Flaechenobjekt" substitutionGroup=":LP_Objekt" type=":LP_FlaechenobjektType">
+    <annotation>
+      <documentation>Basisklasse für alle Objekte eines Landschaftsplans mit flächenhaftem Raumbezug (eine Einzelfläche oder eine Menge von Flächen, die sich nicht überlappen dürfen).</documentation>
+    </annotation>
+  </element>
+  <complexType abstract="true" name="LP_FlaechenobjektType">
+    <complexContent>
+      <extension base=":LP_ObjektType">
+        <sequence>
+          <element name="position" type=":XP_FlaechengeometriePropertyType">
+            <annotation>
+              <documentation>Flächenhafter Raumbezug des Objektes (Eine Einzelfläche oder eine Menge von Flächen, die sich nicht überlappen dürfen). .</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element abstract="true" name="LP_Geometrieobjekt" substitutionGroup=":LP_Objekt" type=":LP_GeometrieobjektType">
+    <annotation>
+      <documentation>Basisklasse für alle Objekte eines Landschaftsplans mit variablem Raumbezug. Ein konkretes Objekt muss entweder punktförmigen, linienförmigen oder flächenhaften Raumbezug haben, gemischte Geometrie ist nicht zugelassen.</documentation>
+    </annotation>
+  </element>
+  <complexType abstract="true" name="LP_GeometrieobjektType">
+    <complexContent>
+      <extension base=":LP_ObjektType">
+        <sequence>
+          <element name="position" type=":XP_VariableGeometriePropertyType">
+            <annotation>
+              <documentation>Raumbezug - Entweder punktförmig, linienförmig oder flächenhaft, gemischte Geometrie ist nicht zugelassen.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element abstract="true" name="LP_Linienobjekt" substitutionGroup=":LP_Objekt" type=":LP_LinienobjektType">
+    <annotation>
+      <documentation>Basisklasse für alle Objekte eines Landschaftsplans mit linienförmigem Raumbezug (eine einzelne zusammenhängende Kurve, die aus Linienstücken und Kreisbögen zusammengesetzt sein kann, oder eine Menge derartiger Kurven).</documentation>
+    </annotation>
+  </element>
+  <complexType abstract="true" name="LP_LinienobjektType">
+    <complexContent>
+      <extension base=":LP_ObjektType">
+        <sequence>
+          <element name="position" type=":XP_LiniengeometriePropertyType">
+            <annotation>
+              <documentation>Linienförmiger Raumbezug (Einzelne zusammenhängende Kurve, die aus Linienstücken und Kreisbögen aufgebaut sit, oder eine Menge derartiger Kurven),</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element abstract="true" name="LP_Objekt" substitutionGroup=":XP_Objekt" type=":LP_ObjektType">
+    <annotation>
+      <documentation>Basisklasse für alle spezifischen Inhalte eines Landschaftsplans.</documentation>
+    </annotation>
+  </element>
+  <complexType abstract="true" name="LP_ObjektType">
+    <complexContent>
+      <extension base=":XP_ObjektType">
+        <sequence>
+          <element minOccurs="0" name="status" type=":LP_StatusType">
+            <annotation>
+              <documentation>Rechtliche Charakterisierung des Planinhalts.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="konkretisierung" type="string">
+            <annotation>
+              <documentation>Textliche Konkretisierung der rechtlichen Charakterisierung.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="LP_Plan" substitutionGroup=":XP_Plan" type=":LP_PlanType">
+    <annotation>
+      <documentation>Die Klasse modelliert ein Planwerk mit landschaftsplanerischen Festlegungen, Darstellungen bzw. Festsetzungen.</documentation>
+    </annotation>
+  </element>
+  <complexType name="LP_PlanType">
+    <complexContent>
+      <extension base=":XP_PlanType">
+        <sequence>
+          <element name="bundesland" type=":XP_BundeslaenderType">
+            <annotation>
+              <documentation>Zuständiges Bundesland</documentation>
+            </annotation>
+          </element>
+          <element name="rechtlicheAussenwirkung" type="boolean">
+            <annotation>
+              <documentation>Gibt an, ob der Plan eine rechtliche Außenwirkung hat.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" name="planArt">
+            <annotation>
+              <documentation>Typ des vorliegenden Landschaftsplans.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="sonstPlanArt">
+            <annotation>
+              <documentation>Spezifikation einer "Sonstigen Planart", wenn kein Plantyp aus der Enumeration LP_PlanArt zutreffend ist.</documentation>
+            </annotation>
+          </element>
+          <element name="planungstraegerGKZ" type="string">
+            <annotation>
+              <documentation>Gemeindekennziffer des Planungsträgers.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="planungstraeger" type="string">
+            <annotation>
+              <documentation>Bezeichnung des Planungsträgers.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="rechtsstand" type=":LP_RechtsstandType">
+            <annotation>
+              <documentation>Rechtsstand des Plans</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="aufstellungsbeschlussDatum" type="date">
+            <annotation>
+              <documentation>Datum des Aufstellungsbeschlusses</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="auslegungsDatum" type="date">
+            <annotation>
+              <documentation>Datum der öffentlichen Auslegung.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="tOeBbeteiligungsDatum" type="date">
+            <annotation>
+              <documentation>Datum der Beteiligung der Träger öffentlicher Belange.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="oeffentlichkeitsbeteiligungDatum" type="date">
+            <annotation>
+              <documentation>Datum der Öffentlichkeits-Beteiligung.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="aenderungenBisDatum" type="date">
+            <annotation>
+              <documentation>Datum, bis zum Planänderungen berücksichtigt wurden.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="entwurfsbeschlussDatum" type="date">
+            <annotation>
+              <documentation>Datum des Entwurfsbeschlusses.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="planbeschlussDatum" type="date">
+            <annotation>
+              <documentation>Datum des Planbeschlusses.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="inkrafttretenDatum" type="date">
+            <annotation>
+              <documentation>Datum des Inkrafttretens.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="sonstVerfahrensDatum" type="date">
+            <annotation>
+              <documentation>Sonstiges Verfahrens-Datum.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="bereich" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">:LP_Bereich</targetElement>
+                <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">:gehoertZuPlan</reversePropertyName>
+              </appinfo>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element abstract="true" name="LP_Punktobjekt" substitutionGroup=":LP_Objekt" type=":LP_PunktobjektType">
+    <annotation>
+      <documentation>Basisklasse für alle Objekte eines Landschaftsplans mit punktförmigem Raumbezug (Einzelpunkt oder Punktmenge).</documentation>
+    </annotation>
+  </element>
+  <complexType abstract="true" name="LP_PunktobjektType">
+    <complexContent>
+      <extension base=":LP_ObjektType">
+        <sequence>
+          <element name="position" type=":XP_PunktgeometriePropertyType">
+            <annotation>
+              <documentation>Punktförmiger Raumbezug (Einzelpunkt oder Punktmenge).</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <simpleType name="LP_RechtsstandType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="3000"/>
+      <enumeration value="4000"/>
+      <enumeration value="5000"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="LP_StatusType">
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>Festsetzung im Landschaftsplan</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2000">
+        <annotation>
+          <documentation>Geplante Festsetzung im Landschaftsplan</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="3000">
+        <annotation>
+          <documentation>Nachrichtliche Übernahmen im Landschaftsplan</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="4000">
+        <annotation>
+          <documentation>Darstellungen und Kennzeichnungen im Landschaftsplan.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="5000">
+        <annotation>
+          <documentation>Planinhalt aus dem Bereich Naturschutzrecht, der in einem BPlan festgesetzt wird.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+</schema>

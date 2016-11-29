@@ -1,53 +1,54 @@
-<?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-	<xs:annotation>
-		<xs:documentation>Umweltbezogene Festsetzungen</xs:documentation>
-	</xs:annotation>
-	<xs:include/>
-	<xs:include schemaLocation="BP__Basisobjekte.xsd"/>
-	<xs:element name="BP_Immissionsschutz" type="BP_Immissionsschutz"/>
-	<xs:complexType name="BP_Immissionsschutz">
-		<xs:annotation>
-			<xs:documentation>Festsetzung einer von der Bebauung freizuhaltenden Schutzfläche und ihre Nutzung, sowie einer Fläche für besondere Anlagen und Vorkehrungen zum Schutz vor schädlichen Umwelteinwirkungen und sonstigen Gefahren im Sinne des Bundes-Immissionsschutzgesetzes sowie die zum Schutz vor solchen Einwirkungen oder zur  Vermeidung oder Minderung solcher Einwirkungen zu treffenden baulichen und sonstigen technischen Vorkehrungen (§9, Abs. 1, Nr. 24 BauGB).</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="BP_Geometrieobjekt">
-				<xs:sequence>
-					<xs:element name="nutzung" type="CharacterString" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Festgesetzte Nutzung einer Schutzfläche</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="BP_ErneuerbareEnergieFlaeche" type="BP_ErneuerbareEnergieFlaeche"/>
-	<xs:complexType name="BP_ErneuerbareEnergieFlaeche">
-		<xs:annotation>
-			<xs:documentation>Festsetzung nach §9 Abs. 1 Nr. 23b: Gebiete in denen bei der Errichtung von Gebäuden bestimmte bauliche Maßnahmen für den Einsatz erneuerbarer Energien wie insbesondere Solarenergie getroffen werden müssen.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="BP_Ueberlagerungsobjekt">
-				<xs:sequence>
-					<xs:element name="technischeMaßnahme" type="CharacterString" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Beschreibung der baulichen oder sonstigen technischen Maßnahme.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="BP_LuftreinhalteFlaeche" type="BP_LuftreinhalteFlaeche"/>
-	<xs:complexType name="BP_LuftreinhalteFlaeche">
-		<xs:annotation>
-			<xs:documentation>Festsetzung von Gebieten, in denen zum Schutz vor schädlichen Umwelteinwirkungen im Sinne des Bundes-Immissionsschutzgesetzes bestimmte Luft verunreinigende Stoffe nicht oder nur beschränkt verwendet werden dürfen (§9, Abs. 1, Nr. 23a BauGB).</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="BP_Ueberlagerungsobjekt">
-				<xs:sequence/>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-</xs:schema>
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="" version="" xmlns:="">
+  <annotation>
+    <documentation>Umweltbezogene Festsetzungen</documentation>
+  </annotation>
+  <!--XML Schema document created by ShapeChange - http://shapechange.net/-->
+  <element name="BP_ErneuerbareEnergieFlaeche" substitutionGroup=":BP_Ueberlagerungsobjekt" type=":BP_ErneuerbareEnergieFlaecheType">
+    <annotation>
+      <documentation>Festsetzung nach §9 Abs. 1 Nr. 23b: Gebiete in denen bei der Errichtung von Gebäuden bestimmte bauliche Maßnahmen für den Einsatz erneuerbarer Energien wie insbesondere Solarenergie getroffen werden müssen.</documentation>
+    </annotation>
+  </element>
+  <complexType name="BP_ErneuerbareEnergieFlaecheType">
+    <complexContent>
+      <extension base=":BP_UeberlagerungsobjektType">
+        <sequence>
+          <element minOccurs="0" name="technischeMaßnahme" type="string">
+            <annotation>
+              <documentation>Beschreibung der baulichen oder sonstigen technischen Maßnahme.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="BP_Immissionsschutz" substitutionGroup=":BP_Geometrieobjekt" type=":BP_ImmissionsschutzType">
+    <annotation>
+      <documentation>Festsetzung einer von der Bebauung freizuhaltenden Schutzfläche und ihre Nutzung, sowie einer Fläche für besondere Anlagen und Vorkehrungen zum Schutz vor schädlichen Umwelteinwirkungen und sonstigen Gefahren im Sinne des Bundes-Immissionsschutzgesetzes sowie die zum Schutz vor solchen Einwirkungen oder zur  Vermeidung oder Minderung solcher Einwirkungen zu treffenden baulichen und sonstigen technischen Vorkehrungen (§9, Abs. 1, Nr. 24 BauGB).</documentation>
+    </annotation>
+  </element>
+  <complexType name="BP_ImmissionsschutzType">
+    <complexContent>
+      <extension base=":BP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="nutzung" type="string">
+            <annotation>
+              <documentation>Festgesetzte Nutzung einer Schutzfläche</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="BP_LuftreinhalteFlaeche" substitutionGroup=":BP_Ueberlagerungsobjekt" type=":BP_LuftreinhalteFlaecheType">
+    <annotation>
+      <documentation>Festsetzung von Gebieten, in denen zum Schutz vor schädlichen Umwelteinwirkungen im Sinne des Bundes-Immissionsschutzgesetzes bestimmte Luft verunreinigende Stoffe nicht oder nur beschränkt verwendet werden dürfen (§9, Abs. 1, Nr. 23a BauGB).</documentation>
+    </annotation>
+  </element>
+  <complexType name="BP_LuftreinhalteFlaecheType">
+    <complexContent>
+      <extension base=":BP_UeberlagerungsobjektType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+</schema>

@@ -140,18 +140,18 @@ $rechtscharaktere = array(
 $packages = array();
 $sql  = "
   SELECT
-    DISTINCT package
+    DISTINCT name
   FROM
-    " . SCHEMA_PREFIX . "xplan.elements
+    xplan_uml.packages
   ORDER BY
-    package
+    name
 ";
 $result = pg_query($conn, $sql);
 $packages = pg_fetch_all($result);
 array_unshift($packages, array('package' => 'Alle'));
 
 $objectids = array();
-$sql  = "SELECT DISTINCT objectid FROM  ". SCHEMA_PREFIX . "roplamo.plaene ";
+$sql  = "SELECT DISTINCT objectid FROM  ". SCHEMA_PREFIX . "roplamo.plaene";
 $sql .= " ORDER BY objectid";
 $result = pg_query($conn, $sql);
 $objectids = pg_fetch_all($result);
@@ -175,6 +175,9 @@ switch ($go) {
   case 'get_inspireenumeration':
     ($angemeldet) ? get_inspireenumeration($params) : show_login();
     break;
+  case 'get_inspirehilucs':
+    ($angemeldet) ? get_inspirehilucs($params) : show_login();
+    break;
   case 'load_xsd':
     ($angemeldet) ? load_xsd($_REQUEST['file'], $_REQUEST['truncate']) : show_login();
     break;
@@ -196,8 +199,8 @@ switch ($go) {
   case 'show_hilfe':
     ($angemeldet) ? show_hilfe() : show_login();
     break;
-  case 'show_ontologie':
-    ($angemeldet) ? show_ontologie() : show_login();
+  case 'show_thesaurus':
+    ($angemeldet) ? show_thesaurus() : show_login();
     break;
   case 'show_inspire':
     ($angemeldet) ? show_inspire() : show_login();
@@ -221,9 +224,9 @@ switch ($go) {
   case 'show_uml':
     ($angemeldet) ? show_uml() : show_login();
     break;
-  #case 'show_konvertierungform':
-    #($angemeldet) ? show_konvertierungform() : show_login();
-    #break;
+  case 'show_konverter':
+    ($angemeldet) ? show_konverter() : show_login();
+    break;
   default:
     ($angemeldet) ? show_home() : show_login();
     break;
@@ -303,6 +306,15 @@ function get_inspireenumeration($params) {
     $inspire->get($params),
     $params['format']
   );
+}
+
+function get_inspirehilucs($params) {
+  include('classes/inspirehilucs.php');
+  $inspire = new inspire;
+  output_data(
+    $inspire->get($params),
+    $params['format']
+    );
 }
 
 function get_planzeichen($params) {
@@ -432,8 +444,7 @@ function output_header($with_menu) {
         <li><a>XPlan</a>
           <ul>
             <li><a href="index.php?go=show_uml">XPlan-Modell</a></li>
-            <li><a href="index.php?go=show_elements">XPlan&nbsp;Elemente</a></li>
-            <li><a href="index.php?go=show_simple_types">Codelisten</a></li>
+            <li><a href="index.php?go=show_elements">Featurekatalog</a></li>
           </ul>
         </li>
         <li><a>ROPLAMO</a>
@@ -443,14 +454,10 @@ function output_header($with_menu) {
           </ul>
         </li>
       </ul>
-      <!--<a href="index.php?go=show_elements" class="menue">XPlan&nbsp;Elemente</a>-->
-      <!--<a href="index.php?go=show_simple_types" class="menue">Codelisten</a>  -->  
-      <!--<a href="index.php?go=show_plaene" class="menue">Pläne</a>-->
-      <!--<a href="index.php?go=show_planzeichen" class="menue">Planzeichen</a>-->
       <a href="index.php?go=show_inspire" class="menue">INSPIRE</a>
-      <a href="index.php?go=show_ontologie" class="menue">Ontologie</a>
+      <a href="index.php?go=show_thesaurus" class="menue">Thesaurus</a>
       <a href="index.php?go=show_comments" class="menue">Kommentare</a>
-      <!--<a href="index.php?go=show_konvertierungform" class="menue">Konverter</a>-->
+      <a href="index.php?go=show_konverter" class="menue">Konverter</a>
       <a href="index.php?go=show_hilfe" class="menue">Hilfe</a>
       </nav>
         
@@ -998,12 +1005,9 @@ function create_comments($params) {
   $comment->create($params);
 }
 
-#function show_konvertierungform() {
-  #output_header(true);
- #include('classes/konvertierungform.php');
- #output_footer();
-#}
-
+function show_konverter() {
+  header("Location: http://xplan-raumordnung.de/konverter/");
+}
 
 function show_login() {
   output_header(true); ?>
@@ -1048,34 +1052,65 @@ function show_home() {
 			<h2>Entwicklung und Implementierung eines Standards für den Datenaustausch in der Raumordnungsplanung</h2>
       <hr>
       </center>
-      <p>
-        <h3>Änderungen zum 06.05.2016</h3>
-        <li>Bereitstellung von XPlan-konformen Beispiel-Shapefiles zum <a href="/files/Beispiel_Shapefiles_XPlan-konform.zip">herunterladen</a> (Version 2016-04-25)</li>
-        <li>Bereitstellung des XPlan-Modells als <a href="/EA/">Enterprise Architect Feature-Katalog</a></li>
-        <li>Modelländerungen (Stand 05.06.2016):</li>
-        <ul>
-          <li>Umbenennung von RP_Gemeindefunktion zu RP_Funktionszuweisung (Grundlage: BBSR)</li>
-          <li>Aufnahme von SicherungEntwicklungWohnstaetten in RP_WohnenSiedlungTypen (Grundlage: RROP_Heidekreis)</li>
-          <li>Aufnahme von RaeumeMitGuenstigenEntwicklungsvoraussetzungen, RaeumeMitAusgeglichenenEntwicklungspotentialen und RaeumeMitBesonderenEntwicklungsaufgaben in RP_RaumkategorieTypen (Grundlage: Thüringen)</li>
-          <li>Änderung von typ[0..1] in RP_RadwegWanderweg auf typ[0..*](Grundlage RROP_Heidekreis)</li>
-          <li>Erweiterung einiger Modellelementdefinitionen</li>
-          <li>Erweiterung von tagged values/Attributs-Sequenzen zur Softwaretechnischen Nutzung des Modells.</li> 
-        </ul>
-        <li>Einarbeitung der Modelländerungen in die Ontologie, INSPIRE-Zuordnungen und Nationale Codeliste</li>
-        <li>Neue Version Nationale Codeliste (2016-05-03) mit Wasserschutzzonen (1_7_12, 1_7_13, 1_7_14) in Nationale Codeliste (nach RP_WasserschutzZonen) und Bereinigung kleinerer Fehler</li>
-        <li>Neue Version der Konformitätsbedingungen (Fehlerbehebung)</li>
-      </p>
+        <p>
+          <h3>Änderungen zum 22.11.2016</h3>
+          <li>Die Konvertierungssoftware ist nun über den Menüpunkt Konverter erreichbar.</li>
+          <li>Neue Version des Modells (13.10.2016)</li>
+          <li>Neue Versionen aller modellabhängigen Dateien (13.10.2016)</li>
+          <li>Neue Version der Nationalen Codeliste (13.10.2016)</li>
+          <li>Neue XPlan2INSPIRE.xsl (13.10.2016)</li>
+          <li>Bereitstellung einer <a href="/inspire/default_inspire_gfs.gfs">Standard-INSPIRE.gfs Datei</a> für das Einlesen von INSPIRE-GML in QGIS<br>[Der Name der GFS muss auf den Namen der INSPIRE-GML Datei abgeändert werden!]</li>
+        </p>
       <a href="javascript:ReverseDisplay('aeltereupdates')" class=hlink>
       Ältere Änderungen
       </a>
       <div id="aeltereupdates" style="display:none;">
         <p>
+        <h3>Änderungen zum 23.09.2016</h3>
+        <li>Bereitstellung der Konvertierungssoftware über den Menüpunkt Konverter</li>
+        <li>Modelländerungen (Stand 01.09.2016)</li>
+        <ul>
+          <li>Aufnahme der XPlan 5.0 Beta Struktur für Basiselemente</li>
+          <li>Erweiterungen und Entnahmen auf Basis von NRW und MV</li>
+          <li>Änderungen an allen assoziierten Modellelementen für die neueste Version</li>
+          </ul>
+        </p>
+        <p>
+          <h3>Änderungen zum 30.06.2016</h3>
+          <li>Update der Elemente- und Codelisten in einen allgemeinen Featurekatalog(Objektartenkatalog) auf Grundlage des jeweilig aktuellen Datenmodells</li>
+          <li>Bereitstellung eines textbasierten <a href="/model/XPlan_Featurecatalogue_ISO19110_2016-06-30.pdf">Featurekatalogs gemäß ISO 19110</a> und als <a href="/featureCatalogBuilder/fc.php">HTML-Katalog gemäß ISO 19110</a> in der Sektion XPlan-Modell</li>
+          <li>Bereitstellung einer klassenbasierten XPlan-Visualisierungsdatei als <a href="/files/xplanung.sld">SLD</a> (Version 2016-09-01)</li>
+          <li>Bereitstellung der Transformationsdatei von XPlanGML der Raumordnung nach INSPIRE-GML Planned Land Use 4.0 als <a href="inspire/XPlan2INSPIRE.xsl">XSLT</a></li>
+          <li>Modelländerungen (Stand 30.06.2016)</li>
+            <ul>
+              <li>Änderung von planArt für RP_Plan und rechtscharakter für RP_Objekt von [0..1] auf [1] (Grundlage: BBSR, AG E-Government, AG Modellierung)</li>
+              <li>Änderungen an Elementen (z.B. Fehlerbehebung von tagged values/Attributsequenzen) um die Konformität mit XPlanung 5.0 sicherzustellen</li>
+            </ul>
+        </p>
+        <p>
+          <h3>Änderungen zum 06.05.2016</h3>
+          <li>Bereitstellung von XPlan-konformen Beispiel-Shapefiles zum <a href="/files/Beispiel_Shapefiles_XPlan-konform.zip">herunterladen</a> (Version 2016-04-25)</li>
+          <li>Bereitstellung des XPlan-Modells als <a href="/EA/">Enterprise Architect Objektartenkatalog</a></li>
+          <li>Modelländerungen (Stand 01.09.2016):</li>
+          <ul>
+            <li>Umbenennung von RP_Gemeindefunktion zu RP_Funktionszuweisung (Grundlage: BBSR)</li>
+            <li>Aufnahme von SicherungEntwicklungWohnstaetten in RP_WohnenSiedlungTypen (Grundlage: RROP_Heidekreis)</li>
+            <li>Aufnahme von RaeumeMitGuenstigenEntwicklungsvoraussetzungen, RaeumeMitAusgeglichenenEntwicklungspotentialen und RaeumeMitBesonderenEntwicklungsaufgaben in RP_RaumkategorieTypen (Grundlage: Thüringen)</li>
+            <li>Änderung von typ[0..1] in RP_RadwegWanderweg auf typ[0..*](Grundlage RROP_Heidekreis)</li>
+            <li>Erweiterung einiger Modellelementdefinitionen</li>
+            <li>Erweiterung von tagged values/Attributs-Sequenzen zur Softwaretechnischen Nutzung des Modells.</li> 
+          </ul>
+          <li>Einarbeitung der Modelländerungen in den Thesaurus, INSPIRE-Zuordnungen und Nationale Codeliste</li>
+          <li>Neue Version Nationale Codeliste (2016-05-03) mit Wasserschutzzonen (1_7_12, 1_7_13, 1_7_14) in Nationale Codeliste (nach RP_WasserschutzZonen) und Bereinigung kleinerer Fehler</li>
+          <li>Neue Version der Konformitätsbedingungen (Fehlerbehebung)</li>
+        </p>
+        <p>
           <h3>Änderungen zum 15.01.2016</h3>
-          <li>Bereitstellung der <a href="http://xplan-raumordnung.de/iqvoc/de.html">Ontologie</a></li>
+          <li>Bereitstellung des <a href="http://xplan-raumordnung.de/iqvoc/de.html">Thesaurus</a></li>
           <li>Bereitstellung einer <a href="http://xplan-raumordnung.de/index.php?go=show_inspire">INSPIRE-Sektion</a> mit Mapping-Tables von XPlan nach INSPIRE</li>
           <li>Die HSRCL-Zuordnung aller Planzeichen des ROPLAMO kann auf Wunsch ausgewählt werden</li>
-          <li>Bereitstellung einer Liste aller Modelländerungen zum <a href="/model/2015_12_03_Aenderungsliste_XPlan_Raumordnungsmodell.doc">herunterladen</a></li>
-          <li>Bereitstellung der Raumordnungsplan Konformitätsbedingungen <a href="/model/2016_05_06_Konformitaetsbedingungen.doc">herunterladen</a></li>
+          <li>Bereitstellung einer Liste aller Modelländerungen zum <a href="/model/2016_06_30_Aenderungsliste_XPlan_Raumordnungsmodell.doc">herunterladen</a></li>
+          <li>Bereitstellung der Raumordnungsplan Konformitätsbedingungen <a href="/model/2016_10_13_Konformitaetsbedingungen.doc">herunterladen</a></li>
           <li>Zusammenfassung XPlan und ROPLAMO für XPlan Elemente und Codelisten sowie Pläne und Planzeichen im Menü mit Unterpunkten</li>
         </p>
         <p>
@@ -1108,9 +1143,9 @@ function show_home() {
 			</p>
 			<h3>XPlan</h3>
 			<p>
-				Die derzeitige Arbeitsversion des XPlan Raumordnungsmodells kann in der Sektion <a href=index.php?go=show_uml class=hlink>XPlan-Modell</a> des Menüpunktes XPlan als interaktives Unified Modelling Language Klassendiagramm eingesehen werden. Seine Grundlage bildet das Regionalplan Kernmodell von XPlan 4.1, welches auf Basis der Daten des Raumordnungsplanmonitors (ROPLAMO) des BBSR, der Erweiterungsmodelle Niedersachsen-Schleswig-Holstein-Mecklenburg-Vorpommern (NSM), Rheinland-Pfalz (RLP) sowie Nordrhein-Westfalen (NRW), Gespräche mit der AG E-Government, Gespräche mit den einzelnen Bundesländer und weiterer Quellen verbessert wurde. Gleichzeitig finden sich hier auch Downloads des Modells als Enterprise Architect-Datei, als XMI-Datei, die zum Modell gehörigen XSD's, eine Liste der Modelländerungen, eine PDF-Datei der relevanten UML-Graphiken und die erweiterten Konformitätsbedingungen des Modells.
+				Die derzeitige Version des XPlan Raumordnungsmodells kann in der Sektion <a href=index.php?go=show_uml class=hlink>XPlan-Modell</a> des Menüpunktes XPlan als interaktives Unified Modelling Language Klassendiagramm eingesehen werden. Seine Grundlage bildet das Regionalplan Kernmodell von XPlan 4.1, welches auf Basis der Daten des Raumordnungsplanmonitors (ROPLAMO) des BBSR, der Erweiterungsmodelle Niedersachsen-Schleswig-Holstein-Mecklenburg-Vorpommern (NSM), Rheinland-Pfalz (RLP) sowie Nordrhein-Westfalen (NRW), Gespräche mit der AG E-Government, Gespräche mit den einzelnen Bundesländer und weiterer Quellen verbessert wurde. Gleichzeitig finden sich hier auch Downloads des Modells als Enterprise Architect-Datei, als XMI-Datei, die zum Modell gehörigen XSD's, eine Liste der Modelländerungen, eine PDF-Datei der relevanten UML-Graphiken und die erweiterten Konformitätsbedingungen des Modells.
 			<p>
-				In den Sektionen <a href=index.php?go=show_elements class=hlink>Xplan Elemente</a> und <a href=index.php?go=show_simple_types class=hlink>Codelisten</a> des Menüpunktes XPlan werden einzelnde Featuretypen, Enumerations und ähnliche Elemente des Modells aufgelistet, definiert und miteinander in Verknüpfung gestellt. Gleichzeitig bestehen Links zu Einträgen im xplanungwiki, falls diese dort vorhanden sind.<br>
+				In der Sektion <a href=index.php?go=show_elements class=hlink>Featurekatalog</a> des Menüpunktes XPlan werden einzelnde Featuretypen, Enumerations und ähnliche Elemente des Modells aufgelistet, definiert und miteinander in Verknüpfung gestellt. Gleichzeitig bestehen Links zu Einträgen im xplanungwiki, falls diese dort vorhanden sind.<br>
 			</p>
 			<h3>ROPLAMO</h3>
 			<p>
@@ -1126,9 +1161,9 @@ function show_home() {
 			<p>
 				Die Sektion <a href=index.php?go=show_inspire class=hlink>INSPIRE</a> enthält Tabellen zum Mapping von XPlan nach INSPIRE, einen Übersetzungsvorschlag für die HSRCL-Codeliste sowie Dokumente zu Pflichtelementen und Attributierungen des Schemas.
 			</p>
-      <h3>Ontologie</h3>
+      <h3>Thesaurus</h3>
 			<p>
-				In der <a href=http://xplan-raumordnung.de/iqvoc/de.html class=hlink>Ontologie</a> werden verschiedene Konzepte und Definitionen festgehalten. Es finden sich Konzepte zum XPlan-Modell, zum INSPIRE-Modell, den dazugehörigen HILUCS und HSRCL-Listen sowie die durch das Projekt entworfene Nationale Codeliste Deutschlands für Raumordnungsdaten und weitere Listen zu Planzeichenkatalogen verschiedener Länder. Die Elemente der verschiedenen Listen referenzieren sich und auch externe Thesauri gegenseitig, so dass zum Beispiel Definitionsunterschiede verschiedener Planzeichen nachgeschlagen werden können.
+				Im Projekt-<a href=http://xplan-raumordnung.de/iqvoc/de.html class=hlink>Thesaurus</a> werden verschiedene Konzepte und Definitionen festgehalten. Es finden sich Konzepte zum XPlan-Modell, zum INSPIRE-Modell, den dazugehörigen HILUCS und HSRCL-Listen sowie die durch das Projekt entworfene Nationale Codeliste Deutschlands für Raumordnungsdaten und weitere Listen zu Planzeichenkatalogen verschiedener Länder. Die Elemente der verschiedenen Listen referenzieren sich und auch externe Thesauri gegenseitig, so dass zum Beispiel Definitionsunterschiede verschiedener Planzeichen nachgeschlagen werden können.
 			</p>
       <h3>Kommentare</h3>
 			<p>
@@ -1206,7 +1241,6 @@ function show_impressium() {
   output_footer();
 }
 
-
 function show_inspire() {
   global $conn, $params;
 
@@ -1232,15 +1266,10 @@ function show_inspire() {
       include ('views/helptable.php');
       ?>
       </h1></center>
-     
-     
       <h3>
       XPlan-FeatureTypes auf INSPIRE HSRCL als 
-      <a href="javascript:ReverseDisplay('xplanfeaturetypetoinspire')" class=hlink>
-      Tabelle
-      </a>
+      <a href="javascript:ReverseDisplay('xplanfeaturetypetoinspire')" class=hlink>Tabelle</a>
       </h3>
-      
       Diese Tabelle beinhaltet eine Zuordnung der in XPlan auftretenden FeatureTypes für Raumordnungsdaten auf die INSPIRE Hierarchical Supplementary Codelist (HSRCL) für den FeatureType SupplementaryRegulation. Diese Zuordnung stellt auch die Basis für die automatische Konvertierung von XPlan-konformen Elementen im Konverter. Falls gleichzeitig Enumerationszuweisungen in XPlan bestehen, überschreiben diese gegebenenfalls die FeatureType-Zuordnung.
       <div id="xplanfeaturetypetoinspire" style="display:none;">
       <p>
@@ -1294,26 +1323,26 @@ function show_inspire() {
       Diese Tabelle beinhaltet eine Zuordnung der in XPlan auftretenden Enumerationen für Raumordnungsdaten auf die INSPIRE Hierarchical Supplementary Codelist (HSRCL) für den FeatureType SupplementaryRegulation. Diese Zuordnung stellt auch die Basis für die automatische Konvertierung von XPlan-konformen Elementen im Konverter. Nicht beachtet sind hierbei Zuordnungen zu Enumerationen der Basisobjekte (RP_Basisobjekte), da diese nicht auf die HSRCL-Liste sondern auf weitere Attribute des FeatureTypes SupplementaryRegulation selbst gemappt werden.
       Enumerationszuweisungen haben dabei in der automatischen Konvertierung Hoheit über die FeatureType-Zuordnung. Falls ein FeatureType multiple Enumerationen enthält, bestimmt eine festgelegte Hierarchie, welche Elemente verwendet werden sollen. 
       <div id="xplanenumerationtoinspire" style="display:none;">
-      <p>
-        <div id="planzeichen-container">
-          <form method="Post" action="index.php">
-            <input type="hidden" name="go" value="show_inspire">
-          </form>
-          <table
-            class="table table-striped"
-            data-toggle="table"
-            data-url="index.php?go=get_inspireenumeration&<?php echo http_build_query($params); ?>"
-            data-height="800"
-            data-click-to-select="false"
-            data-search="true"
-            data-show-refresh="true"
-            data-show-toggle="true"
-            data-show-columns="false"
-            data-query-params="queryParams"
-            data-pagination="true"
-            data-page-size="50"
-            data-show-export="true"
-            data-export_types=['json', 'xml', 'csv', 'txt', 'sql', 'excel']
+        <p>
+          <div id="planzeichen-container">
+            <form method="Post" action="index.php">
+              <input type="hidden" name="go" value="show_inspire">
+            </form>
+            <table
+              class="table table-striped"
+              data-toggle="table"
+              data-url="index.php?go=get_inspireenumeration&<?php echo http_build_query($params); ?>"
+              data-height="800"
+              data-click-to-select="false"
+              data-search="true"
+              data-show-refresh="true"
+              data-show-toggle="true"
+              data-show-columns="false"
+              data-query-params="queryParams"
+              data-pagination="true"
+              data-page-size="50"
+              data-show-export="true"
+              data-export_types=['json', 'xml', 'csv', 'txt', 'sql', 'excel']
             >
             <thead>
               <tr>
@@ -1343,24 +1372,94 @@ function show_inspire() {
           </table>
         </div>
       </p>
+    </div>
+     <h3>
+      XPlan-FeatureTypes auf INSPIRE HILUCS als 
+      <a href="javascript:ReverseDisplay('xplaninspirehilucs')" class=hlink>Tabelle</a>
+      </h3>
+      Diese Tabelle beinhaltet eine Zuordnung der in XPlan auftretenden FeatureTypes für Raumordnungsdaten auf die INSPIRE Hierarchical Supplementary Codelist (HSRCL) für den FeatureType SupplementaryRegulation. Diese Zuordnung stellt auch die Basis für die automatische Konvertierung von XPlan-konformen Elementen im Konverter. Falls gleichzeitig Enumerationszuweisungen in XPlan bestehen, überschreiben diese gegebenenfalls die FeatureType-Zuordnung.
+      <div id="xplaninspirehilucs" style="display:none;">
+      <p>
+        <div id="planzeichen-container">
+          <form method="Post" action="index.php">
+            <input type="hidden" name="go" value="show_inspire">
+          </form>
+          <table
+            class="table table-striped"
+            data-toggle="table"
+            data-url="index.php?go=get_inspirehilucs&<?php echo http_build_query($params); ?>"
+            data-height="800"
+            data-click-to-select="false"
+            data-search="true"
+            data-show-refresh="true"
+            data-show-toggle="true"
+            data-show-columns="false"
+            data-query-params="queryParams"
+            data-pagination="true"
+            data-page-size="50"
+            data-show-export="true"
+            data-export_types=['json', 'xml', 'csv', 'txt', 'sql', 'excel']
+            >
+            <thead>
+              <tr>
+                <th
+                  data-flat="true"
+                  data-field="xplan_featuretype"
+                  data-align="left"
+                  data-sortable="true"
+                  data-switchable="false"
+                >XPlan-FeatureType</th>
+                <th
+                  data-flat="true"
+                  data-field="attribut"
+                  data-align="left"
+                  data-sortable="true"
+                  data-switchable="false"
+                >Attribut</th>
+                <th
+                  data-flat="true"
+                  data-field="attribut_wert"
+                  data-align="left"
+                  data-sortable="true"
+                  data-switchable="false"
+                >Attribut-Wert</th>
+                <th
+                  data-flat="true"
+                  data-field="hilucs_wert"
+                  data-align="left"
+                  data-sortable="true"
+                  data-switchable="false"
+                >HILUCS-Wert</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </p>
       </div>
-     <p>
-     <h3>INSPIRE HSRCL Übersetzung zum <a href="inspire/hsrcl_uebersetzung.xlsx">herunterladen</a></h3>
-     Dieser im Laufe des Projekts herausgearbeitete Übersetzungsvorschlag wird den Ländern und der AG E-Government zur Besichtigung und zur Verbesserung bereitgestellt werden.
-     </p>
-     <p>
-     <h3>INSPIRE HSRCL Nationale Codeliste zum <a href="inspire/2016-05-03_NationaleCodeliste.ods">herunterladen</a> (Version 2016-05-03)</h3>
-     Die bereitgestellte INSPIRE HSRCL Nationale Codeliste bietet einen Vorschlag zur Abbildung der Nationalen Raumordnungselemente in XPlan. Diese Liste lehnt sich dabei streng an XPlan und soll bei einer Konvertierung automatisch für das Attribut SpecificSupplementaryRegulation des FeatureTypes SupplementaryRegulation befüllt werden. Hiermit können INSPIRE-Daten theoretisch auch teilweise nach XPlan rückkonvertiert werden. Davon ausgenommen sind Elemente wie etwa der Rechtscharakter eines Planzeichens, welche gesondert von den HSRCL-Listen im FeatureType SupplementaryRegulation festgehalten werden.
-     </p>
+    
+    <p>
+      <h3>INSPIRE HSRCL Übersetzung zum <a href="inspire/hsrcl_uebersetzung.xlsx">herunterladen</a></h3>
+      Dieser im Laufe des Projekts herausgearbeitete Übersetzungsvorschlag wird den Ländern und der AG E-Government zur Besichtigung und zur Verbesserung bereitgestellt werden.
+    </p>
+    <p>
+      <h3>INSPIRE HSRCL Nationale Codeliste zum <a href="inspire/2016-10-13_NationaleCodeliste.ods">herunterladen</a> (Version 2016-10-13)</h3>
+      Die bereitgestellte INSPIRE HSRCL Nationale Codeliste bietet einen Vorschlag zur Abbildung der Nationalen Raumordnungselemente in XPlan. Diese Liste lehnt sich dabei streng an XPlan und soll bei einer Konvertierung automatisch für das Attribut SpecificSupplementaryRegulation des FeatureTypes SupplementaryRegulation befüllt werden. Hiermit können INSPIRE-Daten theoretisch auch teilweise nach XPlan rückkonvertiert werden. Davon ausgenommen sind Elemente wie etwa der Rechtscharakter eines Planzeichens, welche gesondert von den HSRCL-Listen im FeatureType SupplementaryRegulation festgehalten werden.
+    </p>
       <h3>Dokument zu INSPIRE und XPlan Attributen, Pflichtelementen und Definitionen zum <a href="inspire/2015-10-13_INSPIRE_Pflichtelemente und XPlan-Formulare.xls">herunterladen</a></h3>
       Das Dokument beinhaltet Daten zu Attributen, Pflichtelementen und Definitionen des INSPIRE Planned Land Use Schemas. Gleichzeitig beschreibt es deren Äquivalenz zu XPlan-Attributen, was für das Mapping von XPlan nach INSPIRE von Bedeutung ist. Vorschläge zu Pflichtattributierungen von XPlan sind für die Länder zur Information bereitgestellt worden, damit diese diskutiert werden können.
+    </p>
+    </p>
+      <h3>XSLT-Datei zur Transformation von XPlanGML-Daten der Raumordnung nach INSPIRE Planned Land Use 4.0 zum <a href="inspire/XPlan2INSPIRE.xsl">herunterladen</a> (Version 2016-10-13)</h3>
+      Dieses Dokument erlaubt die vollautomatische Transformation von Raumordnungs-XPlanGML-Dateien nach INSPIRE-GML Planned Land Use 4.0. Hierfür kann ein beliebiger XSLT-Prozessor (z.B. <a href="http://www.shell-tools.net/index.php?op=xslt">shell-tools</a>) verwendet werden. Die Validierung der Daten kann durch einen beliebigen XML-Schema-Validator (z.B. <a href="http://www.validome.org/xml/validate/">validome</a>) durchgeführt werden
      </p>
+     <p>
+     <h3>Standard INSPIRE-GFS Datei zum <a href="inspire/default_inspire_gfs.gfs">herunterladen</a>(Version 2016-11-25)</h3>
+     Die Verwendung der INSPIRE-GFS Datei erlaubt die Darstellung aller INSPIRE-Attribute beim Einlesen von INSPIRE-GML Dateien in QGIS. Hierfür muss die GFS-Datei im selben Ordner der INSPIRE-GML gespeichert sein und auf den Namen der INSPIRE-GML Datei (mit Beibehaltung der Endung .gfs) umbenannt werden.
      </div>
   </div>
   <?php
   output_footer();
 }     
-
 
 function show_hilfe() {
 	output_header(true); ?>
@@ -1403,7 +1502,7 @@ function show_hilfe() {
   			<br>
   			4. Die nun angezeigten Planzeichen enthalten alle im ROPLAMO erfassten Planzeichen dieses Plans, welche, soweit erfasst, den  Namen, die Gruppe, Untergruppe, Anmerkungen, den Rechtlicher Status, die Räumliche Konkretheit und den Gebietstyp des Plans enthalten. So enthält der  Plan  TH-LEPL-072014 zum Beispiel das Planzeichen Autobahn oder das Planzeichen Industriegroßfläche. Überprüfen Sie anhand Ihrer Pläne für jeden Plan ob diese Daten vollständig aufgenommen sind.
   			<br>
-  			5. Rechts in der Tabelle erkennen Sie gleichfalls die Spalten "Vorschlag XPlan Paket Entsprechung", "Vorschlag XPlan Featuretype Entsprechung" und "Vorschlag XPlan Enumerations Entsprechung". Diese Spalten beinhalten die von GDI-Service Rostock vorgenommenen XPlan-Kategorisierungsvorschläge. So ist zum Beispiel das Planzeichen Autobahn im Plan TH-LEPL-072014 in das Paket RP_Infrastruktur, den Featuretype RP_Strassenverkehrr und die Enumeration Autobahn = 1002 in RP_StrassenverkehrTypen kategorisiert. Nehmen Sie zum Überprüfen dieser Kategorisierung das UML-Modell Infrastruktur, die Dokumentation der Elemente und Codelisten oder die <a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/Objektartenkatalog_XPlanGML%204.1.html" class=hlink>XPlan Dokumentation des Xplanung-Wikis</a> zu Hilfe.Falls Sie mit der vorgeschlagenen Kategorisierung nicht einverstanden sind, eine bessere Kategorie finden,  Kommentare oder Fragen haben, tragen Sie diese bitte im dazugehörigen Kommentarfeld ein. Dieses öffnen Sie durch Klicken auf die jeweilige ID des zu kommentierenden Planzeichens. Featuretypen und Enumerations können gegebenenfalls ergänzt werden, um eine komplette Abdeckung der Planzeichen zu gewährleisten. Hierzu ist noch anzumerken, dass Planzeichen multiplen Enumerations zugeordnet werden können. So könnte eine Autobahn gleichfalls vierstreifig = 1001 in RP_BesondereStrassenverkehrTypen sein. Hierbei wird bei der vorgenommenen Klassifizierung vorerst nur eine Klassifikation angezeigt.
+  			5. Rechts in der Tabelle erkennen Sie gleichfalls die Spalten "Vorschlag XPlan Paket Entsprechung", "Vorschlag XPlan Featuretype Entsprechung" und "Vorschlag XPlan Enumerations Entsprechung". Diese Spalten beinhalten die von GDI-Service Rostock vorgenommenen XPlan-Kategorisierungsvorschläge. So ist zum Beispiel das Planzeichen Autobahn im Plan TH-LEPL-072014 in das Paket RP_Infrastruktur, den Featuretype RP_Strassenverkehrr und die Enumeration Autobahn = 1002 in RP_StrassenverkehrTypen kategorisiert. Nehmen Sie zum Überprüfen dieser Kategorisierung das UML-Modell Infrastruktur, die Dokumentation der Elemente und Codelisten oder die <a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Featurekatalog/Objektartenkatalog_XPlanGML%204.1.html" class=hlink>XPlan Dokumentation des Xplanung-Wikis</a> zu Hilfe.Falls Sie mit der vorgeschlagenen Kategorisierung nicht einverstanden sind, eine bessere Kategorie finden,  Kommentare oder Fragen haben, tragen Sie diese bitte im dazugehörigen Kommentarfeld ein. Dieses öffnen Sie durch Klicken auf die jeweilige ID des zu kommentierenden Planzeichens. Featuretypen und Enumerations können gegebenenfalls ergänzt werden, um eine komplette Abdeckung der Planzeichen zu gewährleisten. Hierzu ist noch anzumerken, dass Planzeichen multiplen Enumerations zugeordnet werden können. So könnte eine Autobahn gleichfalls vierstreifig = 1001 in RP_BesondereStrassenverkehrTypen sein. Hierbei wird bei der vorgenommenen Klassifizierung vorerst nur eine Klassifikation angezeigt.
   			<br><br>
   			Die vorgenommene Kategorisierung ist hierbei konzeptionell und benötigt keine Veränderung Ihrer Daten, erlaubt Ihnen jedoch den Vergleich und Austausch Ihrer Daten mit anderen Regionen, Ländern und, durch die geplante INSPIRE Konformität, innerhalb der Europäischen Union. Falls Ihre Daten jedoch nicht alle von XPlanung und INSPIRE erforderlichen Informationen enthalten, ergibt sich ein weiterer optionaler Aufwand, diese Daten vor der Konvertierung zu ergänzen und anzupassen.
   		</p>
@@ -1440,7 +1539,7 @@ function show_hilfe() {
           <br>
           <a href="http://www.gdi-service.de/" class=hlink>GDI-Service Rostock</a>
           <br>
-        <h3>X-Plan</h3>
+        <h3>XPlanung</h3>
           <a href="http://www.iai.fzk.de/www-extern/index.php?id=679" class=hlink>XPlanung Homepage des KIT</a>
           <br>
           <a href="http://www.xplanungwiki.de/" class=hlink>XPlanung Wiki</a>
@@ -1465,7 +1564,7 @@ function show_hilfe() {
   output_footer();
 }
 
-function show_ontologie() {
+function show_thesaurus() {
   header ("Location: http://xplan-raumordnung.de/iqvoc/de.html");
 }
 
@@ -1485,39 +1584,38 @@ function show_uml() {
     else { document.getElementById(d).style.display = "none"; }
     }
     </script>
-  
+
     <map name ="RP_Basisobjekte1">
-      <area shape="rect" coords="19,69,342,427" href="index.php?go=show_elements&package=Alle#xplan:XP_Plan" alt="XP_Plan" title="XP_Plan: Abstrakte Oberklasse für alle Klassen von raumbezogenen Plänen.">
-      <area shape="rect" coords="49,479,293,579" href="index.php?go=show_elements&package=Alle#xplan:XP_Textabschnitt" alt="XP_Textabschnitt" title="XP_Textabschnitt: Ein Abschnitt der textlich formulierten Inhalte des Plans.">
-      <area shape="rect" coords="46,612,304,736" href="index.php?go=show_elements&package=Alle#xplan:XP_Bereich" alt="XP_Bereich" title="XP_Bereich: Abstrakte Oberklasse für die Modellierung von Planbereichen. Ein Planbereich fasst die Inhalte eines Plans nach bestimmten Kriterien zusammen.">
-      <area shape="rect" coords="412,63,665,382" href="index.php?go=show_elements#xplan:RP_Plan" alt="RP_Plan" title="RP_Plan: Die Klasse modelliert einen Raumordnungsplan.">
-      <area shape="rect" coords="332,481,538,541" href="index.php?go=show_elements#xplan:RP_Textabschnitt" alt="RP_Textabschnitt" title="RP_Textabschnitt: Texlich formulierter Inhalt eines Raumordnungsplans, der einen anderen Rechtscharakter als das zugrunde liegende Fachobjekt hat (Attribut rechtscharakter des Fachobjektes), oder dem Plan als Ganzes zugeordnet ist.">
-      <area shape="rect" coords="455,586,686,698" href="index.php?go=show_elements#xplan:RP_Bereich" alt="RP_Bereich" title="RP_Bereich: Die Klasse modelliert einen Bereich eines Raumordnungsplans.">
-      <area shape="rect" coords="461,721,700,884" href="index.php?go=show_simple_types#xplan:RP_Art" alt="RP_Art" title="RP_Art: Art des Raumordnungsplans.">
-      <area shape="rect" coords="76,962,225,998" href="index.php?go=show_simple_types#xplan:RP_Status" alt="RP_Status" title="RP_Status: Status des Plans, definiert über eine CodeList.">
-      <area shape="rect" coords="71,1027,204,1067" href="index.php?go=show_simple_types#xplan:RP_SonstPlanArt" alt="SonstPlanArt" title="RP_SonstPlanArt: Spezifikation einer weiteren Planart (CodeList) bei planArt == 9999.">
-      <area shape="rect" coords="285,775,,416,1073" href="index.php?go=show_simple_types#xplan:XP_Bundeslaender" alt="XP_Bundeslaender" title="XP_Bundeslaender: Zuständige Bundesländer.">
-      <area shape="rect" coords="602,400,779,508" href="index.php?go=show_simple_types#xplan:RP_Verfahren" alt="RP_Verfahren" title="RP_Verfahren: Typ des Planverfahrens.">
-      <area shape="rect" coords="58,754,267,942" href="index.php?go=show_simple_types#xplan:RP_Rechtsstand" alt="RP_Rechtsstand" title="RP_Rechtsstand: Rechtsstand des Plans.">
-      <area shape="rect" coords="467,908,717,1071" href="index.php?go=show_simple_types#xplan:RP_Rechtscharakter" alt="RP_Rechtscharakter" title="RP_Rechtscharakter: Rechtscharakter des textlich formulierten Planinhalts.">
+      <area shape="rect" coords="29,56,338,402" href="index.php?go=show_elements&package=Alle#xplan:XP_Plan" alt="XP_Plan" title="XP_Plan: Abstrakte Oberklasse für alle Klassen von raumbezogenen Plänen.">
+      <area shape="rect" coords="65,448,305,548" href="index.php?go=show_elements&package=Alle#xplan:XP_Textabschnitt" alt="XP_Textabschnitt" title="XP_Textabschnitt: Ein Abschnitt der textlich formulierten Inhalte des Plans.">
+      <area shape="rect" coords="52,580,302,704" href="index.php?go=show_elements&package=Alle#xplan:XP_Bereich" alt="XP_Bereich" title="XP_Bereich: Abstrakte Oberklasse für die Modellierung von Planbereichen. Ein Planbereich fasst die Inhalte eines Plans nach bestimmten Kriterien zusammen.">
+      <area shape="rect" coords="411,66,665,385" href="index.php?go=show_elements#xplan:RP_Plan" alt="RP_Plan" title="RP_Plan: Die Klasse modelliert einen Raumordnungsplan.">
+      <area shape="rect" coords="346,468,551,529" href="index.php?go=show_elements#xplan:RP_Textabschnitt" alt="RP_Textabschnitt" title="RP_Textabschnitt: Texlich formulierter Inhalt eines Raumordnungsplans, der einen anderen Rechtscharakter als das zugrunde liegende Fachobjekt hat (Attribut rechtscharakter des Fachobjektes), oder dem Plan als Ganzes zugeordnet ist.">
+      <area shape="rect" coords="454,587,688,698" href="index.php?go=show_elements#xplan:RP_Bereich" alt="RP_Bereich" title="RP_Bereich: Die Klasse modelliert einen Bereich eines Raumordnungsplans.">
+      <area shape="rect" coords="461,719,700,883" href="index.php?go=show_simple_types#xplan:RP_Art" alt="RP_Art" title="RP_Art: Art des Raumordnungsplans.">
+      <area shape="rect" coords="76,962,225,997" href="index.php?go=show_elements#xplan:RP_Status" alt="RP_Status" title="RP_Status: Status des Plans, definiert über eine CodeList.">
+      <area shape="rect" coords="71,1028,203,1067" href="index.php?go=show_elements#xplan:RP_SonstPlanArt" alt="SonstPlanArt" title="RP_SonstPlanArt: Spezifikation einer weiteren Planart (CodeList) bei planArt == 9999.">
+      <area shape="rect" coords="304,765,410,1049" href="index.php?go=show_elements#xplan:XP_Bundeslaender" alt="XP_Bundeslaender" title="XP_Bundeslaender: Zuständige Bundesländer.">
+      <area shape="rect" coords="602,398,780,508" href="index.php?go=show_elements#xplan:RP_Verfahren" alt="RP_Verfahren" title="RP_Verfahren: Typ des Planverfahrens.">
+      <area shape="rect" coords="58,753,268,943" href="index.php?go=show_elements#xplan:RP_Rechtsstand" alt="RP_Rechtsstand" title="RP_Rechtsstand: Rechtsstand des Plans.">
+      <area shape="rect" coords="467,907,716,1071" href="index.php?go=show_elements#xplan:RP_Rechtscharakter" alt="RP_Rechtscharakter" title="RP_Rechtscharakter: Rechtscharakter des textlich formulierten Planinhalts.">
     </map>
     
     <map name="RP_Basisobjekte2">
-      <area shape="rect" coords="210,323,512,538" href="index.php?go=show_elements&package=Alle#xplan:XP_Objekt" alt="XP_Objekt" title="XP_Objekt: Abstrakte Oberklasse für alle XPlanGML-Fachobjekte. Die Attribute dieser Klasse werden über den Vererbungs-Mechanismus an alle Fachobjekte weitergegeben.">
-      <area shape="rect" coords="5,170,222,283" href="index.php?go=show_elements&package=Alle#xplan:XP_AbstraktesPraesentationsobjekt" alt="XP_AbstraktesPraesentationsobjekt" title="XP_AbstraktesPraesentationsobjekt: Abstrakte Basisklasse für alle Präsentationsobjekte. Die Attribute entsprechen dem ALKIS-Objekt AP_GPO, wobei das Attribut signaturnummer in stylesheetId umbenannt wurde. Bei freien Präsentationsobjekten ist die Relation dientZurDarstellungVon unbelegt, bei gebundenen Präsentationsobjekten zeigt die Relation auf ein von XP_Objekt abgeleitetes Fachobjekt. 
+      <area shape="rect" coords="478,238,770,453" href="index.php?go=show_elements&package=Alle#xplan:XP_Objekt" alt="XP_Objekt" title="XP_Objekt: Abstrakte Oberklasse für alle XPlanGML-Fachobjekte. Die Attribute dieser Klasse werden über den Vererbungs-Mechanismus an alle Fachobjekte weitergegeben.">
+      <area shape="rect" coords="31,288,241,400" href="index.php?go=show_elements&package=Alle#xplan:XP_AbstraktesPraesentationsobjekt" alt="XP_AbstraktesPraesentationsobjekt" title="XP_AbstraktesPraesentationsobjekt: Abstrakte Basisklasse für alle Präsentationsobjekte. Die Attribute entsprechen dem ALKIS-Objekt AP_GPO, wobei das Attribut signaturnummer in stylesheetId umbenannt wurde. Bei freien Präsentationsobjekten ist die Relation dientZurDarstellungVon unbelegt, bei gebundenen Präsentationsobjekten zeigt die Relation auf ein von XP_Objekt abgeleitetes Fachobjekt. 
           Freie Präsentationsobjekte dürfen ausschließlich zur graphischen Annotation eines Plans verwendet werden 
           Gebundene Präsentationsobjekte mit Raumbezug dienen ausschließlich dazu, Attributwerte des verbundenen Fachobjekts im Plan darzustellen. Die Namen der darzustellenden Fachobjekt-Attribute werden über das Attribut art spezifiziert.">
-      <area shape="rect" coords="537,446,765,558" href="index.php?go=show_elements#xplan:RP_Objekt" alt="RP_Objekt" title="RP_Objekt: Basisklasse für alle spezifischen Festlegungen eines Raumordnungsplans.">
-      <area shape="rect" coords="536,656,769,729" href="index.php?go=show_elements#xplan:RP_Geometrieobjekt" alt="RP_Geometrieobjekt" title="RP_Geometrieobjekt: Basisklasse für alle Objekte eines Raumordnungsplans mit variablem Raumbezug. Ein konkretes Objekt muss entweder punktförmigen, linienförmigen oder flächenhaften Raumbezug haben, gemischte Geometrie ist nicht zugelassen.">    
-      <area shape="rect" coords="10,599,233,687" href="index.php?go=show_elements#xplan:RP_Praesentationsobjekt" alt="RP_Praesentationsobjekt" title="RP_Praesentationsobjekt: Objekt enthält Daten zur Legende im Ursprungsplan.">  
-      <area shape="rect" coords="258,601,502,700" href="index.php?go=show_elements&package=Alle#xplan:XP_Textabschnitt" alt="XP_Textabschnitt" title="XP_Textabschnitt: Ein Abschnitt der textlich formulierten Inhalte des Plans.">
-      <area shape="rect" coords="249,33,508,160" href="index.php?go=show_elements&package=Alle#xplan:XP_Bereich" alt="XP_Bereich" title="XP_Bereich: Abstrakte Oberklasse für die Modellierung von Planbereichen. Ein Planbereich fasst die Inhalte eines Plans nach bestimmten Kriterien zusammen.">
-      <area shape="rect" coords="274,760,484,821" href="index.php?go=show_elements#xplan:RP_Textabschnitt" alt="RP_Textabschnitt" title="RP_Textabschnitt: Texlich formulierter Inhalt eines Raumordnungsplans, der einen anderen Rechtscharakter als das zugrunde liegende Fachobjekt hat (Attribut rechtscharakter des Fachobjektes), oder dem Plan als Ganzes zugeordnet ist.">
-      <area shape="rect" coords="542,45,767,151" href="index.php?go=show_elements#xplan:RP_Bereich" alt="RP_Bereich" title="RP_Bereich: Die Klasse modelliert einen Bereich eines Raumordnungsplans.">
-      <area shape="rect" coords="43,894,245,1110" href="index.php?go=show_simple_types#xplan:RP_GebietsTyp" alt="RP_GebietsTyp" title="RP_GebietsTyp: Klassifikation des Gebietes nach Bundesraumordnungsgesetz.">
-      <area shape="rect" coords="558,942,738,1106" href="index.php?go=show_simple_types#xplan:RP_Bedeutsamkeit" alt="RP_Bedeutsamkeit" title ="RP_Bedeutsamkeit: Klassifikation der Bedeutsamkeit eines Objekts.">
-      <area shape="rect" coords="307,862,438,900" href="index.php?go=show_simple_types#xplan:RP_FeatureTypeListe" alt="RP_FeatureTypeListe" title ="RP_FeatureTypeListe: -.">
-      <area shape="rect" coords="267,945,514,1109" href="index.php?go=show_simple_types#xplan:RP_Rechtscharakter" alt="RP_Rechtscharakter" title="RP_Rechtscharakter: Rechtscharakter des textlich formulierten Planinhalts.">
+      <area shape="rect" coords="508,498,738,622" href="index.php?go=show_elements#xplan:RP_Objekt" alt="RP_Objekt" title="RP_Objekt: Basisklasse für alle spezifischen Festlegungen eines Raumordnungsplans.">
+      <area shape="rect" coords="508,661,740,733" href="index.php?go=show_elements#xplan:RP_Geometrieobjekt" alt="RP_Geometrieobjekt" title="RP_Geometrieobjekt: Basisklasse für alle Objekte eines Raumordnungsplans mit variablem Raumbezug. Ein konkretes Objekt muss entweder punktförmigen, linienförmigen oder flächenhaften Raumbezug haben, gemischte Geometrie ist nicht zugelassen.">    
+      <area shape="rect" coords="53,473,276,553" href="index.php?go=show_elements#xplan:RP_Legendenobjekt" alt="RPLegendenobjekt" title="RP_Legendenobjekt: Objekt enthält Daten zur Legende und Darstellung im Ursprungsplan.">  
+      <area shape="rect" coords="204,597,443,696" href="index.php?go=show_elements&package=Alle#xplan:XP_Textabschnitt" alt="XP_Textabschnitt" title="XP_Textabschnitt: Ein Abschnitt der textlich formulierten Inhalte des Plans.">
+      <area shape="rect" coords="58,34,308,159" href="index.php?go=show_elements&package=Alle#xplan:XP_Bereich" alt="XP_Bereich" title="XP_Bereich: Abstrakte Oberklasse für die Modellierung von Planbereichen. Ein Planbereich fasst die Inhalte eines Plans nach bestimmten Kriterien zusammen.">
+      <area shape="rect" coords="219,734,429,796" href="index.php?go=show_elements#xplan:RP_Textabschnitt" alt="RP_Textabschnitt" title="RP_Textabschnitt: Texlich formulierter Inhalt eines Raumordnungsplans, der einen anderen Rechtscharakter als das zugrunde liegende Fachobjekt hat (Attribut rechtscharakter des Fachobjektes), oder dem Plan als Ganzes zugeordnet ist.">
+      <area shape="rect" coords="482,32,708,160" href="index.php?go=show_elements#xplan:RP_Bereich" alt="RP_Bereich" title="RP_Bereich: Die Klasse modelliert einen Bereich eines Raumordnungsplans.">
+      <area shape="rect" coords="42,894,246,1112" href="index.php?go=show_elements#xplan:RP_GebietsTyp" alt="RP_GebietsTyp" title="RP_GebietsTyp: Klassifikation des Gebietes nach Bundesraumordnungsgesetz.">
+      <area shape="rect" coords="557,942,737,1105" href="index.php?go=show_elements#xplan:RP_Bedeutsamkeit" alt="RP_Bedeutsamkeit" title ="RP_Bedeutsamkeit: Klassifikation der Bedeutsamkeit eines Objekts.">
+      <area shape="rect" coords="267,946,513,1110" href="index.php?go=show_elements#xplan:RP_Rechtscharakter" alt="RP_Rechtscharakter" title="RP_Rechtscharakter: Rechtscharakter des textlich formulierten Planinhalts.">
     </map>  
 
     <map name="RP_Freiraumstruktur1">
@@ -1531,14 +1629,15 @@ function show_uml() {
       <area shape="rect" coords="401,309,598,383" href="index.php?go=show_elements#xplan:RP_Wasserschutz" alt="RP_Wasserschutz" title="RP_Wasserschutz: Grund- und Oberflächenwasserschutz">
       <area shape="rect" coords="390,396,604,455" href="index.php?go=show_elements#xplan:RP_Gewaesser" alt="RP_Gewaesser" title="RP_Gewaesser: Gewässer">
       <area shape="rect" coords="396,473,555,532" href="index.php?go=show_elements#xplan:RP_Klimaschutz" alt="RP_Klimaschutz" title="RP_Klimaschutz: (Siedlungs-) Klimaschutz">
-      <area shape="rect" coords="232,639,492,737" href="index.php?go=show_simple_types#xplan:RP_BodenschutzTypen" alt="RP_BodenschutzTypen" title="BodenschutzTypen: Typ des Bodenschutzes">
-      <area shape="rect" coords="325,821,483,908" href="index.php?go=show_simple_types#xplan:RP_ZaesurTypen" alt="RP_ZaesurTypen" title="RP_ZaesurTypen: Typ der Zäsur">
-      <area shape="rect" coords="322,1023,482,1108" href="index.php?go=show_simple_types#xplan:RP_LuftTypen" alt="RP_LuftTypen" title="RP_LuftTypen: Typ des Klimas">
-      <area shape="rect" coords="500,577,777,806" href="index.php?go=show_simple_types#xplan:XP_KlassifizSchutzgebietNaturschutzrecht" alt="XP_KlassifizSchutzgebietNaturschutzrecht" title="XP_KlassifizSchutzgebietNaturschutzrecht: Klassifikation des Naturschutzgebietes.">
-      <area shape="rect" coords="321,924,459,1009" href="index.php?go=show_simple_types#xplan:RP_WasserschutzZone" alt="RP_WasserschutzZone" title="RP_WasserschutzZone: Wasserschutzzone">  
-      <area shape="rect" coords="28,555,220,744" href="index.php?go=show_simple_types#xplan:RP_WasserschutzTypen" alt="RP_WasserschutzTypen" title="RP_WasserschutzTypen: Typ des Wasserschutzes">
-      <area shape="rect" coords="505,832,776,1112" href="index.php?go=show_simple_types#xplan:RP_HochwasserschutzTypen" alt="RP_HochwasserschutzTypen" title="RP_HochwasserschutzTypen: Typ des vorbeugenden Hochwasserschutzes">
-      <area shape="rect" coords="13,756,305,1114" href="index.php?go=show_simple_types#xplan:RP_NaturLandschaftTypen" alt="RP_NaturLandschaftTypen" title="RP_NaturLandschaftTypen: Typ des Naturschutzes oder Landschaftsschutzes">
+      <area shape="rect" coords="256,574,517,672" href="index.php?go=show_elements#xplan:RP_BodenschutzTypen" alt="RP_BodenschutzTypen" title="BodenschutzTypen: Typ des Bodenschutzes">
+      <area shape="rect" coords="325,821,483,908" href="index.php?go=show_elements#xplan:RP_ZaesurTypen" alt="RP_ZaesurTypen" title="RP_ZaesurTypen: Typ der Zäsur">
+      <area shape="rect" coords="322,1023,482,1108" href="index.php?go=show_elements#xplan:RP_LuftTypen" alt="RP_LuftTypen" title="RP_LuftTypen: Typ des Klimas">
+      <area shape="rect" coords="527,577,771,806" href="index.php?go=show_elements#xplan:XP_KlassifizSchutzgebietNaturschutzrecht" alt="XP_KlassifizSchutzgebietNaturschutzrecht" title="XP_KlassifizSchutzgebietNaturschutzrecht: Klassifikation des Naturschutzgebietes.">
+      <area shape="rect" coords="321,924,459,1009" href="index.php?go=show_elements#xplan:RP_WasserschutzZone" alt="RP_WasserschutzZone" title="RP_WasserschutzZone: Wasserschutzzone">  
+      <area shape="rect" coords="17,565,230,743" href="index.php?go=show_elements#xplan:RP_WasserschutzTypen" alt="RP_WasserschutzTypen" title="RP_WasserschutzTypen: Typ des Wasserschutzes">
+      <area shape="rect" coords="503,842,775,1113" href="index.php?go=show_elements#xplan:RP_HochwasserschutzTypen" alt="RP_HochwasserschutzTypen" title="RP_HochwasserschutzTypen: Typ des vorbeugenden Hochwasserschutzes">
+      <area shape="rect" coords="13,756,305,1114" href="index.php?go=show_elements#xplan:RP_NaturLandschaftTypen" alt="RP_NaturLandschaftTypen" title="RP_NaturLandschaftTypen: Typ des Naturschutzes oder Landschaftsschutzes">
+    </map>
       
     <map name="RP_Freiraumstruktur2">
       <area shape="rect" coords="296,6,517,95" href="index.php?go=show_elements#xplan:RP_Geometrieobjekt" alt="RP_Geometrieobjekt" title="RP_Geometrieobjekt: Basisklasse für alle Objekte eines Regionalplans mit variablem Raumbezug. Ein konkretes Objekt muss entweder punktförmigen, linienförmigen oder flächenhaften Raumbezug haben, gemischte Geometrie ist nicht zugelassen.">
@@ -1551,47 +1650,47 @@ function show_uml() {
       <area shape="rect" coords="494,359,726,420" href="index.php?go=show_elements#xplan:RP_RadwegWanderweg" alt="RP_RadwegWanderweg" title="RP_RadwegWanderweg: Radwege und Wanderwege">  
       <area shape="rect" coords="495,452,691,512" href="index.php?go=show_elements#xplan:RP_Sportanlage" alt="RP_Sportanlage" title="RP_Sportanlage: Sportanlage">
       <area shape="rect" coords="496,542,662,577" href="index.php?go=show_elements#xplan:RP_SonstigerFreiraumschutz" alt="RP_SonstigerFreiraumschutz" title="RP_SonstigerFreiraumschutz: Sonstiger Freiraumschutz">
-      <area shape="rect" coords="46,984,258,1095" href="index.php?go=show_simple_types#xplan:RP_ErneuerbareEnergieTypen" alt="RP_ErneuerbareEnergieTypen" title="RP_ErneuerbareEnergieTypen: Typ der Erneuerbaren Energie">
-      <area shape="rect" coords="586,738,764,889" href="index.php?go=show_simple_types#xplan:RP_SportanlageTypen" alt="RP_SportanlageTypen" title="RP_SportanlageTypen: Typ der Sportanlage">
-      <area shape="rect" coords="47,764,215,851" href="index.php?go=show_simple_types#xplan:RP_TourismusTypen" alt="RP_TourismusTypen" title="RP_TourismusTypen: Typ des Tourismus">
-      <area shape="rect" coords="47,869,271,954" href="index.php?go=show_simple_types#xplan:RP_BesondereTourismusErholungTypen" alt="RP_BesondereTourismusErholungTypen" title="RP_BesondereTourismusErholungTypen: BesondereTypen von Tourismus und/oder Erholung">
-      <area shape="rect" coords="401,617,580,754" href="index.php?go=show_simple_types#xplan:RP_RadwegWanderwegTypen" alt="RP_RadwegWanderwegTypen" title="RP_RadwegWanderwegTypen: Typ des Radweges oder Wanderweges">
-      <area shape="rect" coords="37,617,393,752" href="index.php?go=show_simple_types#xplan:RP_ErholungTypen" alt="RP_ErholungTypen" title="RP_ErholungTypen: Typ der Erholung">
-      <area shape="rect" coords="299,1000,521,1098" href="index.php?go=show_simple_types#xplan:RP_KulturlandschaftTypen" alt="RP_KulturlandschaftTypen" title="RP_Kulturlandschaft: Klassifikation der Kulturlandschaft.">
-      <area shape="rect" coords="542,920,773,1098" href="index.php?go=show_simple_types#xplan:RP_LandwirtschaftTypen" alt="RP_LandwirtschaftTypen" title="RP_LandwirtschaftTypen: Typ der Landwirtschaft">
-      <area shape="rect" coords="287,767,533,983" href="index.php?go=show_simple_types#xplan:RP_ForstwirtschaftTypen" alt="RP_ForstwirtschaftTypen" title="RP_ForstwirtschaftTypen: Typ der Forstwirtschaft">
+      <area shape="rect" coords="43,1003,257,1114" href="index.php?go=show_elements#xplan:RP_ErneuerbareEnergieTypen" alt="RP_ErneuerbareEnergieTypen" title="RP_ErneuerbareEnergieTypen: Typ der Erneuerbaren Energie">
+      <area shape="rect" coords="599,617,777,769" href="index.php?go=show_elements#xplan:RP_SportanlageTypen" alt="RP_SportanlageTypen" title="RP_SportanlageTypen: Typ der Sportanlage">
+      <area shape="rect" coords="40,800,207,885" href="index.php?go=show_elements#xplan:RP_TourismusTypen" alt="RP_TourismusTypen" title="RP_TourismusTypen: Typ des Tourismus">
+      <area shape="rect" coords="43,900,270,986" href="index.php?go=show_elements#xplan:RP_BesondereTourismusErholungTypen" alt="RP_BesondereTourismusErholungTypen" title="RP_BesondereTourismusErholungTypen: BesondereTypen von Tourismus und/oder Erholung">
+      <area shape="rect" coords="401,617,580,754" href="index.php?go=show_elements#xplan:RP_RadwegWanderwegTypen" alt="RP_RadwegWanderwegTypen" title="RP_RadwegWanderwegTypen: Typ des Radweges oder Wanderweges">
+      <area shape="rect" coords="37,616,393,778" href="index.php?go=show_elements#xplan:RP_ErholungTypen" alt="RP_ErholungTypen" title="RP_ErholungTypen: Typ der Erholung">
+      <area shape="rect" coords="299,1000,522,1111" href="index.php?go=show_elements#xplan:RP_KulturlandschaftTypen" alt="RP_KulturlandschaftTypen" title="RP_Kulturlandschaft: Klassifikation der Kulturlandschaft.">
+      <area shape="rect" coords="543,930,774,1105" href="index.php?go=show_elements#xplan:RP_LandwirtschaftTypen" alt="RP_LandwirtschaftTypen" title="RP_LandwirtschaftTypen: Typ der Landwirtschaft">
+      <area shape="rect" coords="286,803,529,976" href="index.php?go=show_elements#xplan:RP_ForstwirtschaftTypen" alt="RP_ForstwirtschaftTypen" title="RP_ForstwirtschaftTypen: Typ der Forstwirtschaft">
     </map>
   
     <map name="RP_Freiraumstruktur3">
       <area shape="rect" coords="285,33,508,123" href="index.php?go=show_elements#xplan:RP_Geometrieobjekt" alt="RP_Geometrieobjekt" title="RP_Geometrieobjekt: Basisklasse für alle Objekte eines Regionalplans mit variablem Raumbezug. Ein konkretes Objekt muss entweder punktförmigen, linienförmigen oder flächenhaften Raumbezug haben, gemischte Geometrie ist nicht zugelassen.">
       <area shape="rect" coords="282,171,518,241" href="index.php?go=show_elements#xplan:RP_Freiraum" alt="RP_Freiraum" title="RP_Freiraum: Freiraum">
-      <area shape="rect" coords="251,293,557,429" href="index.php?go=show_elements#xplan:RP_Rohstoff" alt="RP_Rohstoff" title="RP_Rohstoff: Rohstoffsicherung">
-      <area shape="rect" coords="577,15,771,841" href="index.php?go=show_simple_types#xplan:RP_RohstoffTypen" alt="RP_RohstoffTypen" title="RP_RohstoffTypen: Abgebauter Rohstoff.">
-      <area shape="rect" coords="314,507,476,580" href="index.php?go=show_simple_types#xplan:RP_BodenschatzTiefe" alt="RP_BodenschatzTiefe" title="RP_BodenschatzTiefe: Tiefe des Bodenschatzvorkommens">
-      <area shape="rect" coords="31,657,238,834" href="index.php?go=show_simple_types#xplan:RP_BergbauFolgenutzung" alt="RP_BergbauFolgenutzung" title="RP_BergbauFolgenutzung: Folgenutzung von Bergbau">
-      <area shape="rect" coords="282,644,514,836" href="index.php?go=show_simple_types#xplan:RP_BergbauplanungTypen" alt="RP_BergbauplanungTypen" title="RP_BergbauplanungTypen: Typen der Bergbauplanung.">
-      <area shape="rect" coords="63,503,188,576" href="index.php?go=show_simple_types#xplan:RP_Zeitstufe" alt="RP_Zeitstufe" title="RP_Zeitstufe>: Zeitstufe des Tagebaus">
+      <area shape="rect" coords="251,291,559,442" href="index.php?go=show_elements#xplan:RP_Rohstoff" alt="RP_Rohstoff" title="RP_Rohstoff: Rohstoffsicherung">
+      <area shape="rect" coords="577,15,771,877" href="index.php?go=show_elements#xplan:RP_RohstoffTypen" alt="RP_RohstoffTypen" title="RP_RohstoffTypen: Abgebauter Rohstoff.">
+      <area shape="rect" coords="314,507,476,580" href="index.php?go=show_elements#xplan:RP_BodenschatzTiefe" alt="RP_BodenschatzTiefe" title="RP_BodenschatzTiefe: Tiefe des Bodenschatzvorkommens">
+      <area shape="rect" coords="31,693,238,869" href="index.php?go=show_elements#xplan:RP_BergbauFolgenutzung" alt="RP_BergbauFolgenutzung" title="RP_BergbauFolgenutzung: Folgenutzung von Bergbau">
+      <area shape="rect" coords="282,683,514,873" href="index.php?go=show_elements#xplan:RP_BergbauplanungTypen" alt="RP_BergbauplanungTypen" title="RP_BergbauplanungTypen: Typen der Bergbauplanung.">
+      <area shape="rect" coords="63,503,188,576" href="index.php?go=show_elements#xplan:RP_Zeitstufe" alt="RP_Zeitstufe" title="RP_Zeitstufe>: Zeitstufe des Tagebaus">
     </map>
 
     <map name="RP_Infrastruktur1">
       <area shape="rect" coords="266,13,485,101" href="index.php?go=show_elements#xplan:RP_Geometrieobjekt" alt="RP_Geometrieobjekt" title="RP_Geometrieobjekt: Basisklasse für alle Objekte eines Regionalplans mit variablem Raumbezug. Ein konkretes Objekt muss entweder punktförmigen, linienförmigen oder flächenhaften Raumbezug haben, gemischte Geometrie ist nicht zugelassen.">
-      <area shape="rect" coords="12,151,294,236" href="index.php?go=show_elements#xplan:RP_Energieversorgung" alt="RP_Energieversorgung" title="RP_Energieversorgung: Infrastruktur zur Energieversorgung">
-      <area shape="rect" coords="32,250,257,335" href="index.php?go=show_elements#xplan:RP_Entsorgung" alt="RP_Entsorgung" title="RP_Entsorgung: Entsorgungs-Infrastruktur">
+      <area shape="rect" coords="10,133,293,221" href="index.php?go=show_elements#xplan:RP_Energieversorgung" alt="RP_Energieversorgung" title="RP_Energieversorgung: Infrastruktur zur Energieversorgung">
+      <area shape="rect" coords="30,240,296,337" href="index.php?go=show_elements#xplan:RP_Entsorgung" alt="RP_Entsorgung" title="RP_Entsorgung: Entsorgungs-Infrastruktur">
       <area shape="rect" coords="65,356,278,414" href="index.php?go=show_elements#xplan:RP_Kommunikation" alt="RP_Kommunikation" title="RP_Kommunikation: Infrastruktur zur Telekommunikation">
-      <area shape="rect" coords="432,165,632,226" href="index.php?go=show_elements#xplan:RP_LaermschutzBauschutz" alt="RP_LaermschutzBauschutz" title="RP_LaermschutzBauschutz: Infrastruktur zum Lärmschutz und Bauschutz.">
+      <area shape="rect" coords="435,145,634,206" href="index.php?go=show_elements#xplan:RP_LaermschutzBauschutz" alt="RP_LaermschutzBauschutz" title="RP_LaermschutzBauschutz: Infrastruktur zum Lärmschutz und Bauschutz.">
       <area shape="rect" coords="428,348,643,406" href="index.php?go=show_elements#xplan:RP_Wasserwirtschaft" alt="RP_Wasserwirtschaft" title="RP_Wasserwirtschaft: Wasserwirtschaft">
-      <area shape="rect" coords="434,265,664,326" href="index.php?go=show_elements#xplan:RP_SozialeInfrastruktur" alt="RP_SozialeInfrastruktur" title="RP_SozialeInfrastruktur: Soziale Infrastruktur">
+      <area shape="rect" coords="433,262,662,321" href="index.php?go=show_elements#xplan:RP_SozialeInfrastruktur" alt="RP_SozialeInfrastruktur" title="RP_SozialeInfrastruktur: Soziale Infrastruktur">
       <area shape="rect" coords="272,454,460,492" href="index.php?go=show_elements#xplan:RP_SonstigeInfrastruktur" alt="RP_SonstigeInfrastruktur" title="RP_SonstigeInfrastruktur: Sonstige Infrastruktur">    
-      <area shape="rect" coords="554,537,783,676" href="index.php?go=show_simple_types#xplan:RP_LaermschutzTypen" alt="RP_LaermschutzTypen" title="RP_LaermschutzTypen: Typen des Lärmschutzes">
-      <area shape="rect" coords="571,718,775,869" href="index.php?go=show_simple_types#xplan:RP_WasserwirtschaftTypen" alt="RP_WasserwirtschaftTypen" title="RP_WasserwirtschaftTypen: Klassifikation von Anlagen und Einrichtungen der Wasserwirtschaft">
-      <area shape="rect" coords="584,914,790,1065" href="index.php?go=show_simple_types#xplan:RP_SozialeInfrastrukturTypen" alt="RP_SozialeInfrastrukturTypen" title="RP_SozialeInfrastrukturTypen: Typ der Sozialen Infrastruktur">
-      <area shape="rect" coords="32,442,236,685" href="index.php?go=show_simple_types#xplan:RP_EnergieversorgungTypen" alt="RP_EnergieversorgungTypen" title="RP_EnergieversorgungTypen: Typ der Energieversorgung">
-      <area shape="rect" coords="324,684,512,888" href="index.php?go=show_simple_types#xplan:RP_PrimaerenergieTypen" alt="RP_PrimaerenergieTypen" title="RP_PrimaerenergieTypen: Typ der Primärenergie">
-      <area shape="rect" coords="458,929,573,1027" href="index.php?go=show_simple_types#xplan:RP_SpannungTypen" alt="RP_SpannungTypen" title="RP_SpannungTypen: Typ der Spannung">
-      <area shape="rect" coords="319,530,507,642" href="index.php?go=show_simple_types#xplan:RP_KommunikationTyp" alt="RP_KommunikationTyp" title="KommunikationTyp: Typ der Kommunikationsinfrastruktur">
-      <area shape="rect" coords="34,707,266,898" href="index.php?go=show_simple_types#xplan:RP_AbfallentsorgungTypen" alt="RP_AbfallentsorgungTypen" title="RP_AbfallentsorgungTypen: Typ der Abfallentsorgung">
-      <area shape="rect" coords="218,926,441,1067" href="index.php?go=show_simple_types#xplan:RP_AbwasserTypen" alt="RP_AbwasserTypen" title="RP_AbwasserTypen: Typ der Abwasserinfrastruktur">
-      <area shape="rect" coords="36,936,202,1061" href="index.php?go=show_simple_types#xplan:RP_AbfallTypen" alt="RP_AbfallTypen" title="RP_AbfallTypen: Klassifikation von Abfalltypen.">    
+      <area shape="rect" coords="554,537,783,676" href="index.php?go=show_elements#xplan:RP_LaermschutzTypen" alt="RP_LaermschutzTypen" title="RP_LaermschutzTypen: Typen des Lärmschutzes">
+      <area shape="rect" coords="571,718,775,869" href="index.php?go=show_elements#xplan:RP_WasserwirtschaftTypen" alt="RP_WasserwirtschaftTypen" title="RP_WasserwirtschaftTypen: Klassifikation von Anlagen und Einrichtungen der Wasserwirtschaft">
+      <area shape="rect" coords="584,914,790,1065" href="index.php?go=show_elements#xplan:RP_SozialeInfrastrukturTypen" alt="RP_SozialeInfrastrukturTypen" title="RP_SozialeInfrastrukturTypen: Typ der Sozialen Infrastruktur">
+      <area shape="rect" coords="32,442,236,685" href="index.php?go=show_elements#xplan:RP_EnergieversorgungTypen" alt="RP_EnergieversorgungTypen" title="RP_EnergieversorgungTypen: Typ der Energieversorgung">
+      <area shape="rect" coords="324,684,512,888" href="index.php?go=show_elements#xplan:RP_PrimaerenergieTypen" alt="RP_PrimaerenergieTypen" title="RP_PrimaerenergieTypen: Typ der Primärenergie">
+      <area shape="rect" coords="458,929,573,1027" href="index.php?go=show_elements#xplan:RP_SpannungTypen" alt="RP_SpannungTypen" title="RP_SpannungTypen: Typ der Spannung">
+      <area shape="rect" coords="319,530,507,642" href="index.php?go=show_elements#xplan:RP_KommunikationTyp" alt="RP_KommunikationTyp" title="KommunikationTyp: Typ der Kommunikationsinfrastruktur">
+      <area shape="rect" coords="34,707,266,898" href="index.php?go=show_elements#xplan:RP_AbfallentsorgungTypen" alt="RP_AbfallentsorgungTypen" title="RP_AbfallentsorgungTypen: Typ der Abfallentsorgung">
+      <area shape="rect" coords="218,926,441,1067" href="index.php?go=show_elements#xplan:RP_AbwasserTypen" alt="RP_AbwasserTypen" title="RP_AbwasserTypen: Typ der Abwasserinfrastruktur">
+      <area shape="rect" coords="36,936,202,1061" href="index.php?go=show_elements#xplan:RP_AbfallTypen" alt="RP_AbfallTypen" title="RP_AbfallTypen: Klassifikation von Abfalltypen.">    
  </map> 
  
   <map name="RP_Infrastruktur2">
@@ -1602,43 +1701,43 @@ function show_uml() {
       <area shape="rect" coords="469,329,667,389" href="index.php?go=show_elements#xplan:RP_Wasserverkehr" alt="RP_Wasserverkehr" title="RP_Wasserverkehr: Wasserverkehrs-Infrastruktur. Ausgegliedert aus RP_Verkehr">
       <area shape="rect" coords="136,323,315,384" href="index.php?go=show_elements#xplan:RP_Luftverkehr" alt="RP_Luftverkehr" title="RP_Luftverkehr: Luftverkehrs-Infrastruktur. Ausgegliedert aus RP_Verkehr">
       <area shape="rect" coords="289,411,483,471" href="index.php?go=show_elements#xplan:RP_SonstVerkehr" alt="RP_SonstVerkehr" title="RP_SonstVerkehr: Sonstige Verkehrs-Infrastruktur. Ausgegliedert aus RP_Verkehr">
-      <area shape="rect" coords="229,649,537,827" href="index.php?go=show_simple_types#xplan:VerkehrStatus" alt="RP_VerkehrStatus" title="RP_VerkehrStatus: Klassifikation des Verkehrsstatus">
-      <area shape="rect" coords="564,637,777,841" href="index.php?go=show_simple_types#xplan:RP_SonstVerkehrTypen" alt="RP_SonstVerkehrTypen" title="RP_SonstVerkehrTypen: Sonstige Verkehrstypen">  
-      <area shape="rect" coords="19,478,191,590" href="index.php?go=show_simple_types#xplan:RP_VerkehrTypen" alt="RP_VerkehrTypen" title="RP_VerkehrTypen: Klassifikation der Verkehrs-Arten.">  
-      <area shape="rect" coords="570,409,765,625" href="index.php?go=show_simple_types#xplan:RP_WasserverkehrTypen" alt="RP_WasserverkehrTypen" title="RP_WasserverkehrTypen: Klassifikation des Wasserverkehrs">
-      <area shape="rect" coords="15,612,204,840" href="index.php?go=show_simple_types#xplan:RP_StrassenverkehrTypen" alt="RP_StrassenverkehrTypen" title="RP_StrassenverkehrTypen: Klassifikation des Straßenverkehrs">
-      <area shape="rect" coords="247,509,497,634" href="index.php?go=show_simple_types#xplan:RP_BesondereStrassenverkehrTypen" alt="RP_BesondereStrassenverkehrTypen" title="RP_BesondereStrassenverkehrTypen: Klassifikation des besonderen Straßenverkehrs">
-      <area shape="rect" coords="11,856,241,1110" href="index.php?go=show_simple_types#xplan:RP_SchienenverkehrTypen" alt="RP_SchienenverkehrTypen" title="RP_SchienenverkehrTypen: Klassifikation des Schienenverkehrs">
-      <area shape="rect" coords="250,871,553,1113" href="index.php?go=show_simple_types#xplan:RP_BesondereSchienenverkehrTypen" alt="RP_BesondereSchienenverkehrTypen" title="RP_BesondereSchienenverkehrTypen: Klassifikation von besonderen Schienenverkehrtypen">
-      <area shape="rect" coords="561,851,787,1118" href="index.php?go=show_simple_types#xplan:RP_LuftverkehrTypen" alt="RP_LuftverkehrTypen" title="RP_LuftverkehrTypen: Klassifikation des Luftverkehrs">
+      <area shape="rect" coords="229,649,537,827" href="index.php?go=show_elements#xplan:VerkehrStatus" alt="RP_VerkehrStatus" title="RP_VerkehrStatus: Klassifikation des Verkehrsstatus">
+      <area shape="rect" coords="564,637,777,841" href="index.php?go=show_elements#xplan:RP_SonstVerkehrTypen" alt="RP_SonstVerkehrTypen" title="RP_SonstVerkehrTypen: Sonstige Verkehrstypen">  
+      <area shape="rect" coords="19,478,191,590" href="index.php?go=show_elements#xplan:RP_VerkehrTypen" alt="RP_VerkehrTypen" title="RP_VerkehrTypen: Klassifikation der Verkehrs-Arten.">  
+      <area shape="rect" coords="570,409,765,625" href="index.php?go=show_elements#xplan:RP_WasserverkehrTypen" alt="RP_WasserverkehrTypen" title="RP_WasserverkehrTypen: Klassifikation des Wasserverkehrs">
+      <area shape="rect" coords="15,612,204,840" href="index.php?go=show_elements#xplan:RP_StrassenverkehrTypen" alt="RP_StrassenverkehrTypen" title="RP_StrassenverkehrTypen: Klassifikation des Straßenverkehrs">
+      <area shape="rect" coords="247,509,497,634" href="index.php?go=show_elements#xplan:RP_BesondereStrassenverkehrTypen" alt="RP_BesondereStrassenverkehrTypen" title="RP_BesondereStrassenverkehrTypen: Klassifikation des besonderen Straßenverkehrs">
+      <area shape="rect" coords="11,856,241,1110" href="index.php?go=show_elements#xplan:RP_SchienenverkehrTypen" alt="RP_SchienenverkehrTypen" title="RP_SchienenverkehrTypen: Klassifikation des Schienenverkehrs">
+      <area shape="rect" coords="250,871,553,1113" href="index.php?go=show_elements#xplan:RP_BesondereSchienenverkehrTypen" alt="RP_BesondereSchienenverkehrTypen" title="RP_BesondereSchienenverkehrTypen: Klassifikation von besonderen Schienenverkehrtypen">
+      <area shape="rect" coords="561,851,787,1118" href="index.php?go=show_elements#xplan:RP_LuftverkehrTypen" alt="RP_LuftverkehrTypen" title="RP_LuftverkehrTypen: Klassifikation des Luftverkehrs">
     </map>    
 
     <map name="RP_Siedlungsstruktur1">
       <area shape="rect" coords="237,14,452,103" href="index.php?go=show_elements#xplan:RP_Geometrieobjekt" alt="RP_Geometrieobjekt" title="RP_Geometrieobjekt: Basisklasse für alle Objekte eines Regionalplans mit variablem Raumbezug. Ein konkretes Objekt muss entweder punktförmigen, linienförmigen oder flächenhaften Raumbezug haben, gemischte Geometrie ist nicht zugelassen.">
       <area shape="rect" coords="14,139,328,211" href="index.php?go=show_elements#xplan:RP_Raumkategorie" alt="RP_Raumkategorie" title="RP_Raumkategorie: Raumkategorien">
       <area shape="rect" coords="115,237,282,297" href="index.php?go=show_elements#xplan:RP_Achse" alt="RP_Achse" title="RP_Achse: Siedlungsachse. Früher Linienobjekt, nun Geometrieobjekt">
-      <area shape="rect" coords="402,141,589,199" href="index.php?go=show_elements#xplan:RP_Sperrgebiet" alt="RP_Sperrgebiet" title="RP_Sperrgebiet: Sperrgebiet">
-      <area shape="rect" coords="401,228,675,299" href="index.php?go=show_elements#xplan:RP_ZentralerOrt" alt="RP_ZentralerOrt" title="RP_ZentralerOrt: Zentrale Orte">
+      <area shape="rect" coords="392,141,582,200" href="index.php?go=show_elements#xplan:RP_Sperrgebiet" alt="RP_Sperrgebiet" title="RP_Sperrgebiet: Sperrgebiet">
+      <area shape="rect" coords="389,228,664,298" href="index.php?go=show_elements#xplan:RP_ZentralerOrt" alt="RP_ZentralerOrt" title="RP_ZentralerOrt: Zentrale Orte">
       <area shape="rect" coords="385,318,600,390" href="index.php?go=show_elements#xplan:RP_Funktionszuweisung" alt="RP_Funktionszuweisung" title="RP_Funktionszuweisung: Funktionen von Gemeinden und Gebieten.">
-      <area shape="rect" coords="43,370,365,781" href="index.php?go=show_simple_types#xplan:RP_RaumkategorieTypen" alt="RP_RaumkategorieTypen" title="RP_RaumkategorieTypen: Klassifikation von Raumkategorien">
-      <area shape="rect" coords="45,800,252,887" href="index.php?go=show_simple_types#xplan:RP_BesondereRaumkategorieTypen" alt="RP_BesondereRaumkategorieTypen" title="RP_BesondereRaumkategorieTypen: Klassifikation von Besonderen Raumkategorien">    
-       <area shape="rect" coords="452,404,653,554" href="index.php?go=show_simple_types#xplan:RP_SperrgebietTypen" alt="RP_SperrgebietTypen" title="RP_SperrgebietTypen: Klassifikation von Sperrgebieten">
-      <area shape="rect" coords="318,826,533,1081" href="index.php?go=show_simple_types#xplan:RP_ZentralerOrtTypen" alt="RP_ZentralerOrtTypen" title="RP_ZentralerOrtTypen: Klassifikation von Zentralen Orten">
-      <area shape="rect" coords="549,792,789,1085" href="index.php?go=show_simple_types#xplan:RP_ZentralerOrtSonstigeTypen" alt="RP_ZentralerOrtSonstigeTypen" title="RP_ZentralerOrtSonstigeTypen: Klassifikation von sonstigen Typen zentraler Orte">
-      <area shape="rect" coords="447,568,774,732" href="index.php?go=show_simple_types#xplan:RP_FunktionszuweisungTypen" alt="RP_FunktionszuweisungTypen" title="RP_FunktionszuweisungTypen">
-      <area shape="rect" coords="37,906,306,1083" href="index.php?go=show_simple_types#xplan:RP_AchsenTypen" alt="RP_AchsenTypen" title="RP_AchsenTypen: Klassifikation von Achsentypen">
+      <area shape="rect" coords="43,370,365,781" href="index.php?go=show_elements#xplan:RP_RaumkategorieTypen" alt="RP_RaumkategorieTypen" title="RP_RaumkategorieTypen: Klassifikation von Raumkategorien">
+      <area shape="rect" coords="45,800,252,887" href="index.php?go=show_elements#xplan:RP_BesondereRaumkategorieTypen" alt="RP_BesondereRaumkategorieTypen" title="RP_BesondereRaumkategorieTypen: Klassifikation von Besonderen Raumkategorien">    
+       <area shape="rect" coords="452,404,653,554" href="index.php?go=show_elements#xplan:RP_SperrgebietTypen" alt="RP_SperrgebietTypen" title="RP_SperrgebietTypen: Klassifikation von Sperrgebieten">
+      <area shape="rect" coords="318,826,533,1081" href="index.php?go=show_elements#xplan:RP_ZentralerOrtTypen" alt="RP_ZentralerOrtTypen" title="RP_ZentralerOrtTypen: Klassifikation von Zentralen Orten">
+      <area shape="rect" coords="549,792,789,1085" href="index.php?go=show_elements#xplan:RP_ZentralerOrtSonstigeTypen" alt="RP_ZentralerOrtSonstigeTypen" title="RP_ZentralerOrtSonstigeTypen: Klassifikation von sonstigen Typen zentraler Orte">
+      <area shape="rect" coords="447,568,774,732" href="index.php?go=show_elements#xplan:RP_FunktionszuweisungTypen" alt="RP_FunktionszuweisungTypen" title="RP_FunktionszuweisungTypen">
+      <area shape="rect" coords="37,906,306,1083" href="index.php?go=show_elements#xplan:RP_AchsenTypen" alt="RP_AchsenTypen" title="RP_AchsenTypen: Klassifikation von Achsentypen">
     </map>
    
     <map name="RP_Siedlungsstruktur2">
       <area shape="rect" coords="275,46,499,134" href="index.php?go=show_elements#xplan:RP_Geometrieobjekt" alt="RP_Geometrieobjekt" title="RP_Geometrieobjekt: Basisklasse für alle Objekte eines Regionalplans mit variablem Raumbezug. Ein konkretes Objekt muss entweder punktförmigen, linienförmigen oder flächenhaften Raumbezug haben, gemischte Geometrie ist nicht zugelassen.">
-      <area shape="rect" coords="251,209,518,293" href="index.php?go=show_elements#xplan:RP_Siedlung" alt="RP_Siedlung" title="RP_Siedlung: Allgemeine Siedlungsstrukturen">
+      <area shape="rect" coords="251,209,519,280" href="index.php?go=show_elements#xplan:RP_Siedlung" alt="RP_Siedlung" title="RP_Siedlung: Allgemeine Siedlungsstrukturen">
       <area shape="rect" coords="55,327,271,387" href="index.php?go=show_elements#xplan:RP_WohnenSiedlung" alt="WohnenSiedlung" title="RP_WohnenSiedlung: Objekte mit Bezug zu Wohnen und Siedlungen.">
       <area shape="rect" coords="107,457,305,516" href="index.php?go=show_elements#xplan:RP_Einzelhandel" alt="RP_Einzelhandel" title="RP_Einzelhandel: Einzelhandelsstruktur und -funktionen">
       <area shape="rect" coords="468,458,686,516" href="index.php?go=show_elements#xplan:RP_IndustrieGewerbe" alt="RP_IndustrieGewerbe" title="RP_IndustrieGewerbe: Industrie- und Gewerbestrukturen und -funktionen">
       <area shape="rect" coords="541,334,718,368" href="index.php?go=show_elements#xplan:RP_SonstigerSiedlungsbereich" alt="RP_SonstigerSiedlungsbereich" title="RP_SonstigerSiedlungsbereich: Sonstiger Siedlungsbereich">
-      <area shape="rect" coords="42,650,274,800" href="index.php?go=show_simple_types#xplan:RP_WohnenSiedlungTypen" alt="RP_WohnenSiedlungTypen" title="RP_WohnenSiedlungTypen: Klassifikation von Wohntypen und Siedlungen">
-      <area shape="rect" coords="314,856,560,1033" href="index.php?go=show_simple_types#xplan:RP_EinzelhandelTypen" alt="RP_EinzelhandelTypen" title="RP_EinzelhandelTypen: Klassifikation von Einzelhandel">
-      <area shape="rect" coords="304,597,628,813" href="index.php?go=show_simple_types#xplan:RP_IndustrieGewerbeTypen" alt="RP_IndustriegewerbeTypen" title="RP_IndustrieGewerbeTypen: Klassifikation von Industrie oder Gewerbe">
+      <area shape="rect" coords="42,650,273,826" href="index.php?go=show_elements#xplan:RP_WohnenSiedlungTypen" alt="RP_WohnenSiedlungTypen" title="RP_WohnenSiedlungTypen: Klassifikation von Wohntypen und Siedlungen">
+      <area shape="rect" coords="314,856,560,1033" href="index.php?go=show_elements#xplan:RP_EinzelhandelTypen" alt="RP_EinzelhandelTypen" title="RP_EinzelhandelTypen: Klassifikation von Einzelhandel">
+      <area shape="rect" coords="304,597,629,839" href="index.php?go=show_elements#xplan:RP_IndustrieGewerbeTypen" alt="RP_IndustriegewerbeTypen" title="RP_IndustrieGewerbeTypen: Klassifikation von Industrie oder Gewerbe">
     </map>
     
     <map name="RP_Sonstiges">
@@ -1646,17 +1745,16 @@ function show_uml() {
       <area shape="rect" coords="570,129,792,188" href="index.php?go=show_elements#xplan:RP_GenerischesObjekt" alt="RP_GenerischesObjekt" title="RP_GenerischesObjekt: Klasse zur Modellierung aller Inhalte des Regionalplans, die durch keine andere Klasse des RPlan-Fachschemas dargestellt werden können.">
       <area shape="rect" coords="10,118,296,203" href="index.php?go=show_elements#xplan:RP_Grenze" alt="RP_Grenze" title="RP_Grenze: Grenzen.">
       <area shape="rect" coords="267,247,574,306" href="index.php?go=show_elements#xplan:RP_Planungsraum" alt="RP_Planungsraum" title="RP_Planungsraum: Planungsraum.">
-      <area shape="rect" coords="566,365,736,419" href="index.php?go=show_simple_types#xplan:RP_GenerischesObjektTypen" alt="RP_GenerischesObjektTypen" title="RP_GenerischesObjektTypen">
-      <area shape="rect" coords="569,446,706,499" href="index.php?go=show_simple_types#xplan:RP_SonstGrenzeTypen" alt="RP_SonstGrenzeTypen" title="RP_SonstGrenzeTypen">
-      <area shape="rect" coords="33,361,279,591" href="index.php?go=show_simple_types#xplan:XP_GrenzeTypen" alt="XP_GrenzeTypen" title="XP_GrenzeTypen: Typ der Grenze">
-      <area shape="rect" coords="304,356,537,521" href="index.php?go=show_simple_types#xplan:RP_SpezifischeGrenzeTypen" alt="RP_SpezifischeGrenzeTypen" title="RP_SpezifischeGrenzeTypen: Spezifischer Typ der Grenze">
+      <area shape="rect" coords="566,365,736,419" href="index.php?go=show_elements#xplan:RP_GenerischesObjektTypen" alt="RP_GenerischesObjektTypen" title="RP_GenerischesObjektTypen">
+      <area shape="rect" coords="569,446,706,499" href="index.php?go=show_elements#xplan:RP_SonstGrenzeTypen" alt="RP_SonstGrenzeTypen" title="RP_SonstGrenzeTypen">
+      <area shape="rect" coords="19,289,253,517" href="index.php?go=show_elements#xplan:XP_GrenzeTypen" alt="XP_GrenzeTypen" title="XP_GrenzeTypen: Typ der Grenze">
+      <area shape="rect" coords="304,356,537,521" href="index.php?go=show_elements#xplan:RP_SpezifischeGrenzeTypen" alt="RP_SpezifischeGrenzeTypen" title="RP_SpezifischeGrenzeTypen: Spezifischer Typ der Grenze">
     </map>
 
     <map name="RP_Raster">
-      <area shape="rect" coords="100,101,361,227" href="index.php?go=show_elements&package=Alle#xplan:XP_Bereich" alt="XP_Bereich" title="XP_Bereich: Abstrakte Oberklasse für die Modellierung von Planbereichen. Ein Planbereich fasst die Inhalte eines Plans nach bestimmten Kriterien zusammen.">
-      <area shape="rect" coords="64,305,379,483" href="index.php?go=show_elements&package=Alle#xplan:XP_RasterplanAenderung" alt="XP_RasterplanAenderung" title="XP_RasterplanAenderung: Basisklasse für georeferenzierte Rasterdarstellungen von Änderungen des Basisplans, die nicht in die Rasterdarstellung XP_RasterplanBasis integriert sind.">
-      <area shape="rect" coords="471,110,702,223" href="index.php?go=show_elements#xplan:RP_Bereich" alt="RP_Bereich" title="RP_Bereich: Die Klasse modelliert einen Bereich eines Raumordnungsplans">
-      <area shape="rect" coords="92,578,339,741" href="index.php?go=show_elements#xplan:RP_RasterplanAenderung" alt="RP_RasterplanAenderung" title="RP_RasterplanAenderung">
+      <area shape="rect" coords="69,289,372,463" href="index.php?go=show_elements&package=Alle#xplan:XP_RasterplanAenderung" alt="XP_RasterplanAenderung" title="XP_RasterplanAenderung: Basisklasse für georeferenzierte Rasterdarstellungen von Änderungen des Basisplans, die nicht in die Rasterdarstellung XP_RasterplanBasis integriert sind.">
+      <area shape="rect" coords="472,109,701,237" href="index.php?go=show_elements#xplan:RP_Bereich" alt="RP_Bereich" title="RP_Bereich: Die Klasse modelliert einen Bereich eines Raumordnungsplans">
+      <area shape="rect" coords="93,578,341,741" href="index.php?go=show_elements#xplan:RP_RasterplanAenderung" alt="RP_RasterplanAenderung" title="RP_RasterplanAenderung">
     </map>
 	 
     <map name="XP_Basisobjekte1">
@@ -1664,7 +1762,7 @@ function show_uml() {
       <area shape="rect" coords="239,520,479,631" href="index.php?go=show_elements&package=Alle#xplan:XP_TextAbschnitt" alt="XP_TextAbschnitt" title="XP_TextAbschnitt: Ein Abschnitt der textlich formulierten Inhalte des Plans.">
       <area shape="rect" coords="19,530,214,628" href="index.php?go=show_elements&package=Alle#xplan:XP_Begruendungsabschnitt" alt="XP_Begruendungsabschnitt" title="XP_Begruendungsabschnitt">
       <area shape="rect" coords="409,70,555,181" href="index.php?go=show_elements&package=Alle#xplan:XP_Verfahrensmerkmal" alt="XP_Verfahrensmerkmal" title="XP_Verfahrensmerkmal: Vermerk eines am Planungsverfahrens beteiligten Akteurs.">
-      <area shape="rect" coords="369,198,597,360" href="index.php?go=show_elements&package=Alle#xplan:XP_ExterneReferenz" alt="XP_ExterneReferenz" title="XP_ExterneReferenz: Verweis auf ein extern gespeichertes Dokument, einen extern gespeicherten, georeferenzierten Plan oder einen Datenbank-Eintrag. Einer der beiden Attribute 'referenzName' bzw. 'referenzURL' muss belegt ">
+      <area shape="rect" coords="359,208,587,373" href="index.php?go=show_elements&package=Alle#xplan:XP_ExterneReferenz" alt="XP_ExterneReferenz" title="XP_ExterneReferenz: Verweis auf ein extern gespeichertes Dokument, einen extern gespeicherten, georeferenzierten Plan oder einen Datenbank-Eintrag. Einer der beiden Attribute 'referenzName' bzw. 'referenzURL' muss belegt ">
       <area shape="rect" coords="79,671,387,757" href="index.php?go=show_elements&package=Alle#xplan:XP_VerbundenerPlan" alt="XP_VerbundenerPlan" title="XP_VerbundenerPlan: Spezifikation eines anderen Plans, der mit dem Ausgangsplan verbunden ist und diesen ändert bzw. von ihm geändert wird.">	
       <area shape="rect" coords="569,801,699,880" href="index.php?go=show_elements&package=Alle#xplan:XP_StringAttribut" alt="XP_StringAttribut" title="XP_StringAttribut: Generisches Attribut vom Datentyp "CharacterString">		
       <area shape="rect" coords="330,800,467,860" href="index.php?go=show_elements&package=Alle#xplan:XP_GenerAttribut" alt="XP_GenerAttribut" title="XP_GenerAttribut: Abstrakte Basisklasse für Generische Attribute.">
@@ -1672,9 +1770,10 @@ function show_uml() {
       <area shape="rect" coords="581,898,680,979" href="index.php?go=show_elements&package=Alle#xplan:XP_DatumAttribut" alt="XP_DatumAttribut" title="XP_DatumAttribut: Generische Attribute vom Datentyp "Datum">	
       <area shape="rect" coords="108,888,211,969" href="index.php?go=show_elements&package=Alle#xplan:XP_IntegerAttribut" alt="XP_IntegerAttribut" title="XP_IntegerAttribut: Generische Attribute vom Datentyp "Integer".">
   		<area shape="rect" coords="339,990,441,1071" href="index.php?go=show_elements&package=Alle#xplan:XP_URLAttribut" alt="XP_URLAttribut" title="XP_URLAttribut: Generische Attribute vom Datentyp "URL"> 		
-  		<area shape="rect" coords="631,220,761,299" href="index.php?go=show_simple_types#xplan:XP_ExterneReferenzArt" alt="XP_ExterneReferenzArt" title="XP_ExterneReferenzArt: Typisierung der referierten Dokumente">
-  		<area shape="rect" coords="530,380,730,647" href="index.php?go=show_simple_types#xplan:XP_MimeTypes" alt="XP_MimeTypes" title="XP_MimeTypes: Mime-Type des referierten Dokumentes">
-      <area shape="rect" coords="450,672,699,759" href="index.php?go=show_simple_types#xplan:XP_RechtscharakterPlanaenderung" alt="XP_RechtscharakterPlanaenderung" title="XP_RechtscharakterPlanaenderung: Rechtscharakter der Planänderung.">
+  		<area shape="rect" coords="631,220,761,299" href="index.php?go=show_elements#xplan:XP_ExterneReferenzArt" alt="XP_ExterneReferenzArt" title="XP_ExterneReferenzArt: Typisierung der referierten Dokumente">
+  		<area shape="rect" coords="530,380,730,647" href="index.php?go=show_elements#xplan:XP_MimeTypes" alt="XP_MimeTypes" title="XP_MimeTypes: Mime-Type des referierten Dokumentes">
+      <area shape="rect" coords="450,672,699,759" href="index.php?go=show_elements#xplan:XP_RechtscharakterPlanaenderung" alt="XP_RechtscharakterPlanaenderung" title="XP_RechtscharakterPlanaenderung: Rechtscharakter der Planänderung.">
+    </map>
       
     <map name="XP_Basisobjekte2">
       <area shape="rect" coords="251,278,541,508" href="index.php?go=show_elements&package=Alle#xplan:XP_Objekt" alt="XP_Objekt" title="XP_Objekt: Abstrakte Oberklasse für alle XPlanGML-Fachobjekte. Die Attribute dieser Klasse werden über den Vererbungs-Mechanismus an alle Fachobjekte weitergegeben.">
@@ -1685,31 +1784,31 @@ function show_uml() {
   		<area shape="rect" coords="279,728,462,810" href="index.php?go=show_elements&package=Alle#xplan:XP_Plangeber" alt="XP_Plangeber" title="XP_Plangeber: Spezifikation der Institution, die für den Plan verantwortlich ist.">
   		<area shape="rect" coords="19,710,233,822" href="index.php?go=show_elements&package=Alle#xplan:XP_Gemeinde" alt="XP_Gemeinde" title="XP_Gemeinde: Spezifikation einer Gemeinde">
   		<area shape="rect" coords="479,723,768,820" href="index.php?go=show_elements&package=Alle#xplan:XP_SPEMassnahmenDaten" alt="XP_SPEMassnahmenDaten" title="XP_SPEMassnahmenDaten: Spezifikation der Attribute für einer Schutz-, Pflege- oder Entwicklungsmaßnahme.">
-      <area shape="rect" coords="20,50,191,261" href="index.php?go=show_simple_types#xplan:XP_BedeutungenBereich" alt="XP_BedeutungenBereich" title="XP_BedeutungenBereich: Spezifikation der semantischen Bedeutung eines Bereiches.">
-      <area shape="rect" coords="38,419,153,521" href="index.php?go=show_simple_types#xplan:XP_Rechtsstand" alt="XP_Rechtsstand" title="XP_Rechtsstand: Gibt an ob der Planinhalt bereits besteht, geplant ist, oder zukünftig wegfallen soll.">
-      <area shape="rect" coords="570,209,756,319" href="index.php?go=show_simple_types#xplan:XP_ArtHoehenbezug" alt="XP_ArtHoehenbezug" title="XP_ArtHoehenbezug: Art des Höhenbezuges. ">
-      <area shape="rect" coords="591,330,740,521" href="index.php?go=show_simple_types#xplan:XP_ArtHoehenbezugspunkt" alt="XP_ArtHoehenbezugspunkt" title="XP_ArtHoehenbezugspunkt: Bestimmung des Bezugspunktes der Höhenangaben. Wenn dies Attribut nicht belegt ist, soll die Höhenangabe als verikale Einschränkung des zugeordneten Planinhalts interpretiert werden. ">
-      <area shape="rect" coords="571,841,769,1094" href="index.php?go=show_simple_types#xplan:XP_SPEMassnahmenTypen" alt="XP_SPEMassnahmenTypen" title="XP_SPEMassnahmenTypen: Klassifikation der Maßnahme">
-  		<area shape="rect" coords="29,329,181,379" href="index.php?go=show_simple_types#xplan:XP_GesetzlicheGrundlage" alt="XP_GesetzlicheGrundlage" title="XP_GesetzlicheGrundlage: Angagbe der Gesetzlichen Grundlage des Planinhalts.">
+      <area shape="rect" coords="20,50,191,261" href="index.php?go=show_elements#xplan:XP_BedeutungenBereich" alt="XP_BedeutungenBereich" title="XP_BedeutungenBereich: Spezifikation der semantischen Bedeutung eines Bereiches.">
+      <area shape="rect" coords="38,419,153,521" href="index.php?go=show_elements#xplan:XP_Rechtsstand" alt="XP_Rechtsstand" title="XP_Rechtsstand: Gibt an ob der Planinhalt bereits besteht, geplant ist, oder zukünftig wegfallen soll.">
+      <area shape="rect" coords="570,209,756,319" href="index.php?go=show_elements#xplan:XP_ArtHoehenbezug" alt="XP_ArtHoehenbezug" title="XP_ArtHoehenbezug: Art des Höhenbezuges. ">
+      <area shape="rect" coords="591,330,740,521" href="index.php?go=show_elements#xplan:XP_ArtHoehenbezugspunkt" alt="XP_ArtHoehenbezugspunkt" title="XP_ArtHoehenbezugspunkt: Bestimmung des Bezugspunktes der Höhenangaben. Wenn dies Attribut nicht belegt ist, soll die Höhenangabe als verikale Einschränkung des zugeordneten Planinhalts interpretiert werden. ">
+      <area shape="rect" coords="571,841,769,1094" href="index.php?go=show_elements#xplan:XP_SPEMassnahmenTypen" alt="XP_SPEMassnahmenTypen" title="XP_SPEMassnahmenTypen: Klassifikation der Maßnahme">
+  		<area shape="rect" coords="29,329,181,379" href="index.php?go=show_elements#xplan:XP_GesetzlicheGrundlage" alt="XP_GesetzlicheGrundlage" title="XP_GesetzlicheGrundlage: Angagbe der Gesetzlichen Grundlage des Planinhalts.">
     </map>  
     
     <map name ="XP_Praesentationsobjekte">
       <area shape="rect" coords="640,89,760,150" href="index.php?go=show_elements&package=Alle#xplan:XP_Objekt" alt="XP_Objekt" title="XP_Objekt: Abstrakte Oberklasse für alle XPlanGML-Fachobjekte. Die Attribute dieser Klasse werden über den Vererbungs-Mechanismus an alle Fachobjekte weitergegeben.">
       <area shape="rect" coords="260,79,390,150" href="index.php?go=show_elements&package=Alle#xplan:XP_Bereich" alt="XP_Bereich" title="XP_Bereich: Abstrakte Oberklasse für die Modellierung von Planbereichen. Ein Planbereich fasst die Inhalte eines Plans nach bestimmten Kriterien zusammen.">
-      <area shape="rect" coords="31,158,152,218" href="index.php?go=show_simple_types#XP_StylesheetListe" alt="XP_StylesheetListe" title="XP_StylesheetListe:">
-      <area shape="rect" coords="200,238,409,338" href="index.php?go=show_simple_types#XP_AbstraktesPraesentationsobjekt" alt="XP_AbstraktesPraesentationsobjekt" title="XP_AbstraktesPraesentationsobjekt:Abstrakte Basisklasse für alle Präsentationsobjekte. Die Attribute entsprechen dem ALKIS-Objekt AP_GPO, wobei das Attribut 'signaturnummer' in stylesheetId umbenannt wurde. Bei freien Präsentationsobjekten ist die Relation 'dientZurDarstellungVon' unbelegt, bei gebundenen Präsentationsobjekten zeigt die Relation auf ein von XP_Objekt abgeleitetes Fachobjekt.
+      <area shape="rect" coords="31,158,152,218" href="index.php?go=show_elements#xplan:XP_StylesheetListe" alt="XP_StylesheetListe" title="XP_StylesheetListe:">
+      <area shape="rect" coords="200,238,409,338" href="index.php?go=show_elements#xplan:XP_AbstraktesPraesentationsobjekt" alt="XP_AbstraktesPraesentationsobjekt" title="XP_AbstraktesPraesentationsobjekt:Abstrakte Basisklasse für alle Präsentationsobjekte. Die Attribute entsprechen dem ALKIS-Objekt AP_GPO, wobei das Attribut 'signaturnummer' in stylesheetId umbenannt wurde. Bei freien Präsentationsobjekten ist die Relation 'dientZurDarstellungVon' unbelegt, bei gebundenen Präsentationsobjekten zeigt die Relation auf ein von XP_Objekt abgeleitetes Fachobjekt.
       Freie Präsentationsobjekte dürfen ausschließlich zur graphischen Annotation eines Plans verwendet werden.
       Gebundene Präsentationsobjekte mit Raumbezug dienen ausschließlich dazu, Attributwerte des verbundenen Fachobjekts im Plan darzustellen. Die Namen der darzustellenden Fachobjekt-Attribute werden über das Attribut 'art' spezifiziert.">
-      <area shape="rect" coords="29,389,163,440" href="index.php?go=show_simple_types#XP_Praesentationsobjekt" alt="XP_Praesentationsobjekt" title="XP_Praesentationsobjekt: Entspricht der ALKIS-Objektklasse AP_Darstellung mit dem Unterschied, dass auf das Attribut 'positionierungssregel' verzichtet wurde.  Die Klasse darf nur als gebundenes Präsentationsobjekt verwendet werden. Die Standard-Darstellung des verbundenen Fachobjekts wird dann durch die über stylesheetId spezifizierte Darstellung ersetzt. Die Umsetzung dieses Konzeptes ist der Implementierung überlassen.">
-      <area shape="rect" coords="46,510,228,597" href="index.php?go=show_simple_types#XP_PPO" alt="XP_PPO" title="XP_PPO">
-      <area shape="rect" coords="179,630,352,690" href="index.php?go=show_simple_types#XP_LPO" alt="XP_LPO" title="XP_LPO">
-      <area shape="rect" coords="309,460,495,520" href="index.php?go=show_simple_types#XP_FPO" alt="XP_FPO" title="XP_FPO">
-      <area shape="rect" coords="429,610,796,721" href="index.php?go=show_simple_types#XP_TPO" alt="XP_TPO" title="XP_TPO">
-      <area shape="rect" coords="409,820,577,900" href="index.php?go=show_simple_types#XP_PTO" alt="XP_PTO" title="XP_PTO">
-      <area shape="rect" coords="600,819,772,890" href="index.php?go=show_simple_types#XP_LTO" alt="XP_LTO" title="XP_LTO">
-      <area shape="rect" coords="407,976,561,1049" href="index.php?go=show_simple_types#XP_Nutzungsschablone" alt="XP_Nutzungsschablone" title="XP_Nutzungsschablone">
-      <area shape="rect" coords="18,728,162,819" href="index.php?go=show_simple_types#XP_HorizontaleAusrichtung" alt="XP_HorizontaleAusrichtung" title="XP_HorizontaleAusrichtung">
-      <area shape="rect" coords="199,727,332,821" href="index.php?go=show_simple_types#XP_VertikaleAusrichtung" alt="XP_VertikaleAusrichtung" title="XP_VertikaleAusrichtung">
+      <area shape="rect" coords="29,389,163,440" href="index.php?go=show_elements#xplan:XP_Praesentationsobjekt" alt="XP_Praesentationsobjekt" title="XP_Praesentationsobjekt: Entspricht der ALKIS-Objektklasse AP_Darstellung mit dem Unterschied, dass auf das Attribut 'positionierungssregel' verzichtet wurde.  Die Klasse darf nur als gebundenes Präsentationsobjekt verwendet werden. Die Standard-Darstellung des verbundenen Fachobjekts wird dann durch die über stylesheetId spezifizierte Darstellung ersetzt. Die Umsetzung dieses Konzeptes ist der Implementierung überlassen.">
+      <area shape="rect" coords="46,510,228,597" href="index.php?go=show_elements#xplan:XP_PPO" alt="XP_PPO" title="XP_PPO">
+      <area shape="rect" coords="179,630,352,690" href="index.php?go=show_elements#xplan:XP_LPO" alt="XP_LPO" title="XP_LPO">
+      <area shape="rect" coords="309,460,495,520" href="index.php?go=show_elements#xplan:XP_FPO" alt="XP_FPO" title="XP_FPO">
+      <area shape="rect" coords="427,604,791,716" href="index.php?go=show_elements#xplan:XP_TPO" alt="XP_TPO" title="XP_TPO">
+      <area shape="rect" coords="409,820,577,900" href="index.php?go=show_elements#xplan:XP_PTO" alt="XP_PTO" title="XP_PTO">
+      <area shape="rect" coords="600,819,772,890" href="index.php?go=show_elements#xplan:XP_LTO" alt="XP_LTO" title="XP_LTO">
+      <area shape="rect" coords="407,976,561,1049" href="index.php?go=show_elements#xplan:XP_Nutzungsschablone" alt="XP_Nutzungsschablone" title="XP_Nutzungsschablone">
+      <area shape="rect" coords="18,728,162,819" href="index.php?go=show_elements#xplan:XP_HorizontaleAusrichtung" alt="XP_HorizontaleAusrichtung" title="XP_HorizontaleAusrichtung">
+      <area shape="rect" coords="199,727,332,821" href="index.php?go=show_elements#xplan:XP_VertikaleAusrichtung" alt="XP_VertikaleAusrichtung" title="XP_VertikaleAusrichtung">
     </map>
   
     <map name="INSPIRE">
@@ -1729,41 +1828,41 @@ function show_uml() {
       <a href="javascript:ReverseDisplay('basisobjekteuml')" class=hlink>
       <h3>RP_Basisobjekte</h3>
       </a>  
-      <p>Arbeitsversion 2016-05-06</p>
+      <p>Version 2016-10-13</p>
       <div id="basisobjekteuml" style="display:none;">
-      <p><img src="images/2016_05_06-Modell/RP_Basisobjekte_1.png" alt="RP_Basisobjekte1" style="width:826px;height:1168px;" usemap="#RP_Basisobjekte1"><img src="images/2016_05_06-Modell/RP_Basisobjekte_2.png" alt="RP_Basisobjekte2" style="width:826px;height:1168px;" usemap="#RP_Basisobjekte2"></p>
+      <p><img src="images/2016_10_13-Modell/RP_Basisobjekte_1.png" alt="RP_Basisobjekte1" style="width:826px;height:1168px;" usemap="#RP_Basisobjekte1"><img src="images/2016_10_13-Modell/RP_Basisobjekte_2.png" alt="RP_Basisobjekte2" style="width:826px;height:1168px;" usemap="#RP_Basisobjekte2"></p>
       </div>
 
       <a href="javascript:ReverseDisplay('freiraumstrukturuml')" class=hlink>
       <h3>RP_Freiraumstruktur</h3>
       </a>
-      <p>Arbeitsversion 2016-05-06</p>
+      <p>Version 2016-10-13</p>
       <div id="freiraumstrukturuml" style="display:none;">
-      <p><img src="images/2016_05_06-Modell/RP_Freiraumstruktur_1.png" alt="RP_Freiraumstruktur1" style="width:826px;height:1168px;" usemap="#RP_Freiraumstruktur1"><img src="images/2016_05_06-Modell/RP_Freiraumstruktur_2.png" alt="RP_Freiraumstruktur2" style="width:826px;height:1168px;" usemap="#RP_Freiraumstruktur2"><img src="images/2016_05_06-Modell/RP_Freiraumstruktur_3.png" alt="RP_Freiraumstruktur3" style="width:826px;height:1168px;" usemap="#RP_Freiraumstruktur3"></p>
+      <p><img src="images/2016_10_13-Modell/RP_Freiraumstruktur_1.png" alt="RP_Freiraumstruktur1" style="width:826px;height:1168px;" usemap="#RP_Freiraumstruktur1"><img src="images/2016_10_13-Modell/RP_Freiraumstruktur_2.png" alt="RP_Freiraumstruktur2" style="width:826px;height:1168px;" usemap="#RP_Freiraumstruktur2"><img src="images/2016_10_13-Modell/RP_Freiraumstruktur_3.png" alt="RP_Freiraumstruktur3" style="width:826px;height:1168px;" usemap="#RP_Freiraumstruktur3"></p>
       </div>
 
       <a href="javascript:ReverseDisplay('infrastrukturuml')" class=hlink>
       <h3>RP_Infrastruktur</h3>
       </a>
-      <p>Arbeitsversion 2016-05-06</p>
+      <p>Version 2016-10-13</p>
       <div id="infrastrukturuml" style="display:none;">
-      <p><img src="images/2016_05_06-Modell/RP_Infrastruktur_1.png" alt="RP_Infrastruktur1" style="width:826px;height:1168px;" usemap="#RP_Infrastruktur1"><img src="images/2016_05_06-Modell/RP_Infrastruktur_2.png" alt="RP_Infrastruktur2" style="width:826px;height:1168px;" usemap="#RP_Infrastruktur2"></p>
+      <p><img src="images/2016_10_13-Modell/RP_Infrastruktur_1.png" alt="RP_Infrastruktur1" style="width:826px;height:1168px;" usemap="#RP_Infrastruktur1"><img src="images/2016_10_13-Modell/RP_Infrastruktur_2.png" alt="RP_Infrastruktur2" style="width:826px;height:1168px;" usemap="#RP_Infrastruktur2"></p>
       </div>
 
       <a href="javascript:ReverseDisplay('siedlungsstrukturuml')" class=hlink>
       <h3>RP_Siedlungsstruktur</h3>
       </a>
-      <p>Arbeitsversion 2016-05-06</p>
+      <p>Version 2016-10-13</p>
       <div id="siedlungsstrukturuml" style="display:none;">
-      <p><img src="images/2016_05_06-Modell/RP_Siedlungsstruktur_1.png" alt="RP_Siedlungsstruktur1" style="width:826px;height:1168px;" usemap="#RP_Siedlungsstruktur1"><img src="images/2016_05_06-Modell/RP_Siedlungsstruktur_2.png" alt="RP_Siedlungsstruktur1" style="width:826px;height:1168px;" usemap="#RP_Siedlungsstruktur2"></p>
+      <p><img src="images/2016_10_13-Modell/RP_Siedlungsstruktur_1.png" alt="RP_Siedlungsstruktur1" style="width:826px;height:1168px;" usemap="#RP_Siedlungsstruktur1"><img src="images/2016_10_13-Modell/RP_Siedlungsstruktur_2.png" alt="RP_Siedlungsstruktur1" style="width:826px;height:1168px;" usemap="#RP_Siedlungsstruktur2"></p>
       </div>
 
       <a href="javascript:ReverseDisplay('sonstigesuml')" class=hlink>
       <h3>RP_Sonstiges</h3>
       </a>
-      <p>Arbeitsversion 2016-05-06</p>
+      <p>Version 2016-10-13</p>
       <div id="sonstigesuml" style="display:none;">
-      <p><img src="images/2016_05_06-Modell/RP_Sonstiges.png" alt="RP_Sonstiges" style="width:826px;height:1168px;" usemap="#RP_Sonstiges"></p>
+      <p><img src="images/2016_10_13-Modell/RP_Sonstiges.png" alt="RP_Sonstiges" style="width:826px;height:1168px;" usemap="#RP_Sonstiges"></p>
       </div>
     
       <a href="javascript:ReverseDisplay('rasteruml')" class=hlink>
@@ -1771,23 +1870,23 @@ function show_uml() {
       </a>
       <p>XPlan 4.1</p>
       <div id="rasteruml" style="display:none;">
-      <p><img src="images/2016_05_06-Modell/RP_Raster.png" alt="RP_Raster" style="width:826px;height:1168px;" usemap="#RP_Raster"></p>
+      <p><img src="images/2016_10_13-Modell/RP_Raster.png" alt="RP_Raster" style="width:826px;height:1168px;" usemap="#RP_Raster"></p>
       </div>
     
       <a href="javascript:ReverseDisplay('xpbasisobjekteuml')" class=hlink>
       <h3>XP_Basisobjekte</h3>
       </a>
-      <p>XPlan 4.1</p>
+      <p>XPlan 5.0 Beta</p>
       <div id="xpbasisobjekteuml" style="display:none;">
-      <p><img src="images/2016_05_06-Modell/XP_Basisobjekte_1.png" alt="XP_Basisobjekte1" style="width:826px;height:1168px;"usemap="#XP_Basisobjekte1"><img src="images/2016_05_06-Modell/XP_Basisobjekte_2.png" alt="XP_Basisobjekte2" style="width:826px;height:1168px;"usemap="#XP_Basisobjekte2"><p>
+      <p><img src="images/2016_10_13-Modell/XP_Basisobjekte_1.png" alt="XP_Basisobjekte1" style="width:826px;height:1168px;"usemap="#XP_Basisobjekte1"><img src="images/2016_10_13-Modell/XP_Basisobjekte_2.png" alt="XP_Basisobjekte2" style="width:826px;height:1168px;"usemap="#XP_Basisobjekte2"><p>
       </div>
       
       <a href="javascript:ReverseDisplay('xppraesentationsobjekteuml')" class=hlink>
       <h3>XP_Praesentationsobjekte</h3>
       </a>
-      <p>XPlan 4.1</p>
+      <p>XPlan 5.0 Beta</p>
       <div id="xppraesentationsobjekteuml" style="display:none;">
-      <p><img src="images/2016_05_06-Modell/XP_Praesentationsobjekte.png" alt="XP_Praesentationsobjekte" style="width:826px;height:1168px;"usemap="#XP_Praesentationsobjekte"><p>
+      <p><img src="images/2016_10_13-Modell/XP_Praesentationsobjekte.png" alt="XP_Praesentationsobjekte" style="width:826px;height:1168px;"usemap="#XP_Praesentationsobjekte"><p>
       </div>
     
       <a href="javascript:ReverseDisplay('inspireuml')" class=hlink>
@@ -1799,530 +1898,400 @@ function show_uml() {
       </div>
       
       <center><h2>Modell-Downloads</h2></center><hr>
-      <h3>UML-Modell als PDF zum <a href="/model/XPlan Raumordnungsplan Arbeitsmodell (Version 16-05-06).pdf">herunterladen</a> (Arbeitsversion 2016-05-06)</h3>
+      <h3>UML-Modell als PDF zum <a href="/model/XPlan Raumordnungsplan Arbeitsmodell (Version 16-10-13).pdf">herunterladen</a> (Version 2016-10-13)</h3>
       Diese Datei enthält alle Pakete des XP- und RP-Schemas. Die UML-Repräsentation in PDF-Form ist eine graphische Darstellung der relevanten Modellelemente und erlaubt die Suche von Begriffen innerhalb des Modells.
-      <h3>Liste aller Modelländerungen zum <a href="/model/2016_05_06_Aenderungsliste_XPlan_Raumordnungsmodell.doc">herunterladen</a> (Arbeitsversion 2016-05-06)</h3>
+      <h3>Liste aller Modelländerungen zum <a href="/model/2016-10-13_Aenderungsliste_XPlan_Raumordnungsmodell.doc">herunterladen</a> (Version 2016-10-13)</h3>
       Änderungen am RP-Schema von XPlanGML4.1 seit Projektbeginn sind hier textlich dokumentiert und werden mit jeder Modelländerung aktualisiert.
-      <h3>Konformitätsbedingungen für das Raumordnungsschema zum <a href="/model/2016_05_06_Konformitaetsbedingungen.doc">herunterladen</a> (Arbeitsversion 2016-05-06)</h3>
+      <h3>Konformitätsbedingungen für das Raumordnungsschema zum <a href="/model/2016_10_13_Konformitaetsbedingungen.doc">herunterladen</a> (Version 2016-10-13)</h3>
       Konformitätsbedingungen beschreiben Regeln und Relationen des Modells, welche nicht direkt in UML festgehalten werden können. Diese sind jedoch für eine vollständige und valide Konvertierung wichtig. Da XPlanGML4.1 keine Konformitätsbedingungen für das RP-Schema besitzt, wurden für das Projekt neue Konformitätsbedingungen für die Raumordnung zur Integration in die bestehenden Konformitätsbedingungen von XPlan aufgestellt.
-      <h3>Enterprise Architect Modell zum <a href="/model/2016-05-06_Modell_EA.eap">herunterladen</a> (Arbeitsversion 2016-05-06)</h3>
+      <h3>Enterprise Architect Modell zum <a href="/model/2016-10-13_Modell_EA.eap">herunterladen</a> (Version 2016-10-13)</h3>
       Die Modellierung und Erweiterung des Modells erfolgt anhand der UML-Modellierungssoftware Enterprise Architect von SparxSystems. Durch die .eap Datei kann das derzeitige Modell in Enterprise Architect genutzt werden. Änderungen von Projektseite fanden dabei nur im Paket Raumordnungsplanung (früher: Kernmodell_Regionalplanung) statt.
-      <h3>XMI-Datei zum <a href="/model/xplan.xmi">herunterladen</a> (Arbeitsversion 2016-05-06)</h3>
+      <h3>XMI-Datei zum <a href="/model/xplan.xmi">herunterladen</a> (Version 2016-10-13)</h3>
       XMI (XML Metadata Interchange) ist ein anbieterneutrales Format des Modells, welches zum Austausch zwischen Software-Entwicklungswerkzeugen genutzt werden kann. Die dazugehörige Datei erlaubt die Nutzung des Modells jenseits von Enterprise Architect.
-      <h3>XSD-Dateien zum <a href="/model/2016_05_06_XSD_Modell.zip">herunterladen</a> (Arbeitsversion 2016-05-06)</h3>
+      <h3>XSD-Dateien zum <a href="/model/2016_10_13_XSD_Modell.zip">herunterladen</a> (Version 2016-10-13)</h3>
       XSD(XML Schema Definition)-Dateien definieren die Strukturen von XML-Dokumenten. Für das Projekt sind diese zur Definition der Struktur eines XPlanGML-Dokuments nötig. Anbei werden die XSD-Dateien aller relevanten Pakete des Modells als .zip bereitgestellt.
-      <h3>Modell Report zum <a href="/model/2016_01_26_model_report.pdf">herunterladen</a> (Arbeitsversion 2016-01-26)</h3>
+      <h3>Modell Report zum <a href="/model/2016_10_13_model_report.pdf">herunterladen</a> (Version 2016-10-13)</h3>
       Der Modellreport aus Enterprise Architect zeigt eine textliche Gesamtübersicht über das gesamte Modell zu Dokumentationszwecken.
-      <h3>XPlan-konforme Beispiel-Shapefiles zum <a href="/files/Beispiel_Shapefiles_XPlan-konform.zip">herunterladen</a> (Version 2016-04-25)</h3>
+      <h3>XPlan-konforme Beispiel-Shapefiles zum <a href="/files/Beispiel_Shapefiles_XPlan-konform.zip">herunterladen</a> (Version 2016-10-13)</h3>
       XPlan-konforme Shapefiles erlauben die Aufnahme von Geodaten in XPlan-konformen Shapefiles. Diese können in der Konvertierungssoftware durch eine einzelne Standardabfrage in eine GML-Klasse umgewandelt werden. Die hier dargestellten Shapefiles sind Beispiele und können in Teilen verändert werden. So sind z.B. für jede XPlan-Klasse alle (nicht-gemischten) Geometrietypen zulässig.
-      <h3>Bereitstellung des XPlan-Modells als <a href="/EA/">Enterprise Architect Feature-Katalog</a> (Version 2016-05-03)</h3>
-      Die aus Enterprise Architect hergeleitete Online-Modellversion enthält das vollständige XPlan-Modell sowie alle dazugehörigen ISO-Pakete als interaktiven Feature-Katalog.
+      <h3>Bereitstellung des XPlan-Modells als <a href="/EA/">Enterprise Architect Objektartenkatalog</a> (Version 2016-10-13)</h3>
+      Die aus Enterprise Architect hergeleitete Online-Modellversion enthält das vollständige XPlan-Modell sowie alle dazugehörigen ISO-Pakete als interaktiver Objektartenkatalog.
+      <h3>Bereitstellung des XPlan-Modell Objektartenkatalogs gemäß ISO 19110 als <a href="/model/XPlan_Featurecatalogue_ISO19110_2016-10-13.pdf">PDF</a> und als <a href="/featureCatalogBuilder/fc.php">HTML-Katalog</a> (Version 2016-10-13)</h3>
+      Der Objektartenkatalog steht als PDF und als HTML bereit und entspricht in seiner Form dem ISO-Standard 19110.
+      <h3>Bereitstellung einer klassenbasierten XPlan-Visualisierungsdatei als <a href="/files/xplanung.sld">SLD</a> (Version 2016-10-13)</h3>
+      Die bereitgestellte XPlanung SLD kann zur Visualisierung einer XPlanGML-Datei auf Klassenbasis verwendet werden und die Grundlage zum Aufbau einer eigenen Visualisierungsdatei auf Basis eines spezifischen Plans bilden.
     </div>
   </div><?php
   output_footer();
 }
 
-function show_elements() {
+function show_elements(){
   global $conn, $params, $packages;
-  if ($params['package'] == '') $params['package'] = 'RPlan';
-  output_header(true);  
-   ?>
+  output_header(true);
+  ?>
   <div id="main">
     <div class="textsite">
       <?php
-        echo '<h1><center>XPlan Elemente und Attribute</center><hr>';
+        echo '<h1><center>Featurekatalog</center><hr>';
         include('views/helplists.php');
         echo '</h1>';
       ?>
       <form action="index.php">
         <input type="hidden" name="go" value="show_elements">
-        Package: 
-        <select id="element_package_selektor" name="package" size="1" onchange="document.location.href='index.php?go=show_elements&package=' + $(this).val()">
-          <?php for ($i=0; $i < count($packages); $i++) {
-            ?><option value="<?php echo $packages[$i]['package']; ?>"<?php if ($packages[$i]['package'] == $params['package']) { ?> selected<?php } ?>><?php echo $packages[$i]['package']; ?></option>
-          <?php } ?>
-        </select>
-        <?php
+        <?
+
+        # Paket
+        $sql = "
+          SELECT 
+            name, id, parent_package_id
+          FROM 
+            xplan_uml.packages
+          ORDER BY
+            id
+        ";
+        $result = pg_query($conn, $sql);
+        $pakete = array();
+        while ($row = pg_fetch_row($result)){
+          $pakete[] = $row;
+        }
+        # Klassen
+        $sql = '
+          SELECT 
+            xmi_id,
+            name,
+            package_id,
+            "isAbstract",
+            id,
+            stereotype_id,
+            general_id
+          FROM 
+            xplan_uml.uml_classes
+          ORDER BY
+            id
+        ';
+        $result = pg_query($conn, $sql);
+        $klassen = array();
+        while ($row = pg_fetch_row($result)){
+          $klassen[] = $row;
+        }
+        # Attribute
         $sql = "
           SELECT
-            e.id element_id,
-            e.name element_name,
-            e.documentation,
-            e.type element_type,
-            e.\"substitutionGroup\" \"element_substitutionGroup\",
-            a.element_id attribut_element_id,
-            a.name attribut_name,
-            a.\"minOccurs\",
-            CASE WHEN a.\"minOccurs\" = '0' THEN '0' ELSE '1' END \"attribut_minOccurs\",
-            a.\"maxOccurs\",
-            CASE WHEN a.\"maxOccurs\" = 'unbounded' THEN '*' ELSE '1' END \"attribut_maxOccurs\",
-            a.type attribut_type,
-            a.ref attribut_ref,
-            e.package,
-            e.altoderneuelements,
-            a.altoderneuattributes,
-            a.documentationattribute
+            xmi_id, 
+            name, 
+            uml_class_id, 
+            id,
+            datatype,
+            classifier, 
+            multiplicity_range_lower, 
+            multiplicity_range_upper,
+            initialvalue_id,
+            initialvalue_body
           FROM
-            " . SCHEMA_PREFIX . "xplan.elements e LEFT JOIN
-            " . SCHEMA_PREFIX . "xplan.attributes a ON e.id = a.element_id
-          WHERE
-            e.name NOT LIKE '_GenericApplicationPropertyOf%'
-          ";
-        if ($params['package'] != '' AND $params['package'] != 'Alle') $sql .= " AND package LIKE '" . $params['package'] ."'";
-        $sql .= "
-          ORDER BY ";
-        if ($params['order'] != '') {
-          $sql .= $params['order'];
-        } else {
-          $sql .= "
-            e.package,
-            e.name,
-            a.name
-          ";
-        }
-
-        #echo '<br>' . $sql;
+            xplan_uml.uml_attributes
+          ORDER BY
+            uml_class_id
+        ";
         $result = pg_query($conn, $sql);
-        $packages = array();
-        $element_id = 0;
-        $package = array();
-        $element = array();
         $attribute = array();
-        while ($row = pg_fetch_assoc($result)) {
-          if ($package['name'] != $row['package']) {
-            # new package
-            # close the old package if exists
-            if (! empty($package)) {
-              $packages[] = $package;
+        while ($row = pg_fetch_row($result)){
+          $attribute[] = $row;
+        }
+        # Definition u. Dokumentation
+        $sql ="
+          SELECT
+            v.xmi_id,
+            v.datavalue,
+            v.attribute_id,
+            v.class_id,
+            d.name
+          FROM
+            xplan_uml.taggedvalues AS v
+          INNER JOIN
+            xplan_uml.tagdefinitions AS d
+          ON
+            d.xmi_id = v.type
+          WHERE
+            d.name = 'description'
+          OR
+            d.name = 'documentation'
+        ";
+        $result = pg_query($conn, $sql);
+        $def = array();
+        while ($row = pg_fetch_row($result)){
+          $defs[] = $row;
+        }
+        # Datentypen
+       $sql ="
+        SELECT
+          xmi_id,
+          name
+        FROM
+          xplan_uml.datatypes
+        ";
+        $result = pg_query($conn, $sql);
+        $datatypen = array();
+        while ($row = pg_fetch_row($result)){
+          $datatypen[] = $row;
+        }
+        # Stereotypes
+        $sql="
+          SELECT
+            xmi_id,
+            name
+          FROM
+            xplan_uml.stereotypes
+        ";
+        $result = pg_query($conn, $sql);
+        $stereotypes = array();
+        while($row = pg_fetch_row($result)){
+          $stereotypes[] = $row;
+        }
+        # Associations (type ist Ursprung, participant ist Ziel)
+        $sql="
+          SELECT
+            ca.name a_class_name,
+            b.id b_id,
+            b.name b_name,
+            b.multiplicity_range_lower b_multiplicity_range_lower,
+            b.multiplicity_range_upper b_multiplicity_range_upper,
+            a.id a_id,
+            a.name a_name,
+            a.multiplicity_range_lower a_multiplicity_range_lower,
+            a.multiplicity_range_upper a_multiplicity_range_upper,
+            cb.name b_class_name
+          FROM
+            xplan_uml.uml_classes ca JOIN
+            xplan_uml.association_ends a ON (ca.xmi_id = a.participant) JOIN
+            xplan_uml.association_ends b ON (a.assoc_id = b.assoc_id) JOIN
+            xplan_uml.uml_classes cb ON (cb.xmi_id = b.participant)
+          WHERE
+            a.id != b.id
+        ";
+        $result = pg_query($conn, $sql);
+        $associations = array();
+        while($row = pg_fetch_row($result)){
+          $associations[] = $row;
+        }
+        # Ableitungen
+        $sql="
+          SELECT
+            xmi_id,
+            parent_id,
+            child_id
+          FROM
+            xplan_uml.class_generalizations
+        ";
+        $result = pg_query($conn, $sql);
+        $generalizations = array();
+        while($row = pg_fetch_row($result)){
+          $generalizations[] = $row;
+        }
+        # Package Selektor
+        ?>
+        <form action="index.php">
+        <input type="hidden" name="go" value="show_elements">
+        <?php
+        # Für alle Parent Packages
+        foreach($pakete as $paketparent) {
+          #Pakete
+          # Legt fest ob Paket Pakete as Children hat
+          if (empty($paketparent[2])){
+            echo '<h2>';
+            ?>
+            <a href="javascript:toggleVisibility('<?php echo $paketparent[0]; ?>')">
+              <img src="images/minus.png" id="<?php echo $paketparent[0]; ?>_minimize_img" alt="Minimize Pakete" class = "minimize_img">
+              <img src="images/plus.png" id="<?php echo $paketparent[0]; ?>_maximize_img" alt="Maximize Pakete" class = "maximize_img">
+            </a>
+            <?
+            echo $paketparent[0];
+            if ($paketparent[0] != 'Raumordnungsplan'){
+              echo '<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_' . $paketparent[0] . '.html" target="_blank"><img src="images/Link.png" width="15"></a>';
             }
-            # start with new package
-            $package = array('name' => $row['package'], 'elements' => array());
-          }
-          if ($element['id'] != $row['element_id']) {
-            # new element
-            # close the old element if exists
-            if (! empty($element)) {
-              $package['elements'][] = $element;
+            echo '</h2>';
+            echo '<div id="' . $paketparent[0] . '" class="toggleable">';
+            foreach($pakete as $paket) {
+              if((!empty($paket[2])) and ($paket[2] == $paketparent[1])){
+                echo '<h3>';
+                ?>
+                <a href="javascript:toggleVisibility('<?php echo $paket[0]; ?>')">
+                  <img src="images/minus.png" id="<?php echo $paket[0]; ?>_minimize_img" alt="Minimize Pakete" class = "minimize_img">
+                  <img src="images/plus.png" id="<?php echo $paket[0]; ?>_maximize_img" alt="Maximize Pakete" class = "maximize_img">
+                </a>
+                <a href="javascript:toggleVisibility(new Array('<?php echo $paket[0];?>_all'<?foreach($klassen as $klasse_id){if($klasse_id[2] == $paket[1]){echo ",'k_" . $klasse_id[4] . "'";}}?>))">
+                  <img src="images/minimize.png" id="<?php echo $paket[0]; ?>_all_minimize_img" alt="Minimize_Pakete" class = "minimize_img">
+                  <img src="images/maximize.png" id="<?php echo $paket[0]; ?>_all_maximize_img" alt="Maximize_Pakete" class = "maximize_img">
+                </a>
+                <?
+                echo $paket[0];
+                if (substr($paket[0], 0, 3) != 'RP_'){
+                  echo '<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_' . $paket[0] . '.html" target="_blank"><img src="images/Link.png" width="15"></a>';
+                }
+                echo '</h3>';
+                echo '<div id="' . $paket[0] . '" class="toggleable">';
+                #Klassen
+                foreach($klassen as $klasse) {
+                  if($klasse[2] == $paket[1]){
+                    ?>
+                    <a href="javascript:toggleVisibility('<? echo 'k_' . $klasse['4']; ?>')" class="hlink">
+                      <img src="images/minimize.png" id="<? echo $klasse['4']; ?>_minimize_img" alt="Minimize Pakete" class = "minimize_img">
+                      <img src="images/maximize.png" id="<? echo $klasse['4']; ?>_maximize_img" alt="Maximize_Pakete" class="maximize_img">
+                    </a>
+                    <?
+                    echo '<a name="xplan:' . $klasse[1] . '"class = "anchor">';
+                    echo '<b>' . $klasse[1] . '</b>';
+                    echo '</a>';
+                    # Falls Featuretype funktioniert dieser Link
+                    # Falls es sich um eine Enumeration handelt, muss er auf das Element, dass das Attribut das auf es verweist enthält, verweisen
+                    # if stereotype = enum, dann finde parent klasse durch
+                    foreach($stereotypes as $stereotype){
+                      if(($klasse[5] == $stereotype[0]) and ($stereotype[1] == 'FeatureType')){
+                        if (substr($klasse[1], 0, 3) != 'RP_'){
+                          echo '<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/xplan_' . $klasse[1] . '.html" target="_blank"><img src="images/Link.png" width="15"></a>';
+                        }
+                      }
+                    }
+                    echo '<br>';
+                    echo '<div id="k_' . $klasse[4] . '" class="toggleable">';
+                    echo '<i>Stereotyp</i>:<br>';
+                    foreach($stereotypes as $stereotype){
+                      if($stereotype[0] == $klasse[5]){
+                        echo '&nbsp;&nbsp;';
+                        echo $stereotype[1] . '<br>';
+                      }
+                    }
+                    echo '<i>Dokumentation:</i><br>';
+                    #Dokumentation Klasse
+                    foreach($defs as $def) {
+                      if($def[3] == $klasse[4]){
+                        echo '&nbsp;&nbsp;';
+                        echo $def[1] . '<br>';
+                      }
+                    }
+                    echo '<i>Attribute:</i><br>';
+                    # Attribute
+                    foreach($attribute as $attribut) {
+                      if($attribut[2] == $klasse[4]){
+                        echo '&nbsp;&nbsp;';
+                        echo '<span title' . $attribut[1] . '">';
+                        echo $attribut[1];
+                        echo '</span>';
+                        # falls Attribut Enumerationswert enthält dann hinzuschreiben
+                        if (!empty($attribut[9])){
+                          echo ' = ' . $attribut[9];
+                        }
+                        # falls keine Enumeration dann datatype(über spalte datatype zu datatypes, kann boolean, charstring etc. sein) oder Klasse (über Spalte classifier - xmi-id)
+                        else {
+                          # Datentyp (sowohl datatype als auch classifier können hierauf verweisen
+                          # undefined wird nicht angezeigt
+                          foreach($datatypen as $datatyp){
+                            if(($attribut[4] == $datatyp[0]) or ($attribut[5] == $datatyp[0])){
+                              if($datatyp[1] != '<undefined>'){
+                                echo ': ';
+                                echo '<a href="index.php?go=show_elements#' . $datatyp[1] . '">';
+                                echo $datatyp[1];
+                                echo '</a>';
+                              }
+                            }
+                          }
+                          # Classifier (KomplexeTypen)
+                          foreach($klassen as $klasse_c){
+                            if($attribut[5] == $klasse_c[0]){
+                              echo ': '; 
+                              echo '<a href="index.php?go=show_elements#xplan:' . $klasse_c[1] . '">';
+                              echo $klasse_c[1];
+                              echo '</a>';
+                            }
+                          }
+                        }
+                        #Attributausprägung
+                        if (($attribut[6] != 1) or ($attribut[7] != 1)){
+                          echo ' [' . $attribut[6] . '..' .  $attribut[7] . ']';
+                        }
+                        echo '<br>';
+                      }
+                    }
+                    #Associations
+                    foreach($associations as $association){
+                      if(($klasse[1] == $association[0]) and ($association[2] != "<undefined>") and (!empty($association[2]))) {
+                        echo '<i>Assoziation:</i><br>';
+                        foreach($associations as $association){
+                          if(($klasse[1] == $association[0]) and ($association[2] != "<undefined>") and (!empty($association[2]))) {
+                            echo '&nbsp;&nbsp;';
+                            # Assoziationsende Quelle
+                            echo $association[2];
+                            echo ': ';
+                            # Assoziationsende Ziel
+                            echo '<a href="index.php?go=show_elements#xplan:' . $association[9] . '">';
+                            echo $association[9];
+                            echo '</a>';
+                            if (($association[3] != 1) or ($association[4] != 1)){
+                              echo ' [' . $association[3] . '..';
+                              if($association[4] == '-1'){echo '*';}else{echo $association[9];}
+                              echo ']';
+                            }
+                            echo '<br>';
+                          }
+                        }
+                        #Falls Associations vorhanden sind, wird Associations geschrieben (und break), ansonsten nicht
+                        break;
+                      }
+                    }
+                    # Ableitungen
+                    if ($klasse[6] != '-1'){
+                      echo '<i>Abgeleitet von</i>:<br>';
+                      foreach($generalizations as $generalization){
+                        if($generalization[0] == $klasse[6]){
+                          foreach($klassen as $klasse_g){
+                            if($klasse_g[0] == $generalization[1]){
+                              echo '&nbsp;&nbsp;';
+                              echo '<a href="index.php?go=show_elements#xplan:' . $klasse_g[1] . '">';
+                              echo $klasse_g[1];
+                              echo '</a>';
+                              echo '<br>';
+                            }
+                          }
+                        }
+                      }
+                    }
+                    echo '</div>';
+                  }
+                }
+                echo '</div>';      
+              }              
             }
-            # start with new element
-            $element = array('id' => $row['element_id'], 'element_name' => $row['element_name'], 'altoderneuelements' => $row['altoderneuelements'], 'documentation' => $row['documentation'], 'attributes' => array(), 'associations' => array());
-          }
-          if ($row['attribut_name'] != '' AND $attribute['name'] != $row['attribut_name']) {
-            # new attribute
-
-            $attribute = array('attribut_type' => $row['attribut_type'], 'attribut_name' => $row['attribut_name'], 'altoderneuattributes' => $row['altoderneuattributes'], 'attribut_minOccurs' => $row['attribut_minOccurs'], 'attribut_maxOccurs' => $row['attribut_maxOccurs'], 'attribut_ref' => $row['attribut_ref'], 'documentationattribute' => $row['documentationattribute']);
-            if ($attribute['attribut_type'] == 'gml:ReferenceType') {
-              $element['associations'][] = $attribute;
-            } else {
-              $element['attributes'][] = $attribute;
-            }
+            echo '</div>';
           }
         }
-        # assign last element
-        $package['elements'][] = $element;
-        # assign last package
-        $packages[] = $package;
-      
-        output_elements($packages);
-      ?></form>
+        // Ab hier Datentypen
+        echo '<h2>';
+        ?>
+        <a href="javascript:toggleVisibility('Datentypen')">
+          <img src="images/minus.png" id="Datentypen_minimize_img" alt="Minimize Datentypen" class = "minimize_img">
+          <img src="images/plus.png" id="Datentypen_maximize_img" alt="Maximize Datentypen" class = "maximize_img">
+        </a>
+        <?
+        echo 'Datentypen';
+        echo '</h2>';
+        echo '<div id="Datentypen" class="toggleable">';
+        foreach($datatypen as $datatyp) {
+          if($datatyp[1] != '<undefined>') {
+            echo '<a name="' . $datatyp[1] . '" class="anchor">';
+            echo $datatyp[1];
+            echo '</a>';
+            echo '<br>';
+          }
+        }
+        echo '</div>';
+        ?>
+      </form>
     </div>
   </div>
   <?php
   output_footer();
 }
 
-function output_elements($packages) {
-  foreach ($packages AS $package) {
-    ?><h2>
-      <a href="javascript:toggleVisibility('<?php echo $package['name']; ?>')">
-        <img src="images/minus.png" id="<?php echo $package['name']; ?>_minimize_img" alt="Minimize Pakete" class = "minimize_img">
-        <img src="images/plus.png" id="<?php echo $package['name']; ?>_maximize_img" alt="Maximize Pakete" class = "maximize_img">
-      </a>
-      <a href="javascript:toggleVisibility(new Array('<?php echo $package['name']; ?>_all',<?php echo implode(',', array_map(function($element) { return $element['id']; }, $package['elements'])); ?>))">
-        <img src="images/minimize.png" id="<?php echo $package['name']; ?>_all_minimize_img" alt="Minimize Pakete" class = "minimize_img">
-        <img src="images/maximize.png" id="<?php echo $package['name']; ?>_all_maximize_img" alt="Maximize Pakete" class = "maximize_img">
-      </a>
-      <?php echo $package['name']; ?>
-    </h2>
-    <div id="<?php echo $package['name']; ?>" class="toggleable"><?php
-      foreach ($package['elements'] AS $element) {
-        ?><a href="javascript:toggleVisibility('<?php echo $element['id']; ?>')" class=hlink><img src="images/minimize.png" id="<?php echo $element['id']; ?>_minimize_img" alt="Minimize Pakete" class = "minimize_img"><img src="images/maximize.png" id="<?php echo $element['id']; ?>_maximize_img" alt="Maximize Pakete" class = "maximize_img"></a>
-        <b><a name="xplan:<?php echo $element['element_name']; ?>" class="anchor"><?php 
-        if ($element['altoderneuelements'] == "veraltet"){
-          ?><s><?php echo $element['element_name']; ?></s></a> <img src="images/veraltet.png" height="13"></b><?php
-        }    
-        else {
-          echo $element['element_name']; ?></a></b><?php
-        }
-        if ($element['altoderneuelements'] == "neu") {
-          ?> <img src="images/aenderung.png" height="13"><?php
-        }
-
-        else {
-          ?><a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/xplan_<?php echo $element['element_name']; ?>.html" target="_blank"><img src="images/Link.png" width="15"></a><?php
-        }
-        ?>
-        <div id="<?php echo $element['id']; ?>" class="toggleable">
-          <i>Dokumentation:</i><br><?php
-          echo $element['documentation'];
-          ?><br><i>Attribute:</i><br><?php
-          foreach ($element['attributes'] AS $attribute) {
-            output_attribute($attribute);
-
-
-          }
-          if (count($element['associations']) > 0) {
-            ?><i>Assoziationen:</i><br><?php
-            foreach ($element['associations'] AS $association) {
-              output_attribute($association);
-            }
-          }
-        ?></div><br><?php
-      }
-    ?></div><?php
-  }
-}
-
-function output_attribute($attribute) {
-  # xplan element: vorn 'xplan:' und hinten 'PropertyType'
-  # xplan enumeration: vorn 'xplan:' und hinten kein 'PropertyType'
-  # gml type: vorn 'gml:'
-  # simple type: alle anderen
-  if (substr($attribute['attribut_type'], 0, 6) == 'xplan:') {
-    if(substr($attribute['attribut_type'], -12) == 'PropertyType') {
-      # xplan element
-      $go = 'show_elements';
-    } else {
-      # xplan enumeration
-      $go = 'show_simple_types';
-    }
-  } else {
-    if (substr($attribute['attribut_type'], 0, 4) == 'gml:') {
-      # gml type
-      $go = 'show_simple_types';      
-    }
-    else {
-      # simple type
-      $go = 'show_simple_types';      
-    }
-  }
-  $href = 'index.php?go=' . $go . '#' . str_replace('PropertyType', '', $attribute['attribut_type']);
-	
-	if ($attribute['altoderneuattributes'] == "veraltet"){
-          echo "<s>";
-        }    
-  echo '&nbsp;&nbsp;name: <span title="' . $attribute['documentationattribute'] .  '">' . $attribute['attribut_name'] . '</span> [' . $attribute['attribut_minOccurs'] . '..' . $attribute['attribut_maxOccurs'] . ']' . ' type: <a href="' . $href . '">' . $attribute['attribut_type'] . '</a> ref: ' . $attribute['attribut_ref'] ;
-	if ($attribute['altoderneuattributes'] == "veraltet") {
-		echo " <img src=\"images/veraltet.png\" height=\"13\"></s>";
-	}
-	if ($attribute['altoderneuattributes'] == "neu") {
-		echo " <img src=\"images/neu.png\" height=\"13\">";
-	}
-	echo '<br>';
-}
-
-function show_simple_types() {
-  global $conn, $params;
-  output_header(true);?>
-  <div id="main">
-  <div class="textsite">
-  <?php
-      echo '<h1><center>Codelisten</center><hr>';
-      include('views/helplists.php');
-      echo '</h1>';
-    ?>
-    <h2>
-      <a href="javascript:toggleVisibility('paketeminmax')" class=hlink><img src="images/minimize.png" id="paketeminmax_minimize_img" alt="Minimize Pakete" class = "minimize_img"><img src="images/maximize.png" id="paketeminmax_maximize_img" alt="Maximize Pakete" class = "maximize_img"></a>
-      Pakete
-    </h2>
-    <div id="paketeminmax" class="toggleable">
-      <p>
-        <h3>
-          <a href="javascript:toggleVisibility('basisobjekteminmax')" class=hlink><img src="images/minimize.png" id="basisobjekteminmax_minimize_img" alt="Minimize Basisobjekte" class = "minimize_img"><img src="images/maximize.png" id="basisobjekteminmax_maximize_img" alt="Maximize Pakete" class = "maximize_img"></a>
-          Basisobjekte</h3>
-          <div id="basisobjekteminmax" class="toggleable">
-            XP_Basisobjekte<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_XP_Basisobjekte.html" target="_blank"><img src="images/Link.png" width="15" ></a><br>
-            XP_Enumerationen<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_XP_Enumerationen.html" target="_blank"><img src="images/Link.png" width="15"></a><br>
-            XP_Praesentationsobjekte<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_XP_Praesentationsobjekte.html" target="_blank"><img src="images/Link.png" width="15"></a><br>
-            XP_Raster<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_XP_Raster.html" target="_blank"><img src="images/Link.png" width="15"></a><br>
-          </div>
-        <h3>
-          <a href="javascript:toggleVisibility('bebauungsplanminmax')" class=hlink><img src="images/minimize.png" id="bebauungsplanminmax_minimize_img" alt="Minimize Bebauungsplan" class = "minimize_img"><img src="images/maximize.png" id="bebauungsplanminmax_maximize_img" alt="Maximize Bebauungsplan" class = "maximize_img"></a>  
-          Bebauungsplan</h3>
-          <div id="bebauungsplanminmax" class="toggleable">
-            BP_Basisobjekte<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_BP__Basisobjekte.html" target="_blank"><img src="images/Link.png" width="15"></a><br>
-            BP_Aufschuettung_Abgrabung_Bodenschaetze<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_BP_Aufschuettung_Abgrabung_Bodenschaetze.html" target="_blank"><img src="images/Link.png" width="15"></a><br>
-            BP_Bebauung<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_BP_Bebauung.html" target="_blank"><img src="images/Link.png" width="15"></a><br>
-            BP_Erhaltungssatzung_und_Denkmalschutz<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_BP_Erhaltungssatzung_und_Denkmalschutz.html" target="_blank"><img src="images/Link.png" width="15"></a><br>
-            BP_Gemeinbedarf_Spiel_und_Sportanlagen<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_BP_Gemeinbedarf_Spiel_und_Sportanlagen.html" target="_blank"><img src="images/Link.png" width="15"></a><br>
-            BP_Landwirtschaft, Wald- und Grünflächen<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_BP_Landwirtschaft,%20Wald-%20und%20Gr%fcnfl%e4chen.html" target="_blank"><img src="images/Link.png" width="15"></a><br>
-            BP_Naturschutz_Landschaftsbild_Naturhaushalt<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_BP_Naturschutz_Landschaftsbild_Naturhaushalt.html	" target="_blank"><img src="images/Link.png" width="15"></a><br>
-            BP_Verkehr<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_BP_Verkehr.html" target="_blank"><img src="images/Link.png" width="15"></a><br>
-            BP_Sonstiges<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_BP_Sonstiges.html" target="_blank"><img src="images/Link.png" width="15"></a><br>
-            BP_Raster<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_BP_Raster.html" target="_blank"><img src="images/Link.png" width="15"></a><br>
-            BP_Wasser<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_FP__Basisobjekte.html" target="_blank"><img src="images/Link.png" width="15"></a><br>
-            BP_Umwelt<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_BP_Umwelt.html" target="_blank"><img src="images/Link.png" width="15"></a><br>
-            BP_Ver_und_Entsorgung<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_BP_Ver_und_Entsorgung.html" target="_blank"><img src="images/Link.png" width="15"></a><br>
-          </div>
-        <h3>
-          <a href="javascript:toggleVisibility('flaechennutzungsplanminmax')" class=hlink><img src="images/minimize.png" id="flaechennutzungsplanminmax_minimize_img" alt="Minimize Flaechennutzungsplan" class = "minimize_img"><img src="images/maximize.png" id="flaechennutzungsplanminmax_maximize_img" alt="Maximize Flaechennutzungssplan" class = "maximize_img"></a>  
-          Flaechennutzungsplan</h3>
-          <div id="flaechennutzungsplanminmax" class="toggleable">
-            FP_Basisobjekte<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_FP__Basisobjekte.html" target="_blank"><img src="images/Link.png" width="15"></a><br>
-            FP_Aufschuettung_Abgrabung_Bodenschaetze<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_FP_Aufschuettung_Abgrabung_Bodenschaetze.html" target="_blank"><img src="images/Link.png" width="15"></a><br>
-            FP_Bebauung<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_FP_Bebauung.html" target="_blank"><img src="images/Link.png" width="15"></a><br>
-            FP_Gemeinbedarf_Spiel_und_Sportanlagen<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/xplan_FP_SpielSportanlage.html" target="_blank"><img src="images/Link.png" width="15"></a><br>
-            FP_Landwirtschaft_Wald_und_Gruen<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_FP_Landwirtschaft_Wald_und_Gruen.html" target="_blank"><img src="images/Link.png" width="15"></a><br>
-            FP_Naturschutz<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_FP_Naturschutz.html" target="_blank"><img src="images/Link.png" width="15"></a><br>
-            FP_Raster<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_FP_Raster.html" target="_blank"><img src="images/Link.png" width="15"></a><br>
-            FP_Sonstiges<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_FP_Sonstiges.html" target="_blank"><img src="images/Link.png" width="15"></a><br>
-            FP_Verkehr<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_FP_Verkehr.html" target="_blank"><img src="images/Link.png" width="15"></a><br>
-            FP_Ver- und Entsorgung<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_FP_Ver- und Entsorgung.html" target="_blank"><img src="images/Link.png" width="15"></a><br>
-            FP_Wasser<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_FP_Wasser.html" target="_blank"><img src="images/Link.png" width="15"></a><br>
-          </div>
-        <h3>
-          <a href="javascript:toggleVisibility('regionalplanminmax')" class=hlink><img src="images/minimize.png" id="regionalplanminmax_minimize_img" alt="Minimize Regionalplan" class = "minimize_img"><img src="images/maximize.png" id="regionalplanminmax_maximize_img" alt="Maximize Regionalplan" class = "maximize_img"></a>  
-          Regionalplan</h3>
-          <div id="regionalplanminmax" class="toggleable">
-            RP_Basisobjekte<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_RP__Basisobjekte.html" target="_blank"><img src="images/Link.png" width="15"></a><br>
-            RP_Freiraumstruktur<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_RP_KernmodellFreiraumstruktur.html" target="_blank"><img src="images/Link.png" width="15"></a><br>
-            RP_Infrastruktur<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_RP_KernmodellInfrastruktur.html" target="_blank"><img src="images/Link.png" width="15"></a><br>
-            RP_Siedlungsstruktur<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_RP_KernmodellSiedlungsstruktur.html" target="_blank"><img src="images/Link.png" width="15"></a><br>
-            RP_Sonstiges<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_RP_KernmodellSonstiges.html" target="_blank"><img src="images/Link.png" width="15"></a><br>
-          </div>
-        <h3>
-          <a href="javascript:toggleVisibility('landschaftsplanminmax')" class=hlink><img src="images/minimize.png" id="landschaftsplanminmax_minimize_img" alt="Minimize Landschaftsplan" class = "minimize_img"><img src="images/maximize.png" id="landschaftsplanminmax_maximize_img" alt="Maximize Landschaftsplan" class = "maximize_img"></a>  
-          Landschaftsplan</h3>
-          <div id="landschaftsplanminmax" class="toggleable">
-            LP_Basisobjekte<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_LP__Basisobjekte.html" target="_blank"><img src="images/Link.png" width="15"></a><br>
-            LP_Erholung<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_LP__Erholung.html" target="_blank"><img src="images/Link.png" width="15"></a><br>
-            LP_MassnahmenNaturschutz<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_LP__MassnahmenNaturschutz.html" target="_blank"><img src="images/Link.png" width="15"></a><br>
-            LP_SchutzgebieteObjekte<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_LP__SchutzgebieteObjekte.html" target="_blank"><img src="images/Link.png" width="15"></a><br>
-            LP_Sonstiges<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_LP__Sonstiges.html" target="_blank"><img src="images/Link.png" width="15"></a><br>
-          </div>
-        <h3>
-          <a href="javascript:toggleVisibility('sonstigeplanwerkeminmax')" class=hlink><img src="images/minimize.png" id="sonstigeplanwerkeminmax_minimize_img" alt="MinimizeSonstige Planwerke" class = "minimize_img"><img src="images/maximize.png" id="sonstigeplanwerkeminmax_maximize_img" alt="Maximize Sonstige Planwerke" class = "maximize_img"></a>  
-          SonstigePlanwerke</h3>
-          <div id="sonstigeplanwerkeminmax" class="toggleable">
-            SO_Basisobjekte<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_SO_Basisobjekte.html" target="_blank"><img src="images/Link.png" width="15"></a><br>
-            SO_NachrichtlicheUebernahmen<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_SO_NachrichtlicheUebernahmen.html" target="_blank"><img src="images/Link.png" width="15"></a><br>
-            SO_Raster<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_SO_Raster.html" target="_blank"><img src="images/Link.png" width="15"></a><br>
-            SO_Schutzgebiete<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_SO_Schutzgebiete.html" target="_blank"><img src="images/Link.png" width="15"></a><br>
-            SO_Sonstiges<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_SO_Sonstiges.html" target="_blank"><img src="images/Link.png" width="15"></a><br>
-            SO_SonstigeGebiete<a href="http://www.xplanungwiki.de/upload/XPlanGML/4.1-Kernmodell/Objektartenkatalog/html/Package_xplan_SO_SonstigeGebiete.html" target="_blank"><img src="images/Link.png" width="15"></a><br>
-          </div>
-      </p>
-    </div>
-      <h2><a href="javascript:toggleVisibility('enumerationstypesminmax')" class=hlink><img src="images/minimize.png" id="enumerationstypesminmax_minimize_img" alt="Minimize Pakete" class = "minimize_img"><img src="images/maximize.png" id="enumerationstypesminmax_maximize_img" alt="Maximize Pakete" class = "maximize_img"></a> Enumerations</h2> 
-    <div id="enumerationstypesminmax" class="toggleable">
-      <p>
-    <?php
-    echo "<form action=\"index.php\">\n";
-    echo "<input type=\"hidden\" name=\"go\" value=\"show_simple_types\">";
-    echo "Package: <input name=\"package\" value=\"" . $params['package']. "\" size=\"35\">";
-
-    $sql = "SELECT st.id simple_type_id, st.name simple_type_name, st.package, en.id enumeration_id, en.name enumeration_name, en.value enumeration_value, st.altoderneusimpletypes, en.altoderneuenumerations FROM " . SCHEMA_PREFIX . "xplan.simple_types st, " . SCHEMA_PREFIX . "xplan.enumerations en WHERE st.id = en.simple_type_id";
-    if ($params['package'] != '') $sql .= " AND package LIKE '" . $params['package'] ."'";
-    $sql .= ' ORDER BY ';
-    if ($params['order'] != '') {
-      $sql .= $params['order'];
-    } else {
-      $sql .= 'st.package, st.name, en.value';
-    }
-
-    #echo '<br>' . $sql;
-    $result = pg_query($conn, $sql);
-    $simple_type_id = 0;
-    $package_value = '';
-    while ($row = pg_fetch_assoc($result)) {
-      if ($package_value != $row['package']) {
-        $package_value = $row['package'];
-        echo '<h3>' . $package_value . '</h3>';
-      }
-      if ($simple_type_id != $row['simple_type_id']) {
-        $simple_type_id = $row['simple_type_id'];
-        echo '<b><a name= "xplan:' . $row['simple_type_name'] . '">';
-        if ($row['altoderneusimpletypes'] == "veraltet"){echo "<s>";}
-        echo $row['simple_type_name'];
-        if ($row['altoderneusimpletypes'] == "neu"){echo " <img src=\"images/aenderung.png\" height=\"13\">";}
-        echo '</a>';
-        if ($row['altoderneusimpletypes'] == "veraltet"){echo " <img src=\"images/veraltet.png\" height=\"13\"></s>";}
-        echo '</a></b><br>' . '&nbsp;&nbsp; ';
-        if ($row['altoderneuenumerations'] == "veraltet"){echo '<s>';}
-        echo $row['enumeration_value'] . ' '. $row['enumeration_name'];
-        if ($row['altoderneuenumerations'] == "neu"){
-          echo " <img src=\"images/aenderung.png\" height=\"13\">";
-        }
-        if ($row['altoderneuenumerations'] == "veraltet"){
-          echo "</s> <img src=\"images/veraltet.png\" height=\"13\">";  
-        }
-        echo '</a><br>';
-      
-      } else {
-        echo '&nbsp;&nbsp; ';
-        if ($row['altoderneuenumerations'] == "veraltet") {echo "<s>";}
-        echo  $row['enumeration_value'] . ' '. $row['enumeration_name'];
-        if ($row['altoderneuenumerations'] == "neu") {echo " <img src=\"images/aenderung.png\" height=\"13\">";}
-        if ($row['altoderneuenumerations'] == "veraltet") {echo "</s> <img src=\"images/veraltet.png\" height=\"13\">";}
-        echo '</a><br>';
-      }
-    }
-    ?>
-    </p>
-    </div>  
-  	<h2><a href="javascript:toggleVisibility('codelistsminmax')" class=hlink><img src="images/minimize.png" id="codelistsminmax_minimize_img" alt="Minimize Codelists" class = "minimize_img"><img src="images/maximize.png" id="codelistsminmax_maximize_img" alt="Maximize Codelists" class = "maximize_img"></a> Externe Codelisten</h2> 
-    <div id="codelistsminmax" class="toggleable">
-      <p>
-  			&nbsp;&nbsp;<a name="xplan:BP_AbweichendeBauweise"> </a>BP_AbweichendeBauweise<br>
-  			&nbsp;&nbsp;<a name="xplan:BP_DetailArtDerBaulNutzung"> </a>BP_DetailArtDerBaulNutzung<br>
-  			&nbsp;&nbsp;<a name="xplan:BP_DetailDachform"> </a>BP_DetailDachform<br>
-  			&nbsp;&nbsp;<a name="xplan:BP_DetailZweckbestGemeinbedarf"> </a>BP_DetailZweckbestGemeinbedarf<br>
-  			&nbsp;&nbsp;<a name="xplan:BP_DetailZweckbestGemeinschaftsanlagen"> </a>BP_DetailZweckbestGemeinschaftsanlagen<br>
-  			&nbsp;&nbsp;<a name="xplan:BP_DetailZweckbestGewaesser"> </a>BP_DetailZweckbestGewaesser<br>
-  			&nbsp;&nbsp;<a name="xplan:BP_DetailZweckbestLandwirtschaft"> </a>BP_DetailZweckbestLandwirtschaft<br>
-        &nbsp;&nbsp;<a name="xplan:BP_DetailZweckbestNaturschutzgebiet"> </a>BP_DetailZweckbestNaturschutzgebiet<br>
-        &nbsp;&nbsp;<a name="xplan:BP_DetailZweckbestNebenanlagen"> </a>BP_DetailZweckbestNebenanlagen<br>
-        &nbsp;&nbsp;<a name="xplan:BP_DetailZweckbestSpielSportanlage"> </a>BP_DetailZweckbestSpielSportanlage<br>
-        &nbsp;&nbsp;<a name="xplan:BP_DetailZweckbestStrassenverkehr"> </a>BP_ZweckbestStrassenverkehr<br>
-        &nbsp;&nbsp;<a name="xplan:BP_DetailZweckbestVerEntsorgung"> </a>BP_DetailZweckbestVerEntsorgung<br>
-        &nbsp;&nbsp;<a name="xplan:BP_DetailZweckbestWaldFlaeche"> </a>BP_DetailZweckbestWaldFlaeche<br>
-  			&nbsp;&nbsp;<a name="xplan:BP_DetailZweckbestWasserwirtschaft"> </a>BP_DetailZweckbestWasserwirtschaft<br>
-        &nbsp;&nbsp;<a name="xplan:BP_SonstPlanArt"> </a>BP_SonstPlanArt<br>
-        &nbsp;&nbsp;<a name="xplan:BP_SpezielleBauweiseSonstTypen"> </a>BP_SpezielleBauweiseSonstTypen<br>
-        &nbsp;&nbsp;<a name="xplan:BP_Status"> </a>BP_Status<br>
-        &nbsp;&nbsp;<a name="xplan:BP_ZweckbestimmungGenerischeObjekte"> </a>BP_ZweckbestimmungGenerischeObjekte<br>
-        &nbsp;&nbsp;<a name="xplan:FP_DetailArtderBaulNutzung"> </a>FP_DetailArtderBaulNutzung<br>
-        &nbsp;&nbsp;<a name="xplan:FP_DetailZweckbestGemeinbedarf"> </a>FP_DetailZweckbestGemeinbedarf<br>
-        &nbsp;&nbsp;<a name="xplan:FP_DetailZweckbestGewaesser"> </a>FP_DetailZweckbestGewaesser<br>
-        &nbsp;&nbsp;<a name="xplan:FP_DetailZweckbestGruen"> </a>FP_DetailZweckbestGruen<br>
-        &nbsp;&nbsp;<a name="xplan:FP_DetailZweckbestLandwirtschaftsFlaeche"> </a>FP_DetailZweckbestLandwirtschaftsFlaeche<br>
-        &nbsp;&nbsp;<a name="xplan:FP_DetailZweckbestSpielSport"> </a>FP_DetailZweckbestSpielSport<<br>
-        &nbsp;&nbsp;<a name="xplan:FP_DetaiLZweckbestStrassenverkehr"> </a>FP_DetaiLZweckbestStrassenverkehr<br>
-        &nbsp;&nbsp;<a name="xplan:FP_DetailZweckbestVerEntsorgung"> </a>FP_DetailZweckbestVerEntsorgung<br>
-        &nbsp;&nbsp;<a name="xplan:FP_DetailZweckbestWaldFlaeche"> </a>FP_DetailZweckbestWaldFlaeche<br>
-        &nbsp;&nbsp;<a name="xplan:FP_DetailZweckbestWasserwirtschaft"> </a>FP_DetailZweckbestWasserwirtschaft<br>
-        &nbsp;&nbsp;<a name="xplan:FP_SonstPlanArt"> </a>FP_SonstPlanArt<br>
-        &nbsp;&nbsp;<a name="xplan:FP_SpezifischePraegungTypen"> </a>FP_SpezifischePraegungTypen<br>
-        &nbsp;&nbsp;<a name="xplan:FP_Status"> </a>FP_Status<br>
-        &nbsp;&nbsp;<a name="xplan:FP_ZentralerVersorgungsbereichAuspraegung"> </a>FP_ZentralerVersorgungsbereichAuspraegung<br>
-        &nbsp;&nbsp;<a name="xplan:FP_ZweckbestimmungGenerischeObjekte"> </a>FP_ZweckbestimmungGenerischeObjekte<br>
-        &nbsp;&nbsp;<a name="xplan:LP_BodenschutzrechtDetailTypen"> </a>LP_BodenschutzrechtDetailTypen<br>
-        &nbsp;&nbsp;<a name="xplan:LP_DenkmalschutzrechtDetailTypen"> </a>LP_DenkmalschutzrechtDetailTypen<br>
-  			&nbsp;&nbsp;<a name="xplan:LP_ErholungFreizeitDetaiLFunktionen"> </a>LP_ErholungFreizeitDetaiLFunktionen<br>
-        &nbsp;&nbsp;<a name="xplan:LP_InternatSchutzobjektDetailTypen"> </a>LP_InternatSchutzobjektDetailTypen<br>
-        &nbsp;&nbsp;<a name="xplan:LP_SchutzgebietDetailTypen"> </a>LP_SchutzgebietDetailTypen<br>
-        &nbsp;&nbsp;<a name="xplan:LP_SchutzobjektLandesrechtDetailTypen"> </a>LP_SchutzobjektLandesrechtDetailTypen<br>
-  			&nbsp;&nbsp;<a name="xplan:LP_SonstRechtDetailTypen"> </a>LP_SonstRechtDetailTypen<br>
-        &nbsp;&nbsp;<a name="xplan:LP_WaldschutzDetailTypen"> </a>LP_WaldschutzDetailTypen<br>
-        &nbsp;&nbsp;<a name="xplan:LP_WasserrechtGemeingebrEinschraenkungNaturschutzdetailTypen"> </a>LP_WasserrechtGemeingebrEinschraenkungNaturschutzdetailTypen<br>
-        &nbsp;&nbsp;<a name="xplan:LP_WasserrechtSchutzgebietDetailTypen"> </a>LP_WasserrechtSchutzgebietDetailTypen<br>
-        &nbsp;&nbsp;<a name="xplan:LP_WasserrechtSonstigeTypen"> </a>LP_WasserrechtSonstigeTypen<br>
-  			&nbsp;&nbsp;<a name="xplan:LP_WasserrechtWirtschaftAbflussHochwSchutzDetailTypen"> </a>LP_WasserrechtWirtschaftAbflussHochwSchutzDetailTypen<br>
-        &nbsp;&nbsp;<a name="xplan:RP_FeatureTypeListe"> </a>RP_FeatureTypeListe<br>
-        &nbsp;&nbsp;<a name="xplan:RP_SonstGrenzeTypen"> </a>RP_SonstGrenzeTypen<br>
-        &nbsp;&nbsp;<a name="xplan:RP_SonstPlanArt"> </a>RP_SonstPlanArt<br>
-        &nbsp;&nbsp;<a name="xplan:RP_Status"> </a>RP_Status<br>
-        &nbsp;&nbsp;<a name="xplan:RP_ZweckbestimmungGenerischeObjekte"> </a>RP_ZweckbestimmungGenerischeObjekte<br>
-        &nbsp;&nbsp;<a name="xplan:SO_DetailKlassifizNachBodenschutzrecht"> </a>SO_DetailKlassifizNachBodenschutzrecht<br>
-        &nbsp;&nbsp;<a name="xplan:SO_DetailKlassifizNachDenkmalschutzrecht"> </a>SO_DetailKlassifizNachDenkmalschutzrecht<br>
-        &nbsp;&nbsp;<a name="xplan:SO_DetailKlassifizNachForstrecht"> </a>SO_DetailKlassifizNachForstrecht<br>
-        &nbsp;&nbsp;<a name="xplan:SO_DetailKlassifizNachLuftverkehrsrecht"> </a>SO_DetailKlassifizNachLuftverkehrsrecht<br>
-  			&nbsp;&nbsp;<a name="xplan:SO_DetailKlassifizNachSchienenverkehrsrecht"> </a>SO_DetailKlassifizNachSchienenverkehrsrecht<br>
-        &nbsp;&nbsp;<a name="xplan:SO_DetailKlassifizNachSonstigemRecht"> </a>SO_DetailKlassifizNachSonstigemRecht<br>
-        &nbsp;&nbsp;<a name="xplan:SO_DetailKlassifizNachStrassenverkehrsrecht"> </a>SO_DetailKlassifizNachStrassenverkehrsrecht<br>
-        &nbsp;&nbsp;<a name="xplan:SO_DetailKlassifizNachWasserrecht"> </a>SO_DetailKlassifizNachWasserrecht<br>
-        &nbsp;&nbsp;<a name="xplan:SO_DetailKlassifizSchutzgebietNaturschutzrecht"> </a>SO_DetailKlassifizSchutzgebietNaturschutzrecht<br>
-        &nbsp;&nbsp;<a name="xplan:SO_DetailKlassifizNachBodenschutzrecht"> </a>SO_DetailKlassifizNachBodenschutzrecht<br>
-        &nbsp;&nbsp;<a name="xplan:SO_DetailKlassifizSchutzgebietSonstRecht"> </a>SO_DetailKlassifizSchutzgebietSonstRecht<br>
-        &nbsp;&nbsp;<a name="xplan:SO_DetailKlassifizSchutzgebietWasserrecht"> </a>SO_DetailKlassifizSchutzgebietWasserrecht<br>
-        &nbsp;&nbsp;<a name="xplan:SO_SonstGebietsArt"> </a>SO_SonstGebietsArt<br>
-  			&nbsp;&nbsp;<a name="xplan:SO_SonstGrenzeTypen"> </a>SO_SonstGrenzeTypen<br>
-  			&nbsp;&nbsp;<a name="xplan:SO_SonstRechtscharakter"> </a>SO_SonstRechtscharakter<br>
-  			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FestsetzungBPlan<br>
-  			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DarstellungFPlan<br>
-  			&nbsp;&nbsp;<a name="xplan:VegetationsobjektTypen"> </a>VegetationsobjektTypen<br>
-  			&nbsp;&nbsp;<a name="xplan:XP_ExterneReferenzArt"> </a>XP_ExterneReferenzArt<br>
-  			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dokument<br>
-  			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PlanMitGeoreferenz<br>
-  			&nbsp;&nbsp;<a name="xplan:XP_GesetzlicheGrundlage"> </a>XP_GesetzlicheGrundlage<br>
-  			&nbsp;&nbsp;<a name="xplan:XP_MimeType"> </a>XP_MimeType<br>
-  			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;application/pdf<br>
-  			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;application/zip<br>
-  			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;application/xml<br>
-  			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;application/msword<br>
-  			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;application/msexcel<br>
-  			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;application/vnd.ogc.sld+xml<br>
-  			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;application/vnd.ogc.wms_xml<br>
-  			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;application/vnd.ogc.gml<br>
-  			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;application/odt<br>
-  			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;image/jpg<br>
-  			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;image/png<br>
-  			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;image/tiff<br>
-  			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;image/ecw<br>
-  			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;image/svg+xml<br>
-  			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text/html<br>
-  			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text/plain<br>
-  			&nbsp;&nbsp;<a name="xplan:XP_StylesheetListe"> </a>XP_StylesheetListe<br>
-      </p>
-    </div> 
-	
-    <h2><a href="javascript:toggleVisibility('gmltypesminmax')" class=hlink><img src="images/minimize.png" id="gmltypesminmax_minimize_img" alt="Minimize Pakete" class = "minimize_img"><img src="images/maximize.png" id="gmltypesminmax_maximize_img" alt="Maximize Pakete" class = "maximize_img"></a> GML-Types</h2> 
-    <div id="gmltypesminmax" class="toggleable">
-      <p>
-        &nbsp;&nbsp;<a name="gml:AbstractGeometry"> </a>gml:AbstractGeometry<br>
-        &nbsp;&nbsp;<a name="gml:AbstractRing"> </a>gml:AbstractRing<br>
-        &nbsp;&nbsp;<a name="gml:AngleType"> </a>gml:AngleType<br>
-        &nbsp;&nbsp;<a name="gml:AreaType"> </a>gml:AreaType<br>
-        &nbsp;&nbsp;<a name="gml:boundedBy"> </a>gml:boundedBy<br>
-        &nbsp;&nbsp;<a name="gml:CodeType"> </a>gml:CodeType<br>
-        &nbsp;&nbsp;<a name="gml:coverageFunction"> </a>gml:coverageFunction<br>
-        &nbsp;&nbsp;<a name="gml:curveMember"> </a>gml:curveMember<br>
-        &nbsp;&nbsp;<a name="gml:description"> </a>gml:description<br>
-        &nbsp;&nbsp;<a name="gml:descriptionReference"> </a>gml:descriptionReference<br>
-        &nbsp;&nbsp;<a name="gml:DirectPositionType"> </a>gml:DirectPositionType<br>
-        &nbsp;&nbsp;<a name="gml:domainSet"> </a>gml:domainSett<br>
-        &nbsp;&nbsp;<a name="gml:doubleOrNilReasonTupleList"> </a>gml:doubleOrNilReasonTupleList<br>
-        &nbsp;&nbsp;<a name="gml:Envelope"> </a>gml:Envelope<br>
-        &nbsp;&nbsp;<a name="gml:featureMember"> </a>gml:featureMember<br>
-        &nbsp;&nbsp;<a name="gml:exterior"> </a>gml:exterior<br>
-        &nbsp;&nbsp;<a name="gml:Geometry"> </a>gml:GeometryPropertyType<br> <!--  hier nur property statt property type, da Parser Type abschneidet-->
-        &nbsp;&nbsp;<a name="gml:identifier"> </a>gml:identifier<br>
-        &nbsp;&nbsp;<a name="gml:integerList"> </a>gml:integerList<br>
-        &nbsp;&nbsp;<a name="gml:interior"> </a>gml:interior<br>
-        &nbsp;&nbsp;<a name="gml:LengthType"> </a>gml:LengthType<br>
-        &nbsp;&nbsp;<a name="gml:name"> </a>gml:name<br>
-        &nbsp;&nbsp;<a name="gml:patches"> </a>gml:patches<br>
-        &nbsp;&nbsp;<a name="gml:pointMember"> </a>gml:pointMember<br>
-        &nbsp;&nbsp;<a name="gml:pos"> </a>gml:pos<br>
-        &nbsp;&nbsp;<a name="gml:posList"> </a>gml:posList<br>
-        &nbsp;&nbsp;<a name="gml:rangeParameters"> </a>gml:rangeParameters<br>
-        &nbsp;&nbsp;<a name="gml:rangeSet"> </a>gml:rangeSet<br>
-        &nbsp;&nbsp;<a name="gml:ReferenceType"> </a>gml:ReferenceType<br>
-        &nbsp;&nbsp;<a name="gml:segments"> </a>gml:segments<br>
-        &nbsp;&nbsp;<a name="gml:SequenceRuleType"> </a>gml:SequenceRuleType<br>
-        &nbsp;&nbsp;<a name="gml:solidMember"> </a>gml:solidMember<br>
-        &nbsp;&nbsp;<a name="gml:surfaceMember"> </a>gml:surfaceMember<br>
-        &nbsp;&nbsp;<a name="gml:VectorType"> </a>gml:VectorType<br>
-        &nbsp;&nbsp;<a name="gml:VolumeType"> </a>gml:VolumeType<br>
-      </p>
-    </div>
-    <h2><a href="javascript:toggleVisibility('simpletypesminmax')" class=hlink><img src="images/minimize.png" id="simpletypesminmax_minimize_img" alt="Minimize Pakete" class = "minimize_img"><img src="images/maximize.png" id="simpletypesminmax_maximize_img" alt="Maximize Pakete" class = "maximize_img"></a> Simple-Types</h2> 
-    <div id="simpletypesminmax" class="toggleable">
-      <p>
-        &nbsp;&nbsp;<a name="anyURI"> </a>anyURI<br>
-        &nbsp;&nbsp;<a name="boolean"> </a>boolean<br>
-        &nbsp;&nbsp;<a name="codetype"> </a>codetype<br>
-        &nbsp;&nbsp;<a name="date"> </a>date<br>
-        &nbsp;&nbsp;<a name="double"> </a>double<br>
-        &nbsp;&nbsp;<a name="integer"> </a>integer<br>
-        &nbsp;&nbsp;<a name="string"> </a>string<br>
-    </div>
-    </div>
-  </div><?php
-  output_footer();
-}
-
-
+/*
 function load_xsd($file_name, $truncate) {
   global $conn;
   output_header(true);?>
@@ -2503,6 +2472,7 @@ function get_text_from_comment($line) {
   * Formats a line (passed as a fields  array) as CSV and returns the CSV as a string.
   * Adapted from http://us3.php.net/manual/en/function.fputcsv.php#87120
   */
+  /*
 function csv_encode( array &$fields, $delimiter = ';', $enclosure = '"', $encloseAll = false, $nullToMysqlNull = false ) {
   $delimiter_esc = preg_quote($delimiter, '/');
   $enclosure_esc = preg_quote($enclosure, '/');
@@ -2525,7 +2495,8 @@ function csv_encode( array &$fields, $delimiter = ';', $enclosure = '"', $enclos
 
   return implode( $delimiter, $output );
 }
-
+*/
+/*
 function write_element($package, $element) {
   global $conn;
   $sql = "INSERT INTO " . SCHEMA_PREFIX . "xplan.elements (name, type, \"substitutionGroup\", package) VALUES('" . $element['name'] . "', '" . $element['type'] . "', '" . $element['substitutionGroup'] . "', '" . $package . "') RETURNING id";
@@ -2570,4 +2541,5 @@ function write_attributes($element_id, $attributes) {
     $result = pg_query($conn, $sql);
   }
 }
+*/
 ?>

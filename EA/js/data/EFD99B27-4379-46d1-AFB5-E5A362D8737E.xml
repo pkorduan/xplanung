@@ -1,3 +1,0 @@
-tocTab[tocTab.length] = new Array("0.2.3.6.6:1", "", "SO_Sonstiges", "EARoot/EA2/EA3/EA6/EA6/EA2784.htm", "175.png", "760", "0", "", "class diagram0","{F6E524CD-D160-41e8-AC95-0CBF2C26D582}");
-tocTab[tocTab.length] = new Array("0.2.3.6.6:2", "", "«FeatureType» SO_Grenze", "EARoot/EA2/EA3/EA6/EA6/EA2787.htm", "5.png", "E1066", "0", "", "Class0","{5873ECC7-6190-4c74-B4D3-989AD1BB22CC}");
-tocTab[tocTab.length] = new Array("0.2.3.6.6:3", "", "«CodeList» SO_SonstGrenzeTypen", "EARoot/EA2/EA3/EA6/EA6/EA2788.htm", "5.png", "E1067", "0", "", "Class0","{AD57C7B6-55F4-4ad5-B286-8C4315688A82}");

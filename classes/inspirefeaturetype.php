@@ -7,11 +7,10 @@ class Inspire {
   }
   
   /*
-  * Diese Funktion fragt INSPIRE-Daten aus der Datenbank ab und gibt diese als Array zurück
+  * Diese Funktion fragt INSPIRE-Daten aus der Datenbank ab und gibt diese als Array zurueck
   */
   function get($params) {
     # Erzeugt ein json file mit planzeichen
-    $conn = pg_connect('dbname=moro user=pgadmin password=PaGeMin2');
     $xplan_featuretype = $params['xplan_featuretype'];
     $hsrcl = $params['hsrcl'];
     $sql  = "

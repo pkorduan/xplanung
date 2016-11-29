@@ -31,7 +31,7 @@
       <img src="images/help/farbe4.png"> Diese Farbe stellt eine Union dar (kann nicht angeklickt werden).<br>
       <!--<img src="images/help/kommentar.png"> Diese Farbe stellt einen Kommentar dar. Dieser ist im eigentlichen Modell nicht enthalten, erläutert aber die Änderungsschritte gegenüber früheren Versionen.<br> -->
       <br>
-      <img src="images/help/ableitung.png"> Dieser Pfeil stellt eine Ableitung dar. Ein abgeleitetes Objekt enthält alle zusätzlich zu seinen Attributen alle Attribute des Originalobjekts.<br>
+      <img src="images/help/ableitung.png"> Dieser Pfeil stellt eine Ableitung dar. Ein abgeleitetes Objekt enthält zusätzlich zu seinen Attributen alle Attribute des Originalobjekts.<br>
       <img src="images/help/assoziation.png"> Dieser Pfeil stellt eine Assoziation dar. Assoziierte Objekte stehen miteinander in Verbindung (z.B. 0..1).<br><br>
       </p>
   </div>

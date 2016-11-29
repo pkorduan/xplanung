@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" elementFormDefault="qualified" targetNamespace="" version="" xmlns:="">
+  <annotation>
+    <documentation>Darstellung von Wasserflächen, Häfen, und den für die Wasserwirtschaft vorgesehenen Flächen, sowie von Flächen, die im Interesse des Hochwasserschutzes und der Regelung des Wasserabflusses freizuhalten sind (§5, Abs. 2, Nr. 7 BauGB).</documentation>
+  </annotation>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <!--XML Schema document created by ShapeChange - http://shapechange.net/-->
+  <element name="FP_Gewaesser" substitutionGroup=":FP_Geometrieobjekt" type=":FP_GewaesserType">
+    <annotation>
+      <documentation>Darstellung von Wasserflächen nach §5, Abs. 2, Nr. 7 BauGB.</documentation>
+    </annotation>
+  </element>
+  <complexType name="FP_GewaesserType">
+    <complexContent>
+      <extension base=":FP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="zweckbestimmung" type=":XP_ZweckbestimmungGewaesserType">
+            <annotation>
+              <documentation>Zweckbestimmung des Gewässers.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="detaillierteZweckbestimmung" type="gml:CodeType">
+            <annotation>
+              <documentation>Über eine CodeList definierte zusätzliche Zweckbestimmung des Objektes.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="FP_Wasserwirtschaft" substitutionGroup=":FP_Geometrieobjekt" type=":FP_WasserwirtschaftType">
+    <annotation>
+      <documentation>Flächen für den vorbeugenden Hochwassersachutz  (§5, Abs. 2, Nr. 7 BauGB)</documentation>
+    </annotation>
+  </element>
+  <complexType name="FP_WasserwirtschaftType">
+    <complexContent>
+      <extension base=":FP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="zweckbestimmung" type=":XP_ZweckbestimmungWasserwirtschaftType">
+            <annotation>
+              <documentation>Zweckbestimmung des Objektes</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="detaillierteZweckbestimmung" type="gml:CodeType">
+            <annotation>
+              <documentation>Über eine CodeList definierte zusätzliche Zweckbestimmung des Objektes.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+</schema>

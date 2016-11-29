@@ -1,7 +1,0 @@
-tocTab[tocTab.length] = new Array("0.2.3.3.2:1", "", "FP_Aufschuettung_Abgrabung_Bodenschaetze", "EARoot/EA2/EA3/EA3/EA2/EA2382.htm", "175.png", "724", "0", "", "class diagram0","{17417EF4-B588-4fe1-BB9B-B61C49D8C3B3}");
-tocTab[tocTab.length] = new Array("0.2.3.3.2:2", "", "«FeatureType» FP_Abgrabung", "EARoot/EA2/EA3/EA3/EA2/EA2385.htm", "5.png", "E833", "0", "", "Class0","{D4E8CA2A-C54A-411d-BF13-3E815522F236}");
-tocTab[tocTab.length] = new Array("0.2.3.3.2:3", "", "«FeatureType» FP_AbgrabungsFlaeche", "EARoot/EA2/EA3/EA3/EA2/EA2386.htm", "5.png", "E829", "0", "", "Class0","{C6DF8EE6-E9A9-47a9-B9E1-9D2D948A5FB0}");
-tocTab[tocTab.length] = new Array("0.2.3.3.2:4", "", "«FeatureType» FP_Aufschuettung", "EARoot/EA2/EA3/EA3/EA2/EA2387.htm", "5.png", "E830", "0", "", "Class0","{2307D41E-955A-4f60-8A6F-D5065F2F5583}");
-tocTab[tocTab.length] = new Array("0.2.3.3.2:5", "", "«FeatureType» FP_AufschuettungsFlaeche", "EARoot/EA2/EA3/EA3/EA2/EA2388.htm", "5.png", "E832", "0", "", "Class0","{6F1189D2-9962-4fcd-9499-08CEA93C9CE8}");
-tocTab[tocTab.length] = new Array("0.2.3.3.2:6", "", "«FeatureType» FP_Bodenschaetze", "EARoot/EA2/EA3/EA3/EA2/EA2389.htm", "5.png", "E831", "0", "", "Class0","{6FB24D73-CABD-4cae-BCDD-C70F1B878BC3}");
-tocTab[tocTab.length] = new Array("0.2.3.3.2:7", "", "«FeatureType» FP_BodenschaetzeFlaeche", "EARoot/EA2/EA3/EA3/EA2/EA2390.htm", "5.png", "E834", "0", "", "Class0","{6CD4A921-6FAB-42f5-832C-D1DA9D4033A9}");

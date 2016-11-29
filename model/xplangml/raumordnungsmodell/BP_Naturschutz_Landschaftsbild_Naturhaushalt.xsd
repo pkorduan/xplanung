@@ -1,261 +1,218 @@
-<?xml version="1.0" encoding="utf-8"?>
-<xs:schema targetNamespace="http://www.xplanung.de/xplangml/4/1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-	<xs:annotation>
-		<xs:documentation>Festsetzungen von Flächen und Maßnahmen zum Schutz, zur Pflege und zur Entwicklung von Natur und Landschaft (§9, Abs. 1, Nr. 20 BauGB).</xs:documentation>
-	</xs:annotation>
-	<xs:import namespace=""/>
-	<xs:import namespace=""/>
-	<xs:import namespace="" schemaLocation="XP_Basisobjekte.xsd"/>
-	<xs:import namespace="" schemaLocation="XP_Enumerationen.xsd"/>
-	<xs:import namespace="" schemaLocation="BP__Basisobjekte.xsd"/>
-	<xs:element name="BP_AusgleichsMassnahme" type="BP_AusgleichsMassnahme"/>
-	<xs:complexType name="BP_AusgleichsMassnahme">
-		<xs:annotation>
-			<xs:documentation>Festsetzung einer Einzelmaßnahme zum Ausgleich im Sinne des § 1a Abs.3 und §9 Abs. 1a BauGB.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="BP_Geometrieobjekt">
-				<xs:sequence>
-					<xs:element name="ziel" type="XP_SPEZiele" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Ziel der Ausgleichsmassnahme</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="massnahme" type="XP_SPEMassnahmenDaten" minOccurs="0" maxOccurs="unbounded">
-						<xs:annotation>
-							<xs:documentation>Durchzuführende Ausgleichsmaßnahmen.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="weitereMassnahme1" type="XP_SPEMassnahmenDaten" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Weitere durchzuführende Massnahme Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen massnahme mehrfach belegt werden.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="weitereMassnahme2" type="XP_SPEMassnahmenDaten" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Weitere durchzuführende Massnahme. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen massnahme mehrfach belegt werden.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="refMassnahmenText" type="XP_ExterneReferenz" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Referenz auf ein Dokument, das die durchzuführenden Maßnahmen beschreibt.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="refLandschaftsplan" type="XP_ExterneReferenz" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Referenz auf den Landschaftsplan.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="BP_AnpflanzungBindungErhaltung" type="BP_AnpflanzungBindungErhaltung"/>
-	<xs:complexType name="BP_AnpflanzungBindungErhaltung">
-		<xs:annotation>
-			<xs:documentation>Für einzelne Flächen oder für ein Bebauungsplangebiet oder Teile davon sowie für Teile baulicher Anlagen mit Ausnahme der für landwirtschaftliche Nutzungen oder Wald festgesetzten Flächen:
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:xplan="http://www.xplanung.de/xplangml/4/1" elementFormDefault="qualified" targetNamespace="http://www.xplanung.de/xplangml/4/1" version="" xmlns:="">
+  <annotation>
+    <documentation>Festsetzungen von Flächen und Maßnahmen zum Schutz, zur Pflege und zur Entwicklung von Natur und Landschaft (§9, Abs. 1, Nr. 20 BauGB).</documentation>
+  </annotation>
+  <import namespace=""/>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <!--XML Schema document created by ShapeChange - http://shapechange.net/-->
+  <element name="BP_AnpflanzungBindungErhaltung" substitutionGroup=":BP_Geometrieobjekt" type="xplan:BP_AnpflanzungBindungErhaltungType">
+    <annotation>
+      <documentation>Für einzelne Flächen oder für ein Bebauungsplangebiet oder Teile davon sowie für Teile baulicher Anlagen mit Ausnahme der für landwirtschaftliche Nutzungen oder Wald festgesetzten Flächen:
 a) Festsetzung des Anpflanzens von Bäumen, Sträuchern und sonstigen Bepflanzungen;
-b) Festsetzung von Bindungen für Bepflanzungen und für die Erhaltung von Bäumen, Sträuchern und sonstigen Bepflanzungen sowie von Gewässern;  (§9 Abs. 1 Nr. 25 und Abs. 4 BauGB)</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="BP_Geometrieobjekt">
-				<xs:sequence>
-					<xs:element name="massnahme" type="XP_ABEMassnahmenTypen" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Art der Maßnahme</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="gegenstand" type="XP_AnpflanzungBindungErhaltungsGegenstand" minOccurs="0" maxOccurs="unbounded">
-						<xs:annotation>
-							<xs:documentation>Gegenständ eder Maßnahme</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="kronendurchmesser" type="Length" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Durchmesser der Baumkrone bei zu erhaltenden Bäumen.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="pflanztiefe" type="Length" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Pflanztiefe</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="istAusgleich" type="Boolean" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Gibt an, ob die Fläche oder Maßnahme zum Ausgleich von Eingriffen genutzt wird.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="VegetationsobjektTypen" type="VegetationsobjektTypen"/>
-	<xs:complexType name="VegetationsobjektTypen">
-		<xs:sequence/>
-	</xs:complexType>
-	<xs:element name="BP_DetailZweckbestNaturschutzgebiet" type="BP_DetailZweckbestNaturschutzgebiet"/>
-	<xs:complexType name="BP_DetailZweckbestNaturschutzgebiet">
-		<xs:sequence/>
-	</xs:complexType>
-	<xs:element name="BP_EingriffsBereich" type="BP_EingriffsBereich"/>
-	<xs:complexType name="BP_EingriffsBereich">
-		<xs:annotation>
-			<xs:documentation>Bestimmt einen Bereich, in dem ein Eingriff nach dem Naturschutzrecht zugelassen wird, der durch geeignete Flächen oder Maßnahmen ausgeglichen werden muss.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="BP_Ueberlagerungsobjekt">
-				<xs:sequence/>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="BP_Schutzgebiet" type="BP_Schutzgebiet"/>
-	<xs:complexType name="BP_Schutzgebiet">
-		<xs:annotation>
-			<xs:documentation>Umgrenzung von Schutzgebieten und Schutzobjekten im Sinne des Naturschutzrechts (§9 Abs. 4 BauGB), sofern es sich um eine Festsetzung des Bebauungsplans handelt.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="BP_Geometrieobjekt">
-				<xs:sequence>
-					<xs:element name="zweckbestimmung" type="XP_KlassifizSchutzgebietNaturschutzrecht" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Zweckbestimmung des Schutzgebiets</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="detaillierteZweckbestimmung" type="BP_DetailZweckbestNaturschutzgebiet" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Über eine CodeList definierte Zweckbestimmung des Schutzgebietes.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="BP_AusgleichsFlaeche" type="BP_AusgleichsFlaeche"/>
-	<xs:complexType name="BP_AusgleichsFlaeche">
-		<xs:annotation>
-			<xs:documentation>Festsetzung einer Fläche zum Ausgleich im Sinne des § 1a Abs.3 und §9 Abs. 1a BauGB.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="BP_Flaechenobjekt">
-				<xs:sequence>
-					<xs:element name="ziel" type="XP_SPEZiele" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Unterscheidung nach den Zielen "Schutz, Pflege" und "Entwicklung".</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="massnahme" type="XP_SPEMassnahmenDaten" minOccurs="0" maxOccurs="unbounded">
-						<xs:annotation>
-							<xs:documentation>Auf der Fläche durchzuführende Maßnahmen.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="weitereMassnahme1" type="XP_SPEMassnahmenDaten" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Weitere durchzuführende Massnahme. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen massnahme mehrfach belegt werden.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="weitereMassnahme2" type="XP_SPEMassnahmenDaten" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Weitere durchzuführende Massnahme. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen massnahme mehrfach belegt werden.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="refMassnahmenText" type="XP_ExterneReferenz" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Referenz auf ein Dokument, das die durchzuführenden Massnahmen beschreibt.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="refLandschaftsplan" type="XP_ExterneReferenz" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Referenz auf den Landschaftsplan.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="BP_SchutzPflegeEntwicklungsMassnahme" type="BP_SchutzPflegeEntwicklungsMassnahme"/>
-	<xs:complexType name="BP_SchutzPflegeEntwicklungsMassnahme">
-		<xs:annotation>
-			<xs:documentation>Maßnahmen zum Schutz, zur Pflege und zur Entwicklung von Natur und Landschaft (§9 Abs. 1 Nr. 20 und Abs. 4 BauGB).</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="BP_Geometrieobjekt">
-				<xs:sequence>
-					<xs:element name="ziel" type="XP_SPEZiele" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Unterscheidung nach den Zielen "Schutz, Pflege" und "Entwicklung".</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="massnahme" type="XP_SPEMassnahmenDaten" minOccurs="0" maxOccurs="unbounded">
-						<xs:annotation>
-							<xs:documentation>Durchzuführende Maßnahmen</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="weitereMassnahme1" type="XP_SPEMassnahmenDaten" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Weitere durchzuführende Massnahme. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen massnahme mehrfach belegt werden.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="weitereMassnahme2" type="XP_SPEMassnahmenDaten" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Weitere durchzuführende Massnahme. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen massnahme mehrfach belegt werden.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="istAusgleich" type="Boolean" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Gibt an, ob die Maßnahme zum Ausgleich von Eingriffen genutzt wird.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="refMassnahmenText" type="XP_ExterneReferenz" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Referenz auf ein Dokument, das die durchzuführenden Maßnahmen beschreibt.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="refLandschaftsplan" type="XP_ExterneReferenz" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Referenz auf den Landschaftsplan.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="BP_SchutzPflegeEntwicklungsFlaeche" type="BP_SchutzPflegeEntwicklungsFlaeche"/>
-	<xs:complexType name="BP_SchutzPflegeEntwicklungsFlaeche">
-		<xs:annotation>
-			<xs:documentation>Umgrenzung von Flächen für Maßnahmen zum Schutz, zur Pflege und zur Entwicklung von Natur und Landschaft (§9 Abs. 1 Nr. 20 und Abs. 4 BauGB)</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="BP_Flaechenobjekt">
-				<xs:sequence>
-					<xs:element name="ziel" type="XP_SPEZiele" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Unterscheidung nach den Zielen "Schutz, Pflege" und "Entwicklung".</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="massnahme" type="XP_SPEMassnahmenDaten" minOccurs="0" maxOccurs="unbounded">
-						<xs:annotation>
-							<xs:documentation>Durchzuführende Maßnahmen.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="weitereMassnahme1" type="XP_SPEMassnahmenDaten" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Weitere durchzuführende Massnahme. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen massnahme mehrfach belegt werden.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="weitereMassnahme2" type="XP_SPEMassnahmenDaten" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Weitere durchzuführende Massnahme. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen massnahme mehrfach belegt werden.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="istAusgleich" type="xs:boolean" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Gibt an, ob die Fläche zum Ausglich von Eingriffen genutzt wird.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="refMassnahmenText" type="XP_ExterneReferenz" minOccurs="0" maxOccurs="1"/>
-					<xs:element name="refLandschaftsplan" type="XP_ExterneReferenz" minOccurs="0" maxOccurs="1"/>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-</xs:schema>
+b) Festsetzung von Bindungen für Bepflanzungen und für die Erhaltung von Bäumen, Sträuchern und sonstigen Bepflanzungen sowie von Gewässern;  (§9 Abs. 1 Nr. 25 und Abs. 4 BauGB)</documentation>
+    </annotation>
+  </element>
+  <complexType name="BP_AnpflanzungBindungErhaltungType">
+    <complexContent>
+      <extension base=":BP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="massnahme" type=":XP_ABEMassnahmenTypenType">
+            <annotation>
+              <documentation>Art der Maßnahme</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="gegenstand" type=":XP_AnpflanzungBindungErhaltungsGegenstandType">
+            <annotation>
+              <documentation>Gegenständ eder Maßnahme</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="kronendurchmesser" type="gml:LengthType">
+            <annotation>
+              <documentation>Durchmesser der Baumkrone bei zu erhaltenden Bäumen.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="pflanztiefe" type="gml:LengthType">
+            <annotation>
+              <documentation>Pflanztiefe</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="istAusgleich" type="boolean">
+            <annotation>
+              <documentation>Gibt an, ob die Fläche oder Maßnahme zum Ausgleich von Eingriffen genutzt wird.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="baumArt" type="string"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="BP_AusgleichsFlaeche" substitutionGroup=":BP_Flaechenobjekt" type="xplan:BP_AusgleichsFlaecheType">
+    <annotation>
+      <documentation>Festsetzung einer Fläche zum Ausgleich im Sinne des § 1a Abs.3 und §9 Abs. 1a BauGB.</documentation>
+    </annotation>
+  </element>
+  <complexType name="BP_AusgleichsFlaecheType">
+    <complexContent>
+      <extension base=":BP_FlaechenobjektType">
+        <sequence>
+          <element minOccurs="0" name="ziel" type=":XP_SPEZieleType">
+            <annotation>
+              <documentation>Unterscheidung nach den Zielen "Schutz, Pflege" und "Entwicklung".</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="massnahme" type=":XP_SPEMassnahmenDatenPropertyType">
+            <annotation>
+              <documentation>Auf der Fläche durchzuführende Maßnahmen.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="refMassnahmenText" type=":XP_ExterneReferenzPropertyType">
+            <annotation>
+              <documentation>Referenz auf ein Dokument, das die durchzuführenden Massnahmen beschreibt.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="refLandschaftsplan" type=":XP_ExterneReferenzPropertyType">
+            <annotation>
+              <documentation>Referenz auf den Landschaftsplan.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="BP_AusgleichsMassnahme" substitutionGroup=":BP_Geometrieobjekt" type="xplan:BP_AusgleichsMassnahmeType">
+    <annotation>
+      <documentation>Festsetzung einer Einzelmaßnahme zum Ausgleich im Sinne des § 1a Abs.3 und §9 Abs. 1a BauGB.</documentation>
+    </annotation>
+  </element>
+  <complexType name="BP_AusgleichsMassnahmeType">
+    <complexContent>
+      <extension base=":BP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="ziel" type=":XP_SPEZieleType">
+            <annotation>
+              <documentation>Ziel der Ausgleichsmassnahme</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="massnahme" type=":XP_SPEMassnahmenDatenPropertyType">
+            <annotation>
+              <documentation>Durchzuführende Ausgleichsmaßnahmen.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="refMassnahmenText" type=":XP_ExterneReferenzPropertyType">
+            <annotation>
+              <documentation>Referenz auf ein Dokument, das die durchzuführenden Maßnahmen beschreibt.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="refLandschaftsplan" type=":XP_ExterneReferenzPropertyType">
+            <annotation>
+              <documentation>Referenz auf den Landschaftsplan.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="BP_EingriffsBereich" substitutionGroup=":BP_Ueberlagerungsobjekt" type="xplan:BP_EingriffsBereichType">
+    <annotation>
+      <documentation>Bestimmt einen Bereich, in dem ein Eingriff nach dem Naturschutzrecht zugelassen wird, der durch geeignete Flächen oder Maßnahmen ausgeglichen werden muss.</documentation>
+    </annotation>
+  </element>
+  <complexType name="BP_EingriffsBereichType">
+    <complexContent>
+      <extension base=":BP_UeberlagerungsobjektType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="BP_SchutzPflegeEntwicklungsFlaeche" substitutionGroup=":BP_Flaechenobjekt" type="xplan:BP_SchutzPflegeEntwicklungsFlaecheType">
+    <annotation>
+      <documentation>Umgrenzung von Flächen für Maßnahmen zum Schutz, zur Pflege und zur Entwicklung von Natur und Landschaft (§9 Abs. 1 Nr. 20 und Abs. 4 BauGB)</documentation>
+    </annotation>
+  </element>
+  <complexType name="BP_SchutzPflegeEntwicklungsFlaecheType">
+    <complexContent>
+      <extension base=":BP_FlaechenobjektType">
+        <sequence>
+          <element minOccurs="0" name="ziel" type=":XP_SPEZieleType">
+            <annotation>
+              <documentation>Unterscheidung nach den Zielen "Schutz, Pflege" und "Entwicklung".</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="massnahme" type=":XP_SPEMassnahmenDatenPropertyType">
+            <annotation>
+              <documentation>Durchzuführende Maßnahmen.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="istAusgleich" type="boolean">
+            <annotation>
+              <documentation>Gibt an, ob die Fläche zum Ausgleich von Eingriffen genutzt wird.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="refMassnahmenText" type=":XP_ExterneReferenzPropertyType"/>
+          <element minOccurs="0" name="refLandschaftsplan" type=":XP_ExterneReferenzPropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="BP_SchutzPflegeEntwicklungsMassnahme" substitutionGroup=":BP_Geometrieobjekt" type="xplan:BP_SchutzPflegeEntwicklungsMassnahmeType">
+    <annotation>
+      <documentation>Maßnahmen zum Schutz, zur Pflege und zur Entwicklung von Natur und Landschaft (§9 Abs. 1 Nr. 20 und Abs. 4 BauGB).</documentation>
+    </annotation>
+  </element>
+  <complexType name="BP_SchutzPflegeEntwicklungsMassnahmeType">
+    <complexContent>
+      <extension base=":BP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="ziel" type=":XP_SPEZieleType">
+            <annotation>
+              <documentation>Unterscheidung nach den Zielen "Schutz, Pflege" und "Entwicklung".</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="massnahme" type=":XP_SPEMassnahmenDatenPropertyType">
+            <annotation>
+              <documentation>Durchzuführende Maßnahmen</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="istAusgleich" type="boolean">
+            <annotation>
+              <documentation>Gibt an, ob die Maßnahme zum Ausgleich von Eingriffen genutzt wird.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="refMassnahmenText" type=":XP_ExterneReferenzPropertyType">
+            <annotation>
+              <documentation>Referenz auf ein Dokument, das die durchzuführenden Maßnahmen beschreibt.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="refLandschaftsplan" type=":XP_ExterneReferenzPropertyType">
+            <annotation>
+              <documentation>Referenz auf den Landschaftsplan.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="BP_Schutzgebiet" substitutionGroup=":BP_Geometrieobjekt" type="xplan:BP_SchutzgebietType">
+    <annotation>
+      <documentation>Umgrenzung von Schutzgebieten und Schutzobjekten im Sinne des Naturschutzrechts (§9 Abs. 4 BauGB), sofern es sich um eine Festsetzung des Bebauungsplans handelt.</documentation>
+    </annotation>
+  </element>
+  <complexType name="BP_SchutzgebietType">
+    <complexContent>
+      <extension base=":BP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="zweckbestimmung" type=":XP_KlassifizSchutzgebietNaturschutzrechtType">
+            <annotation>
+              <documentation>Zweckbestimmung des Schutzgebiets</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="detaillierteZweckbestimmung" type="gml:CodeType">
+            <annotation>
+              <documentation>Über eine CodeList definierte Zweckbestimmung des Schutzgebietes.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+</schema>

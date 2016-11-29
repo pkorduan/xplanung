@@ -1,86 +1,90 @@
-<?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-	<xs:annotation>
-		<xs:documentation>Darstellung von Flächen für Aufschüttungen, Abgrabungen oder für die Gewinnung von Steinen, Erden und anderen Bodenschätzen (§5, Abs. 2, Nr. 8 BauGB).</xs:documentation>
-	</xs:annotation>
-	<xs:include/>
-	<xs:include schemaLocation="P__Basisobjekte.xsd"/>
-	<xs:element name="FP_AbgrabungsFlaeche" type="FP_AbgrabungsFlaeche"/>
-	<xs:complexType name="FP_AbgrabungsFlaeche">
-		<xs:annotation>
-			<xs:documentation>Flächen für Aufschüttungen, Abgrabungen oder für die Gewinnung von Bodenschätzen (§5, Abs. 2, Nr. 8 BauGB). Hier: Flächen für Abgrabungen. Diese Klasse ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen FP_Abgrabung mit Flächengeometrie benutzt werden.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="FP_Flaechenobjekt">
-				<xs:sequence/>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="FP_Aufschuettung" type="FP_Aufschuettung"/>
-	<xs:complexType name="FP_Aufschuettung">
-		<xs:annotation>
-			<xs:documentation>Flächen für Aufschüttungen, Abgrabungen oder für die Gewinnung von Bodenschätzen (§5, Abs. 2, Nr. 8 BauGB). Hier: Flächen für Aufschüttungen.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="FP_Geometrieobjekt">
-				<xs:sequence/>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="FP_Bodenschaetze" type="FP_Bodenschaetze"/>
-	<xs:complexType name="FP_Bodenschaetze">
-		<xs:annotation>
-			<xs:documentation>Flächen für Aufschüttungen, Abgrabungen oder für die Gewinnung von Bodenschätzen (§5, Abs. 2, Nr. 8 BauGB. Hier: Flächen für Bodenschätze.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="FP_Geometrieobjekt">
-				<xs:sequence>
-					<xs:element name="abbaugut" type="CharacterString" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Bezeichnung des Abbauguts.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="FP_AufschuettungsFlaeche" type="FP_AufschuettungsFlaeche"/>
-	<xs:complexType name="FP_AufschuettungsFlaeche">
-		<xs:annotation>
-			<xs:documentation>Flächen für Aufschüttungen, Abgrabungen oder für die Gewinnung von Bodenschätzen (§5, Abs. 2, Nr. 8 BauGB). Hier: Flächen für Aufschüttungen. Diese Klasse ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen FP_Aufschuettung mit Flächengeometrie benutzt werden.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="FP_Flaechenobjekt">
-				<xs:sequence/>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="FP_Abgrabung" type="FP_Abgrabung"/>
-	<xs:complexType name="FP_Abgrabung">
-		<xs:annotation>
-			<xs:documentation>Flächen für Aufschüttungen, Abgrabungen oder für die Gewinnung von Bodenschätzen (§5, Abs. 2, Nr. 8 BauGB). Hier: Flächen für Abgrabungen</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="FP_Geometrieobjekt">
-				<xs:sequence/>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="FP_BodenschaetzeFlaeche" type="FP_BodenschaetzeFlaeche"/>
-	<xs:complexType name="FP_BodenschaetzeFlaeche">
-		<xs:annotation>
-			<xs:documentation>Flächen für Aufschüttungen, Abgrabungen oder für die Gewinnung von Bodenschätzen (§5, Abs. 2, Nr. 8 BauGB. Hier: Flächen für Bodenschätze. Diese Klasse ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen FP_Bodenschaetze mit Flächengeometrie benutzt werden.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="FP_Flaechenobjekt">
-				<xs:sequence>
-					<xs:element name="abbaugut" type="CharacterString" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Bezeichnung des Abbauguts.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-</xs:schema>
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="" version="" xmlns:="">
+  <annotation>
+    <documentation>Darstellung von Flächen für Aufschüttungen, Abgrabungen oder für die Gewinnung von Steinen, Erden und anderen Bodenschätzen (§5, Abs. 2, Nr. 8 BauGB).</documentation>
+  </annotation>
+  <!--XML Schema document created by ShapeChange - http://shapechange.net/-->
+  <element name="FP_Abgrabung" substitutionGroup=":FP_Geometrieobjekt" type=":FP_AbgrabungType">
+    <annotation>
+      <documentation>Flächen für Aufschüttungen, Abgrabungen oder für die Gewinnung von Bodenschätzen (§5, Abs. 2, Nr. 8 BauGB). Hier: Flächen für Abgrabungen</documentation>
+    </annotation>
+  </element>
+  <complexType name="FP_AbgrabungType">
+    <complexContent>
+      <extension base=":FP_GeometrieobjektType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="FP_AbgrabungsFlaeche" substitutionGroup=":FP_Flaechenobjekt" type=":FP_AbgrabungsFlaecheType">
+    <annotation>
+      <documentation>Flächen für Aufschüttungen, Abgrabungen oder für die Gewinnung von Bodenschätzen (§5, Abs. 2, Nr. 8 BauGB). Hier: Flächen für Abgrabungen. &lt;b&gt;Diese Klasse ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen &lt;/b&gt;&lt;b&gt;&lt;i&gt;FP_Abgrabung &lt;/i&gt;&lt;/b&gt;&lt;b&gt;mit Flächengeometrie benutzt werden.&lt;/b&gt;</documentation>
+    </annotation>
+  </element>
+  <complexType name="FP_AbgrabungsFlaecheType">
+    <complexContent>
+      <extension base=":FP_FlaechenobjektType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="FP_Aufschuettung" substitutionGroup=":FP_Geometrieobjekt" type=":FP_AufschuettungType">
+    <annotation>
+      <documentation>Flächen für Aufschüttungen, Abgrabungen oder für die Gewinnung von Bodenschätzen (§5, Abs. 2, Nr. 8 BauGB). Hier: Flächen für Aufschüttungen.</documentation>
+    </annotation>
+  </element>
+  <complexType name="FP_AufschuettungType">
+    <complexContent>
+      <extension base=":FP_GeometrieobjektType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="FP_AufschuettungsFlaeche" substitutionGroup=":FP_Flaechenobjekt" type=":FP_AufschuettungsFlaecheType">
+    <annotation>
+      <documentation>Flächen für Aufschüttungen, Abgrabungen oder für die Gewinnung von Bodenschätzen (§5, Abs. 2, Nr. 8 BauGB). Hier: Flächen für Aufschüttungen. &lt;b&gt;Diese Klasse ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen &lt;/b&gt;&lt;b&gt;&lt;i&gt;FP_Aufschuettung &lt;/i&gt;&lt;/b&gt;&lt;b&gt;mit Flächengeometrie benutzt werden.&lt;/b&gt;</documentation>
+    </annotation>
+  </element>
+  <complexType name="FP_AufschuettungsFlaecheType">
+    <complexContent>
+      <extension base=":FP_FlaechenobjektType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="FP_Bodenschaetze" substitutionGroup=":FP_Geometrieobjekt" type=":FP_BodenschaetzeType">
+    <annotation>
+      <documentation>Flächen für Aufschüttungen, Abgrabungen oder für die Gewinnung von Bodenschätzen (§5, Abs. 2, Nr. 8 BauGB. Hier: Flächen für Bodenschätze.</documentation>
+    </annotation>
+  </element>
+  <complexType name="FP_BodenschaetzeType">
+    <complexContent>
+      <extension base=":FP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="abbaugut" type="string">
+            <annotation>
+              <documentation>Bezeichnung des Abbauguts.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="FP_BodenschaetzeFlaeche" substitutionGroup=":FP_Flaechenobjekt" type=":FP_BodenschaetzeFlaecheType">
+    <annotation>
+      <documentation>Flächen für Aufschüttungen, Abgrabungen oder für die Gewinnung von Bodenschätzen (§5, Abs. 2, Nr. 8 BauGB. Hier: Flächen für Bodenschätze. &lt;b&gt;Diese Klasse ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen &lt;/b&gt;&lt;b&gt;&lt;i&gt;FP_Bodenschaetze &lt;/i&gt;&lt;/b&gt;&lt;b&gt;mit Flächengeometrie benutzt werden.&lt;/b&gt;</documentation>
+    </annotation>
+  </element>
+  <complexType name="FP_BodenschaetzeFlaecheType">
+    <complexContent>
+      <extension base=":FP_FlaechenobjektType">
+        <sequence>
+          <element minOccurs="0" name="abbaugut" type="string">
+            <annotation>
+              <documentation>Bezeichnung des Abbauguts.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+</schema>
