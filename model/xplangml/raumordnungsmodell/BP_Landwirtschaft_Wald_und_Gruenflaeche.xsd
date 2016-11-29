@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" elementFormDefault="qualified" targetNamespace="" version="" xmlns:="">
+  <annotation>
+    <documentation>Festsetzungen von Flächen für die Landwirtschaft und Wald (§9, Abs. 1, Nr. 18 BauGB) für öffentliche und private Grünflächen (§9, Abs. 1, Nr. 15 BauGB), und für die Kleintierhaltung (§9, Abs. 1, Nr. 19 BauGB)</documentation>
+  </annotation>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <!--XML Schema document created by ShapeChange - http://shapechange.net/-->
+  <element name="BP_GruenFlaeche" substitutionGroup=":BP_Flaechenschlussobjekt" type=":BP_GruenFlaecheType">
+    <annotation>
+      <documentation>Festsetzungen von öffentlichen und privaten Grünflächen(§9, Abs. 1, Nr. 15 BauGB)  und von Flächen für die Kleintierhaltung (§9, Abs. 1, Nr. 19 BauGB).</documentation>
+    </annotation>
+  </element>
+  <complexType name="BP_GruenFlaecheType">
+    <complexContent>
+      <extension base=":BP_FlaechenschlussobjektType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="zweckbestimmung" type=":XP_ZweckbestimmungGruenType">
+            <annotation>
+              <documentation>Allgemeine Zweckbestimmungen der Grünfläche</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="besondereZweckbestimmung" type=":XP_BesondereZweckbestimmungGruenType">
+            <annotation>
+              <documentation>Besondere Zweckbestimmungen der Grünfläche, die die zugehörige allgemeine Zweckbestimmungen detaillieren oder ersetzen.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="detaillierteZweckbestimmung" type="gml:CodeType">
+            <annotation>
+              <documentation>Über eine CodeList definierte zusätzliche Zweckbestimmungen.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="nutzungsform" type=":XP_NutzungsformType">
+            <annotation>
+              <documentation>Nutzungform der festgesetzten Fläche.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="zugunstenVon" type="string">
+            <annotation>
+              <documentation>Angabe des Begünstigen einer Ausweisung.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="BP_KleintierhaltungFlaeche" substitutionGroup=":BP_Flaechenschlussobjekt" type=":BP_KleintierhaltungFlaecheType">
+    <annotation>
+      <documentation>Fläche für die Errichtung von Anlagen für die Kleintierhaltung woe Ausstellungs- und Zuchtanlagen, Zwinger, Koppeln und dergleichen (§9 Abs. 19 BauGB).</documentation>
+    </annotation>
+  </element>
+  <complexType name="BP_KleintierhaltungFlaecheType">
+    <complexContent>
+      <extension base=":BP_FlaechenschlussobjektType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="BP_Landwirtschaft" substitutionGroup=":BP_Geometrieobjekt" type=":BP_LandwirtschaftType">
+    <annotation>
+      <documentation>Festsetzungen für die Landwirtschaft  (§9, Abs. 1, Nr. 18a BauGB)</documentation>
+    </annotation>
+  </element>
+  <complexType name="BP_LandwirtschaftType">
+    <complexContent>
+      <extension base=":BP_GeometrieobjektType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="zweckbestimmung" type=":XP_ZweckbestimmungLandwirtschaftType">
+            <annotation>
+              <documentation>Zweckbestimmungen der Ausweisung.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="detaillierteZweckbestimmung" type="gml:CodeType">
+            <annotation>
+              <documentation>Über eine CodeList definierte zusätzliche Zweckbestimmungen.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="BP_WaldFlaeche" substitutionGroup=":BP_Flaechenschlussobjekt" type=":BP_WaldFlaecheType">
+    <annotation>
+      <documentation>Festsetzung von Waldflächen  (§9, Abs. 1, Nr. 18b BauGB).</documentation>
+    </annotation>
+  </element>
+  <complexType name="BP_WaldFlaecheType">
+    <complexContent>
+      <extension base=":BP_FlaechenschlussobjektType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="zweckbestimmung" type=":XP_ZweckbestimmungWaldType">
+            <annotation>
+              <documentation>Zweckbestimmungen der Waldfläche</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="detaillierteZweckbestimmung" type="gml:CodeType">
+            <annotation>
+              <documentation>Über eine CodeList definierte zusätzliche Zweckbestimmung.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+</schema>

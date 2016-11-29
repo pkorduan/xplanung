@@ -1,15 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-	<xs:annotation>
-		<xs:documentation>Rasterdarstellung sonstiger Planwerke</xs:documentation>
-	</xs:annotation>
-	<xs:include schemaLocation="P_Raster.xsd"/>
-	<xs:element name="SO_RasterplanAenderung" type="SO_RasterplanAenderung"/>
-	<xs:complexType name="SO_RasterplanAenderung">
-		<xs:complexContent>
-			<xs:extension base="XP_RasterplanAenderung">
-				<xs:sequence/>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-</xs:schema>
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="" version="" xmlns:="">
+  <annotation>
+    <documentation>Rasterdarstellung sonstiger Planwerke</documentation>
+  </annotation>
+  <!--XML Schema document created by ShapeChange - http://shapechange.net/-->
+  <element name="SO_RasterplanAenderung" substitutionGroup=":XP_RasterplanAenderung" type=":SO_RasterplanAenderungType"/>
+  <complexType name="SO_RasterplanAenderungType">
+    <complexContent>
+      <extension base=":XP_RasterplanAenderungType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+</schema>

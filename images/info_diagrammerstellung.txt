@@ -1,0 +1,5 @@
+Diagramme des jeweiligen Modells sind derzeit wie folgt hergeleitet:
+- In EA Rechtsclick auf Diagramm im Explorer
+- Print Diagram
+- Printer PDF24
+- PNG, Auflösung 200 dpi, 24bit

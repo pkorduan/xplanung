@@ -1,27 +1,27 @@
-﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xplan="http://xplan-raumordnung.de/devk/model/xplangml/raumordnungsmodell" 
-  targetNamespace="http://xplan-raumordnung.de/devk/model/xplangml/raumordnungsmodell"
-  xmlns:wfs="http://www.opengis.net/wfs/2.0" xmlns:gml="http://www.opengis.net/gml/3.2" elementFormDefault="qualified" version="4.2">
-  <include schemaLocation="http://xplan-raumordnung.de/devk/model/xplangml/raumordnungsmodell/XPlanGML.xsd" />
-  <!--import namespace="http://www.opengis.net/wfs/2.0" schemaLocation="http://schemas.opengis.net/wfs/2.0/wfs.xsd" /-->
-  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd" />
-  <!--=========================================================================================-->
-  <!--XPlanAuszug-->
-  <!--=========================================================================================-->
-  <element name="XPlanAuszug" type="xplan:XPlanAuszugType" substitutionGroup="gml:AbstractFeatureCollection" />
-  <complexType name="XPlanAuszugType">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" 
+xmlns:wfs="http://www.opengis.net/wfs/2.0" xmlns:xplan="http://www.xplan-raumordnung.de/model/xplangml/raumordnungsmodell" 
+elementFormDefault="qualified" targetNamespace="http://www.xplan-raumordnung.de/model/xplangml/raumordnungsmodell" version="5.0">
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <import namespace="http://www.opengis.net/wfs/2.0"/>
+  <include schemaLocation="XPlanGML.xsd" />
+  <!--XML Schema document created by ShapeChange - http://shapechange.net/-->
+  <element name="XPlanAuszug" substitutionGroup="gml:AbstractGML" type="xplan:XPlanAuszugType">
     <annotation>
-      <documentation>Container für XPlanGML-Objekte
-</documentation>
+      <documentation>Container für XPlanGML-Objekte</documentation>
     </annotation>
+  </element>
+  <complexType name="XPlanAuszugType">
     <complexContent>
-      <extension base="gml:AbstractFeatureCollectionType" />
+      <extension base="gml:AbstractFeatureCollectionType" >
+        <sequence/>
+      </extension>
     </complexContent>
   </complexType>
   <complexType name="XPlanAuszugPropertyType">
-    <sequence>
-      <element ref="xplan:XPlanAuszug" minOccurs="0" />
+    <sequence minOccurs="0">
+      <element ref="xplan:XPlanAuszug"/>
     </sequence>
-    <attributeGroup ref="gml:AssociationAttributeGroup" />
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
   </complexType>
 </schema>

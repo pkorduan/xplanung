@@ -1,104 +1,102 @@
-<?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-	<xs:annotation>
-		<xs:documentation>Grünflächen und Flächen, Zweckbestimmungen, Erfordernisse und Maßnahmen für die Erholung in Natur und Landschaft.</xs:documentation>
-	</xs:annotation>
-	<xs:include schemaLocation="LP__Basisobjekte.xsd"/>
-	<xs:element name="LP_AllgGruenflaeche" type="LP_AllgGruenflaeche"/>
-	<xs:complexType name="LP_AllgGruenflaeche">
-		<xs:annotation>
-			<xs:documentation>Allgemeine Grünflächen.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="LP_Flaechenobjekt">
-				<xs:sequence/>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="LP_ErholungFreizeitDetailFunktionen" type="LP_ErholungFreizeitDetailFunktionen"/>
-	<xs:complexType name="LP_ErholungFreizeitDetailFunktionen">
-		<xs:sequence/>
-	</xs:complexType>
-	<xs:element name="LP_ErholungFreizeit" type="LP_ErholungFreizeit"/>
-	<xs:complexType name="LP_ErholungFreizeit">
-		<xs:annotation>
-			<xs:documentation>Sonstige Gebiete, Objekte, Zweckbestimmungen oder Maßnahmen mit besonderen Funktionen für die landschaftsgebundene Erholung und Freizeit.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="LP_Geometrieobjekt">
-				<xs:sequence>
-					<xs:element name="funktion" type="LP_ErholungFreizeitFunktionen" minOccurs="0" maxOccurs="unbounded">
-						<xs:annotation>
-							<xs:documentation>Funktion der Fläche.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="weitereFunktion1" type="LP_ErholungFreizeitFunktionen" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Weitere Funktion der Fläche. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen funktion mehrfach belegt werden.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="weitereFunktion2" type="LP_ErholungFreizeitFunktionen" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Weitere Funktion der Fläche. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen funktion mehrfach belegt werden.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="detaillierteFunktion" type="LP_ErholungFreizeitDetailFunktionen" minOccurs="0" maxOccurs="unbounded">
-						<xs:annotation>
-							<xs:documentation>Über eine CodeList definierte zusätzliche Funktion der Fläche.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="weitereDetailFunktion1" type="LP_ErholungFreizeitDetailFunktionen" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Über eine CodeList definierte zusätzliche Funktion der Fläche. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen detaillierteFunktion mehrfach belegt werden.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="weitereDetailFunktion2" type="LP_ErholungFreizeitDetailFunktionen" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Über eine CodeList definierte zusätzliche Funktion der Fläche. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen detaillierteFunktion mehrfach belegt werden.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:simpleType name="LP_ErholungFreizeitFunktionen">
-		<xs:restriction base="xs:&lt;undefined&gt;">
-			<xs:enumeration value="Parkanlage"/>
-			<xs:enumeration value="Dauerkleingaerten"/>
-			<xs:enumeration value="Sportplatz"/>
-			<xs:enumeration value="Spielplatz"/>
-			<xs:enumeration value="Zeltplatz"/>
-			<xs:enumeration value="BadeplatzFreibad"/>
-			<xs:enumeration value="Schutzhuette"/>
-			<xs:enumeration value="Rastplatz"/>
-			<xs:enumeration value="Informationstafel"/>
-			<xs:enumeration value="FeuerstelleGrillplatz"/>
-			<xs:enumeration value="Liegewiese"/>
-			<xs:enumeration value="Aussichtsturm"/>
-			<xs:enumeration value="Aussichtspunkt"/>
-			<xs:enumeration value="Angelteich"/>
-			<xs:enumeration value="Modellflugplatz"/>
-			<xs:enumeration value="WildgehegeSchaugatter"/>
-			<xs:enumeration value="JugendzeltplatzEinzelcamp"/>
-			<xs:enumeration value="Gleitschirmplatz"/>
-			<xs:enumeration value="Wandern"/>
-			<xs:enumeration value="Wanderweg"/>
-			<xs:enumeration value="Lehrpfad"/>
-			<xs:enumeration value="Reitweg"/>
-			<xs:enumeration value="Radweg"/>
-			<xs:enumeration value="Wintersport"/>
-			<xs:enumeration value="Skiabfahrt"/>
-			<xs:enumeration value="Skilanglaufloipe"/>
-			<xs:enumeration value="RodelbahnBobbahn"/>
-			<xs:enumeration value="Wassersport"/>
-			<xs:enumeration value="Wasserwanderweg"/>
-			<xs:enumeration value="Schifffahrtsroute"/>
-			<xs:enumeration value="AnlegestelleMitMotorbooten"/>
-			<xs:enumeration value="AnlegestelleOhneMotorboote"/>
-			<xs:enumeration value="SesselliftSchlepplift"/>
-			<xs:enumeration value="Kabinenseilbahn"/>
-			<xs:enumeration value="Parkplatz"/>
-			<xs:enumeration value="Sonstiges"/>
-		</xs:restriction>
-	</xs:simpleType>
-</xs:schema>
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" elementFormDefault="qualified" targetNamespace="" version="" xmlns:="">
+  <annotation>
+    <documentation>Grünflächen und Flächen, Zweckbestimmungen, Erfordernisse und Maßnahmen für die Erholung in Natur und Landschaft.</documentation>
+  </annotation>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <!--XML Schema document created by ShapeChange - http://shapechange.net/-->
+  <element name="LP_AllgGruenflaeche" substitutionGroup=":LP_Flaechenobjekt" type=":LP_AllgGruenflaecheType">
+    <annotation>
+      <documentation>Allgemeine Grünflächen.</documentation>
+    </annotation>
+  </element>
+  <complexType name="LP_AllgGruenflaecheType">
+    <complexContent>
+      <extension base=":LP_FlaechenobjektType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="LP_ErholungFreizeit" substitutionGroup=":LP_Geometrieobjekt" type=":LP_ErholungFreizeitType">
+    <annotation>
+      <documentation>Sonstige Gebiete, Objekte, Zweckbestimmungen oder Maßnahmen mit besonderen Funktionen für die landschaftsgebundene Erholung und Freizeit.</documentation>
+    </annotation>
+  </element>
+  <complexType name="LP_ErholungFreizeitType">
+    <complexContent>
+      <extension base=":LP_GeometrieobjektType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="funktion" type=":LP_ErholungFreizeitFunktionenType">
+            <annotation>
+              <documentation>Funktion der Fläche.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="weitereFunktion1" type=":LP_ErholungFreizeitFunktionenType">
+            <annotation>
+              <documentation>Weitere Funktion der Fläche. &lt;b&gt;Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen &lt;/b&gt;&lt;b&gt;&lt;i&gt;funktion &lt;/i&gt;&lt;/b&gt;&lt;b&gt;mehrfach belegt werden.&lt;/b&gt;</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="weitereFunktion2" type=":LP_ErholungFreizeitFunktionenType">
+            <annotation>
+              <documentation>Weitere Funktion der Fläche. &lt;b&gt;Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen &lt;/b&gt;&lt;b&gt;&lt;i&gt;funktion &lt;/i&gt;&lt;/b&gt;&lt;b&gt;mehrfach belegt werden.&lt;/b&gt;</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="detaillierteFunktion" type="gml:CodeType">
+            <annotation>
+              <documentation>Über eine CodeList definierte zusätzliche Funktion der Fläche.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="weitereDetailFunktion1" type="gml:CodeType">
+            <annotation>
+              <documentation>Über eine CodeList definierte zusätzliche Funktion der Fläche. &lt;b&gt;Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen &lt;/b&gt;&lt;b&gt;&lt;i&gt;detaillierteFunktion &lt;/i&gt;&lt;/b&gt;&lt;b&gt;mehrfach belegt werden.&lt;/b&gt;</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="weitereDetailFunktion2" type="gml:CodeType">
+            <annotation>
+              <documentation>Über eine CodeList definierte zusätzliche Funktion der Fläche. &lt;b&gt;Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen &lt;/b&gt;&lt;b&gt;&lt;i&gt;detaillierteFunktion &lt;/i&gt;&lt;/b&gt;&lt;b&gt;mehrfach belegt werden.&lt;/b&gt;</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <simpleType name="LP_ErholungFreizeitFunktionenType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="1030"/>
+      <enumeration value="1050"/>
+      <enumeration value="1100"/>
+      <enumeration value="1200"/>
+      <enumeration value="1300"/>
+      <enumeration value="1400"/>
+      <enumeration value="1500"/>
+      <enumeration value="1600"/>
+      <enumeration value="1700"/>
+      <enumeration value="1800"/>
+      <enumeration value="1900"/>
+      <enumeration value="2000"/>
+      <enumeration value="2100"/>
+      <enumeration value="2200"/>
+      <enumeration value="2300"/>
+      <enumeration value="2400"/>
+      <enumeration value="2500"/>
+      <enumeration value="2600"/>
+      <enumeration value="2700"/>
+      <enumeration value="2800"/>
+      <enumeration value="2900"/>
+      <enumeration value="3000"/>
+      <enumeration value="3100"/>
+      <enumeration value="3200"/>
+      <enumeration value="3300"/>
+      <enumeration value="3400"/>
+      <enumeration value="3500"/>
+      <enumeration value="3600"/>
+      <enumeration value="3700"/>
+      <enumeration value="3800"/>
+      <enumeration value="3900"/>
+      <enumeration value="4000"/>
+      <enumeration value="4100"/>
+      <enumeration value="5000"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+</schema>

@@ -1,309 +1,269 @@
-<?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-	<xs:annotation>
-		<xs:documentation>Sonstige Festsetzungen</xs:documentation>
-	</xs:annotation>
-	<xs:include/>
-	<xs:include schemaLocation="XP_Basisobjekte.xsd"/>
-	<xs:include schemaLocation="XP_Enumerationen.xsd"/>
-	<xs:include/>
-	<xs:include/>
-	<xs:include schemaLocation="BP__Basisobjekte.xsd"/>
-	<xs:simpleType name="BP_AbgrenzungenTypen">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="Nutzungsartengrenze">
-				<xs:annotation>
-					<xs:documentation>Nutzungsarten-Grenze zur Abgrenzung von Baugebieten mit unterschiedlicher Art oder unterschiedlichem Maß der baulichen Nutzung.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="SonstigeAbgrenzung">
-				<xs:annotation>
-					<xs:documentation>Sonstige Abgrenzung</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:element name="BP_DetailAbgrenzungenTypen" type="BP_DetailAbgrenzungenTypen"/>
-	<xs:complexType name="BP_DetailAbgrenzungenTypen">
-		<xs:sequence/>
-	</xs:complexType>
-	<xs:element name="BP_UnverbindlicheVormerkung" type="BP_UnverbindlicheVormerkung"/>
-	<xs:complexType name="BP_UnverbindlicheVormerkung">
-		<xs:annotation>
-			<xs:documentation>Unverbindliche Vormerkung späterer Planungsabsichten.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="BP_Geometrieobjekt">
-				<xs:sequence>
-					<xs:element name="vormerkung" type="CharacterString" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Text der Vormerkung.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="BP_Veraenderungssperre" type="BP_Veraenderungssperre"/>
-	<xs:complexType name="BP_Veraenderungssperre">
-		<xs:annotation>
-			<xs:documentation>Ausweisung einer Veränderungssperre, die nicht den gesamten Geltungsbereich des Plans umfasst. Bei Verwendung dieser Klasse muss das Attribut 'veraenderungssperre" des zugehörigen Plans (Klasse BP_Plan) auf "false" gesetzt werden.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="BP_Ueberlagerungsobjekt">
-				<xs:sequence>
-					<xs:element name="gueltigkeitsDatum" type="Date" minOccurs="1" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Datum bis zu dem die Veränderungssperre bestehen bleibt.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="verlaengerung" type="XP_VerlaengerungVeraenderungssperre" minOccurs="1" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Gibt an, ob die Veränderungssperre bereits ein- oder zweimal verlängert wurde.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="refBeschluss" type="XP_ExterneReferenz" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Referenz auf das Dokument mit dem zug. Beschluss.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="BP_ZweckbestimmungGenerischeObjekte" type="BP_ZweckbestimmungGenerischeObjekte"/>
-	<xs:complexType name="BP_ZweckbestimmungGenerischeObjekte">
-		<xs:sequence/>
-	</xs:complexType>
-	<xs:element name="BP_AbstandsMass" type="BP_AbstandsMass"/>
-	<xs:complexType name="BP_AbstandsMass">
-		<xs:annotation>
-			<xs:documentation>Darstellung von Maßpfeilen oder Maßkreisen in BPlänen um eine eindeutige Vermassung einzelner Festsetzungen zu erreichen.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="BP_Geometrieobjekt">
-				<xs:sequence>
-					<xs:element name="wert" type="Length" minOccurs="1" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Längenangabe des Abstandsmasses.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="startWinkel" type="Angle" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Startwinkel für Darstellung eines Abstandsmaßes (nur relevant für Maßkeise)</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="endWinkel" type="Angle" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Endwinkel für Darstellung eines Abstandsmaße (nur relevant für Maßkreise).</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="BP_TextlicheFestsetzungsFlaeche" type="BP_TextlicheFestsetzungsFlaeche"/>
-	<xs:complexType name="BP_TextlicheFestsetzungsFlaeche">
-		<xs:annotation>
-			<xs:documentation>Bereich in dem bestimmte Textliche Festsetzungen gültig sind, die über die Relation "refTextInhalt" (Basisklasse XP_Objekt) spezifiziert werden.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="BP_Ueberlagerungsobjekt">
-				<xs:sequence/>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="BP_GenerischesObjekt" type="BP_GenerischesObjekt"/>
-	<xs:complexType name="BP_GenerischesObjekt">
-		<xs:annotation>
-			<xs:documentation>Klasse zur Modellierung aller Inhalte des BPlans, die keine nachrichtliche Übernahmen aus anderen Rechtsbereichen sind, aber durch keine andere Klasse des BPlan-Fachschemas dargestellt werden können.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="BP_Geometrieobjekt">
-				<xs:sequence>
-					<xs:element name="zweckbestimmung" type="BP_ZweckbestimmungGenerischeObjekte" minOccurs="0" maxOccurs="unbounded">
-						<xs:annotation>
-							<xs:documentation>Über eine CodeList definierte Zweckbestimmungen des Objektes.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="weitereZweckbestimmung1" type="BP_ZweckbestimmungGenerischeObjekte" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Über eine CodeList definierte weitere Zweckbestimmung des Objektes. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen zweckbestimmung mehrfach belegt werden.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="weitereZweckbestimmung2" type="BP_ZweckbestimmungGenerischeObjekte" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Über eine CodeList definierte weitere Zweckbestimmung des Objektes. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen zweckbestimmung mehrfach belegt werden. </xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="weitereZweckbestimmung3" type="BP_ZweckbestimmungGenerischeObjekte" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Über eine CodeList definierte weitere Zweckbestimmung des Objektes. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen zweckbestimmung mehrfach belegt werden.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="weitereZweckbestimmung4" type="BP_ZweckbestimmungGenerischeObjekte" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Über eine CodeList definierte weitere Zweckbestimmung des Objektes. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen zweckbestimmung mehrfach belegt werden.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="BP_Wegerecht" type="BP_Wegerecht"/>
-	<xs:complexType name="BP_Wegerecht">
-		<xs:annotation>
-			<xs:documentation>Festsetzung von Flächen, die mit Geh-, Fahr-, und Leitungsrechten zugunsten der Allgemeinheit, eines Erschließungsträgers, oder eines beschränkten Personenkreises belastet sind  (§ 9 Abs. 1 Nr. 21 und Abs. 6 BauGB).</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="BP_Geometrieobjekt">
-				<xs:sequence>
-					<xs:element name="typ" type="BP_WegerechtTypen" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Typ des Wegerechts</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="zugunstenVon" type="CharacterString" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Inhaber der Rechte.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="thema" type="CharacterString" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Beschreibung des Rechtes.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="breite" type="Length" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Breite des Wegerechts bei linienförmiger Ausweisung der Geometrie.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="BP_KennzeichnungsFlaeche" type="BP_KennzeichnungsFlaeche"/>
-	<xs:complexType name="BP_KennzeichnungsFlaeche">
-		<xs:annotation>
-			<xs:documentation>Flächen für Kennzeichnungen gemäß §9 Abs. 5 BauGB.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="BP_Flaechenobjekt">
-				<xs:sequence>
-					<xs:element name="zweckbestimmung" type="XP_ZweckbestimmungKennzeichnung" minOccurs="0" maxOccurs="unbounded">
-						<xs:annotation>
-							<xs:documentation>Zweckbestimmungen der Fläche.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="weitereZweckbestimmung" type="XP_ZweckbestimmungKennzeichnung" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Weitere Zweckbestimmung der Fläche. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen zweckbestimmung mehrfach belegt werden.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="BP_FreiFlaeche" type="BP_FreiFlaeche"/>
-	<xs:complexType name="BP_FreiFlaeche">
-		<xs:annotation>
-			<xs:documentation>Umgrenzung der Flächen, die von der Bebauung freizuhalten sind, und ihre Nutzung (§ 9 Abs. 1 Nr. 10 BauGB).</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="BP_Ueberlagerungsobjekt">
-				<xs:sequence>
-					<xs:element name="nutzung" type="CharacterString" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Festgesetzte Nutzung der Freifläche.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:simpleType name="BP_WegerechtTypen">
-		<xs:restriction base="xs:&lt;undefined&gt;">
-			<xs:enumeration value="Gehrecht">
-				<xs:annotation>
-					<xs:documentation>Gehrecht</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Fahrrecht">
-				<xs:annotation>
-					<xs:documentation>Fahrrecht</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="GehFahrrecht">
-				<xs:annotation>
-					<xs:documentation>Geh- und Fahrrecht</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Leitungsrecht"/>
-			<xs:enumeration value="GehLeitungsrecht">
-				<xs:annotation>
-					<xs:documentation>Geh- und Leitungsrecht</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="FahrLeitungsrecht">
-				<xs:annotation>
-					<xs:documentation>Fahr- und Leitungsrecht</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="GehFahrLeitungsrecht">
-				<xs:annotation>
-					<xs:documentation>Geh-, Fahr- und Leitungsrecht</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:element name="BP_HoehenMass" type="BP_HoehenMass"/>
-	<xs:complexType name="BP_HoehenMass">
-		<xs:annotation>
-			<xs:documentation>Festsetzungen nach §9 Abs. 1 Nr. 1 BauGB für übereinanderliegende Geschosse und Ebenen und sonstige Teile baulicher Anlagen (§9 Abs.3 BauGB), sowie Hinweise auf Geländehöhen.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="BP_Geometrieobjekt">
-				<xs:sequence/>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="BP_FestsetzungNachLandesrecht" type="BP_FestsetzungNachLandesrecht"/>
-	<xs:complexType name="BP_FestsetzungNachLandesrecht">
-		<xs:annotation>
-			<xs:documentation>Festsetzung nacvh §9 Nr. (4) BauGB</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="BP_Geometrieobjekt">
-				<xs:sequence>
-					<xs:element name="kurzbeschreibung" type="CharacterString" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Kurzbeschreibung der Festsetzung</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="BP_NutzungsartenGrenze" type="BP_NutzungsartenGrenze"/>
-	<xs:complexType name="BP_NutzungsartenGrenze">
-		<xs:annotation>
-			<xs:documentation>Abgrenzung unterschiedlicher Nutzung, z.B. von Baugebieten wenn diese nach PlanzVO in der gleichen Farbe dargestellt werden, oder Abgrenzung unterschiedlicher Nutzungsmaße innerhalb eines Baugebiets ("Knödellinie", §1 Abs. 4, §16 Abs. 5 BauNVO).</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="BP_Linienobjekt">
-				<xs:sequence>
-					<xs:element name="typ" type="BP_AbgrenzungenTypen" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Typ der Abgrenzung. Wenn das Attribut nicht belegt ist, ist die Abgrenzung eine Nutzungsarten-Grenze (Schlüsselnummer 1000).</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="detailTyp" type="BP_DetailAbgrenzungenTypen" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Detaillierter Typ der Abgrenzung, wenn das Attribut typ den Wert 9999 (Sonstige Abgrenzung) hat.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-</xs:schema>
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" elementFormDefault="qualified" targetNamespace="" version="" xmlns:="">
+  <annotation>
+    <documentation>Sonstige Festsetzungen</documentation>
+  </annotation>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <!--XML Schema document created by ShapeChange - http://shapechange.net/-->
+  <simpleType name="BP_AbgrenzungenTypenType">
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>Nutzungsarten-Grenze zur Abgrenzung von Baugebieten mit unterschiedlicher Art oder unterschiedlichem Maß der baulichen Nutzung.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="9999">
+        <annotation>
+          <documentation>Sonstige Abgrenzung</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <element name="BP_AbstandsMass" substitutionGroup=":BP_Geometrieobjekt" type=":BP_AbstandsMassType">
+    <annotation>
+      <documentation>Darstellung von Maßpfeilen oder Maßkreisen in BPlänen um eine eindeutige Vermassung einzelner Festsetzungen zu erreichen.</documentation>
+    </annotation>
+  </element>
+  <complexType name="BP_AbstandsMassType">
+    <complexContent>
+      <extension base=":BP_GeometrieobjektType">
+        <sequence>
+          <element name="wert" type="gml:LengthType">
+            <annotation>
+              <documentation>Längenangabe des Abstandsmasses.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="startWinkel" type="gml:AngleType">
+            <annotation>
+              <documentation>Startwinkel für Darstellung eines Abstandsmaßes (nur relevant für Maßkeise)</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="endWinkel" type="gml:AngleType">
+            <annotation>
+              <documentation>Endwinkel für Darstellung eines Abstandsmaße (nur relevant für Maßkreise).</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="BP_FreiFlaeche" substitutionGroup=":BP_Ueberlagerungsobjekt" type=":BP_FreiFlaecheType">
+    <annotation>
+      <documentation>Umgrenzung der Flächen, die von der Bebauung freizuhalten sind, und ihre Nutzung (§ 9 Abs. 1 Nr. 10 BauGB).</documentation>
+    </annotation>
+  </element>
+  <complexType name="BP_FreiFlaecheType">
+    <complexContent>
+      <extension base=":BP_UeberlagerungsobjektType">
+        <sequence>
+          <element minOccurs="0" name="nutzung" type="string">
+            <annotation>
+              <documentation>Festgesetzte Nutzung der Freifläche.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="BP_GenerischesObjekt" substitutionGroup=":BP_Geometrieobjekt" type=":BP_GenerischesObjektType">
+    <annotation>
+      <documentation>Klasse zur Modellierung aller Inhalte des BPlans, die keine nachrichtliche Übernahmen aus anderen Rechtsbereichen sind, aber durch keine andere Klasse des BPlan-Fachschemas dargestellt werden können.</documentation>
+    </annotation>
+  </element>
+  <complexType name="BP_GenerischesObjektType">
+    <complexContent>
+      <extension base=":BP_GeometrieobjektType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="zweckbestimmung" type="gml:CodeType">
+            <annotation>
+              <documentation>Über eine CodeList definierte Zweckbestimmungen des Objektes.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="BP_HoehenMass" substitutionGroup=":BP_Geometrieobjekt" type=":BP_HoehenMassType">
+    <annotation>
+      <documentation>Festsetzungen nach §9 Abs. 1 Nr. 1 BauGB für übereinanderliegende Geschosse und Ebenen und sonstige Teile baulicher Anlagen (§9 Abs.3 BauGB), sowie Hinweise auf Geländehöhen.</documentation>
+    </annotation>
+  </element>
+  <complexType name="BP_HoehenMassType">
+    <complexContent>
+      <extension base=":BP_GeometrieobjektType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="BP_KennzeichnungsFlaeche" substitutionGroup=":BP_Flaechenobjekt" type=":BP_KennzeichnungsFlaecheType">
+    <annotation>
+      <documentation>Flächen für Kennzeichnungen gemäß §9 Abs. 5 BauGB.</documentation>
+    </annotation>
+  </element>
+  <complexType name="BP_KennzeichnungsFlaecheType">
+    <complexContent>
+      <extension base=":BP_FlaechenobjektType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="zweckbestimmung" type=":XP_ZweckbestimmungKennzeichnungType">
+            <annotation>
+              <documentation>Zweckbestimmungen der Fläche.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="weitereZweckbestimmung" type=":XP_ZweckbestimmungKennzeichnungType">
+            <annotation>
+              <documentation>Weitere Zweckbestimmung der Fläche. &lt;b&gt;Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen &lt;/b&gt;&lt;b&gt;&lt;i&gt;zweckbestimmung &lt;/i&gt;&lt;/b&gt;&lt;b&gt;mehrfach belegt werden.&lt;/b&gt;</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="BP_NutzungsartenGrenze" substitutionGroup=":BP_Linienobjekt" type=":BP_NutzungsartenGrenzeType">
+    <annotation>
+      <documentation>Abgrenzung unterschiedlicher Nutzung, z.B. von Baugebieten wenn diese nach PlanzVO in der gleichen Farbe dargestellt werden, oder Abgrenzung unterschiedlicher Nutzungsmaße innerhalb eines Baugebiets ("Knödellinie", §1 Abs. 4, §16 Abs. 5 BauNVO).</documentation>
+    </annotation>
+  </element>
+  <complexType name="BP_NutzungsartenGrenzeType">
+    <complexContent>
+      <extension base=":BP_LinienobjektType">
+        <sequence>
+          <element minOccurs="0" name="typ" type=":BP_AbgrenzungenTypenType">
+            <annotation>
+              <documentation>Typ der Abgrenzung. Wenn das Attribut nicht belegt ist, ist die Abgrenzung eine Nutzungsarten-Grenze (Schlüsselnummer 1000).</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="detailTyp" type="gml:CodeType">
+            <annotation>
+              <documentation>Detaillierter Typ der Abgrenzung, wenn das Attribut typ den Wert 9999 (Sonstige Abgrenzung) hat.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="BP_TextlicheFestsetzungsFlaeche" substitutionGroup=":BP_Ueberlagerungsobjekt" type=":BP_TextlicheFestsetzungsFlaecheType">
+    <annotation>
+      <documentation>Bereich in dem bestimmte Textliche Festsetzungen gültig sind, die über die Relation "refTextInhalt" (Basisklasse XP_Objekt) spezifiziert werden.</documentation>
+    </annotation>
+  </element>
+  <complexType name="BP_TextlicheFestsetzungsFlaecheType">
+    <complexContent>
+      <extension base=":BP_UeberlagerungsobjektType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="BP_UnverbindlicheVormerkung" substitutionGroup=":BP_Geometrieobjekt" type=":BP_UnverbindlicheVormerkungType">
+    <annotation>
+      <documentation>Unverbindliche Vormerkung späterer Planungsabsichten.</documentation>
+    </annotation>
+  </element>
+  <complexType name="BP_UnverbindlicheVormerkungType">
+    <complexContent>
+      <extension base=":BP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="vormerkung" type="string">
+            <annotation>
+              <documentation>Text der Vormerkung.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="BP_Veraenderungssperre" substitutionGroup=":BP_Ueberlagerungsobjekt" type=":BP_VeraenderungssperreType">
+    <annotation>
+      <documentation>Ausweisung einer Veränderungssperre, die nicht den gesamten Geltungsbereich des Plans umfasst. Bei Verwendung dieser Klasse muss das Attribut 'veraenderungssperre" des zugehörigen Plans (Klasse BP_Plan) auf "false" gesetzt werden.</documentation>
+    </annotation>
+  </element>
+  <complexType name="BP_VeraenderungssperreType">
+    <complexContent>
+      <extension base=":BP_UeberlagerungsobjektType">
+        <sequence>
+          <element name="gueltigkeitsDatum" type="date">
+            <annotation>
+              <documentation>Datum bis zu dem die Veränderungssperre bestehen bleibt.</documentation>
+            </annotation>
+          </element>
+          <element name="verlaengerung" type=":XP_VerlaengerungVeraenderungssperreType">
+            <annotation>
+              <documentation>Gibt an, ob die Veränderungssperre bereits ein- oder zweimal verlängert wurde.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="refBeschluss" type=":XP_ExterneReferenzPropertyType">
+            <annotation>
+              <documentation>Referenz auf das Dokument mit dem zug. Beschluss.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="BP_Wegerecht" substitutionGroup=":BP_Geometrieobjekt" type=":BP_WegerechtType">
+    <annotation>
+      <documentation>Festsetzung von Flächen, die mit Geh-, Fahr-, und Leitungsrechten zugunsten der Allgemeinheit, eines Erschließungsträgers, oder eines beschränkten Personenkreises belastet sind  (§ 9 Abs. 1 Nr. 21 und Abs. 6 BauGB).</documentation>
+    </annotation>
+  </element>
+  <complexType name="BP_WegerechtType">
+    <complexContent>
+      <extension base=":BP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="typ" type=":BP_WegerechtTypenType">
+            <annotation>
+              <documentation>Typ des Wegerechts</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="zugunstenVon" type="string">
+            <annotation>
+              <documentation>Inhaber der Rechte.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="thema" type="string">
+            <annotation>
+              <documentation>Beschreibung des Rechtes.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="breite" type="gml:LengthType">
+            <annotation>
+              <documentation>Breite des Wegerechts bei linienförmiger Ausweisung der Geometrie.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <simpleType name="BP_WegerechtTypenType">
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>Gehrecht</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2000">
+        <annotation>
+          <documentation>Fahrrecht</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="3000">
+        <annotation>
+          <documentation>Geh- und Fahrrecht</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="4000"/>
+      <enumeration value="4100">
+        <annotation>
+          <documentation>Geh- und Leitungsrecht</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="4200">
+        <annotation>
+          <documentation>Fahr- und Leitungsrecht</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="5000">
+        <annotation>
+          <documentation>Geh-, Fahr- und Leitungsrecht</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+</schema>

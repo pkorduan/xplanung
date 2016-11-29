@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" elementFormDefault="qualified" targetNamespace="" version="" xmlns:="">
+  <annotation>
+    <documentation>Das Paket enthält die Klassen zur Modellierung eines FPlans (abgeleitet von XP_Plan) und eines FPlan-Bereichs (abgeleitet von XP_Bereich), sowie die Basisklassen für FPlan-Fachobjekte.</documentation>
+  </annotation>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <!--XML Schema document created by ShapeChange - http://shapechange.net/-->
+  <element name="FP_Bereich" substitutionGroup=":XP_Bereich" type=":FP_BereichType">
+    <annotation>
+      <documentation>Diese Klasse modelliert einen Bereich eines Flächennutzungsplans.</documentation>
+    </annotation>
+  </element>
+  <complexType name="FP_BereichType">
+    <complexContent>
+      <extension base=":XP_BereichType">
+        <sequence>
+          <element minOccurs="0" name="versionBauNVODatum" type="date">
+            <annotation>
+              <documentation>Datum der zugrude liegenden Version der BauNVO</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="versionBauNVOText" type="string">
+            <annotation>
+              <documentation>Zugrunde liegende Version der BauNVO.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="versionBauGBDatum" type="date">
+            <annotation>
+              <documentation>Datum der zugrunde liegenden Version des BauGB.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="versionBauGBText" type="string">
+            <annotation>
+              <documentation>Zugrunde liegende Version des BauGB.</documentation>
+            </annotation>
+          </element>
+          <element name="gehoertZuPlan" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">:FP_Plan</targetElement>
+                <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">:bereich</reversePropertyName>
+              </appinfo>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="rasterAenderung" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">:FP_RasterplanAenderung</targetElement>
+              </appinfo>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element abstract="true" name="FP_Flaechenobjekt" substitutionGroup=":FP_Objekt" type=":FP_FlaechenobjektType">
+    <annotation>
+      <documentation>Basisklasse für alle Objekte eines Flächennutzungsplans mit flächenhaftem Raumbezug (eine Einzelfläche oder eine Menge von Flächen, die sich nicht überlappen dürfen).  Die von FP_Flaechenobjekt abgeleiteten Fachobjekte können sowohl als Flächenschlussobjekte als auch als Überlagerungsobjekte auftreten.</documentation>
+    </annotation>
+  </element>
+  <complexType abstract="true" name="FP_FlaechenobjektType">
+    <complexContent>
+      <extension base=":FP_ObjektType">
+        <sequence>
+          <element name="position" type=":XP_FlaechengeometriePropertyType"/>
+          <element name="flaechenschluss" type="boolean"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element abstract="true" name="FP_Flaechenschlussobjekt" substitutionGroup=":FP_Flaechenobjekt" type=":FP_FlaechenschlussobjektType">
+    <annotation>
+      <documentation>Basisklasse für alle Objekte eines Flächennutzungsplans mit flächenhaftem Raumbezug, die immer Flächenschlussobjekte sind.</documentation>
+    </annotation>
+  </element>
+  <complexType abstract="true" name="FP_FlaechenschlussobjektType">
+    <complexContent>
+      <extension base=":FP_FlaechenobjektType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element abstract="true" name="FP_Geometrieobjekt" substitutionGroup=":FP_Objekt" type=":FP_GeometrieobjektType">
+    <annotation>
+      <documentation>Basisklasse für alle Objekte eines Flächennutzungsplans mit variablem Raumbezug. Ein konkretes Objekt muss entweder punktförmigen, linienförmigen oder flächenhaften Raumbezug haben, gemischte Geometrie ist nicht zugelassen.</documentation>
+    </annotation>
+  </element>
+  <complexType abstract="true" name="FP_GeometrieobjektType">
+    <complexContent>
+      <extension base=":FP_ObjektType">
+        <sequence>
+          <element name="position" type=":XP_VariableGeometriePropertyType"/>
+          <element minOccurs="0" name="flaechenschluss" type="boolean"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element abstract="true" name="FP_Linienobjekt" substitutionGroup=":FP_Objekt" type=":FP_LinienobjektType">
+    <annotation>
+      <documentation>Basisklasse für alle Objekte eines Flächennutzungsplans mit linienförmigem Raumbezug (eine einzelne zusammenhängende Kurve, die aus Linienstücken und Kreisbögen zusammengesetzt sein kann, oder eine Menge derartiger Kurven).</documentation>
+    </annotation>
+  </element>
+  <complexType abstract="true" name="FP_LinienobjektType">
+    <complexContent>
+      <extension base=":FP_ObjektType">
+        <sequence>
+          <element name="position" type=":XP_LiniengeometriePropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element abstract="true" name="FP_Objekt" substitutionGroup=":XP_Objekt" type=":FP_ObjektType">
+    <annotation>
+      <documentation>Basisklasse für alle Fachobjekte des Flächennutzungsplans.</documentation>
+    </annotation>
+  </element>
+  <complexType abstract="true" name="FP_ObjektType">
+    <complexContent>
+      <extension base=":XP_ObjektType">
+        <sequence>
+          <element minOccurs="0" name="rechtscharakter" type=":FP_RechtscharakterType">
+            <annotation>
+              <documentation>Rechtliche Charakterisierung des Planinhalts</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="spezifischePraegung" type="gml:CodeType">
+            <annotation>
+              <documentation>Spezifische bauliche Prägung einer Darstellung.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="wirdAusgeglichenDurchFlaeche" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">:FP_AusgleichsFlaeche</targetElement>
+              </appinfo>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="wirdAusgeglichenDurchSPE" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">:FP_SchutzPflegeEntwicklung</targetElement>
+              </appinfo>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="FP_Plan" substitutionGroup=":XP_Plan" type=":FP_PlanType">
+    <annotation>
+      <documentation>Klasse zur Modellierung eines gesamten Flächennutzungsplans.</documentation>
+    </annotation>
+  </element>
+  <complexType name="FP_PlanType">
+    <complexContent>
+      <extension base=":XP_PlanType">
+        <sequence>
+          <element maxOccurs="unbounded" name="gemeinde" type=":XP_GemeindePropertyType">
+            <annotation>
+              <documentation>Zuständige Gemeinde</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="plangeber" type=":XP_PlangeberPropertyType">
+            <annotation>
+              <documentation>Für die Planung zuständige Institution</documentation>
+            </annotation>
+          </element>
+          <element name="planArt" type=":FP_PlanArtType">
+            <annotation>
+              <documentation>Typ des FPlans</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="sonstPlanArt" type="gml:CodeType">
+            <annotation>
+              <documentation>Sonstige Art eines FPlans bei planArt == 9999.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="sachgebiet" type="string">
+            <annotation>
+              <documentation>Sachgebiet eines Teilflächennutzungsplans</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="verfahren" type=":FP_VerfahrenType">
+            <annotation>
+              <documentation>Verfahren nach dem ein FPlan aufgestellt oder geändert wird.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="rechtsstand" type=":FP_RechtsstandType">
+            <annotation>
+              <documentation>Rechtsstand de4s Plans</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="status" type="gml:CodeType">
+            <annotation>
+              <documentation>Über eine ExternalCodeList definierter Status des Plans.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="aufstellungsbeschlussDatum" type="date">
+            <annotation>
+              <documentation>Datum des Plan-Aufstellungsbeschlusses.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="auslegungsStartDatum" type="date">
+            <annotation>
+              <documentation>Start-Datum der öffentlichen Auslegung.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="auslegungsEndDatum" type="date">
+            <annotation>
+              <documentation>End-Datum der öffentlichen Auslegung.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="traegerbeteiligungsStartDatum" type="date">
+            <annotation>
+              <documentation>Start-Datum der Trägerbeteiligung.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="traegerbeteiligungsEndDatum" type="date">
+            <annotation>
+              <documentation>End-Datum der Trägerbeteiligung.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="aenderungenBisDatum" type="date">
+            <annotation>
+              <documentation>Datum, bis zu dem Änderungen des Plans berücksichtigt wurden.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="entwurfsbeschlussDatum" type="date">
+            <annotation>
+              <documentation>Datum des Entwurfsbeschlusses</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="planbeschlussDatum" type="date">
+            <annotation>
+              <documentation>Datum des Planbeschlusses</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="wirksamkeitsDatum" type="date">
+            <annotation>
+              <documentation>Datum der Wirksamkeit</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="refUmweltbericht" type=":XP_ExterneReferenzPropertyType">
+            <annotation>
+              <documentation>Referenz auf den Umweltbericht.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="refErlaeuterung" type=":XP_ExterneReferenzPropertyType">
+            <annotation>
+              <documentation>Referenz auf den Erläuterungsbericht..</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="bereich" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">:FP_Bereich</targetElement>
+                <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">:gehoertZuPlan</reversePropertyName>
+              </appinfo>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <simpleType name="FP_PlanArtType">
+    <annotation>
+      <documentation>Aufzählung verschiedener Arten von Flächennutzungsplänen</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>Flächennutzungsplan nach §5 BauGB.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2000">
+        <annotation>
+          <documentation>Gemeinsamer FPlan nach §204 BauGB</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="3000">
+        <annotation>
+          <documentation>Regionaler FPlan, der Zugleich die Funktion eines Regionalplans als auch eines gemeinssamen FPlans nach § 204 BauGB erfüllt.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="4000">
+        <annotation>
+          <documentation>Flächennutzungsplan mit regionalplanerischen Festlegungen (nur in HH, HB, B).</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="5000">
+        <annotation>
+          <documentation>Sachlicher Teilflächennutzungsplan nach §5 Abs. 2b BauGB.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="9999">
+        <annotation>
+          <documentation>Sonstiger Flächennutzungsplan</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <element abstract="true" name="FP_Punktobjekt" substitutionGroup=":FP_Objekt" type=":FP_PunktobjektType">
+    <annotation>
+      <documentation>Basisklasse für alle Objekte eines Flächennutzungsplans mit punktförmigem Raumbezug (Einzelpunkt oder Punktmenge).</documentation>
+    </annotation>
+  </element>
+  <complexType abstract="true" name="FP_PunktobjektType">
+    <complexContent>
+      <extension base=":FP_ObjektType">
+        <sequence>
+          <element name="position" type=":XP_PunktgeometriePropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <simpleType name="FP_RechtscharakterType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="3000"/>
+      <enumeration value="4000"/>
+      <enumeration value="5000"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="FP_RechtsstandType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="2100"/>
+      <enumeration value="2200"/>
+      <enumeration value="2300"/>
+      <enumeration value="2400"/>
+      <enumeration value="3000"/>
+      <enumeration value="4000"/>
+      <enumeration value="5000"/>
+    </restriction>
+  </simpleType>
+  <element abstract="true" name="FP_Ueberlagerungsobjekt" substitutionGroup=":FP_Flaechenobjekt" type=":FP_UeberlagerungsobjektType">
+    <annotation>
+      <documentation>Basisklasse für alle Objekte eines Flächennutzungsplans mit flächenhaftem Raumbezug, die immer Überlagerungsobjekte sind.</documentation>
+    </annotation>
+  </element>
+  <complexType abstract="true" name="FP_UeberlagerungsobjektType">
+    <complexContent>
+      <extension base=":FP_FlaechenobjektType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <simpleType name="FP_VerfahrenType">
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>Normales FPlan Verfahren.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2000">
+        <annotation>
+          <documentation>FPlan Verfahren nach Parag 13 BauGB.</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+</schema>

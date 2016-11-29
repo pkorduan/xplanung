@@ -1,89 +1,85 @@
-<?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-	<xs:annotation>
-		<xs:documentation>Darstellung von Flächen für den überörtlichen Verkehr sowie für die örtlichen Hauptverkehrszüge (§5, Abs. 2, Nr. 3 BauGB).</xs:documentation>
-	</xs:annotation>
-	<xs:include schemaLocation="XP_Enumerationen.xsd"/>
-	<xs:include schemaLocation="P__Basisobjekte.xsd"/>
-	<xs:element name="FP_Strassenverkehr" type="FP_Strassenverkehr"/>
-	<xs:complexType name="FP_Strassenverkehr">
-		<xs:annotation>
-			<xs:documentation>Darstellung von Flächen für den überörtlichen Verkehr und für die örtlichen Hauptverkehrszüge ( §5, Abs. 2, Nr. 3 BauGB).</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="FP_Geometrieobjekt">
-				<xs:sequence>
-					<xs:element name="zweckbestimmung" type="FP_ZweckbestimmungStrassenverkehr" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Allgemeine Zweckbestimmung des Objektes.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="besondereZweckbestimmung" type="FP_BesondereZweckbestimmungStrassenverkehr" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Besondere Zweckbestimmung des Objektes, der die allgemiene Zweckbestimmung detaillliert oder ersetzt.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="detaillierteZweckbestimmung" type="FP_DetailZweckbestStrassenverkehr" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Über eine CodeList definierte zusätzliche Zweckbestimmung</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="nutzungsform" type="XP_Nutzungsform" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Nutzungsform</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="FP_DetailZweckbestStrassenverkehr" type="FP_DetailZweckbestStrassenverkehr"/>
-	<xs:complexType name="FP_DetailZweckbestStrassenverkehr">
-		<xs:sequence/>
-	</xs:complexType>
-	<xs:simpleType name="FP_BesondereZweckbestimmungStrassenverkehr">
-		<xs:restriction base="xs:&lt;undefined&gt;">
-			<xs:enumeration value="VerkehrsberuhigterBereich"/>
-			<xs:enumeration value="Platz"/>
-			<xs:enumeration value="Fussgaengerbereich"/>
-			<xs:enumeration value="RadFussweg"/>
-			<xs:enumeration value="Radweg"/>
-			<xs:enumeration value="Fussweg"/>
-			<xs:enumeration value="Wanderweg"/>
-			<xs:enumeration value="ReitKutschweg"/>
-			<xs:enumeration value="Rastanlage"/>
-			<xs:enumeration value="Busbahnhof"/>
-			<xs:enumeration value="UeberfuehrenderVerkehrsweg"/>
-			<xs:enumeration value="UnterfuehrenderVerkehrsweg"/>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="FP_ZweckbestimmungStrassenverkehr">
-		<xs:restriction base="xs:&lt;undefined&gt;">
-			<xs:enumeration value="Autobahn">
-				<xs:annotation>
-					<xs:documentation>Autobahn und autobahnähnliche Straße.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Hauptverkehrsstrasse">
-				<xs:annotation>
-					<xs:documentation>Sonstige örtliche oder überörtliche Hauptverkehrsstraße bzw. Weg.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="SonstigerVerkehrswegAnlage">
-				<xs:annotation>
-					<xs:documentation>Sonstiger Verkehrsweg oder Anlage.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="RuhenderVerkehr">
-				<xs:annotation>
-					<xs:documentation>Fläche oder Anlage für den ruhenden Verkehr.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Sonstiges">
-				<xs:annotation>
-					<xs:documentation>Sonstige Zweckbestimmung</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-		</xs:restriction>
-	</xs:simpleType>
-</xs:schema>
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" elementFormDefault="qualified" targetNamespace="" version="" xmlns:="">
+  <annotation>
+    <documentation>Darstellung von Flächen für den überörtlichen Verkehr sowie für die örtlichen Hauptverkehrszüge (§5, Abs. 2, Nr. 3 BauGB).</documentation>
+  </annotation>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <!--XML Schema document created by ShapeChange - http://shapechange.net/-->
+  <simpleType name="FP_BesondereZweckbestimmungStrassenverkehrType">
+    <restriction base="string">
+      <enumeration value="14000"/>
+      <enumeration value="14001"/>
+      <enumeration value="14002"/>
+      <enumeration value="14003"/>
+      <enumeration value="14004"/>
+      <enumeration value="14005"/>
+      <enumeration value="14006"/>
+      <enumeration value="14007"/>
+      <enumeration value="14008"/>
+      <enumeration value="14009"/>
+      <enumeration value="14010"/>
+      <enumeration value="14011"/>
+    </restriction>
+  </simpleType>
+  <element name="FP_Strassenverkehr" substitutionGroup=":FP_Geometrieobjekt" type=":FP_StrassenverkehrType">
+    <annotation>
+      <documentation>Darstellung von Flächen für den überörtlichen Verkehr und für die örtlichen Hauptverkehrszüge ( §5, Abs. 2, Nr. 3 BauGB).</documentation>
+    </annotation>
+  </element>
+  <complexType name="FP_StrassenverkehrType">
+    <complexContent>
+      <extension base=":FP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="zweckbestimmung" type=":FP_ZweckbestimmungStrassenverkehrType">
+            <annotation>
+              <documentation>Allgemeine Zweckbestimmung des Objektes.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="besondereZweckbestimmung" type=":FP_BesondereZweckbestimmungStrassenverkehrType">
+            <annotation>
+              <documentation>Besondere Zweckbestimmung des Objektes, der die allgemiene Zweckbestimmung detaillliert oder ersetzt.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="detaillierteZweckbestimmung" type="gml:CodeType">
+            <annotation>
+              <documentation>Über eine CodeList definierte zusätzliche Zweckbestimmung</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="nutzungsform" type=":XP_NutzungsformType">
+            <annotation>
+              <documentation>Nutzungsform</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <simpleType name="FP_ZweckbestimmungStrassenverkehrType">
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>Autobahn und autobahnähnliche Straße.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1200">
+        <annotation>
+          <documentation>Sonstige örtliche oder überörtliche Hauptverkehrsstraße bzw. Weg.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1400">
+        <annotation>
+          <documentation>Sonstiger Verkehrsweg oder Anlage.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1600">
+        <annotation>
+          <documentation>Fläche oder Anlage für den ruhenden Verkehr.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="9999">
+        <annotation>
+          <documentation>Sonstige Zweckbestimmung</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+</schema>

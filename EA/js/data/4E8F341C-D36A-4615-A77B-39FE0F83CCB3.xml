@@ -1,7 +1,0 @@
-tocTab[tocTab.length] = new Array("0.2.3.6:1", "", "SonstigePlanwerke", "EARoot/EA2/EA3/EA6/EA2703.htm", "175.png", "752", "0", "", "class diagram0","{C7343DB2-CA07-4591-B658-641D9E2C5430}");
-tocTab[tocTab.length] = new Array("0.2.3.6.1", "1", "«Leaf» SO_Basisobjekte", "EARoot/EA2/EA3/EA6/EA1/EA2716.htm", "4.png", "", "", "{2C2BBF52-7606-43d5-BC25-6047548319C7}", "Package");
-tocTab[tocTab.length] = new Array("0.2.3.6.2", "1", "«Leaf» SO_NachrichtlicheUebernahmen", "EARoot/EA2/EA3/EA6/EA2/EA2732.htm", "4.png", "", "", "{35B81F1E-28A1-4a6a-A0B2-67C38F74493E}", "Package");
-tocTab[tocTab.length] = new Array("0.2.3.6.3", "1", "«Leaf» SO_Raster", "EARoot/EA2/EA3/EA6/EA3/EA2761.htm", "4.png", "", "", "{705522BC-342A-46bd-AEA6-37DF511E26D0}", "Package");
-tocTab[tocTab.length] = new Array("0.2.3.6.4", "1", "«Leaf» SO_Schutzgebiete", "EARoot/EA2/EA3/EA6/EA4/EA2765.htm", "4.png", "", "", "{AB74433A-1145-41a9-8B25-585C6901011F}", "Package");
-tocTab[tocTab.length] = new Array("0.2.3.6.5", "1", "«Leaf» SO_SonstigeGebiete", "EARoot/EA2/EA3/EA6/EA5/EA2778.htm", "4.png", "", "", "{672E2DBC-54CD-499a-BDCA-72E36ED4D5AE}", "Package");
-tocTab[tocTab.length] = new Array("0.2.3.6.6", "1", "«Leaf» SO_Sonstiges", "EARoot/EA2/EA3/EA6/EA6/EA2786.htm", "4.png", "", "", "{EFD99B27-4379-46d1-AFB5-E5A362D8737E}", "Package");

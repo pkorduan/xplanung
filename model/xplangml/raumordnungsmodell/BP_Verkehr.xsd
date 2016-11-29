@@ -1,640 +1,235 @@
-<?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-	<xs:annotation>
-		<xs:documentation>Verkehrsflächen und Verkehrsflächen besonderer Zweckbestimmung (§9, Abs. 1, Nr. 11 BauGB).</xs:documentation>
-	</xs:annotation>
-	<xs:include schemaLocation="XP_Enumerationen.xsd"/>
-	<xs:include/>
-	<xs:include schemaLocation="BP_Bebauung.xsd"/>
-	<xs:include schemaLocation="BP__Basisobjekte.xsd"/>
-	<xs:element name="BP_DetailZweckbestStrassenverkehr" type="BP_DetailZweckbestStrassenverkehr"/>
-	<xs:complexType name="BP_DetailZweckbestStrassenverkehr">
-		<xs:annotation>
-			<xs:documentation>Über eine ExternalCodeList definierte zusätzliche Zweckbestimmungen von Strassenverkehrsflächen.</xs:documentation>
-		</xs:annotation>
-		<xs:sequence/>
-	</xs:complexType>
-	<xs:simpleType name="BP_StrassenkoerperHerstellung">
-		<xs:annotation>
-			<xs:documentation>Aufzählung der möglichen Maßnahmen zur Herstellung des Straßenkörpers</xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:&lt;undefined&gt;">
-			<xs:enumeration value="Aufschuettung"/>
-			<xs:enumeration value="Abgrabung"/>
-			<xs:enumeration value="Stuetzmauer"/>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="BP_ZweckbestimmungStrassenverkehr">
-		<xs:annotation>
-			<xs:documentation>Aufzählung der möglichen besonderen Zweckbestimmungen einer Strassen-Verkehrsfläche.</xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:&lt;undefined&gt;">
-			<xs:enumeration value="Parkierungsflaeche">
-				<xs:annotation>
-					<xs:documentation>Fläche für das Parken von Fahrzeugen</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Fussgaengerbereich">
-				<xs:annotation>
-					<xs:documentation>Fußgängerbereich</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="VerkehrsberuhigterBereich">
-				<xs:annotation>
-					<xs:documentation>Verkehrsberuhigte Zone</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="RadFussweg">
-				<xs:annotation>
-					<xs:documentation>Rad- und Fußweg</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Radweg">
-				<xs:annotation>
-					<xs:documentation>Reiner Radweg</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Fussweg">
-				<xs:annotation>
-					<xs:documentation>Reiner Fußweg</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Wanderweg">
-				<xs:annotation>
-					<xs:documentation>Wanderweg</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Wirtschaftsweg"/>
-			<xs:enumeration value="FahrradAbstellplatz"/>
-			<xs:enumeration value="UeberfuehrenderVerkehrsweg">
-				<xs:annotation>
-					<xs:documentation>Brückenbereich</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="UnterfuehrenderVerkehrsweg"/>
-			<xs:enumeration value="P_RAnlage"/>
-			<xs:enumeration value="Platz"/>
-			<xs:enumeration value="Anschlussflaeche"/>
-			<xs:enumeration value="LandwirtschaftlicherVerkehr"/>
-			<xs:enumeration value="Verkehrsgruen"/>
-			<xs:enumeration value="Sonstiges">
-				<xs:annotation>
-					<xs:documentation>Sonstige Zweckbestimmung</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="BP_BereichOhneEinAusfahrtTypen">
-		<xs:annotation>
-			<xs:documentation>Aufzählung verschiedener Typen von Bereichen ohne Ein- und Ausfahrt.</xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:&lt;undefined&gt;">
-			<xs:enumeration value="KeineEinfahrt"/>
-			<xs:enumeration value="KeineAusfahrt"/>
-			<xs:enumeration value="KeineEinAusfahrt"/>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:element name="BP_EinfahrtPunkt" type="BP_EinfahrtPunkt"/>
-	<xs:complexType name="BP_EinfahrtPunkt">
-		<xs:annotation>
-			<xs:documentation>Einfahrt (§9 Abs. 1 Nr. 11 und Abs. 6 BauGB).</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="BP_Punktobjekt">
-				<xs:sequence>
-					<xs:element name="richtung" type="Angle" minOccurs="1" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Winkel-Richtung der Einfahrt (in Grad).</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="BP_StrassenVerkehrsFlaeche" type="BP_StrassenVerkehrsFlaeche"/>
-	<xs:complexType name="BP_StrassenVerkehrsFlaeche">
-		<xs:annotation>
-			<xs:documentation>Strassenverkehrsfläche (§9 Abs. 1 Nr. 11 und Abs. 6 BauGB) .</xs:documentation>
-		</xs:annotation>
-		<xs:sequence>
-			<xs:element name="MaxZahlWohnungen" type="Integer" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Höchstzulässige Zahl der Wohnungen in Wohngebäuden</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="Fmin" type="Area" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Mindestmaß für die Größe (Fläche) eines Baugrundstücks.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="Fmax" type="Area" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Höchstmaß für die Größe (Fläche) eines Baugrundstücks.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="Bmin" type="Length" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Minimale Breite von Baugrundstücken</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="Bmax" type="Length" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Maximale Breite von Baugrundstücken.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="Tmin" type="Length" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Minimale Tiefe von Baugrundstücken.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="Tmax" type="Length" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Maximale Tiefe von Baugrundstücken.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="GFZmin" type="Decimal" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Minimal zulässige Geschossflächenzahl .</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="GFZmax" type="Decimal" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Maximal zulässige Geschossflächenzahl bei einer Bereichsangabe. Das Attribut GFZmin muss ebenfalls belegt sein.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="GFZ" type="Decimal" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Maximal zulässige Geschossflächenzahl.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="GFZ_Ausn" type="Decimal" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Maximal zulässige Geschossflächenzahl als Ausnahme.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="GFmin" type="Area" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Minimal zulässige Geschossfläche</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="GFmax" type="Area" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Maximal zulässige Geschossfläche bei einer Bereichsabgabe. Das Attribut GFmin muss ebenfalls belegt sein.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="GF" type="Area" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Maximal zulässige Geschossfläche.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="GF_Ausn" type="Area" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Ausnahmsweise maximal zulässige Geschossfläche.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="BMZmin" type="Decimal" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Minimal zulässige Baumassenzahl</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="BMZmax" type="Decimal" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Maximal zulässige Baumassenzahl bei einer Bereichsangabe. Das Attribut BMZmin muss ebenfalls spezifiziert werden.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="BMZ" type="Decimal" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Maximal zulässige Baumassenzahl.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="BMZ_Ausn" type="Decimal" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Ausnahmsweise maximal zulässige Baumassenzahl.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="BMmin" type="Volume" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Minimal zulässinge Baumasse.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="BMmax" type="Volume" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Maximal zulässinge Baumasse bei einer Bereichsangabe. Das Attribut BMmin muss ebenfalls spezifiziert werden.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="BM" type="Volume" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Maximal zulässige Baumasse.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="BM_Ausn" type="Volume" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Ausnahmsweise maximal zulässige Baumasse.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="GRZmin" type="Decimal" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Minimal zulässige Grundflächenzahl.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="GRZmax" type="Decimal" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Maximal zulässige Grundflächenzahl bei einer Bereichsangabe.  Das Attribut GRZmin muss ebenfalls spezifiziert werden.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="GRZ" type="Decimal" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Maximal zulässige Grundflächenzahl</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="GRZ_Ausn" type="Decimal" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Ausnahmsweise maximal zulässige Grundflächenzahl.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="GRmin" type="Area" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Minimal zulässige Grundfläche.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="GRmax" type="Area" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Maximal zulässige Grundfläche bei einer Bereichsangabe. Das Attribut GRmin muss ebenfalls spezifiziert werden.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="GR" type="Area" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Maximal zulässige Grundfläche.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="GR_Ausn" type="Area" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Ausnahmsweise maximal zulässige Grundfläche.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="Zmin" type="Integer" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Minimal zulässige Zahl der oberirdischen Vollgeschosse.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="Zmax" type="Integer" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Maximal zulässige Zahl der oberirdischen Vollgeschosse bei einer Bereichsangabe. Das Attribut Zmin muss ebenfalls belegt sein.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="Zzwingend" type="Integer" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Zwingend vorgeschriebene Zahl der oberirdischen Vollgeschosse.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="Z" type="Integer" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Maximalzahl der oberirdischen Vollgeschosse.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="Z_Ausn" type="Integer" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Ausnahmsweise maximal zulässige Zahl der oberirdischen Vollgeschosse.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="Z_Staffel" type="Integer" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Maximalzahl von oberirdischen zurückgesetzten Vollgeschossen als Staffelgeschoss..</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="Z_Dach" type="Integer" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Maximalzahl der zusätzlich erlaubten Dachgeschosse, die gleichzeitig Vollgeschosse sind.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="ZUmin" type="Integer" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Minimal zulässige Zahl der unterirdischen Geschosse.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="ZUmax" type="Integer" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Maximal zulässige Zahl der unterirdischen Geschosse bei einer Bereichsangabe. Das Attribut ZUmin muss ebenfalls belegt sein.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="ZUzwingend" type="Integer" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Zwingend vorgeschriebene Zahl der unterirdischen Geschosse.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="ZU" type="Integer" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Maximal zulässige Zahl der unterirdischen Geschosse.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="ZU_Ausn" type="Integer" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Ausnahmsweise maximal zulässige Zahl der unterirdischen Geschosse.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="nutzungsform" type="XP_Nutzungsform" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Nutzungsform der Fläche</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="begrenzungslinie" type="BP_StrassenbegrenzungsLinie" minOccurs="0" maxOccurs="unbounded"/>
-		</xs:sequence>
-	</xs:complexType>
-	<xs:element name="BP_StrassenbegrenzungsLinie" type="BP_StrassenbegrenzungsLinie"/>
-	<xs:complexType name="BP_StrassenbegrenzungsLinie">
-		<xs:annotation>
-			<xs:documentation>Straßenbegrenzungslinie (§9 Abs. 1 Nr. 11 und Abs. 6 BauGB) .</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="BP_Linienobjekt">
-				<xs:sequence>
-					<xs:element name="bautiefe" type="Length" minOccurs="0" maxOccurs="1"/>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="BP_EinfahrtsbereichLinie" type="BP_EinfahrtsbereichLinie"/>
-	<xs:complexType name="BP_EinfahrtsbereichLinie">
-		<xs:annotation>
-			<xs:documentation>Einfahrtsbereich (§9 Abs. 1 Nr. 11 und Abs. 6 BauGB).</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="BP_Linienobjekt">
-				<xs:sequence/>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="BP_VerkehrsflaecheBesondererZweckbestimmung" type="BP_VerkehrsflaecheBesondererZweckbestimmung"/>
-	<xs:complexType name="BP_VerkehrsflaecheBesondererZweckbestimmung">
-		<xs:annotation>
-			<xs:documentation>Verkehrsfläche besonderer Zweckbestimmung (§9 Abs. 1 Nr. 11 und Abs. 6 BauGB).</xs:documentation>
-		</xs:annotation>
-		<xs:sequence>
-			<xs:element name="MaxZahlWohnungen" type="Integer" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Höchstzulässige Zahl der Wohnungen in Wohngebäuden</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="Fmin" type="Area" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Mindestmaß für die Größe (Fläche) eines Baugrundstücks.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="Fmax" type="Area" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Höchstmaß für die Größe (Fläche) eines Baugrundstücks.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="Bmin" type="Length" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Minimale Breite von Baugrundstücken</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="Bmax" type="Length" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Maximale Breite von Baugrundstücken.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="Tmin" type="Length" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Minimale Tiefe von Baugrundstücken.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="Tmax" type="Length" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Maximale Tiefe von Baugrundstücken.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="GFZmin" type="Decimal" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Minimal zulässige Geschossflächenzahl .</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="GFZmax" type="Decimal" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Maximal zulässige Geschossflächenzahl bei einer Bereichsangabe. Das Attribut GFZmin muss ebenfalls belegt sein.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="GFZ" type="Decimal" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Maximal zulässige Geschossflächenzahl.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="GFZ_Ausn" type="Decimal" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Maximal zulässige Geschossflächenzahl als Ausnahme.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="GFmin" type="Area" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Minimal zulässige Geschossfläche</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="GFmax" type="Area" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Maximal zulässige Geschossfläche bei einer Bereichsabgabe. Das Attribut GFmin muss ebenfalls belegt sein.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="GF" type="Area" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Maximal zulässige Geschossfläche.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="GF_Ausn" type="Area" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Ausnahmsweise maximal zulässige Geschossfläche.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="BMZmin" type="Decimal" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Minimal zulässige Baumassenzahl</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="BMZmax" type="Decimal" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Maximal zulässige Baumassenzahl bei einer Bereichsangabe. Das Attribut BMZmin muss ebenfalls spezifiziert werden.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="BMZ" type="Decimal" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Maximal zulässige Baumassenzahl.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="BMZ_Ausn" type="Decimal" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Ausnahmsweise maximal zulässige Baumassenzahl.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="BMmin" type="Volume" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Minimal zulässinge Baumasse.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="BMmax" type="Volume" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Maximal zulässinge Baumasse bei einer Bereichsangabe. Das Attribut BMmin muss ebenfalls spezifiziert werden.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="BM" type="Volume" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Maximal zulässige Baumasse.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="BM_Ausn" type="Volume" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Ausnahmsweise maximal zulässige Baumasse.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="GRZmin" type="Decimal" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Minimal zulässige Grundflächenzahl.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="GRZmax" type="Decimal" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Maximal zulässige Grundflächenzahl bei einer Bereichsangabe.  Das Attribut GRZmin muss ebenfalls spezifiziert werden.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="GRZ" type="Decimal" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Maximal zulässige Grundflächenzahl</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="GRZ_Ausn" type="Decimal" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Ausnahmsweise maximal zulässige Grundflächenzahl.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="GRmin" type="Area" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Minimal zulässige Grundfläche.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="GRmax" type="Area" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Maximal zulässige Grundfläche bei einer Bereichsangabe. Das Attribut GRmin muss ebenfalls spezifiziert werden.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="GR" type="Area" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Maximal zulässige Grundfläche.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="GR_Ausn" type="Area" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Ausnahmsweise maximal zulässige Grundfläche.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="Zmin" type="Integer" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Minimal zulässige Zahl der oberirdischen Vollgeschosse.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="Zmax" type="Integer" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Maximal zulässige Zahl der oberirdischen Vollgeschosse bei einer Bereichsangabe. Das Attribut Zmin muss ebenfalls belegt sein.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="Zzwingend" type="Integer" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Zwingend vorgeschriebene Zahl der oberirdischen Vollgeschosse.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="Z" type="Integer" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Maximalzahl der oberirdischen Vollgeschosse.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="Z_Ausn" type="Integer" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Ausnahmsweise maximal zulässige Zahl der oberirdischen Vollgeschosse.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="Z_Staffel" type="Integer" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Maximalzahl von oberirdischen zurückgesetzten Vollgeschossen als Staffelgeschoss..</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="Z_Dach" type="Integer" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Maximalzahl der zusätzlich erlaubten Dachgeschosse, die gleichzeitig Vollgeschosse sind.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="ZUmin" type="Integer" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Minimal zulässige Zahl der unterirdischen Geschosse.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="ZUmax" type="Integer" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Maximal zulässige Zahl der unterirdischen Geschosse bei einer Bereichsangabe. Das Attribut ZUmin muss ebenfalls belegt sein.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="ZUzwingend" type="Integer" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Zwingend vorgeschriebene Zahl der unterirdischen Geschosse.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="ZU" type="Integer" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Maximal zulässige Zahl der unterirdischen Geschosse.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="ZU_Ausn" type="Integer" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Ausnahmsweise maximal zulässige Zahl der unterirdischen Geschosse.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="zweckbestimmung" type="BP_ZweckbestimmungStrassenverkehr" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Zweckbestimmung der Fläche</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="detaillierteZweckbestimmung" type="BP_DetailZweckbestStrassenverkehr" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Über eine CodeList definierte  Zweckbestimmung der Fläche.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="nutzungsform" type="XP_Nutzungsform" minOccurs="0" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Nutzungsform der Fläche.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="begrenzungslinie" type="BP_StrassenbegrenzungsLinie" minOccurs="0" maxOccurs="unbounded"/>
-		</xs:sequence>
-	</xs:complexType>
-	<xs:element name="BP_BereichOhneEinAusfahrtLinie" type="BP_BereichOhneEinAusfahrtLinie"/>
-	<xs:complexType name="BP_BereichOhneEinAusfahrtLinie">
-		<xs:annotation>
-			<xs:documentation>Bereich ohne Ein- und Ausfahrt (§9 Abs. 1 Nr. 11 und Abs. 6 BauGB).</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="BP_Linienobjekt">
-				<xs:sequence>
-					<xs:element name="typ" type="BP_BereichOhneEinAusfahrtTypen" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Typ der EIn- oder Ausfahrt.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="BP_Strassenkoerper" type="BP_Strassenkoerper"/>
-	<xs:complexType name="BP_Strassenkoerper">
-		<xs:annotation>
-			<xs:documentation>Flächen für Aufschüttungen, Abgrabungen und Stützmauern, soweit sie zur Herstellung des Straßenkörpers erforderlich sind (§9, Abs. 1, Nr. 26 BauGB).</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="BP_Geometrieobjekt">
-				<xs:sequence>
-					<xs:element name="typ" type="BP_StrassenkoerperHerstellung" minOccurs="1" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Notwendige Maßnahme zur Herstellung des Straßenkörpers.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-</xs:schema>
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" elementFormDefault="qualified" targetNamespace="" version="" xmlns:="">
+  <annotation>
+    <documentation>Verkehrsflächen und Verkehrsflächen besonderer Zweckbestimmung (§9, Abs. 1, Nr. 11 BauGB).</documentation>
+  </annotation>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <!--XML Schema document created by ShapeChange - http://shapechange.net/-->
+  <element name="BP_BereichOhneEinAusfahrtLinie" substitutionGroup=":BP_Linienobjekt" type=":BP_BereichOhneEinAusfahrtLinieType">
+    <annotation>
+      <documentation>Bereich ohne Ein- und Ausfahrt (§9 Abs. 1 Nr. 11 und Abs. 6 BauGB).</documentation>
+    </annotation>
+  </element>
+  <complexType name="BP_BereichOhneEinAusfahrtLinieType">
+    <complexContent>
+      <extension base=":BP_LinienobjektType">
+        <sequence>
+          <element minOccurs="0" name="typ" type=":BP_BereichOhneEinAusfahrtTypenType">
+            <annotation>
+              <documentation>Typ der EIn- oder Ausfahrt.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <simpleType name="BP_BereichOhneEinAusfahrtTypenType">
+    <annotation>
+      <documentation>Aufzählung verschiedener Typen von Bereichen ohne Ein- und Ausfahrt.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="3000"/>
+    </restriction>
+  </simpleType>
+  <element name="BP_EinfahrtPunkt" substitutionGroup=":BP_Punktobjekt" type=":BP_EinfahrtPunktType">
+    <annotation>
+      <documentation>Einfahrt (§9 Abs. 1 Nr. 11 und Abs. 6 BauGB).</documentation>
+    </annotation>
+  </element>
+  <complexType name="BP_EinfahrtPunktType">
+    <complexContent>
+      <extension base=":BP_PunktobjektType">
+        <sequence>
+          <element name="richtung" type="gml:AngleType">
+            <annotation>
+              <documentation>Winkel-Richtung der Einfahrt (in Grad).</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="typ" type=":BP_EinfahrtTypenType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <simpleType name="BP_EinfahrtTypenType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="3000"/>
+    </restriction>
+  </simpleType>
+  <element name="BP_EinfahrtsbereichLinie" substitutionGroup=":BP_Linienobjekt" type=":BP_EinfahrtsbereichLinieType">
+    <annotation>
+      <documentation>Einfahrtsbereich (§9 Abs. 1 Nr. 11 und Abs. 6 BauGB).</documentation>
+    </annotation>
+  </element>
+  <complexType name="BP_EinfahrtsbereichLinieType">
+    <complexContent>
+      <extension base=":BP_LinienobjektType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="BP_StrassenVerkehrsFlaeche" substitutionGroup=":BP_Flaechenschlussobjekt" type=":BP_StrassenVerkehrsFlaecheType">
+    <annotation>
+      <documentation>Strassenverkehrsfläche (§9 Abs. 1 Nr. 11 und Abs. 6 BauGB) .</documentation>
+    </annotation>
+  </element>
+  <complexType name="BP_StrassenVerkehrsFlaecheType">
+    <complexContent>
+      <extension base=":BP_FlaechenschlussobjektType">
+        <sequence>
+          <element minOccurs="0" name="nutzungsform" type=":XP_NutzungsformType">
+            <annotation>
+              <documentation>Nutzungsform der Fläche</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="begrenzungslinie" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">:BP_StrassenbegrenzungsLinie</targetElement>
+              </appinfo>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="BP_StrassenbegrenzungsLinie" substitutionGroup=":BP_Linienobjekt" type=":BP_StrassenbegrenzungsLinieType">
+    <annotation>
+      <documentation>Straßenbegrenzungslinie (§9 Abs. 1 Nr. 11 und Abs. 6 BauGB) .</documentation>
+    </annotation>
+  </element>
+  <complexType name="BP_StrassenbegrenzungsLinieType">
+    <complexContent>
+      <extension base=":BP_LinienobjektType">
+        <sequence>
+          <element minOccurs="0" name="bautiefe" type="gml:LengthType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="BP_Strassenkoerper" substitutionGroup=":BP_Geometrieobjekt" type=":BP_StrassenkoerperType">
+    <annotation>
+      <documentation>Flächen für Aufschüttungen, Abgrabungen und Stützmauern, soweit sie zur Herstellung des Straßenkörpers erforderlich sind (§9, Abs. 1, Nr. 26 BauGB).</documentation>
+    </annotation>
+  </element>
+  <complexType name="BP_StrassenkoerperType">
+    <complexContent>
+      <extension base=":BP_GeometrieobjektType">
+        <sequence>
+          <element name="typ" type=":BP_StrassenkoerperHerstellungType">
+            <annotation>
+              <documentation>Notwendige Maßnahme zur Herstellung des Straßenkörpers.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <simpleType name="BP_StrassenkoerperHerstellungType">
+    <annotation>
+      <documentation>Aufzählung der möglichen Maßnahmen zur Herstellung des Straßenkörpers</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="3000"/>
+    </restriction>
+  </simpleType>
+  <element name="BP_VerkehrsflaecheBesondererZweckbestimmung" substitutionGroup=":BP_Flaechenschlussobjekt" type=":BP_VerkehrsflaecheBesondererZweckbestimmungType">
+    <annotation>
+      <documentation>Verkehrsfläche besonderer Zweckbestimmung (§9 Abs. 1 Nr. 11 und Abs. 6 BauGB).</documentation>
+    </annotation>
+  </element>
+  <complexType name="BP_VerkehrsflaecheBesondererZweckbestimmungType">
+    <complexContent>
+      <extension base=":BP_FlaechenschlussobjektType">
+        <sequence>
+          <element minOccurs="0" name="zweckbestimmung" type=":BP_ZweckbestimmungStrassenverkehrType">
+            <annotation>
+              <documentation>Zweckbestimmung der Fläche</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="detaillierteZweckbestimmung" type="gml:CodeType">
+            <annotation>
+              <documentation>Über eine CodeList definierte  Zweckbestimmung der Fläche.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="nutzungsform" type=":XP_NutzungsformType">
+            <annotation>
+              <documentation>Nutzungsform der Fläche.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="begrenzungslinie" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">:BP_StrassenbegrenzungsLinie</targetElement>
+              </appinfo>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <simpleType name="BP_ZweckbestimmungStrassenverkehrType">
+    <annotation>
+      <documentation>Aufzählung der möglichen besonderen Zweckbestimmungen einer Strassen-Verkehrsfläche.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>Fläche für das Parken von Fahrzeugen</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1100">
+        <annotation>
+          <documentation>Fußgängerbereich</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1200">
+        <annotation>
+          <documentation>Verkehrsberuhigte Zone</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1300">
+        <annotation>
+          <documentation>Rad- und Fußweg</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1400">
+        <annotation>
+          <documentation>Reiner Radweg</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1500">
+        <annotation>
+          <documentation>Reiner Fußweg</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1550">
+        <annotation>
+          <documentation>Wanderweg</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1580"/>
+      <enumeration value="1600"/>
+      <enumeration value="1700">
+        <annotation>
+          <documentation>Brückenbereich</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1800"/>
+      <enumeration value="2000"/>
+      <enumeration value="2100"/>
+      <enumeration value="2200"/>
+      <enumeration value="2300"/>
+      <enumeration value="2400"/>
+      <enumeration value="9999">
+        <annotation>
+          <documentation>Sonstige Zweckbestimmung</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+</schema>

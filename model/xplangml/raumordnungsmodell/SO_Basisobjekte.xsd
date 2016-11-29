@@ -1,172 +1,156 @@
-<?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-	<xs:annotation>
-		<xs:documentation>Basisklassen des Modellbereichs "Sonstige raumbezogene Planwerke und Nachrichtliche Übernahmen".</xs:documentation>
-	</xs:annotation>
-	<xs:include/>
-	<xs:include schemaLocation="SO_Raster.xsd"/>
-	<xs:include schemaLocation="XP_Basisobjekte.xsd"/>
-	<xs:element name="SO_SonstRechtscharakter" type="SO_SonstRechtscharakter"/>
-	<xs:complexType name="SO_SonstRechtscharakter">
-		<xs:annotation>
-			<xs:documentation>Weitere Klassifizierungen des Rechtscharakters.</xs:documentation>
-		</xs:annotation>
-		<xs:sequence>
-			<xs:element name="FestsetzungBPlan" type="xs:string" minOccurs="1" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Wird spezifiziert, wenn das Objekt den rechtlichen Charakter einer BPlan Festsetzung hat.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="DarstellungFPlan" type="xs:string" minOccurs="1" maxOccurs="1">
-				<xs:annotation>
-					<xs:documentation>Wird spezifiziert, wenn das Objekt der rechtlichen Charakter einer FPlan Darstellung hat.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-		</xs:sequence>
-	</xs:complexType>
-	<xs:element name="SO_Punktobjekt" type="SO_Punktobjekt"/>
-	<xs:complexType name="SO_Punktobjekt" abstract="true">
-		<xs:annotation>
-			<xs:documentation>Basisklasse für Objekte mit punktförmigem Raumbezug (Einzelpunkt oder Punktmenge).</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="SO_Objekt">
-				<xs:sequence>
-					<xs:element name="position" type="XP_Punktgeometrie" minOccurs="1" maxOccurs="1"/>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="SO_Flaechenobjekt" type="SO_Flaechenobjekt"/>
-	<xs:complexType name="SO_Flaechenobjekt" abstract="true">
-		<xs:annotation>
-			<xs:documentation>Basisklasse für alle Objekte mit flächenhaftem Raumbezug (eine Einzelfläche oder eine Menge von Flächen, die sich nicht überlappen dürfen).</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="SO_Objekt">
-				<xs:sequence>
-					<xs:element name="position" type="XP_Flaechengeometrie" minOccurs="1" maxOccurs="1"/>
-					<xs:element name="flaechenschluss" type="Boolean" minOccurs="1" maxOccurs="1"/>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="SO_Geometrieobjekt" type="SO_Geometrieobjekt"/>
-	<xs:complexType name="SO_Geometrieobjekt" abstract="true">
-		<xs:annotation>
-			<xs:documentation>Basisklasse für alle Objekte mit variablem Raumbezug. Ein konkretes Objekt muss entweder punktförmigen, linienförmigen oder flächenhaften Raumbezug haben, gemischte Geometrie ist nicht zugelassen.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="SO_Objekt">
-				<xs:sequence>
-					<xs:element name="position" type="XP_VariableGeometrie" minOccurs="1" maxOccurs="1"/>
-					<xs:element name="flaechenschluss" type="Boolean" minOccurs="0" maxOccurs="1"/>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:simpleType name="SO_Rechtscharakter">
-		<xs:restriction base="xs:&lt;undefined&gt;">
-			<xs:enumeration value="Hinweis"/>
-			<xs:enumeration value="Vermerk"/>
-			<xs:enumeration value="Kennzeichnung"/>
-			<xs:enumeration value="Sonstiges"/>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:element name="SO_Objekt" type="SO_Objekt"/>
-	<xs:complexType name="SO_Objekt">
-		<xs:annotation>
-			<xs:documentation>Basisklasse für die Inhalte sonstiger raumbezogener Planwerke sowie von Klassen zur Modellierung nachrichtlicher Übernahmen.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="XP_Objekt">
-				<xs:sequence>
-					<xs:element name="rechtscharakter" type="xs:string" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Rechtscharakter des Planinhalts.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="sonstRechtscharakter" type="xs:string" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Klassifizierung des Rechtscharakters wenn das Attribut 'rechtscharakter' den Wert 'Sonstiges' (1000)  hat.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="SO_PlanTyp" type="SO_PlanTyp"/>
-	<xs:complexType name="SO_PlanTyp">
-		<xs:annotation>
-			<xs:documentation>Aufzählung der betrachteten Plantypen.</xs:documentation>
-		</xs:annotation>
-		<xs:sequence/>
-	</xs:complexType>
-	<xs:element name="SO_Bereich" type="SO_Bereich"/>
-	<xs:complexType name="SO_Bereich">
-		<xs:annotation>
-			<xs:documentation>Bereich eines sonstigen raumbezogenen Plans.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="XP_Bereich">
-				<xs:sequence>
-					<xs:element name="rasterAenderung" type="SO_RasterplanAenderung" minOccurs="0" maxOccurs="unbounded"/>
-					<xs:element name="inhaltSoPlan" type="SO_Objekt" minOccurs="0" maxOccurs="unbounded"/>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="SO_Linienobjekt" type="SO_Linienobjekt"/>
-	<xs:complexType name="SO_Linienobjekt">
-		<xs:annotation>
-			<xs:documentation>Basisklasse für Objekte mit linienförmigem Raumbezug (eine einzelne zusammenhängende Kurve, die aus Linienstücken und Kreisbögen zusammengesetzt sein kann, oder eine Menge derartiger Kurven).</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="SO_Objekt">
-				<xs:sequence>
-					<xs:element name="position" type="XP_Liniengeometrie" minOccurs="1" maxOccurs="1"/>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="SO_Plan" type="SO_Plan"/>
-	<xs:complexType name="SO_Plan">
-		<xs:annotation>
-			<xs:documentation>Klasse für sonstige, z. B. länderspezifische raumbezogene Planwerke.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="XP_Plan">
-				<xs:sequence>
-					<xs:element name="planTyp" type="SO_PlanTyp" minOccurs="1" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Typ des Plans.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="plangeber" type="XP_Plangeber" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Für den Plan zuständige Stelle.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="bereich" type="SO_Bereich" minOccurs="0" maxOccurs="unbounded"/>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="SO_TextAbschnitt" type="SO_TextAbschnitt"/>
-	<xs:complexType name="SO_TextAbschnitt">
-		<xs:annotation>
-			<xs:documentation>Texlich formulierter Inhalt eines Sonstigen Plans, der einen anderen Rechtscharakter als das zugrunde liegende Fachobjekt hat (Attribut rechtscharakter des Fachobjektes), oder dem Plan als Ganzes zugeordnet ist.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="XP_TextAbschnitt">
-				<xs:sequence>
-					<xs:element name="rechtscharakter" type="SO_Rechtscharakter" minOccurs="1" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Rechtscharakter des textlich formulierten Planinhalts.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-</xs:schema>
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" elementFormDefault="qualified" targetNamespace="" version="" xmlns:="">
+  <annotation>
+    <documentation>Basisklassen des Modellbereichs "Sonstige raumbezogene Planwerke und Nachrichtliche Übernahmen".</documentation>
+  </annotation>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <!--XML Schema document created by ShapeChange - http://shapechange.net/-->
+  <element name="SO_Bereich" substitutionGroup=":XP_Bereich" type=":SO_BereichType">
+    <annotation>
+      <documentation>Bereich eines sonstigen raumbezogenen Plans.</documentation>
+    </annotation>
+  </element>
+  <complexType name="SO_BereichType">
+    <complexContent>
+      <extension base=":XP_BereichType">
+        <sequence>
+          <element name="gehoertZuPlan" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">:SO_Plan</targetElement>
+                <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">:bereich</reversePropertyName>
+              </appinfo>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="rasterAenderung" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">:SO_RasterplanAenderung</targetElement>
+              </appinfo>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element abstract="true" name="SO_Flaechenobjekt" substitutionGroup=":SO_Objekt" type=":SO_FlaechenobjektType">
+    <annotation>
+      <documentation>Basisklasse für alle Objekte mit flächenhaftem Raumbezug (eine Einzelfläche oder eine Menge von Flächen, die sich nicht überlappen dürfen).</documentation>
+    </annotation>
+  </element>
+  <complexType abstract="true" name="SO_FlaechenobjektType">
+    <complexContent>
+      <extension base=":SO_ObjektType">
+        <sequence>
+          <element name="position" type=":XP_FlaechengeometriePropertyType"/>
+          <element name="flaechenschluss" type="boolean"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element abstract="true" name="SO_Geometrieobjekt" substitutionGroup=":SO_Objekt" type=":SO_GeometrieobjektType">
+    <annotation>
+      <documentation>Basisklasse für alle Objekte mit variablem Raumbezug. Ein konkretes Objekt muss entweder punktförmigen, linienförmigen oder flächenhaften Raumbezug haben, gemischte Geometrie ist nicht zugelassen.</documentation>
+    </annotation>
+  </element>
+  <complexType abstract="true" name="SO_GeometrieobjektType">
+    <complexContent>
+      <extension base=":SO_ObjektType">
+        <sequence>
+          <element name="position" type=":XP_VariableGeometriePropertyType"/>
+          <element minOccurs="0" name="flaechenschluss" type="boolean"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="SO_Linienobjekt" substitutionGroup=":SO_Objekt" type=":SO_LinienobjektType">
+    <annotation>
+      <documentation>Basisklasse für Objekte mit linienförmigem Raumbezug (eine einzelne zusammenhängende Kurve, die aus Linienstücken und Kreisbögen zusammengesetzt sein kann, oder eine Menge derartiger Kurven).</documentation>
+    </annotation>
+  </element>
+  <complexType name="SO_LinienobjektType">
+    <complexContent>
+      <extension base=":SO_ObjektType">
+        <sequence>
+          <element name="position" type=":XP_LiniengeometriePropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="SO_Objekt" substitutionGroup=":XP_Objekt" type=":SO_ObjektType">
+    <annotation>
+      <documentation>Basisklasse für die Inhalte sonstiger raumbezogener Planwerke sowie von Klassen zur Modellierung nachrichtlicher Übernahmen.</documentation>
+    </annotation>
+  </element>
+  <complexType name="SO_ObjektType">
+    <complexContent>
+      <extension base=":XP_ObjektType">
+        <sequence>
+          <element minOccurs="0" name="rechtscharakter" type=":SO_RechtscharakterType">
+            <annotation>
+              <documentation>Rechtscharakter des Planinhalts.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="sonstRechtscharakter" type="gml:CodeType">
+            <annotation>
+              <documentation>Klassifizierung des Rechtscharakters wenn das Attribut 'rechtscharakter' den Wert 'Sonstiges' (1000)  hat.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="SO_Plan" substitutionGroup=":XP_Plan" type=":SO_PlanType">
+    <annotation>
+      <documentation>Klasse für sonstige, z. B. länderspezifische raumbezogene Planwerke.</documentation>
+    </annotation>
+  </element>
+  <complexType name="SO_PlanType">
+    <complexContent>
+      <extension base=":XP_PlanType">
+        <sequence>
+          <element name="planArt" type="gml:CodeType">
+            <annotation>
+              <documentation>Typ des Plans.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="plangeber" type=":XP_PlangeberPropertyType">
+            <annotation>
+              <documentation>Für den Plan zuständige Stelle.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="bereich" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">:SO_Bereich</targetElement>
+                <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">:gehoertZuPlan</reversePropertyName>
+              </appinfo>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element abstract="true" name="SO_Punktobjekt" substitutionGroup=":SO_Objekt" type=":SO_PunktobjektType">
+    <annotation>
+      <documentation>Basisklasse für Objekte mit punktförmigem Raumbezug (Einzelpunkt oder Punktmenge).</documentation>
+    </annotation>
+  </element>
+  <complexType abstract="true" name="SO_PunktobjektType">
+    <complexContent>
+      <extension base=":SO_ObjektType">
+        <sequence>
+          <element name="position" type=":XP_PunktgeometriePropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <simpleType name="SO_RechtscharakterType">
+    <restriction base="string">
+      <enumeration value="2000"/>
+      <enumeration value="3000"/>
+      <enumeration value="4000"/>
+      <enumeration value="5000"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+</schema>
