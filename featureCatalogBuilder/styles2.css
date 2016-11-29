@@ -1,0 +1,151 @@
+
+
+td {
+  /*border: 1px solid #022A35;*/
+  vertical-align: top;
+  padding : 2px;
+  font-size : 75%;
+  font-family : Verdana;
+  background : #eee none;
+  color : #630;
+}
+
+th{
+  /*border: 1px solid #022A35;*/
+  vertical-align: top;
+    padding : 2px;
+  font-size : 75%;
+  font-family : Verdana;
+  background : #9DE5F7 none;
+  color : #630;
+}
+
+table {
+  border: 1px solid #2A2A2A;
+  vertical align: top;
+}
+
+body {
+  color: #000000;
+  background-color: #FFFBF5;
+  font-family: Verdana;
+  font-size: 12px;
+  text-align: justify;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+#main {
+  margin-top: 10px;
+  padding: 0px 10px 10px 10px;
+	font-family: Verdana;
+  background-color: #ffffff;
+	border: solid #eeeeee 1px;
+  border-radius: 4px 4px 4px 4px;
+	min-width: 1300px;
+}
+
+em {
+        text-decoration: underline;
+}
+h1 {
+	margin-bottom: 0px;
+  color: #000000;
+  text-shadow: 1px 1px 1px #ccc;
+  font-size: 2em;
+}
+h2 {
+	margin-top: 5px;
+	margin-bottom: 2px;
+  color: #000000;
+  text-shadow: 1px 1px 1px #ccc;
+  font-size: 1.5em;
+}
+h3 {
+  color: #000000;
+  text-shadow: 1px 1px 1px #ccc;
+  font-size: 1.5em;
+}
+.halbe-breite {
+	float: left;
+	width: 48%;
+	margin-bottom: 5px;
+}
+.halbe-breite-rechts {
+	float: right;
+	width: 48%;
+}
+.breite80p {
+	float: left;
+	width: 90%;
+	margin-bottom: 5px;
+}
+
+.breite100px {
+	float: left;
+	width: 50px;
+	margin-bottom: 5px;
+}
+.ganze-breite {
+	float: block;
+}
+.box {
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	background-color: #eee;
+	padding: 2px;
+	margin: 2px;
+}
+
+.center60p{
+  width: 60%;
+  border: 1px solid #ddd;
+	border-radius: 5px;
+	background-color: #eee;
+	padding: 10px;
+	margin: 2px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.boxsql {
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	background-color: #fff;
+	padding: 2px;
+	margin: 2px;
+}
+
+.float-right{
+  float: right;
+}
+
+#sqlvalidation {
+  color: #20954F;
+  text-shadow: 1px 1px 1px #ccc;
+  font-size: 1.5em;
+}
+
+#Warnung_1, #Warnung_2, #Warnung_3 {
+  color: #CF4B2D;
+  text-shadow: 1px 1px 1px #ccc;
+}
+#target {
+  color: #000000;
+  text-shadow: 1px 1px 1px #ccc;
+  font-size: 1em;;
+}
+
+.fa-plus, .fa-undo, .fa-info, .fa-filter, .fa-trash-o, .fa-question-circle, .fa-level-up {
+  color: #216582;
+}
+
+button {
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+.fa-plus:hover, .fa-undo:hover, .fa-info:hover, .fa-filter:hover, .fa-trash-o:hover, .fa-question-circle:hover, .fa-level-up:hover {
+  color: #CF832D
+}

@@ -1,195 +1,188 @@
-<?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-	<xs:annotation>
-		<xs:documentation>Flächen, Erfordernisse und Maßnahmen zum Schutz, zur Pflege und zur Entwicklung von Natur und Landschaft (soweit nicht Gebiete und Gebietsteile zum Schutz, zur Pflege und zur Entwicklung von Natur und Landschaft).</xs:documentation>
-	</xs:annotation>
-	<xs:include schemaLocation="XP_Basisobjekte.xsd"/>
-	<xs:include/>
-	<xs:include/>
-	<xs:include/>
-	<xs:include schemaLocation="XP_Enumerationen.xsd"/>
-	<xs:include schemaLocation="LP__Basisobjekte.xsd"/>
-	<xs:element name="LP_Ausgleich" type="LP_Ausgleich"/>
-	<xs:complexType name="LP_Ausgleich">
-		<xs:annotation>
-			<xs:documentation>Flächen und Maßnahmen zum Ausgleich von Eingriffen im Sinne des §8 und 8A BNatSchG (in Verbindung mit §1a BauGB, Ausgleichs- und Ersatzmaßnahmen).</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="LP_Geometrieobjekt">
-				<xs:sequence>
-					<xs:element name="ziel" type="XP_SPEZiele" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Unterscheidung nach den Zielen "Schutz, Pflege" und "Entwicklung".</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="massnahme" type="CharacterString" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Durchzuführende Maßnahme (Textform)</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="massnahmeKuerzel" type="CharacterString" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Kürzel der durchzuführenden Maßnahme.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="LP_Zwischennutzung" type="LP_Zwischennutzung"/>
-	<xs:complexType name="LP_Zwischennutzung">
-		<xs:annotation>
-			<xs:documentation>Flächen und Maßnahmen mit zeitlich befristeten Bindungen zum Schutz, zur Pflege und zur Entwicklung von Natur und Landschaft ("Zwischennutzungsvorgaben").</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="LP_Geometrieobjekt">
-				<xs:sequence>
-					<xs:element name="ziel" type="XP_SPEZiele" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Unterscheidung nach den Zielen "Schutz, Pflege" und "Entwicklung".</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="bindung" type="CharacterString" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Beschreibung der Bindung (Textform).</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="bindungKuerzel" type="CharacterString" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Beschreibung der Bindung (Kürzel).</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="LP_Pflanzart" type="LP_Pflanzart"/>
-	<xs:complexType name="LP_Pflanzart">
-		<xs:annotation>
-			<xs:documentation>Spezifizierung eines botanischen Pflanznamens einer zu pflanzenden bzw. zu erhaltenden Pflanze in einer Codeliste.</xs:documentation>
-		</xs:annotation>
-		<xs:sequence/>
-	</xs:complexType>
-	<xs:simpleType name="LP_Regelungen">
-		<xs:restriction base="xs:&lt;undefined&gt;">
-			<xs:enumeration value="Gruenlandumbruchverbot"/>
-			<xs:enumeration value="Sonstiges"/>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:element name="LP_AnpflanzungBindungErhaltung" type="LP_AnpflanzungBindungErhaltung"/>
-	<xs:complexType name="LP_AnpflanzungBindungErhaltung">
-		<xs:annotation>
-			<xs:documentation>Festsetzungen zum Erhalten und Anpflanzen von Bäumen, Sträuchern und sonstigen Bepflanzungen in einem Planwerk mit landschaftplanerischen Festsetzungen. Die Festsetzungen können durch eine Spezifizierung eines Kronendurchmessers (z.B. für Baumpflanzungen), die Pflanztiefe und Mindesthöhe von Anpflanzungen (z.B. bei der Anpflanzung von Hecken) oder durch botanische Spezifizierung differenziert werden.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="LP_Geometrieobjekt">
-				<xs:sequence>
-					<xs:element name="massnahme" type="XP_ABEMassnahmenTypen" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Art der Maßnahme</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="gegenstand" type="XP_AnpflanzungBindungErhaltungsGegenstand" minOccurs="0" maxOccurs="unbounded">
-						<xs:annotation>
-							<xs:documentation>Gegenständ eder Maßnahme</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="kronendurchmesser" type="Length" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Durchmesser der Baumkrone bei zu erhaltenden Bäumen.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="pflanztiefe" type="Length" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Pflanztiefe</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="istAusgleich" type="Boolean" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Gibt an, ob die Fläche oder Maßnahme zum Ausgleich von Eingriffen genutzt wird.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="pflanzart" type="LP_Pflanzart" minOccurs="0" maxOccurs="unbounded">
-						<xs:annotation>
-							<xs:documentation>Botanische Angabe der zu erhaltenden bzw. der zu pflanzenden Pflanzen. </xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="mindesthoehe" type="Length" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Mindesthöhe einer Pflanze (z.B. Mindesthöhe einer zu pflanzenden Hecke)</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="LP_NutzungserfordernisRegelung" type="LP_NutzungserfordernisRegelung"/>
-	<xs:complexType name="LP_NutzungserfordernisRegelung">
-		<xs:annotation>
-			<xs:documentation>Flächen mit Nutzungserfordernissen und Nutzungsregelungen zum Schutz, zur Pflege und zur Entwicklung von Natur und Landschaft.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="LP_Geometrieobjekt">
-				<xs:sequence>
-					<xs:element name="ziel" type="XP_SPEZiele" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Unterscheidung nach den Zielen "Schutz, Pflege" und "Entwicklung".</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="regelung" type="LP_Regelungen" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Nutzungsregelung (Klassifikation).</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="erfordernisRegelung" type="CharacterString" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Nutzungserfordernis oder -Regelung (Textform).</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="erfordernisRegelungKuerzel" type="CharacterString" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Nutzungserfordernis oder -Regelung (Kürzel).</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="LP_SchutzPflegeEntwicklung" type="LP_SchutzPflegeEntwicklung"/>
-	<xs:complexType name="LP_SchutzPflegeEntwicklung">
-		<xs:annotation>
-			<xs:documentation>Sonstige Flächen und Maßnahmen zum Schutz, zur Pflege und zur Entwicklung von Natur und Landschaft, soweit sie nicht durch die Klasse LP_NutzungserfordernisRegelung modelliert werden.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="LP_Geometrieobjekt">
-				<xs:sequence>
-					<xs:element name="ziel" type="XP_SPEZiele" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Unterscheidung nach den Zielen "Schutz, Pflege" und "Entwicklung".</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="massnahme" type="XP_SPEMassnahmenTypen" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Durchzuführende Maßnahme (Klassifikation).</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="massnahmeText" type="CharacterString" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Durchzuführende Maßnahme (Textform).</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="massnahmeKuerzel" type="CharacterString" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Kürzel der durchzuführenden Maßnahme.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="istAusgleich" type="Boolean" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Gibt an, ob die Maßnahme zum Ausgleich von Eingriffen genutzt wird.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-</xs:schema>
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" elementFormDefault="qualified" targetNamespace="" version="" xmlns:="">
+  <annotation>
+    <documentation>Flächen, Erfordernisse und Maßnahmen zum Schutz, zur Pflege und zur Entwicklung von Natur und Landschaft (soweit nicht Gebiete und Gebietsteile zum Schutz, zur Pflege und zur Entwicklung von Natur und Landschaft).</documentation>
+  </annotation>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <!--XML Schema document created by ShapeChange - http://shapechange.net/-->
+  <element name="LP_AnpflanzungBindungErhaltung" substitutionGroup=":LP_Geometrieobjekt" type=":LP_AnpflanzungBindungErhaltungType">
+    <annotation>
+      <documentation>Festsetzungen zum Erhalten und Anpflanzen von Bäumen, Sträuchern und sonstigen Bepflanzungen in einem Planwerk mit landschaftplanerischen Festsetzungen. Die Festsetzungen können durch eine Spezifizierung eines Kronendurchmessers (z.B. für Baumpflanzungen), die Pflanztiefe und Mindesthöhe von Anpflanzungen (z.B. bei der Anpflanzung von Hecken) oder durch botanische Spezifizierung differenziert werden.</documentation>
+    </annotation>
+  </element>
+  <complexType name="LP_AnpflanzungBindungErhaltungType">
+    <complexContent>
+      <extension base=":LP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="massnahme" type=":XP_ABEMassnahmenTypenType">
+            <annotation>
+              <documentation>Art der Maßnahme</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="gegenstand" type=":XP_AnpflanzungBindungErhaltungsGegenstandType">
+            <annotation>
+              <documentation>Gegenständ eder Maßnahme</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="kronendurchmesser" type="gml:LengthType">
+            <annotation>
+              <documentation>Durchmesser der Baumkrone bei zu erhaltenden Bäumen.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="pflanztiefe" type="gml:LengthType">
+            <annotation>
+              <documentation>Pflanztiefe</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="istAusgleich" type="boolean">
+            <annotation>
+              <documentation>Gibt an, ob die Fläche oder Maßnahme zum Ausgleich von Eingriffen genutzt wird.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="pflanzart">
+            <annotation>
+              <documentation>Botanische Angabe der zu erhaltenden bzw. der zu pflanzenden Pflanzen.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="mindesthoehe" type="gml:LengthType">
+            <annotation>
+              <documentation>Mindesthöhe einer Pflanze (z.B. Mindesthöhe einer zu pflanzenden Hecke)</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="LP_Ausgleich" substitutionGroup=":LP_Geometrieobjekt" type=":LP_AusgleichType">
+    <annotation>
+      <documentation>Flächen und Maßnahmen zum Ausgleich von Eingriffen im Sinne des §8 und 8A BNatSchG (in Verbindung mit §1a BauGB, Ausgleichs- und Ersatzmaßnahmen).</documentation>
+    </annotation>
+  </element>
+  <complexType name="LP_AusgleichType">
+    <complexContent>
+      <extension base=":LP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="ziel" type=":XP_SPEZieleType">
+            <annotation>
+              <documentation>Unterscheidung nach den Zielen "Schutz, Pflege" und "Entwicklung".</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="massnahme" type="string">
+            <annotation>
+              <documentation>Durchzuführende Maßnahme (Textform)</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="massnahmeKuerzel" type="string">
+            <annotation>
+              <documentation>Kürzel der durchzuführenden Maßnahme.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="LP_NutzungserfordernisRegelung" substitutionGroup=":LP_Geometrieobjekt" type=":LP_NutzungserfordernisRegelungType">
+    <annotation>
+      <documentation>Flächen mit Nutzungserfordernissen und Nutzungsregelungen zum Schutz, zur Pflege und zur Entwicklung von Natur und Landschaft.</documentation>
+    </annotation>
+  </element>
+  <complexType name="LP_NutzungserfordernisRegelungType">
+    <complexContent>
+      <extension base=":LP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="ziel" type=":XP_SPEZieleType">
+            <annotation>
+              <documentation>Unterscheidung nach den Zielen "Schutz, Pflege" und "Entwicklung".</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="regelung" type=":LP_RegelungenType">
+            <annotation>
+              <documentation>Nutzungsregelung (Klassifikation).</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="erfordernisRegelung" type="string">
+            <annotation>
+              <documentation>Nutzungserfordernis oder -Regelung (Textform).</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="erfordernisRegelungKuerzel" type="string">
+            <annotation>
+              <documentation>Nutzungserfordernis oder -Regelung (Kürzel).</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <simpleType name="LP_RegelungenType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <element name="LP_SchutzPflegeEntwicklung" substitutionGroup=":LP_Geometrieobjekt" type=":LP_SchutzPflegeEntwicklungType">
+    <annotation>
+      <documentation>Sonstige Flächen und Maßnahmen zum Schutz, zur Pflege und zur Entwicklung von Natur und Landschaft, soweit sie nicht durch die Klasse LP_NutzungserfordernisRegelung modelliert werden.</documentation>
+    </annotation>
+  </element>
+  <complexType name="LP_SchutzPflegeEntwicklungType">
+    <complexContent>
+      <extension base=":LP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="ziel" type=":XP_SPEZieleType">
+            <annotation>
+              <documentation>Unterscheidung nach den Zielen "Schutz, Pflege" und "Entwicklung".</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="massnahme" type=":XP_SPEMassnahmenTypenType">
+            <annotation>
+              <documentation>Durchzuführende Maßnahme (Klassifikation).</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="massnahmeText" type="string">
+            <annotation>
+              <documentation>Durchzuführende Maßnahme (Textform).</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="massnahmeKuerzel" type="string">
+            <annotation>
+              <documentation>Kürzel der durchzuführenden Maßnahme.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="istAusgleich" type="boolean">
+            <annotation>
+              <documentation>Gibt an, ob die Maßnahme zum Ausgleich von Eingriffen genutzt wird.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="LP_Zwischennutzung" substitutionGroup=":LP_Geometrieobjekt" type=":LP_ZwischennutzungType">
+    <annotation>
+      <documentation>Flächen und Maßnahmen mit zeitlich befristeten Bindungen zum Schutz, zur Pflege und zur Entwicklung von Natur und Landschaft ("Zwischennutzungsvorgaben").</documentation>
+    </annotation>
+  </element>
+  <complexType name="LP_ZwischennutzungType">
+    <complexContent>
+      <extension base=":LP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="ziel" type=":XP_SPEZieleType">
+            <annotation>
+              <documentation>Unterscheidung nach den Zielen "Schutz, Pflege" und "Entwicklung".</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="bindung" type="string">
+            <annotation>
+              <documentation>Beschreibung der Bindung (Textform).</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="bindungKuerzel" type="string">
+            <annotation>
+              <documentation>Beschreibung der Bindung (Kürzel).</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+</schema>

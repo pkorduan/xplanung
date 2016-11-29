@@ -1,90 +1,82 @@
-<?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-	<xs:annotation>
-		<xs:documentation>Darstellung der für die Bebauung vorgesehenen Flächen (§5, Abs. 2, Nr. 1 BauGB).</xs:documentation>
-	</xs:annotation>
-	<xs:include/>
-	<xs:include/>
-	<xs:include schemaLocation="XP_Enumerationen.xsd"/>
-	<xs:include schemaLocation="P__Basisobjekte.xsd"/>
-	<xs:element name="FP_BebauungsFlaeche" type="FP_BebauungsFlaeche"/>
-	<xs:complexType name="FP_BebauungsFlaeche">
-		<xs:annotation>
-			<xs:documentation>Darstellung der für die Bebauung vorgesehenen Flächen (§5, Abs. 2, Nr. 1 BauGB).</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="FP_Flaechenschlussobjekt">
-				<xs:sequence>
-					<xs:element name="allgArtDerBaulNutzung" type="XP_AllgArtDerBaulNutzung" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Angabe der allgemeinen Art der baulichen Nutzung.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="besondereArtDerBaulNutzung" type="XP_BesondereArtDerBaulNutzung" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Angabe der besonderen Art der baulichen Nutzung.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="sonderNutzung" type="XP_Sondernutzungen" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Bei Nutzungsform "Sondergebiet": Differenzierung verschiedener Arten von Sondergebieten nach §§ 10 und 11 BauNVO.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="detaillierteArtDerBaulNutzung" type="FP_DetailArtDerBaulNutzung" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Über eine CodeList definierte Art der baulichen Nutzung.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="nutzungText" type="CharacterString" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Bei Nutzungsform "Sondergebiet": Kurzform der besonderen Art der baulichen Nutzung.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="GFZ" type="Decimal" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Angabe einer maximalen Geschossflächenzahl als Maß der baulichen Nutzung.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="GFZmin" type="Decimal" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Minimale Geschossflächenzahl bei einer Bereichsangabe (GFZmax muss ebenfalls spezifiziert werden).</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="GFZmax" type="Decimal" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Maximale Geschossflächenzahl bei einer Bereichsangabe (GFZmin muss ebenfalls spezifiziert werden).</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="BMZ" type="Decimal" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Angabe einermaximalen Baumassenzahl als Maß der baulichen Nutzung.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="GRZ" type="Decimal" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Angabe einer maximalen Grundflächenzahl als Maß der baulichen Nutzung.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="FP_DetailArtDerBaulNutzung" type="FP_DetailArtDerBaulNutzung"/>
-	<xs:complexType name="FP_DetailArtDerBaulNutzung">
-		<xs:annotation>
-			<xs:documentation>Aufzählung von diffgerenzierten Arten der baulichen Nutzung.</xs:documentation>
-		</xs:annotation>
-		<xs:sequence/>
-	</xs:complexType>
-	<xs:element name="FP_KeineZentrAbwasserBeseitigungFlaeche" type="FP_KeineZentrAbwasserBeseitigungFlaeche"/>
-	<xs:complexType name="FP_KeineZentrAbwasserBeseitigungFlaeche">
-		<xs:annotation>
-			<xs:documentation>Baufläche, für die eine zentrale Abwasserbeseitigung nicht vorgesehen ist (§5, Abs. 2, Nr. 1 BauGB).</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="FP_Flaechenobjekt">
-				<xs:sequence/>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-</xs:schema>
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" elementFormDefault="qualified" targetNamespace="" version="" xmlns:="">
+  <annotation>
+    <documentation>Darstellung der für die Bebauung vorgesehenen Flächen (§5, Abs. 2, Nr. 1 BauGB).</documentation>
+  </annotation>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <!--XML Schema document created by ShapeChange - http://shapechange.net/-->
+  <element name="FP_BebauungsFlaeche" substitutionGroup=":FP_Flaechenschlussobjekt" type=":FP_BebauungsFlaecheType">
+    <annotation>
+      <documentation>Darstellung der für die Bebauung vorgesehenen Flächen (§5, Abs. 2, Nr. 1 BauGB).</documentation>
+    </annotation>
+  </element>
+  <complexType name="FP_BebauungsFlaecheType">
+    <complexContent>
+      <extension base=":FP_FlaechenschlussobjektType">
+        <sequence>
+          <element minOccurs="0" name="GFZ" type="double">
+            <annotation>
+              <documentation>Angabe einer maximalen Geschossflächenzahl als Maß der baulichen Nutzung.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="GFZmin" type="double">
+            <annotation>
+              <documentation>Minimale Geschossflächenzahl bei einer Bereichsangabe (GFZmax muss ebenfalls spezifiziert werden).</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="GFZmax" type="double">
+            <annotation>
+              <documentation>Maximale Geschossflächenzahl bei einer Bereichsangabe (GFZmin muss ebenfalls spezifiziert werden).</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="BMZ" type="double">
+            <annotation>
+              <documentation>Angabe einermaximalen Baumassenzahl als Maß der baulichen Nutzung.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="GRZ" type="double">
+            <annotation>
+              <documentation>Angabe einer maximalen Grundflächenzahl als Maß der baulichen Nutzung.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="allgArtDerBaulNutzung" type=":XP_AllgArtDerBaulNutzungType">
+            <annotation>
+              <documentation>Angabe der allgemeinen Art der baulichen Nutzung.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="besondereArtDerBaulNutzung" type=":XP_BesondereArtDerBaulNutzungType">
+            <annotation>
+              <documentation>Angabe der besonderen Art der baulichen Nutzung.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="sonderNutzung" type=":XP_SondernutzungenType">
+            <annotation>
+              <documentation>Bei Nutzungsform "Sondergebiet": Differenzierung verschiedener Arten von Sondergebieten nach §§ 10 und 11 BauNVO.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="detaillierteArtDerBaulNutzung" type="gml:CodeType">
+            <annotation>
+              <documentation>Über eine CodeList definierte Art der baulichen Nutzung.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="nutzungText" type="string">
+            <annotation>
+              <documentation>Bei Nutzungsform "Sondergebiet": Kurzform der besonderen Art der baulichen Nutzung.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="FP_KeineZentrAbwasserBeseitigungFlaeche" substitutionGroup=":FP_Flaechenobjekt" type=":FP_KeineZentrAbwasserBeseitigungFlaecheType">
+    <annotation>
+      <documentation>Baufläche, für die eine zentrale Abwasserbeseitigung nicht vorgesehen ist (§5, Abs. 2, Nr. 1 BauGB).</documentation>
+    </annotation>
+  </element>
+  <complexType name="FP_KeineZentrAbwasserBeseitigungFlaecheType">
+    <complexContent>
+      <extension base=":FP_FlaechenobjektType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+</schema>

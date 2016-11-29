@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" elementFormDefault="qualified" targetNamespace="" version="" xmlns:="">
+  <annotation>
+    <documentation>Gebiete und Gebietsteile zum Schutz, zur Pflege und zur Entwicklung von Natur und Landschaft.</documentation>
+  </annotation>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <!--XML Schema document created by ShapeChange - http://shapechange.net/-->
+  <element name="LP_Biotopverbundflaeche" substitutionGroup=":LP_Geometrieobjekt" type=":LP_BiotopverbundflaecheType">
+    <annotation>
+      <documentation>Biotop-Verbundfläche</documentation>
+    </annotation>
+  </element>
+  <complexType name="LP_BiotopverbundflaecheType">
+    <complexContent>
+      <extension base=":LP_GeometrieobjektType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="LP_Bodenschutzrecht" substitutionGroup=":LP_Geometrieobjekt" type=":LP_BodenschutzrechtType">
+    <annotation>
+      <documentation>Gebiete und Gebietsteile mit rechtlichen Bindungen nach anderen Fachgesetzen (soweit sie für den Schutz, die Pflege und die Entwicklung von Natur und Landschaft bedeutsam sind). Hier: Flächen mit schädlichen Bodenveränderungen nach dem Bodenschutzgesetz.</documentation>
+    </annotation>
+  </element>
+  <complexType name="LP_BodenschutzrechtType">
+    <complexContent>
+      <extension base=":LP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="typ" type=":LP_BodenschutzrechtTypenType">
+            <annotation>
+              <documentation>Typ des Schutzobjektes</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="detailTyp" type="gml:CodeType">
+            <annotation>
+              <documentation>Über eine CodeList definierter zusätzlicher Typ des Schutzobjektes.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <simpleType name="LP_BodenschutzrechtTypenType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <element name="LP_Denkmalschutzrecht" substitutionGroup=":LP_Geometrieobjekt" type=":LP_DenkmalschutzrechtType">
+    <annotation>
+      <documentation>Gebiete und Gebietsteile mit rechtlichen Bindungen nach anderen Fachgesetzen (soweit sie für den Schutz, die Pflege und die Entwicklung von Natur und Landschaft bedeutsam sind). Hier: Flächen die dem Denkmalschutz unterliegen.</documentation>
+    </annotation>
+  </element>
+  <complexType name="LP_DenkmalschutzrechtType">
+    <complexContent>
+      <extension base=":LP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="detailTyp" type="gml:CodeType">
+            <annotation>
+              <documentation>Typ des Schutzobjektes.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="LP_Forstrecht" substitutionGroup=":LP_Geometrieobjekt" type=":LP_ForstrechtType">
+    <annotation>
+      <documentation>Gebiete und Gebietsteile mit rechtlichen Bindungen nach anderen Fachgesetzen (soweit sie für den Schutz, die Pflege und die Entwicklung von Natur und Landschaft bedeutsam sind). Hier: Schutzgebiete und sonstige Flächen nach dem Bundeswaldgesetz.</documentation>
+    </annotation>
+  </element>
+  <complexType name="LP_ForstrechtType">
+    <complexContent>
+      <extension base=":LP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="typ" type=":LP_ForstrechtTypenType">
+            <annotation>
+              <documentation>Typ des Schutzobjektes.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="detailTyp" type="gml:CodeType">
+            <annotation>
+              <documentation>Über eine CodeList definierter zusätzlicher Typ des Schutzobjektes.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <simpleType name="LP_ForstrechtTypenType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="2100"/>
+      <enumeration value="2200"/>
+      <enumeration value="2300"/>
+      <enumeration value="2400"/>
+      <enumeration value="2500"/>
+      <enumeration value="3000"/>
+      <enumeration value="3100"/>
+      <enumeration value="3200"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="LP_InternatSchutzobjektTypenType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <element name="LP_SchutzobjektBundesrecht" substitutionGroup=":LP_Geometrieobjekt" type=":LP_SchutzobjektBundesrechtType">
+    <annotation>
+      <documentation>Schutzgebiete und Schutzobjekte nach Naturschutzrecht im Sinne des 4. Abschnittes des BNatSchG.</documentation>
+    </annotation>
+  </element>
+  <complexType name="LP_SchutzobjektBundesrechtType">
+    <complexContent>
+      <extension base=":LP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="typ" type=":LP_ZweckbestimmungSchutzgebietType">
+            <annotation>
+              <documentation>Typ des Schutzgebietes.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="eigenname" type="string">
+            <annotation>
+              <documentation>Eigennahme des Schutzgebietes.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="LP_SchutzobjektInternatRecht" substitutionGroup=":LP_Geometrieobjekt" type=":LP_SchutzobjektInternatRechtType">
+    <annotation>
+      <documentation>Sonstige Schutzgebiete und Schutzobjekte nach internationalem Recht.</documentation>
+    </annotation>
+  </element>
+  <complexType name="LP_SchutzobjektInternatRechtType">
+    <complexContent>
+      <extension base=":LP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="typ" type=":LP_InternatSchutzobjektTypenType">
+            <annotation>
+              <documentation>Typ der Schutzgebietes.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="sonstTyp" type="gml:CodeType">
+            <annotation>
+              <documentation>Über eine CodeList definierter zusätzlicher Typ des Schutzgebietes</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="eigenname" type="string">
+            <annotation>
+              <documentation>Eigennahme des Schutzgebietes.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element abstract="true" name="LP_SchutzobjektLandesrecht" substitutionGroup=":LP_Geometrieobjekt" type=":LP_SchutzobjektLandesrechtType">
+    <annotation>
+      <documentation>Sonstige Schutzgebiete und Schutzobjekte nach Landesrecht.</documentation>
+    </annotation>
+  </element>
+  <complexType abstract="true" name="LP_SchutzobjektLandesrechtType">
+    <complexContent>
+      <extension base=":LP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="detailTyp" type="gml:CodeType">
+            <annotation>
+              <documentation>Über eine CodeList definierter Typ des Schutzobjektes.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <simpleType name="LP_SonstRechtTypenType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <element name="LP_SonstigesRecht" substitutionGroup=":LP_Geometrieobjekt" type=":LP_SonstigesRechtType">
+    <annotation>
+      <documentation>Gebiete und Gebietsteile mit rechtlichen Bindungen nach anderen Fachgesetzen (soweit sie für den Schutz, die Pflege und die Entwicklung von Natur und Landschaft bedeutsam sind). Hier: Sonstige Flächen und Gebiete (z.B. nach Jagdrecht).</documentation>
+    </annotation>
+  </element>
+  <complexType name="LP_SonstigesRechtType">
+    <complexContent>
+      <extension base=":LP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="typ" type=":LP_SonstRechtTypenType">
+            <annotation>
+              <documentation>Typ des Schutzobjektes.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="detailTyp" type="gml:CodeType">
+            <annotation>
+              <documentation>Über eine CodeList definierter zusätzlicher Typ des Schutzobjektes.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="LP_WasserrechtGemeingebrEinschraenkungNaturschutz" substitutionGroup=":LP_Geometrieobjekt" type=":LP_WasserrechtGemeingebrEinschraenkungNaturschutzType">
+    <annotation>
+      <documentation>Gebiete und Gebietsteile mit rechtlichen Bindungen nach anderen Fachgesetzen (soweit sie für den Schutz, die Pflege und die Entwicklung von Natur und Landschaft bedeutsam sind). Hier: Flächen mit Einschränkungen des wasserrechtlichen Gemeingebrauchs aus Gründen des Naturschutzes.</documentation>
+    </annotation>
+  </element>
+  <complexType name="LP_WasserrechtGemeingebrEinschraenkungNaturschutzType">
+    <complexContent>
+      <extension base=":LP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="detailTyp" type="gml:CodeType">
+            <annotation>
+              <documentation>Über eine CodeList definierter Typ des Schutzobjektes.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="LP_WasserrechtSchutzgebiet" substitutionGroup=":LP_Geometrieobjekt" type=":LP_WasserrechtSchutzgebietType"/>
+  <complexType name="LP_WasserrechtSchutzgebietType">
+    <complexContent>
+      <extension base=":LP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="typ" type=":LP_WasserrechtSchutzgebietTypenType">
+            <annotation>
+              <documentation>Typ des Schutzobjektes.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="detailTyp" type="gml:CodeType">
+            <annotation>
+              <documentation>Über eine CodeList definierter zusätzlicher Typ des Schutzobjektes.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="eigenname" type="string">
+            <annotation>
+              <documentation>Eigennahme des Schutzgebietes.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <simpleType name="LP_WasserrechtSchutzgebietTypenType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="3000"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <element name="LP_WasserrechtSonstige" substitutionGroup=":LP_Geometrieobjekt" type=":LP_WasserrechtSonstigeType">
+    <annotation>
+      <documentation>Gebiete und Gebietsteile mit rechtlichen Bindungen nach anderen Fachgesetzen (soweit sie für den Schutz, die Pflege und die Entwicklung von Natur und Landschaft bedeutsam sind). Hier: Sonstige wasserrechtliche Flächen.</documentation>
+    </annotation>
+  </element>
+  <complexType name="LP_WasserrechtSonstigeType">
+    <complexContent>
+      <extension base=":LP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="typ" type="gml:CodeType">
+            <annotation>
+              <documentation>Über eine CodeList definierter Typ des Schutzobjektes.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="LP_WasserrechtWirtschaftAbflussHochwSchutz" substitutionGroup=":LP_Geometrieobjekt" type=":LP_WasserrechtWirtschaftAbflussHochwSchutzType">
+    <annotation>
+      <documentation>Gebiete und Gebietsteile mit rechtlichen Bindungen nach anderen Fachgesetzen (soweit sie für den Schutz, die Pflege und die Entwicklung von Natur und Landschaft bedeutsam sind). Hier: Flächen für die Wasserwirtschaft, den Hochwasserschutz und die Regelung des Wasserabflusses nach dem Wasserhaushaltsgesetz.</documentation>
+    </annotation>
+  </element>
+  <complexType name="LP_WasserrechtWirtschaftAbflussHochwSchutzType">
+    <complexContent>
+      <extension base=":LP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="typ" type=":LP_WasserrechtWirtschaftAbflussHochwSchutzTypenType">
+            <annotation>
+              <documentation>Typ des Schutzobjektes.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="detailTyp" type="gml:CodeType">
+            <annotation>
+              <documentation>Über eine CodeList definierter zusätzlicher Typ des Schutzobjektes.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <simpleType name="LP_WasserrechtWirtschaftAbflussHochwSchutzTypenType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="LP_ZweckbestimmungSchutzgebietType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="1100"/>
+      <enumeration value="1200"/>
+      <enumeration value="1300"/>
+      <enumeration value="1400"/>
+      <enumeration value="1500"/>
+      <enumeration value="1600"/>
+      <enumeration value="1700"/>
+      <enumeration value="1800"/>
+      <enumeration value="1900"/>
+    </restriction>
+  </simpleType>
+</schema>

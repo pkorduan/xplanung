@@ -1,0 +1,1576 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xplan="http://www.xplan-raumordnung.de/model/xplangml/raumordnungsmodell" elementFormDefault="qualified">
+  <annotation>
+    <documentation>Festlegungen im Bereich Freiraumstruktur.</documentation>
+  </annotation>
+  <!--XML Schema document created by ShapeChange - http://shapechange.net/-->
+  <simpleType name="RP_BergbauFolgenutzungType">
+    <annotation>
+      <documentation>Bergbaufolgenutzung.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>Folgenutzung Landwirtschaft.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2000">
+        <annotation>
+          <documentation>Folgenutzung Forstwirtschaft.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="3000">
+        <annotation>
+          <documentation>Folgenutzung Grünlandbewirtschaftung.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="4000">
+        <annotation>
+          <documentation>Folgenutzung NaturLandschaft.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="5000">
+        <annotation>
+          <documentation>Folgenutzung Naturschutz.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="6000">
+        <annotation>
+          <documentation>Folgenutzung Erholung.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="7000">
+        <annotation>
+          <documentation>Folgenutzung Gewässer.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="8000">
+        <annotation>
+          <documentation>Folgenutzung Verkehr.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="9000">
+        <annotation>
+          <documentation>Folgenutzung Altbergbau.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="9999">
+        <annotation>
+          <documentation>Sonstige Folgenutzung.</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <simpleType name="RP_BergbauplanungTypenType">
+    <annotation>
+      <documentation>Typen der Bergbauplanung.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>Lagerstätte.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1100">
+        <annotation>
+          <documentation>Sicherung.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1200">
+        <annotation>
+          <documentation>Gewinnung.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1300">
+        <annotation>
+          <documentation>Abbaubereich.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1400">
+        <annotation>
+          <documentation>Sicherheitszone.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1500">
+        <annotation>
+          <documentation>Anlage und/oder Einrichtung des Bergbaus.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1600">
+        <annotation>
+          <documentation>Halde, Aufschüttung und/oder Ablagerung.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1700">
+        <annotation>
+          <documentation>Sanierungsfläche.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1800">
+        <annotation>
+          <documentation>Ansiedlung und/oder Umsiedlung.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1900">
+        <annotation>
+          <documentation>Bergbaufolgelandschaft.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="9999">
+        <annotation>
+          <documentation>Sonstige Bergbauplanung.</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <simpleType name="RP_BesondereTourismusErholungTypenType">
+    <annotation>
+      <documentation>Typen und Spezifierungen von besonderem Tourismus beziehungsweise besonderer Erholung.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>Entwicklungsgebiet.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2000">
+        <annotation>
+          <documentation>Kernbereich.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="3000">
+        <annotation>
+          <documentation>Besondere Entwicklungsaufgabe von Tourismus und/oder Erholung.</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <simpleType name="RP_BodenschatzTiefenType">
+    <annotation>
+      <documentation>Tiefe von Bodenschätzen und/oder Abbau.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>Oberflächennaher Bodenschatz.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2000">
+        <annotation>
+          <documentation>Tiefliegender Bodenschatz.</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <element name="RP_Bodenschutz" type="xplan:RP_BodenschutzType" substitutionGroup="xplan:RP_Freiraum">
+    <annotation>
+      <documentation>Maßnahmen, die zum Schutz von Böden und Bodenfunktionen (auch vorsorglich) unter dem Aspekt des Natur- und Umweltschutzes getroffen werden.</documentation>
+    </annotation>
+  </element>
+  <complexType name="RP_BodenschutzType">
+    <complexContent>
+      <extension base="xplan:RP_FreiraumType">
+        <sequence>
+          <element minOccurs="0" name="typ" type="xplan:RP_BodenschutzTypenType">
+            <annotation>
+              <documentation>Klassifikation von Bodenschutztypen.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <simpleType name="RP_BodenschutzTypenType">
+    <annotation>
+      <documentation>Typen von Bodenschutz.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>Beseitigung von erheblicher Bodenbelastung.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2000">
+        <annotation>
+          <documentation>Sicherung und/oder Sanierung von Altlasten.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="3000">
+        <annotation>
+          <documentation>Erosionsschutz.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="9999">
+        <annotation>
+          <documentation>Sonstiger Bodenschutz.</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <element name="RP_Erholung" type="xplan:RP_ErholungType" substitutionGroup="xplan:RP_Freiraum">
+    <annotation>
+      <documentation>Freizeit, Erholung und Tourismus.</documentation>
+    </annotation>
+  </element>
+  <complexType name="RP_ErholungType">
+    <complexContent>
+      <extension base="xplan:RP_FreiraumType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="typErholung" type="xplan:RP_ErholungTypenType">
+            <annotation>
+              <documentation>Klassifikation von Erholungstypen.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="typTourismus" type="xplan:RP_TourismusTypenType">
+            <annotation>
+              <documentation>Klassifikation von Tourismustypen.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="besondererTyp" type="xplan:RP_BesondereTourismusErholungTypenType">
+            <annotation>
+              <documentation>Klassifikation von besonderen Typen für Tourismus und/oder Erholung.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <simpleType name="RP_ErholungTypenType">
+    <annotation>
+      <documentation>Typen von Erholung.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>Erholung.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2000">
+        <annotation>
+          <documentation>Ruhige Erholung in Natur und Landschaft.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="3000">
+        <annotation>
+          <documentation>Erholung mit starker Inanspruchnahme durch die Bevölkerung.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="4000">
+        <annotation>
+          <documentation>Erholungswald sind Waldgebiete, oft im Umfeld von Ballungszentren, die hauptsächlich der Erholung der Bevölkerung dienen (gegenüber forstwirtschaftlicher Nutzung oder Naturschutz). Nach § 13 Bundeswaldgesetz (1) kann Wald "zu Erholungswald erklärt werden, wenn es das Wohl der Allgemeinheit erfordert, Waldflächen für Zwecke der Erholung zu schützen, zu pflegen oder zu gestalten".</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="5000">
+        <annotation>
+          <documentation>Freizeitanlage.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="5001"/>
+      <enumeration value="6000">
+        <annotation>
+          <documentation>Erholungslandschaft in den Alpen.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="7000">
+        <annotation>
+          <documentation>Kureinrichtung.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="9999">
+        <annotation>
+          <documentation>Sonstige Erholung.</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <element name="RP_ErneuerbareEnergie" type="xplan:RP_ErneuerbareEnergieType" substitutionGroup="xplan:RP_Freiraum">
+    <annotation>
+      <documentation>Erneuerbare Energie inklusive Windenergienutzung.
+Erneuerbare Energien sind Energiequellen, die keine endlichen Rohstoffe verbrauchen, sondern natürliche, sich erneuernde Kreisläufe anzapfen (Sonne, Wind, Wasserkraft, Bioenergie). Meist werden auch Gezeiten, die Meeresströmung und die Erdwärme dazugezählt.</documentation>
+    </annotation>
+  </element>
+  <complexType name="RP_ErneuerbareEnergieType">
+    <complexContent>
+      <extension base="xplan:RP_FreiraumType">
+        <sequence>
+          <element minOccurs="0" name="typ" type="xplan:RP_ErneuerbareEnergieTypenType">
+            <annotation>
+              <documentation>Klassifikation von Typen Erneuerbarer Energie.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <simpleType name="RP_ErneuerbareEnergieTypenType">
+    <annotation>
+      <documentation>Typen von Erneuerbarer Energie.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>Windenergie.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2000">
+        <annotation>
+          <documentation>Solarenergie.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="3000">
+        <annotation>
+          <documentation>Geothermie.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="4000">
+        <annotation>
+          <documentation>Biomasse.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="9999">
+        <annotation>
+          <documentation>Sonstige Erneuerbare Energie.</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <element name="RP_Forstwirtschaft" type="xplan:RP_ForstwirtschaftType" substitutionGroup="xplan:RP_Freiraum">
+    <annotation>
+      <documentation>Forstwirtschaft ist die zielgerichtete Bewirtschaftung von Wäldern.
+Die natürlichen Abläufe in den Waldökosystemen werden dabei so gestaltet und gesteuert, dass sie einen möglichst großen Beitrag zur Erfüllung von Leistungen erbringen, die von den Waldeigentümern und der Gesellschaft gewünscht werden.</documentation>
+    </annotation>
+  </element>
+  <complexType name="RP_ForstwirtschaftType">
+    <complexContent>
+      <extension base="xplan:RP_FreiraumType">
+        <sequence>
+          <element minOccurs="0" name="typ" type="xplan:RP_ForstwirtschaftTypenType">
+            <annotation>
+              <documentation>Klassifikation von Forstwirtschaftstypen und Wäldern.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <simpleType name="RP_ForstwirtschaftTypenType">
+    <annotation>
+      <documentation>Typen von Forstwirtschaft.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>Wald.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1001">
+        <annotation>
+          <documentation>Bannwald.
+Nach §32 (2) Baden-Württemberg "ein sich selbst überlassenes Waldreservat. Pflegemaßnahmen sind nicht erlaubt; anfallendes Holz darf nicht entnommen werden. [...] Fußwege sind zulässig."
+Nach $11 (1) BayWaldG Bayern " Wald, der auf Grund seiner Lage und seiner flächenmäßigen Ausdehnung vor allem in Verdichtungsräumen und waldarmen Bereichen unersetzlich ist, und deshalb in seiner Flächensubstanz erhalten werden muss und welchem eine außergewöhnliche Bedeutung für das Klima, den Wasserhaushalt oder die Luftreinigung zukommt.
+Nach §13 (2) ForstG Hessen ein Wald, der "in seiner Flächensubstanz in besonderem Maße schützenswert ist".
+In anderen Ländern ist ein Bannwald ggf. abweichend definiert.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1002">
+        <annotation>
+          <documentation>Schonwald.
+Nach §32 (3) Baden-Württemberg "ein Waldreservat, in dem eine bestimmte Waldgesellschaft mit ihren Tier- und Pflanzenarten, ein bestimmter Bestandsaufbau oder ein bestimmter Waldbiotop zu erhalten, zu entwickeln oder zu erneuern ist. Die Forstbehörde legt PFlegemaßnahmen mti Zustimmung des Waldbesitzers fest." In anderen Ländern ist ein Schonwald ggf. abweichend definiert.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2000">
+        <annotation>
+          <documentation>Waldmehrung.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2001">
+        <annotation>
+          <documentation>Waldmehrung für Erholung.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2002">
+        <annotation>
+          <documentation>Vergrößerung des Waldanteils.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="3000">
+        <annotation>
+          <documentation>Waldschutz.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="3001">
+        <annotation>
+          <documentation>Besondere Schutzfunktion des Waldes.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="4000">
+        <annotation>
+          <documentation>Von Aufforstung freizuhaltendes Gebiet.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="9999">
+        <annotation>
+          <documentation>Sonstige Forstwirtschaft.</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <element name="RP_Freiraum" type="xplan:RP_FreiraumType" substitutionGroup="xplan:RP_Geometrieobjekt">
+    <annotation>
+      <documentation>Allgemeines Freiraumobjekt</documentation>
+    </annotation>
+  </element>
+  <complexType name="RP_FreiraumType">
+    <complexContent>
+      <extension base="xplan:RP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="istAusgleichsgebiet" type="boolean">
+            <annotation>
+              <documentation>Ist Ausgleichgsgebiet.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="imVerbund" type="boolean">
+            <annotation>
+              <documentation>Im Verbund</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="RP_Gewaesser" type="xplan:RP_GewaesserType" substitutionGroup="xplan:RP_Freiraum">
+    <annotation>
+      <documentation>Gewässer, die nicht andersweitig erfasst werden, zum Beispiel Flüsse oder Seen.</documentation>
+    </annotation>
+  </element>
+  <complexType name="RP_GewaesserType">
+    <complexContent>
+      <extension base="xplan:RP_FreiraumType">
+        <sequence>
+          <element minOccurs="0" name="gewaesserTyp" type="string">
+            <annotation>
+              <documentation>Spezifiziert den Typ des Gewässers.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="RP_GruenzugGruenzaesur" type="xplan:RP_GruenzugGruenzaesurType" substitutionGroup="xplan:RP_Freiraum">
+    <annotation>
+      <documentation>Grünzüge und kleinräumigere Grünzäsuren sind Ordnungsinstrumente zur Freiraumsicherung. Teilweise werden Grünzüge auch Trenngrün genannt.</documentation>
+    </annotation>
+  </element>
+  <complexType name="RP_GruenzugGruenzaesurType">
+    <complexContent>
+      <extension base="xplan:RP_FreiraumType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="typ" type="xplan:RP_ZaesurTypenType">
+            <annotation>
+              <documentation>Klassifikation von Zäsurtypen.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="RP_Hochwasserschutz" type="xplan:RP_HochwasserschutzType" substitutionGroup="xplan:RP_Freiraum">
+    <annotation>
+      <documentation>Die Klasse RP_Hochwasserschutz enthält Hochwasserschutz und vorbeugenden Hochwasserschutz.
+Hochwasserschutz und vorbeugender Hochwasserschutz beinhaltet den Schutz von Siedlungen, Nutz- und Verkehrsflächen vor Überschwemmungen. Im Binnenland besteht der Hochwasserschutz vor allem in der Sicherung und Rückgewinnung von Auen, Wasserrückhalteflächen (Retentionsflächen) und überschwemmungsgefährdeten Bereichen. An der Nord- und Ostsee erfolgt der Schutz vor Sturmfluten hauptsächlich durch Deiche und Siele (Küstenschutz).</documentation>
+    </annotation>
+  </element>
+  <complexType name="RP_HochwasserschutzType">
+    <complexContent>
+      <extension base="xplan:RP_FreiraumType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="typ" type="xplan:RP_HochwasserschutzTypenType">
+            <annotation>
+              <documentation>Klassifikation von Hochwasserschutztypen.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <simpleType name="RP_HochwasserschutzTypenType">
+    <annotation>
+      <documentation>Typen von Hochwasserschutz.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>Hochwasserschutz.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1001">
+        <annotation>
+          <documentation>Technischer Hochwasserschutz.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1100">
+        <annotation>
+          <documentation>Hochwasserrückhaltebecken.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1101">
+        <annotation>
+          <documentation>Hochwasserrückhaltebecken: Polder.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1102">
+        <annotation>
+          <documentation>Hochwasserrückhaltebecken: Bauwerk.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1200">
+        <annotation>
+          <documentation>Risikobereich Hochwasser.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1300">
+        <annotation>
+          <documentation>Küstenhochwasserschutz.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1301">
+        <annotation>
+          <documentation>Deich.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1302">
+        <annotation>
+          <documentation>Deichrückverlegung.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1303"/>
+      <enumeration value="1400">
+        <annotation>
+          <documentation>Sperrwerk.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1500">
+        <annotation>
+          <documentation>Hochwassergefährdete Küstenniederung.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1600">
+        <annotation>
+          <documentation>Überschwemmungsgebiet.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1700">
+        <annotation>
+          <documentation>Überschwemmungsgefährdeter Bereich.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1800">
+        <annotation>
+          <documentation>Retentionsraum.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1801">
+        <annotation>
+          <documentation>Potenzieller Retentionsraum.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="9999">
+        <annotation>
+          <documentation>Sonstiger Hochwasserschutz.</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <element name="RP_Klimaschutz" type="xplan:RP_KlimaschutzType" substitutionGroup="xplan:RP_Freiraum">
+    <annotation>
+      <documentation>(Siedlungs-) Klimaschutz. Beinhaltet zum Beispiel auch Kalt- und Frischluftschneisen.</documentation>
+    </annotation>
+  </element>
+  <complexType name="RP_KlimaschutzType">
+    <complexContent>
+      <extension base="xplan:RP_FreiraumType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="typ" type="xplan:RP_LuftTypenType">
+            <annotation>
+              <documentation>Klassifikation von Lufttypen.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="RP_Kulturlandschaft" type="xplan:RP_KulturlandschaftType" substitutionGroup="xplan:RP_Freiraum">
+    <annotation>
+      <documentation>Landschaftsbereich mit überwiegend anthropogenen Ökosystemen (historisch geprägt und gewachsen). Sie sind nach §2, Nr. 5 des ROG mit ihren Kultur- und Naturdenkmälern zu erhalten und zu entwickeln. 
+Beinhaltet unter anderem die Begriffe Kulturlandschaft, kulturelle Sachgüter und Welterbestätten.</documentation>
+    </annotation>
+  </element>
+  <complexType name="RP_KulturlandschaftType">
+    <complexContent>
+      <extension base="xplan:RP_FreiraumType">
+        <sequence>
+          <element minOccurs="0" name="typ" type="xplan:RP_KulturlandschaftTypenType">
+            <annotation>
+              <documentation>Klassifikation von Kulturlandschaftstypen.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <simpleType name="RP_KulturlandschaftTypenType">
+    <annotation>
+      <documentation>Typen von Kulturlandschaften.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>Kulturelles Sachgut.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2000">
+        <annotation>
+          <documentation>Welterbe. Von der UNESCO verliehener Titel an Stätten mit außergewöhnlichem, universellem Wert, die als "Teile des Kultur- und Naturerbes von außergewöhnlicher Bedeutung sind und daher als Bestandteil des Welterbes der ganzen Menschheit erhalten werden müssen" (Präambel der Welterbekonvention von 1972)</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="3000">
+        <annotation>
+          <documentation>Landschaftliches Kulturerbe.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="4000"/>
+      <enumeration value="9999">
+        <annotation>
+          <documentation>Sonstige Kulturlandschafttypen.</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <element name="RP_Landwirtschaft" type="xplan:RP_LandwirtschaftType" substitutionGroup="xplan:RP_Freiraum">
+    <annotation>
+      <documentation>Landwirtschaft, hauptsächlich im ländlichen Raum angesiedelt, erfüllt für die Gesellschaft wichtige Funktionen in der Produktion- und Versorgung mit Lebensmitteln, für Freizeit und Freiraum oder zur Biodiversität.</documentation>
+    </annotation>
+  </element>
+  <complexType name="RP_LandwirtschaftType">
+    <complexContent>
+      <extension base="xplan:RP_FreiraumType">
+        <sequence>
+          <element minOccurs="0" name="typ" type="xplan:RP_LandwirtschaftTypenType">
+            <annotation>
+              <documentation>Klassifikation von Landwirtschaftstypen.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <simpleType name="RP_LandwirtschaftTypenType">
+    <annotation>
+      <documentation>Typen von Landwirtschaft.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>Allgemeine Landwirtschaftliche Nutzung.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1001">
+        <annotation>
+          <documentation>Kernzone Landwirtschaft.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2000">
+        <annotation>
+          <documentation>Intensive Landwirtschaft.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="3000">
+        <annotation>
+          <documentation>Fischerei.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="4000">
+        <annotation>
+          <documentation>Weinbau.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="5000">
+        <annotation>
+          <documentation>Landwirtschaft auf Grund hohen Ertragspotenzials.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="6000">
+        <annotation>
+          <documentation>Landwirtschaft auf Grund besonderer Funktionen.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="8000"/>
+      <enumeration value="9999">
+        <annotation>
+          <documentation>Sonstige Landwirtschaft</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="7000">
+        <annotation>
+          <documentation>Grünlandbewirtschaftung.</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <simpleType name="RP_LuftTypenType">
+    <annotation>
+      <documentation>Lufttypen.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>Kaltluft.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2000">
+        <annotation>
+          <documentation>Frischluft.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="9999">
+        <annotation>
+          <documentation>Sonstige Lufttypen.</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <element name="RP_NaturLandschaft" type="xplan:RP_NaturLandschaftType" substitutionGroup="xplan:RP_Freiraum">
+    <annotation>
+      <documentation>Naturlandschaften sind von umitellbaren menschlichen Aktivitäten weitestgehend unbeeinflusst gebliebene Landschaft.</documentation>
+    </annotation>
+  </element>
+  <complexType name="RP_NaturLandschaftType">
+    <complexContent>
+      <extension base="xplan:RP_FreiraumType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="typ" type="xplan:RP_NaturLandschaftTypenType">
+            <annotation>
+              <documentation>Klassifikation von Naturschutz, Landschaftsschutz und Naturlandschafttypen.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <simpleType name="RP_NaturLandschaftTypenType">
+    <annotation>
+      <documentation>Typen von Natur und Landschaft.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>NaturLandschaft.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1100">
+        <annotation>
+          <documentation>Naturschutz und Landschaftspflege.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1101">
+        <annotation>
+          <documentation>Naturschutz und Landschaftspflege auf Gewässern.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1200">
+        <annotation>
+          <documentation>Flurdurchgrünung.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1300">
+        <annotation>
+          <documentation>Unzerschnittene Räume.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1301">
+        <annotation>
+          <documentation>Unzerschnittene verkehrsarme Räume.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1400">
+        <annotation>
+          <documentation>Feuchtgebiet.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1500">
+        <annotation>
+          <documentation>Ökologisches Verbundssystem.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1501">
+        <annotation>
+          <documentation>Ökologischer Raum.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1600">
+        <annotation>
+          <documentation>Verbesserung der Landschaftsstruktur und des Naturhaushalts.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1700">
+        <annotation>
+          <documentation>Biotop.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1701">
+        <annotation>
+          <documentation>Biotopverbund.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1702">
+        <annotation>
+          <documentation>Biotopverbundsachse.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1703">
+        <annotation>
+          <documentation>Arten- und/oder Biotopschutz.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1704">
+        <annotation>
+          <documentation>Regionalpark.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1800">
+        <annotation>
+          <documentation>Kompensation für Entwicklung.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1900">
+        <annotation>
+          <documentation>Grünlandbewirtschaftung, -pflege und -entwicklung.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2000">
+        <annotation>
+          <documentation>Landschaftsstruktur.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2100">
+        <annotation>
+          <documentation>Landschaftsgebiet für Erholung.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2200">
+        <annotation>
+          <documentation>Landschaftsprägend.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2300">
+        <annotation>
+          <documentation>Schutz der Natur.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2400">
+        <annotation>
+          <documentation>Schutz des Landschaftsbildes.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2500">
+        <annotation>
+          <documentation>Alpenpark.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="9999">
+        <annotation>
+          <documentation>Sonstiger NaturLandschaftsschutz.</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <element name="RP_NaturschutzrechtlichesSchutzgebiet" type="xplan:RP_NaturschutzrechtlichesSchutzgebietType" substitutionGroup="xplan:RP_Freiraum">
+    <annotation>
+      <documentation>Schutzgebiet nach Bundes-Naturschutzgesetz.</documentation>
+    </annotation>
+  </element>
+  <complexType name="RP_NaturschutzrechtlichesSchutzgebietType">
+    <complexContent>
+      <extension base="xplan:RP_FreiraumType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="typ" type="xplan:XP_KlassifizSchutzgebietNaturschutzrechtType">
+            <annotation>
+              <documentation>Klassifikation des Naturschutzgebietes.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="istKernzone" type="boolean">
+            <annotation>
+              <documentation>Gibt an, ob es sich um eine Kernzone handelt.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="RP_RadwegWanderweg" type="xplan:RP_RadwegWanderwegType" substitutionGroup="xplan:RP_Freiraum">
+    <annotation>
+      <documentation>Radwege und Wanderwege. Straßenbegleitend oder selbstständig geführt.</documentation>
+    </annotation>
+  </element>
+  <complexType name="RP_RadwegWanderwegType">
+    <complexContent>
+      <extension base="xplan:RP_FreiraumType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="typ" type="xplan:RP_RadwegWanderwegTypenType">
+            <annotation>
+              <documentation>Klassifikation von Radwegen und Wanderwegen.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <simpleType name="RP_RadwegWanderwegTypenType">
+    <annotation>
+      <documentation>Typen von Rad- und Wanderwegen.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>Wanderweg.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1001">
+        <annotation>
+          <documentation>Fernwanderweg.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2000">
+        <annotation>
+          <documentation>Radwandern.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2001">
+        <annotation>
+          <documentation>Fernradweg.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="3000">
+        <annotation>
+          <documentation>Reiten.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="4000">
+        <annotation>
+          <documentation>Wasserwandern.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="9999">
+        <annotation>
+          <documentation>Sonstiger Wanderweg.</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <element name="RP_Rohstoff" type="xplan:RP_RohstoffType" substitutionGroup="xplan:RP_Freiraum">
+    <annotation>
+      <documentation>Rohstoff, inklusive Rohstoffprospektion, Rohstoffsicherung, Rohstoffabbau, Bergbau und Bergbaufolgelandschaft.</documentation>
+    </annotation>
+  </element>
+  <complexType name="RP_RohstoffType">
+    <complexContent>
+      <extension base="xplan:RP_FreiraumType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="rohstoffTyp" type="xplan:RP_RohstoffTypenType">
+            <annotation>
+              <documentation>Abgebauter Rohstoff.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="folgenutzung" type="xplan:RP_BergbauFolgenutzungType">
+            <annotation>
+              <documentation>Klassifikation von Folgenutzungen bestimmter bergbaulicher Maßnahmen.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="folgenutzungText" type="string">
+            <annotation>
+              <documentation>Textliche Festlegungen und Spezifizierungen zur Folgenutzung einer Bergbauplanung.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="zeitstufe" type="xplan:RP_ZeitstufenType">
+            <annotation>
+              <documentation>Zeitstufe des Rohstoffabbaus.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="zeitstufeText" type="string">
+            <annotation>
+              <documentation>Textliche Spezifizierung einer Rohstoffzeitstufe, zum Beispiel kurzfristiger Abbau (Zeitstufe I) und langfristige Sicherung für mindestens 25-30 Jahre (Zeitstufe II).</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="tiefe" type="xplan:RP_BodenschatzTiefenType">
+            <annotation>
+              <documentation>Tiefe eines Rohstoffes</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="bergbauplanungTyp" type="xplan:RP_BergbauplanungTypenType">
+            <annotation>
+              <documentation>Klassifikation von Bergbauplanungstypen.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="istAufschuettungAblagerung" type="boolean"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <simpleType name="RP_RohstoffTypenType">
+    <annotation>
+      <documentation>Typen von Rohstoffen.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>Anhydritstein.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1100">
+        <annotation>
+          <documentation>Baryt.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1200">
+        <annotation>
+          <documentation>BasaltDiabas.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1300">
+        <annotation>
+          <documentation>Bentonit.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1400">
+        <annotation>
+          <documentation>Blaehton.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1500">
+        <annotation>
+          <documentation>Braunkohle.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1600">
+        <annotation>
+          <documentation>Buntsandstein.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1700"/>
+      <enumeration value="1800">
+        <annotation>
+          <documentation>Diorit.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1900">
+        <annotation>
+          <documentation>Dolomitstein.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2000">
+        <annotation>
+          <documentation>Erdgas.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2100">
+        <annotation>
+          <documentation>Erdöl.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2200">
+        <annotation>
+          <documentation>Erz.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2300">
+        <annotation>
+          <documentation>Feldspat.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2400">
+        <annotation>
+          <documentation>Festgestein.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2500">
+        <annotation>
+          <documentation>Flussspat.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2600">
+        <annotation>
+          <documentation>Gangquarz.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2700">
+        <annotation>
+          <documentation>Gipsstein.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2800">
+        <annotation>
+          <documentation>Gneis.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2900">
+        <annotation>
+          <documentation>Granit.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="3000">
+        <annotation>
+          <documentation>Grauwacke.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="3100"/>
+      <enumeration value="3200">
+        <annotation>
+          <documentation>KalkKalktuffKreide.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="3300">
+        <annotation>
+          <documentation>Kalkmergelstein.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="3400">
+        <annotation>
+          <documentation>Kalkstein.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="3500">
+        <annotation>
+          <documentation>Kaolin.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="3600">
+        <annotation>
+          <documentation>Karbonatgestein.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="3700">
+        <annotation>
+          <documentation>Kies.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="3800">
+        <annotation>
+          <documentation>Kieselgur.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="3900">
+        <annotation>
+          <documentation>KieshaltigerSand.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="4000">
+        <annotation>
+          <documentation>KiesSand.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="4100">
+        <annotation>
+          <documentation>Klei.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="4200">
+        <annotation>
+          <documentation>Kristallin.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="4300">
+        <annotation>
+          <documentation>Kupfer.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="4400">
+        <annotation>
+          <documentation>Lehm.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="4500">
+        <annotation>
+          <documentation>Marmor.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="4600">
+        <annotation>
+          <documentation>Mergel.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="4700">
+        <annotation>
+          <documentation>Mergelstein.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="4800">
+        <annotation>
+          <documentation>MikrogranitGranitporphyr.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="4900">
+        <annotation>
+          <documentation>Monzonit.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="5000">
+        <annotation>
+          <documentation>Muschelkalk.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="5100">
+        <annotation>
+          <documentation>Naturstein.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="5200">
+        <annotation>
+          <documentation>Naturwerkstein.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="5300">
+        <annotation>
+          <documentation>Ölschiefer.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="5400">
+        <annotation>
+          <documentation>Pegmatitsand.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="5500">
+        <annotation>
+          <documentation>Quarzit.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="5600">
+        <annotation>
+          <documentation>Quarzsand.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="5700">
+        <annotation>
+          <documentation>Rhyolith.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="5800">
+        <annotation>
+          <documentation>RhyolithQuarzporphyr.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="5900">
+        <annotation>
+          <documentation>Salz.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="6000">
+        <annotation>
+          <documentation>Sand.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="6100">
+        <annotation>
+          <documentation>Sandstein.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="6200">
+        <annotation>
+          <documentation>Spezialton.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="6300">
+        <annotation>
+          <documentation>Steine und Erden.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="6400">
+        <annotation>
+          <documentation>Steinkohle.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="6500">
+        <annotation>
+          <documentation>Ton.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="6600">
+        <annotation>
+          <documentation>Tonstein.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="6700">
+        <annotation>
+          <documentation>Torf.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="6800">
+        <annotation>
+          <documentation>TuffBimsstein.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="6900">
+        <annotation>
+          <documentation>Uran.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="7000">
+        <annotation>
+          <documentation>Vulkanit.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="7100"/>
+      <enumeration value="9999">
+        <annotation>
+          <documentation>Sonstiges.</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <element name="RP_SonstigerFreiraumschutz" type="xplan:RP_SonstigerFreiraumschutzType" substitutionGroup="xplan:RP_Freiraum">
+    <annotation>
+      <documentation>Sonstiger Freiraumschutz. Nicht anderweitig zuzuordnende Freiraumstrukturen.</documentation>
+    </annotation>
+  </element>
+  <complexType name="RP_SonstigerFreiraumschutzType">
+    <complexContent>
+      <extension base="xplan:RP_FreiraumType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="RP_Sportanlage" type="xplan:RP_SportanlageType" substitutionGroup="xplan:RP_Freiraum">
+    <annotation>
+      <documentation>Sportanlagen und -bereiche.
+Sportanlagen sind ortsfeste Einrichtungen, die zur Sportausübung bestimmt sind. Zur Sportanlage zählen auch Einrichtungen, die mit der Sportanlage in einem engen räumlichen und betrieblichen Zusammenhang stehen (nach BImSchV 18 §1).</documentation>
+    </annotation>
+  </element>
+  <complexType name="RP_SportanlageType">
+    <complexContent>
+      <extension base="xplan:RP_FreiraumType">
+        <sequence>
+          <element minOccurs="0" name="typ" type="xplan:RP_SportanlageTypenType">
+            <annotation>
+              <documentation>Klassifikation von Sportanlagen.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <simpleType name="RP_SportanlageTypenType">
+    <annotation>
+      <documentation>Typen von Sportanlagen.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>Sportanlage.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2000">
+        <annotation>
+          <documentation>Wassersport.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="3000">
+        <annotation>
+          <documentation>Motorsport.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="4000">
+        <annotation>
+          <documentation>Flugsport.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="5000">
+        <annotation>
+          <documentation>Reitsport.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="6000">
+        <annotation>
+          <documentation>Golfsport.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="7000">
+        <annotation>
+          <documentation>Sportzentrum.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="9999">
+        <annotation>
+          <documentation>Sonstige Sportanlage.</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <simpleType name="RP_TourismusTypenType">
+    <annotation>
+      <documentation>Typen von Tourismus.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>Tourismus.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2000">
+        <annotation>
+          <documentation>Tourismus im Küstenraum.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="9999">
+        <annotation>
+          <documentation>Sonstiger Tourismus.</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <element name="RP_Wasserschutz" type="xplan:RP_WasserschutzType" substitutionGroup="xplan:RP_Freiraum">
+    <annotation>
+      <documentation>Grund-, Trink- und Oberflächenwasserschutz.</documentation>
+    </annotation>
+  </element>
+  <complexType name="RP_WasserschutzType">
+    <complexContent>
+      <extension base="xplan:RP_FreiraumType">
+        <sequence>
+          <element minOccurs="0" name="typ" type="xplan:RP_WasserschutzTypenType">
+            <annotation>
+              <documentation>Klassifikation des Wasserschutztyps.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="zone" type="xplan:RP_WasserschutzZonenType">
+            <annotation>
+              <documentation>Wasserschutzzone</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <simpleType name="RP_WasserschutzTypenType">
+    <annotation>
+      <documentation>Typen von Wasserschutz.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>Wasserschutzgebiet.
+Nach DIN 4046 "Einzugsgebiet oder Teil des Einzugsgebietes einer Wassergewinnungsanlage, das zum Schutz des Wassers Nutzungsbeschränkungen unterliegt."</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2000">
+        <annotation>
+          <documentation>Grundwasserschutz.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2001">
+        <annotation>
+          <documentation>Grundwasservorkommen.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2002">
+        <annotation>
+          <documentation>Einzugsgebiet einer Talsperre.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="3000">
+        <annotation>
+          <documentation>Trinkwasserschutz.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="4000">
+        <annotation>
+          <documentation>Trinkwassergewinnung.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="5000">
+        <annotation>
+          <documentation>Oberflächenwasserschutz.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="6000">
+        <annotation>
+          <documentation>Heilquelle.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="7000">
+        <annotation>
+          <documentation>Wasserversorgung.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="9999">
+        <annotation>
+          <documentation>Sonstiger Wasserschutz.</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <simpleType name="RP_WasserschutzZonenType">
+    <annotation>
+      <documentation>Wasserschutzzonen.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>Zone 1.
+Für Grundwasser beinhaltet die Zone 1 den Fassungsbereich. In diesem Bereich und der unmittelbaren Umgebung um die Wassergewinnungsanlage muss jegliche Verunreinigung unterbleiben. Bei Talsperren  beinhaltet die Zone 1 den Stauraum mit Uferzone. Diese soll den Schutz vor unmittelbaren Verunreinigungen und sonstigen Beeinträchtigungen des Talsperrenwassers gewährleisten.
+Die Ausdehnung der Zone I sollte im allgemeinen von Brunnen allseitig 10 m, von Quellen in Richtung des ankommenden Grundwassers mindestens 20 m und von Kaarstgrundwasserleitern mindestens 30 m betragen</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2000">
+        <annotation>
+          <documentation>Zone 2.
+Die engere Schutzzone.
+Die Zone II reicht von der Grenze der Zone I bis zu einer Linie, von der aus das Grundwasser etwa 50 Tage bis zum Eintreffen in die Trinkwassergewinnungsanlage benötigt. Eine Zone II kann entfallen, wenn nur tiefere, abgedichtete Grundwasserstockwerke oder solche genutzt werden, die von der 50 Tage-Linie bis zur Fassung von undurchlässigen Schichten gegenüber der Mächtigkeit abgedeckt sind.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="3000">
+        <annotation>
+          <documentation>Zone 3.
+Die Weitere Schutzzone.
+Die Zone III reicht von der Grenze des Einzugsgebietes bis zur Außengrenze der Zone II. Wenn das Einzugsgebiet weiter als 2 km reicht, so kann eine Aufgliederung in eine Zone III A bis etwa 2 km Entfernung ab Fassung und eine Zone III B etwa 2 km bis zur Grenze des Einzugsgebietes zweckmäßig sein.</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <simpleType name="RP_ZaesurTypenType">
+    <annotation>
+      <documentation>Typen von Zäsuren.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>Grünzug.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2000">
+        <annotation>
+          <documentation>Grünzäsur.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="3000">
+        <annotation>
+          <documentation>Siedlungszäsur.</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <simpleType name="RP_ZeitstufenType">
+    <annotation>
+      <documentation>Zeitstufen von Rohstoffen.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>Zeitstufe 1.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2000">
+        <annotation>
+          <documentation>Zeitstufe 2.</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+</schema>

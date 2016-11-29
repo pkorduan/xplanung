@@ -1,7 +1,0 @@
-tocTab[tocTab.length] = new Array("0.1.6.12:1", "", "Context Diagram: ArcByCenterPoint", "EARoot/EA1/EA6/EA12/EA1878.htm", "175.png", "643", "0", "", "Logical diagram0","{3E923F0E-64D3-4ce6-9956-4708F980E7E9}");
-tocTab[tocTab.length] = new Array("0.1.6.12:2", "", "Context Diagram: CircleByCenterPoint", "EARoot/EA1/EA6/EA12/EA1880.htm", "175.png", "645", "0", "", "Logical diagram0","{EB5CDCC4-C3E4-4ac0-AFEF-D7F29C01856D}");
-tocTab[tocTab.length] = new Array("0.1.6.12:3", "", "Context Diagram: Rectangle", "EARoot/EA1/EA6/EA12/EA1882.htm", "175.png", "646", "0", "", "Logical diagram0","{BA3C8425-D834-436a-89E5-CF662CE6B0DF}");
-tocTab[tocTab.length] = new Array("0.1.6.12:4", "", "Figure D.48 ? Additional Curve Segments and Surface Patches", "EARoot/EA1/EA6/EA12/EA1884.htm", "175.png", "644", "0", "", "Logical diagram0","{882C23EB-4E92-4515-9BF7-7B77C4C0B70E}");
-tocTab[tocTab.length] = new Array("0.1.6.12:5", "", "«type» ArcByCenterPoint", "EARoot/EA1/EA6/EA12/EA1889.htm", "5.png", "E535", "0", "", "Class0","{2E3BEBE4-F705-4327-81DE-59F5FAEC0CF7}");
-tocTab[tocTab.length] = new Array("0.1.6.12:6", "", "«type» CircleByCenterPoint", "EARoot/EA1/EA6/EA12/EA1890.htm", "5.png", "E533", "0", "", "Class0","{F73A518B-C19B-40af-8DB5-44606B2872BE}");
-tocTab[tocTab.length] = new Array("0.1.6.12:7", "", "«type» Rectangle", "EARoot/EA1/EA6/EA12/EA1891.htm", "5.png", "E534", "0", "", "Class0","{3B43C85D-FAF2-4607-A34B-9BBAD3930C4A}");

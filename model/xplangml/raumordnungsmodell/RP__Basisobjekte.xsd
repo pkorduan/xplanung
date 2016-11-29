@@ -1,595 +1,527 @@
-<?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-	<xs:annotation>
-		<xs:documentation>Dies Paket enthält die Basisobjekte des Raumordnungsplanschemas.</xs:documentation>
-	</xs:annotation>
-	<xs:include/>
-	<xs:include/>
-	<xs:include/>
-	<xs:include schemaLocation="XP_Enumerationen.xsd"/>
-	<xs:include schemaLocation="RP_Raster.xsd"/>
-	<xs:include schemaLocation="XP_Praesentationsobjekte.xsd"/>
-	<xs:include schemaLocation="XP_Basisobjekte.xsd"/>
-	<xs:element name="RP_TextAbschnitt" type="RP_TextAbschnitt"/>
-	<xs:complexType name="RP_TextAbschnitt">
-		<xs:annotation>
-			<xs:documentation>Texlich formulierter Inhalt eines Raumordnungsplans, der einen anderen Rechtscharakter als das zugrunde liegende Fachobjekt hat (Attribut rechtscharakter des Fachobjektes), oder dem Plan als Ganzes zugeordnet ist.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="XP_TextAbschnitt">
-				<xs:sequence>
-					<xs:element name="rechtscharakter" type="RP_Rechtscharakter" minOccurs="1" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Rechtscharakter des textlich formulierten Planinhalts.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:simpleType name="RP_Rechtsstand">
-		<xs:restriction base="xs:&lt;undefined&gt;">
-			<xs:enumeration value="Aufstellungsbeschluss">
-				<xs:annotation>
-					<xs:documentation>Aufstellungsbeschluss.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Entwurf">
-				<xs:annotation>
-					<xs:documentation>Entwurf.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="EntwurfGenehmigt">
-				<xs:annotation>
-					<xs:documentation>Entwurf genehmigt.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="EntwurfGeaendert">
-				<xs:annotation>
-					<xs:documentation>Entwurf geändert.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="EntwurfAufgegeben">
-				<xs:annotation>
-					<xs:documentation>Entwurf aufgegeben.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="EntwurfRuht">
-				<xs:annotation>
-					<xs:documentation>Entwurf ruht.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Plan">
-				<xs:annotation>
-					<xs:documentation>Plan.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Inkraftgetreten">
-				<xs:annotation>
-					<xs:documentation>Inkraftgetreten.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="AllgemeinePlanungsabsicht">
-				<xs:annotation>
-					<xs:documentation>Allgemeine Planungsabsicht.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="AusserKraft">
-				<xs:annotation>
-					<xs:documentation>Außer Kraft.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="PlanUngueltig">
-				<xs:annotation>
-					<xs:documentation>Plan ungültig.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:element name="RP_Plan" type="RP_Plan"/>
-	<xs:complexType name="RP_Plan">
-		<xs:annotation>
-			<xs:documentation>Die Klasse modelliert einen Raumordnungsplan.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="XP_Plan">
-				<xs:sequence>
-					<xs:element name="bundesland" type="XP_Bundeslaender" minOccurs="1" maxOccurs="unbounded">
-						<xs:annotation>
-							<xs:documentation>Zuständige Bundesländer</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="planArt" type="RP_Art" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Art des Raumordnungsplans.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="sonstPlanArt" type="RP_SonstPlanArt" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Spezifikation einer weiteren Planart (CodeList) bei planArt == 9999.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="planungsregion" type="Integer" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Kennziffer der Planungsregion.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="teilabschnitt" type="Integer" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Kennziffer des Teilabschnittes.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="rechtsstand" type="RP_Rechtsstand" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Rechtsstand des Plans.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="status" type="RP_Status" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Status des Plans, definiert über eine CodeList.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="aufstellungsbeschlussDatum" type="Date" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Datum des Aufstellungsbeschlusses.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="auslegungStartDatum" type="Date" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Start-Datum der öffentlichen Auslegung.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="auslegungEndDatum" type="Date" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>End-Datum der öffentlichen Auslegung.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="traegerbeteiligungsStartDatum" type="Date" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Start-Datum der Trägerbeteiligung</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="traegerbeteiligungsEndDatum" type="Date" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>End-Datum der Trägerbeteiligung.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="aenderungenBisDatum" type="Date" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Datum, bis zu dem Planänderungen berücksichtigt wurden.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="entwurfsbeschlussDatum" type="Date" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Datum des Entwurfsbeschlusses</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="planbeschlussDatum" type="Date" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Datum des Planbeschlusses.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="datumDesInkrafttretens" type="Date" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Datum des Inkrafttretens des Plans.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="refUmweltbericht" type="XP_ExterneReferenz" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Referenz auf den Umweltbericht</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="refSatzung" type="XP_ExterneReferenz" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Referenz auf die Satzung</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="verfahren" type="RP_Verfahren" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Verfahrensstatus des Plans.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="refKarte" type="XP_ExterneReferenz" minOccurs="0" maxOccurs="unbounded">
-						<xs:annotation>
-							<xs:documentation>Referenz auf eine Karte, die im Bezug zum Plan steht.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="amtlicherSchluessel" type="Integer" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Amtlicher Schlüssel eines Plans auf Basis des  AGS-Schlüssels (Amtlicher Gemeindeschlüssel).</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="bereich" type="RP_Bereich" minOccurs="0" maxOccurs="unbounded"/>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:simpleType name="RP_Bedeutsamkeit">
-		<xs:restriction base="xs:&lt;undefined&gt;">
-			<xs:enumeration value="Regional">
-				<xs:annotation>
-					<xs:documentation>Regional Bedeutsam.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Ueberregional">
-				<xs:annotation>
-					<xs:documentation>Überregional Bedeutsam.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Grossraeumig">
-				<xs:annotation>
-					<xs:documentation>Großräumig Bedeutsam.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Landesweit">
-				<xs:annotation>
-					<xs:documentation>Landesweit Bedeutsam.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Bundesweit">
-				<xs:annotation>
-					<xs:documentation>Bundesweit Bedeutsam.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Europaeisch">
-				<xs:annotation>
-					<xs:documentation>Europäisch Bedeutsam.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="International">
-				<xs:annotation>
-					<xs:documentation>International Bedeutsam.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Flaechenerschliessend">
-				<xs:annotation>
-					<xs:documentation>Flächenerschließend Bedeutsam.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Herausragend">
-				<xs:annotation>
-					<xs:documentation>Herausragend Bedeutsam.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:element name="RP_Objekt" type="RP_Objekt"/>
-	<xs:complexType name="RP_Objekt" abstract="true">
-		<xs:annotation>
-			<xs:documentation>Basisklasse für alle spezifischen Festlegungen eines Raumordnungsplans.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="XP_Objekt">
-				<xs:sequence>
-					<xs:element name="rechtscharakter" type="RP_Rechtscharakter" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Rechtscharakter des Planinhalts.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="konkretisierung" type="CharacterString" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Konkretisierung des Rechtscharakters.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="gebietsTyp" type="RP_GebietsTyp" minOccurs="0" maxOccurs="unbounded">
-						<xs:annotation>
-							<xs:documentation>Gebietstyp eines Objekts.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="kuestenmeer" type="xs:boolean" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Zeigt an, ob das Objekt im Küstenmeer liegt.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="bedeutsamkeit" type="RP_Bedeutsamkeit" minOccurs="0" maxOccurs="unbounded">
-						<xs:annotation>
-							<xs:documentation>Bedeutsamkeit eines Objekts.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:simpleType name="RP_Art">
-		<xs:restriction base="xs:&lt;undefined&gt;">
-			<xs:enumeration value="Regionalplan">
-				<xs:annotation>
-					<xs:documentation>Regionalplan.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="SachlicherTeilplanRegionalebene">
-				<xs:annotation>
-					<xs:documentation>Sachlicher Teilplan Regionalebene.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="SachlicherTeilplanLandesebene">
-				<xs:annotation>
-					<xs:documentation>Sachlicher Teilplan Landesebene.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Braunkohlenplan">
-				<xs:annotation>
-					<xs:documentation>Braunkohlenplan.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="LandesweiterRaumordnungsplan">
-				<xs:annotation>
-					<xs:documentation>Landesweiter Raumordnungsplan.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="StandortkonzeptBund">
-				<xs:annotation>
-					<xs:documentation>Plan des Bundes für den Gesamtraum und die ausschließliche Wirtschaftszone (AWZ).</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="AWZPlan">
-				<xs:annotation>
-					<xs:documentation>Raumordnungsplan für das Bundesgebiet mit übergreifenden Standortkonzepten für Seehäfen, Binnenhäfen sowie Flughäfen gem. §17 Abs. 2 ROG</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="RaeumlicherTeilplan">
-				<xs:annotation>
-					<xs:documentation>Räumlicher Teilplan.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Sonstiges">
-				<xs:annotation>
-					<xs:documentation>Sonstiges.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="RP_GebietsTyp">
-		<xs:annotation>
-			<xs:documentation>Typen von Gebieten</xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:&lt;undefined&gt;">
-			<xs:enumeration value="Vorranggebiet">
-				<xs:annotation>
-					<xs:documentation>Vorranggebiet.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Vorrangstandort">
-				<xs:annotation>
-					<xs:documentation>Vorrangstandort.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Vorbehaltsgebiet">
-				<xs:annotation>
-					<xs:documentation>Vorbehaltsgebiet.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Vorbehaltsstandort">
-				<xs:annotation>
-					<xs:documentation>Vorbehaltsstandort.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Eignungsgebiet">
-				<xs:annotation>
-					<xs:documentation>Eignungsgebiet.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="VorrangundEignungsgebiet">
-				<xs:annotation>
-					<xs:documentation>Vorrang und Eignungsgebiet.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Ausschlussgebiet">
-				<xs:annotation>
-					<xs:documentation>Ausschlussgebiet.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Vorsorgegebiet">
-				<xs:annotation>
-					<xs:documentation>Vorsorgegebiet.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Vorsorgestandort">
-				<xs:annotation>
-					<xs:documentation>Vorsorgestandort.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Vorzugsraum">
-				<xs:annotation>
-					<xs:documentation>Vorzugsraum.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Potenzialgebiet">
-				<xs:annotation>
-					<xs:documentation>Potenzialgebiet.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Schwerpunktraum">
-				<xs:annotation>
-					<xs:documentation>Schwerpunktraum.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="SonstigesGebiet">
-				<xs:annotation>
-					<xs:documentation>Sonstiges Gebiet.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="RP_Rechtscharakter">
-		<xs:restriction base="xs:&lt;undefined&gt;">
-			<xs:enumeration value="ZielDerRaumordnung">
-				<xs:annotation>
-					<xs:documentation>Ziel der Raumordnung.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="GrundsatzDerRaumordnung">
-				<xs:annotation>
-					<xs:documentation>Grundsatz der Raumordnung.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="NachrichtlicheUebernahme">
-				<xs:annotation>
-					<xs:documentation>Nachrichtliche Übernahme.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="NachrichtlicheUebernahmeZiel">
-				<xs:annotation>
-					<xs:documentation>Nachrichtliche Übernahme Ziel.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="NachrichtlicheUebernahmeGrundsatz">
-				<xs:annotation>
-					<xs:documentation>Nachrichtliche Übernahme Grundsatz.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="NurInformationsgehalt">
-				<xs:annotation>
-					<xs:documentation>Nur Informationsgehalt.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="TextlichesZiel">
-				<xs:annotation>
-					<xs:documentation>Textliches Ziel.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="ZielundGrundsatz">
-				<xs:annotation>
-					<xs:documentation>Ziel und Grundsatz.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Vorschlag">
-				<xs:annotation>
-					<xs:documentation>Vorschlag.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:element name="RP_Geometrieobjekt" type="RP_Geometrieobjekt"/>
-	<xs:complexType name="RP_Geometrieobjekt" abstract="true">
-		<xs:annotation>
-			<xs:documentation>Basisklasse für alle Objekte eines Raumordnungsplans mit variablem Raumbezug. Ein konkretes Objekt muss entweder punktförmigen, linienförmigen oder flächenhaften Raumbezug haben, gemischte Geometrie ist nicht zugelassen.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="RP_Objekt">
-				<xs:sequence>
-					<xs:element name="position" type="XP_VariableGeometrie" minOccurs="1" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Variabler Raumbezug.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="flaechenschluss" type="xs:boolean" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Zeigt an, ob für das Objekt Flächenschluss vorliegt.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="RP_SonstPlanArt" type="RP_SonstPlanArt"/>
-	<xs:complexType name="RP_SonstPlanArt">
-		<xs:annotation>
-			<xs:documentation>Aufzählung weiterer Arten eines Regionalplans.</xs:documentation>
-		</xs:annotation>
-		<xs:sequence/>
-	</xs:complexType>
-	<xs:element name="RP_Status" type="RP_Status"/>
-	<xs:complexType name="RP_Status">
-		<xs:sequence/>
-	</xs:complexType>
-	<xs:element name="RP_Bereich" type="RP_Bereich"/>
-	<xs:complexType name="RP_Bereich">
-		<xs:annotation>
-			<xs:documentation>Die Klasse modelliert einen Bereich eines Raumordnungsplans.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="XP_Bereich">
-				<xs:sequence>
-					<xs:element name="versionBROG" type="Date" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Datum der zugrunde liegenden Version des ROG.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="versionBROGText" type="CharacterString" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Titel der zugrunde liegenden Version des Bundesraumordnungsgesetzes.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="versionLPLG" type="Date" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Datum des zugrunde liegenden Landesplanungsgesetzes.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="versionLPLGText" type="CharacterString" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Titel des zugrunde liegenden Landesplanungsgesetzes.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="geltungsmassstab" type="xs:integer" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>(Rechtlicher) Geltungsmaßstab des Bereichs.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="rasterAenderung" type="RP_RasterplanAenderung" minOccurs="0" maxOccurs="unbounded"/>
-					<xs:element name="inhaltRPlan" type="RP_Objekt" minOccurs="0" maxOccurs="unbounded"/>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:simpleType name="RP_Verfahren">
-		<xs:restriction base="xs:&lt;undefined&gt;">
-			<xs:enumeration value="Aenderung">
-				<xs:annotation>
-					<xs:documentation>Änderung.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Teilfortschreibung">
-				<xs:annotation>
-					<xs:documentation>Teilfortschreibung.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Neuaufstellung">
-				<xs:annotation>
-					<xs:documentation>Neuaufstellung.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Gesamtfortschreibung">
-				<xs:annotation>
-					<xs:documentation>Gesamtfortschreibung.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Aktualisierung">
-				<xs:annotation>
-					<xs:documentation>Aktualisierung.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:element name="RP_Praesentationsobjekt" type="RP_Praesentationsobjekt"/>
-	<xs:complexType name="RP_Praesentationsobjekt">
-		<xs:annotation>
-			<xs:documentation>Objekt enthält Daten zur Legende und Darstellung im Ursprungsplan.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="XP_AbstraktesPraesentationsobjekt">
-				<xs:sequence>
-					<xs:element name="featureType" type="RP_FeatureTypeListe" minOccurs="1" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Bezug auf einen FeatureType des Raumordnungsschemas von XPlan durch eine CodeList, um ein Präsentationsobjekt mit einer spezifischen Instanz eines FeatureTypes (nicht der Klasse) in Verbindung zu setzen.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="legendenBezeichnung" type="xs:string" minOccurs="1" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Bezeichnung des XPlan-FeatureTypes in der Legende des dazugehörigen Plans.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="reflegendenBild" type="XP_ExterneReferenz" minOccurs="1" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Referenz auf das Bild eines Planzeichens in der Legende eines Plans.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="RP_FeatureTypeListe" type="RP_FeatureTypeListe"/>
-	<xs:complexType name="RP_FeatureTypeListe">
-		<xs:sequence/>
-	</xs:complexType>
-</xs:schema>
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:xplan="http://www.xplan-raumordnung.de/model/xplangml/raumordnungsmodell" elementFormDefault="qualified">
+  <annotation>
+    <documentation>Dies Paket enthält die Basisobjekte des Raumordnungsplanschemas.</documentation>
+  </annotation>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <!--XML Schema document created by ShapeChange - http://shapechange.net/-->
+  <simpleType name="RP_ArtType">
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>Regionalplan.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2000">
+        <annotation>
+          <documentation>Sachlicher Teilplan Regionalebene.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2001">
+        <annotation>
+          <documentation>Sachlicher Teilplan Landesebene.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="3000">
+        <annotation>
+          <documentation>Braunkohlenplan.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="4000">
+        <annotation>
+          <documentation>Landesweiter Raumordnungsplan.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="5000">
+        <annotation>
+          <documentation>Plan des Bundes für den Gesamtraum und die ausschließliche Wirtschaftszone (AWZ).</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="5001">
+        <annotation>
+          <documentation>Raumordnungsplan für das Bundesgebiet mit übergreifenden Standortkonzepten für Seehäfen, Binnenhäfen sowie Flughäfen gem. §17 Abs. 2 ROG</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="6000">
+        <annotation>
+          <documentation>Räumlicher Teilplan.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="9999">
+        <annotation>
+          <documentation>Sonstiges.</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <simpleType name="RP_BedeutsamkeitType">
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>Regional Bedeutsam.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2000">
+        <annotation>
+          <documentation>Überregional Bedeutsam.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="3000">
+        <annotation>
+          <documentation>Großräumig Bedeutsam.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="4000">
+        <annotation>
+          <documentation>Landesweit Bedeutsam.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="5000">
+        <annotation>
+          <documentation>Bundesweit Bedeutsam.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="6000">
+        <annotation>
+          <documentation>Europäisch Bedeutsam.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="7000">
+        <annotation>
+          <documentation>International Bedeutsam.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="8000">
+        <annotation>
+          <documentation>Flächenerschließend Bedeutsam.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="9000">
+        <annotation>
+          <documentation>Herausragend Bedeutsam.</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <element name="RP_Bereich" substitutionGroup="xplan:XP_Bereich" type="xplan:RP_BereichType">
+    <annotation>
+      <documentation>Die Klasse RP_Bereich modelliert einen Bereich eines Raumordnungsplans. Bereiche strukturieren Pläne räumlich und inhaltlich.</documentation>
+    </annotation>
+  </element>
+  <complexType name="RP_BereichType">
+    <complexContent>
+      <extension base="xplan:XP_BereichType">
+        <sequence>
+          <element minOccurs="0" name="versionBROG" type="date">
+            <annotation>
+              <documentation>Datum der zugrunde liegenden Version des ROG.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="versionBROGText" type="string">
+            <annotation>
+              <documentation>Titel der zugrunde liegenden Version des Bundesraumordnungsgesetzes.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="versionLPLG" type="date">
+            <annotation>
+              <documentation>Datum des zugrunde liegenden Landesplanungsgesetzes.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="versionLPLGText" type="string">
+            <annotation>
+              <documentation>Titel des zugrunde liegenden Landesplanungsgesetzes.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="geltungsmassstab" type="integer">
+            <annotation>
+              <documentation>(Rechtlicher) Geltungsmaßstab des Bereichs.</documentation>
+            </annotation>
+          </element>
+          <element name="gehoertZuPlan" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">xplan:RP_Plan</targetElement>
+                <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">xplan:bereich</reversePropertyName>
+              </appinfo>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="rasterAenderung"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <simpleType name="RP_GebietsTypType">
+    <annotation>
+      <documentation>Typen von Gebieten</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>Vorranggebiete sind für bestimmte raumbedeutsame Funktionen oder Nutzungen vorgesehen. In ihnen sind andere raumbedeutsame Nutzungen ausgeschlossen, soweit diese mit den vorrangigen Funktionen, Nutzungen oder Zielen der Raumordnung nicht vereinbar sind.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1001">
+        <annotation>
+          <documentation>Vorrangstandort.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1100">
+        <annotation>
+          <documentation>Vorbehaltsgebiete sind Gebiete, in denen bestimmten raumbedeutsamen Funktionen oder Nutzungen bei der Abwägung mit konkurrierenden raumbedeutsamen Nutzungen besonderes Gewicht begemessen werden soll. Vorbehaltsgebiete besitzen den Charakter von Grundsätzen der Raumordnung.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1101">
+        <annotation>
+          <documentation>Vorbehaltsstandort.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1200">
+        <annotation>
+          <documentation>Eignungsgebiete steuern raumbedeutsame Maßnahmen im bauplanungsrechtlichen Außenbereich. Diese Maßnahmen sind außerhalb dieser Gebiete regelmäßig ausgeschlossen, z.B. die Planung und Einrichtung von Windkraftanlagen. 
+Eignungsgebiete haben den Charakter von Zielen der Raumordnung.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1300">
+        <annotation>
+          <documentation>Vorrang und Eignungsgebiet.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1400">
+        <annotation>
+          <documentation>Ausschlussgebiet.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1500">
+        <annotation>
+          <documentation>Vorsorgegebiet.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1501">
+        <annotation>
+          <documentation>Vorsorgestandort.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1600">
+        <annotation>
+          <documentation>Vorzugsraum.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1700">
+        <annotation>
+          <documentation>Potenzialgebiet.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1800">
+        <annotation>
+          <documentation>Schwerpunktraum.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="9999">
+        <annotation>
+          <documentation>Sonstiges Gebiet.</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <element abstract="true" name="RP_Geometrieobjekt" substitutionGroup="xplan:RP_Objekt" type="xplan:RP_GeometrieobjektType">
+    <annotation>
+      <documentation>Basisklasse für alle Objekte eines Raumordnungsplans mit variablem Raumbezug. Ein konkretes Objekt muss entweder punktförmigen, linienförmigen oder flächenhaften Raumbezug haben, gemischte Geometrie ist nicht zugelassen. RP_Geometrieobjekt selbst ist abstrakt.</documentation>
+    </annotation>
+  </element>
+  <complexType abstract="true" name="RP_GeometrieobjektType">
+    <complexContent>
+      <extension base="xplan:RP_ObjektType">
+        <sequence>
+          <!--<element name="position" type="xplan:XP_VariableGeometriePropertyType">-->
+          <!-- Nach XPlan4.1, nicht nach EA-Schema-->
+          <element name="position" type="gml:GeometryPropertyType">
+            <annotation>
+              <documentation>Variabler Raumbezug.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="flaechenschluss" type="boolean">
+            <annotation>
+              <documentation>Zeigt an, ob für das Objekt Flächenschluss vorliegt.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element abstract="true" name="RP_Objekt" substitutionGroup="xplan:XP_Objekt" type="xplan:RP_ObjektType">
+    <annotation>
+      <documentation>RP_Objekt ist die Basisklasse für alle spezifischen Festlegungen eines Raumordnungsplans. Sie selbst ist abstrakt, d.h. sie wird selbst nicht als eigenes Objekt verwendet, sondern vererbt nur ihre Attribute an spezielle Klassen.</documentation>
+    </annotation>
+  </element>
+  <complexType abstract="true" name="RP_ObjektType">
+    <complexContent>
+      <extension base="xplan:XP_ObjektType">
+        <sequence>
+          <element name="rechtscharakter" type="xplan:RP_RechtscharakterType">
+            <annotation>
+              <documentation>Rechtscharakter des Planinhalts.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="konkretisierung" type="string">
+            <annotation>
+              <documentation>Konkretisierung des Rechtscharakters.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="gebietsTyp" type="xplan:RP_GebietsTypType">
+            <annotation>
+              <documentation>Gebietstyp eines Objekts.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="kuestenmeer" type="boolean">
+            <annotation>
+              <documentation>Zeigt an, ob das Objekt im Küstenmeer liegt.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="bedeutsamkeit" type="xplan:RP_BedeutsamkeitType">
+            <annotation>
+              <documentation>Bedeutsamkeit eines Objekts.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="istZweckbindung" type="boolean">
+            <annotation>
+              <documentation>Zeigt an, ob es sich bei diesem Objekt um eine Zweckbindung handelt.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="RP_Plan" substitutionGroup="xplan:XP_Plan" type="xplan:RP_PlanType">
+    <annotation>
+      <documentation>Die Klasse RP_Plan modelliert einen Raumordnungsplan.</documentation>
+    </annotation>
+  </element>
+  <complexType name="RP_PlanType">
+    <complexContent>
+      <extension base="xplan:XP_PlanType">
+        <sequence>
+          <element maxOccurs="unbounded" name="bundesland" type="xplan:XP_BundeslaenderType">
+            <annotation>
+              <documentation>Zuständige Bundesländer für den Plan.</documentation>
+            </annotation>
+          </element>
+          <element name="planArt" type="xplan:RP_ArtType">
+            <annotation>
+              <documentation>Art des Raumordnungsplans.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="sonstPlanArt" type="gml:CodeType">
+            <annotation>
+              <documentation>Spezifikation einer weiteren Planart (CodeList) bei planArt == 9999.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="planungsregion" type="integer">
+            <annotation>
+              <documentation>Kennziffer der Planungsregion.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="teilabschnitt" type="integer">
+            <annotation>
+              <documentation>Kennziffer des Teilabschnittes.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="rechtsstand" type="xplan:RP_RechtsstandType">
+            <annotation>
+              <documentation>Rechtsstand des Plans.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="status" type="gml:CodeType">
+            <annotation>
+              <documentation>Status des Plans, definiert über eine CodeList.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="aufstellungsbeschlussDatum" type="date">
+            <annotation>
+              <documentation>Datum des Aufstellungsbeschlusses.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="auslegungStartDatum" type="date">
+            <annotation>
+              <documentation>Start-Datum der öffentlichen Auslegung.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="auslegungEndDatum" type="date">
+            <annotation>
+              <documentation>End-Datum der öffentlichen Auslegung.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="traegerbeteiligungsStartDatum" type="date">
+            <annotation>
+              <documentation>Start-Datum der Trägerbeteiligung</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="traegerbeteiligungsEndDatum" type="date">
+            <annotation>
+              <documentation>End-Datum der Trägerbeteiligung.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="aenderungenBisDatum" type="date">
+            <annotation>
+              <documentation>Datum, bis zu dem Planänderungen berücksichtigt wurden.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="entwurfsbeschlussDatum" type="date">
+            <annotation>
+              <documentation>Datum des Entwurfsbeschlusses</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="planbeschlussDatum" type="date">
+            <annotation>
+              <documentation>Datum des Planbeschlusses.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="datumDesInkrafttretens" type="date">
+            <annotation>
+              <documentation>Datum des Inkrafttretens des Plans.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="refUmweltbericht" type="xplan:XP_ExterneReferenzPropertyType">
+            <annotation>
+              <documentation>Referenz auf den Umweltbericht</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="refSatzung" type="xplan:XP_ExterneReferenzPropertyType">
+            <annotation>
+              <documentation>Referenz auf die Satzung</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="verfahren">
+            <annotation>
+              <documentation>Verfahrensstatus des Plans.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="refKarte" type="xplan:XP_ExterneReferenzPropertyType">
+            <annotation>
+              <documentation>Referenz auf eine Karte, die im Bezug zum Plan steht.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="amtlicherSchluessel" type="integer">
+            <annotation>
+              <documentation>Amtlicher Schlüssel eines Plans auf Basis des  AGS-Schlüssels (Amtlicher Gemeindeschlüssel).</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="bereich" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">xplan:RP_Bereich</targetElement>
+                <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">xplan:gehoertZuPlan</reversePropertyName>
+              </appinfo>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <simpleType name="RP_RechtscharakterType">
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>Ziel der Raumordnung. Verbindliche räumliche und sachliche Festlegung zur Entwicklung, Ordnung und Sicherung des Raumes.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2000">
+        <annotation>
+          <documentation>Grundsätze der Raumordnung sind nach §3 Abs. Aussagen zur Entwicklung, Ordnung und Sicherung des Raums als Vorgaben für nachfolgende Abwägungs- oder Ermessensentscheidungen. Grundsätze der Raumordnung können durch Gesetz oder Festlegungen in einem Raumordnungsplan (§7 Abs. 1 und 2, ROG) aufgestellt werden.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="3000">
+        <annotation>
+          <documentation>Nachrichtliche Übernahme.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="4000">
+        <annotation>
+          <documentation>Nachrichtliche Übernahme Ziel.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="5000">
+        <annotation>
+          <documentation>Nachrichtliche Übernahme Grundsatz.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="6000">
+        <annotation>
+          <documentation>Nur Informationsgehalt.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="7000">
+        <annotation>
+          <documentation>Textliches Ziel.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="8000">
+        <annotation>
+          <documentation>Ziel und Grundsatz.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="9000">
+        <annotation>
+          <documentation>Vorschlag.</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <simpleType name="RP_RechtsstandType">
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>Aufstellungsbeschluss.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2000">
+        <annotation>
+          <documentation>Entwurf.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2001">
+        <annotation>
+          <documentation>Entwurf genehmigt.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2002">
+        <annotation>
+          <documentation>Entwurf geändert.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2003">
+        <annotation>
+          <documentation>Entwurf aufgegeben.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2004">
+        <annotation>
+          <documentation>Entwurf ruht.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="3000">
+        <annotation>
+          <documentation>Plan.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="4000">
+        <annotation>
+          <documentation>Inkraftgetreten.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="5000">
+        <annotation>
+          <documentation>Allgemeine Planungsabsicht.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="6000">
+        <annotation>
+          <documentation>Außer Kraft.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="7000">
+        <annotation>
+          <documentation>Plan ungültig.</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+</schema>

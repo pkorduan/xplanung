@@ -1,7 +1,0 @@
-tocTab[tocTab.length] = new Array("0.2.3:1", "", "XPlanGML_4_1", "EARoot/EA2/EA3/EA2065.htm", "175.png", "697", "0", "", "class diagram0","{9716D0CF-0FC8-49df-87F4-6BF71843ACAC}");
-tocTab[tocTab.length] = new Array("0.2.3.1", "1", "Basisklassen", "EARoot/EA2/EA3/EA1/EA2076.htm", "4.png", "", "", "{1ABD1FF6-AF2C-424f-A9B2-95577E19E57E}", "Package");
-tocTab[tocTab.length] = new Array("0.2.3.2", "1", "Bebauungsplan", "EARoot/EA2/EA3/EA2/EA2165.htm", "4.png", "", "", "{8C1EBF66-E99F-4ffa-97F8-4D2014D4AD4C}", "Package");
-tocTab[tocTab.length] = new Array("0.2.3.3", "1", "Flaechennutzungsplan", "EARoot/EA2/EA3/EA3/EA2346.htm", "4.png", "", "", "{31311690-A7C8-47b9-B8AA-1DD00F30E166}", "Package");
-tocTab[tocTab.length] = new Array("0.2.3.4", "1", "Raumordnungsplan", "EARoot/EA2/EA3/EA4/EA2459.htm", "4.png", "", "", "{5F63AA0E-2BE5-4c12-8109-2E9C947C43B7}", "Package");
-tocTab[tocTab.length] = new Array("0.2.3.5", "1", "Landschaftsplan_Kernmodell", "EARoot/EA2/EA3/EA5/EA2609.htm", "4.png", "", "", "{F393C1D3-F516-423c-98B6-E26A2871D475}", "Package");
-tocTab[tocTab.length] = new Array("0.2.3.6", "1", "SonstigePlanwerke", "EARoot/EA2/EA3/EA6/EA2705.htm", "4.png", "", "", "{4E8F341C-D36A-4615-A77B-39FE0F83CCB3}", "Package");

@@ -1,5 +1,0 @@
-tocTab[tocTab.length] = new Array("0.2.3.3.9:1", "", "FP_Ver- und Entsorgung", "EARoot/EA2/EA3/EA3/EA9/EA2436.htm", "175.png", "731", "0", "", "class diagram0","{E69AEB16-2993-4c9a-B52D-CFE437B0BEDA}");
-tocTab[tocTab.length] = new Array("0.2.3.3.9:2", "", "«CodeList» FP_DetailZweckbestVerEntsorgung", "EARoot/EA2/EA3/EA3/EA9/EA2439.htm", "5.png", "E862", "0", "", "Class0","{2B6BC7B6-9A62-4be4-AE91-FD9249C749C2}");
-tocTab[tocTab.length] = new Array("0.2.3.3.9:3", "", "«FeatureType» FP_VerEntsorgung", "EARoot/EA2/EA3/EA3/EA9/EA2440.htm", "5.png", "E864", "0", "", "Class0","{491BE417-BEF1-4924-A532-44255DA14940}");
-tocTab[tocTab.length] = new Array("0.2.3.3.9:4", "", "«FeatureType» FP_ZentralerVersorgungsbereich", "EARoot/EA2/EA3/EA3/EA9/EA2441.htm", "5.png", "E865", "0", "", "Class0","{740C5E2C-BB23-465f-BB09-104AC0790FF0}");
-tocTab[tocTab.length] = new Array("0.2.3.3.9:5", "", "«CodeList» FP_ZentralerVersorgungsbereichAuspraegung", "EARoot/EA2/EA3/EA3/EA9/EA2442.htm", "5.png", "E863", "0", "", "Class0","{882F7138-01D9-4714-8949-25DB73C09F2B}");

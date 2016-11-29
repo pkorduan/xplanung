@@ -1,221 +1,86 @@
-<?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-	<xs:annotation>
-		<xs:documentation>Darstellung von Grünflächen (§5, Abs. 2, Nr. 5 BauGB) und von Flächen für die Landwirtschaft und Wald (§5, Abs. 2, Nr. 9 BauGB).</xs:documentation>
-	</xs:annotation>
-	<xs:include schemaLocation="XP_Enumerationen.xsd"/>
-	<xs:include schemaLocation="P__Basisobjekte.xsd"/>
-	<xs:element name="FP_LandwirtschaftsFlaeche" type="FP_LandwirtschaftsFlaeche"/>
-	<xs:complexType name="FP_LandwirtschaftsFlaeche">
-		<xs:annotation>
-			<xs:documentation>Darstellung einer Landwirtschaftsfläche nach §5, Abs. 2, Nr. 9a.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="FP_Flaechenschlussobjekt">
-				<xs:sequence>
-					<xs:element name="zweckbestimmung" type="XP_ZweckbestimmungLandwirtschaft" minOccurs="0" maxOccurs="unbounded">
-						<xs:annotation>
-							<xs:documentation>Zweckbestimmungen der Fläche.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="weitereZweckbestimmung1" type="XP_ZweckbestimmungLandwirtschaft" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Weitere Zweckbestimmung der Fläche. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen zweckbestimmung mehrfach belegt werden.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="weitereZweckbestimmung2" type="XP_ZweckbestimmungLandwirtschaft" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Weitere Zweckbestimmung der Fläche. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen zweckbestimmung mehrfach belegt werden.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="weitereZweckbestimmung3" type="XP_ZweckbestimmungLandwirtschaft" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Weitere Zweckbestimmung der Fläche. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen zweckbestimmung mehrfach belegt werden.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="detaillierteZweckbestimmung" type="FP_DetailZweckbestLandwirtschaftsFlaeche" minOccurs="0" maxOccurs="unbounded">
-						<xs:annotation>
-							<xs:documentation>Über eine CodeList definierte zusätzliche Zweckbestimmungen.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="weitereDetailZweckbestimmung1" type="FP_DetailZweckbestLandwirtschaftsFlaeche" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Über eine CodeList definierte zusätzliche Zweckbestimmung. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen detaillierteZweckbestimmung mehrfach belegt werden.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="weitereDetailZweckbestimmung2" type="FP_DetailZweckbestLandwirtschaftsFlaeche" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Über eine CodeList definierte zusätzliche Zweckbestimmung. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen detaillierteZweckbestimmung mehrfach belegt werden.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="weitereDetailZweckbestimmung3" type="FP_DetailZweckbestLandwirtschaftsFlaeche" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Über eine CodeList definierte zusätzliche Zweckbestimmung. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen detaillierteZweckbestimmung mehrfach belegt werden.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="FP_DetailZweckbestGruen" type="FP_DetailZweckbestGruen"/>
-	<xs:complexType name="FP_DetailZweckbestGruen">
-		<xs:sequence/>
-	</xs:complexType>
-	<xs:element name="FP_WaldFlaeche" type="FP_WaldFlaeche"/>
-	<xs:complexType name="FP_WaldFlaeche">
-		<xs:annotation>
-			<xs:documentation>Darstellung von Waldflächen nach §5, Abs. 2, Nr. 9b,</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="FP_Flaechenschlussobjekt">
-				<xs:sequence>
-					<xs:element name="zweckbestimmung" type="XP_ZweckbestimmungWald" minOccurs="0" maxOccurs="unbounded">
-						<xs:annotation>
-							<xs:documentation>Zweckbestimmungen der Waldfläche.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="weitereZweckbestimmung1" type="XP_ZweckbestimmungWald" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Weitere Zweckbestimmung der Waldfläche. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen zweckbestimmung mehrfach belegt werden.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="weitereZweckbestimmung2" type="XP_ZweckbestimmungWald" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Weitere Zweckbestimmung der Waldfläche. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen zweckbestimmung mehrfach belegt werden.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="detaillierteZweckbestimmung" type="FP_DetailZweckbestWaldFlaeche" minOccurs="0" maxOccurs="unbounded">
-						<xs:annotation>
-							<xs:documentation>Über eine CodeList definierte zusätzliche Zweckbestimmungen.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="weitereDetailZweckbestimmung1" type="FP_DetailZweckbestWaldFlaeche" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Über eine CodeList definierte zusätzliche Zweckbestimmung. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen detaillierteZweckbestimmung mehrfach belegt werden.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="weitereDetailZweckbestimmung2" type="FP_DetailZweckbestWaldFlaeche" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Über eine CodeList definierte zusätzliche Zweckbestimmung. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen detaillierteZweckbestimmung mehrfach belegt werden.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="FP_Gruen" type="FP_Gruen"/>
-	<xs:complexType name="FP_Gruen">
-		<xs:annotation>
-			<xs:documentation>Darstellung einer Grünfläche nach §5, Abs. 2, Nr. 5 BauGB,</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="FP_Geometrieobjekt">
-				<xs:sequence>
-					<xs:element name="zweckbestimmung" type="XP_ZweckbestimmungGruen" minOccurs="0" maxOccurs="unbounded">
-						<xs:annotation>
-							<xs:documentation>Allgemeine Zweckbestimmungen der Grünfläche.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="weitereZweckbestimmung1" type="XP_ZweckbestimmungGruen" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Weitere allgemeine Zweckbestimmung der Grünfläche. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen zweckbestimmung mehrfach belegt werden.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="weitereZweckbestimmung2" type="XP_ZweckbestimmungGruen" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Weitere allgemeine Zweckbestimmung der Grünfläche. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen zweckbestimmung mehrfach belegt werden.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="weitereZweckbestimmung3" type="XP_ZweckbestimmungGruen" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Weitere allgemeine Zweckbestimmung der Grünfläche. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen zweckbestimmung mehrfach belegt werden.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="weitereZweckbestimmung4" type="XP_ZweckbestimmungGruen" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Weitere allgemeine Zweckbestimmung der Grünfläche. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen zweckbestimmung mehrfach belegt werden.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="weitereZweckbestimmung5" type="XP_ZweckbestimmungGruen" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Weitere allgemeine Zweckbestimmung der Grünfläche. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen zweckbestimmung mehrfach belegt werden.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="besondereZweckbestimmung" type="XP_BesondereZweckbestimmungGruen" minOccurs="0" maxOccurs="unbounded">
-						<xs:annotation>
-							<xs:documentation>Besondere Zweckbestimmungen der Grünfläche, die die zugehörige allgemeinen Zweckbestimmungen detaillieren oder ersetzen.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="weitereBesondZweckbestimmung1" type="XP_BesondereZweckbestimmungGruen" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Weitere  besondere Zweckbestimmung der Grünfläche, die die zugehörige allgemeine Zweckbestimmung detailliert oder ersetzt. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen besondereZweckbestimmung mehrfach belegt werden.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="weitereBesondZweckbestimmung2" type="XP_BesondereZweckbestimmungGruen" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Weitere  besondere Zweckbestimmung der Grünfläche, die die zugehörige allgemeine Zweckbestimmung detailliert oder ersetzt. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen besondereZweckbestimmung mehrfach belegt werden.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="weitereBesondZweckbestimmung3" type="XP_BesondereZweckbestimmungGruen" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Weitere  besondere Zweckbestimmung der Grünfläche, die die zugehörige allgemeine Zweckbestimmung detailliert oder ersetzt. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen besondereZweckbestimmung mehrfach belegt werden.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="weitereBesondZweckbestimmung4" type="XP_BesondereZweckbestimmungGruen" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Weitere  besondere Zweckbestimmung der Grünfläche, die die zugehörige allgemeine Zweckbestimmung detailliert oder ersetzt. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen besondereZweckbestimmung mehrfach belegt werden.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="weitereBesondZweckbestimmung5" type="XP_BesondereZweckbestimmungGruen" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Weitere  besondere Zweckbestimmung der Grünfläche, die die zugehörige allgemeine Zweckbestimmung detailliert oder ersetzt. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen besondereZweckbestimmung mehrfach belegt werden.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="detaillierteZweckbestimmung" type="FP_DetailZweckbestGruen" minOccurs="0" maxOccurs="unbounded">
-						<xs:annotation>
-							<xs:documentation>Über eine CodeList definierte zusätzliche Zweckbestimmungen.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="weitereDetailZweckbestimmung1" type="FP_DetailZweckbestGruen" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Über eine CodeList definierte zusätzliche Zweckbestimmung. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen detaillierteZweckbestimmung mehrfach belegt werden.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="weitereDetailZweckbestimmung2" type="FP_DetailZweckbestGruen" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Über eine CodeList definierte zusätzliche Zweckbestimmung. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen detaillierteZweckbestimmung mehrfach belegt werden.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="weitereDetailZweckbestimmung3" type="FP_DetailZweckbestGruen" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Über eine CodeList definierte zusätzliche Zweckbestimmung. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen detaillierteZweckbestimmung mehrfach belegt werden.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="weitereDetailZweckbestimmung4" type="FP_DetailZweckbestGruen" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Über eine CodeList definierte zusätzliche Zweckbestimmung. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen detaillierteZweckbestimmung mehrfach belegt werden.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="weitereDetailZweckbestimmung5" type="FP_DetailZweckbestGruen" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Über eine CodeList definierte zusätzliche Zweckbestimmung. Dies Attribut ist ab Version 4.1 als "veraltet" gekennzeichnet, es sollte stattdessen detaillierteZweckbestimmung mehrfach belegt werden.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="nutzungsform" type="XP_Nutzungsform" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Nutzungsform der Grünfläche.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="FP_DetailZweckbestWaldFlaeche" type="FP_DetailZweckbestWaldFlaeche"/>
-	<xs:complexType name="FP_DetailZweckbestWaldFlaeche">
-		<xs:sequence/>
-	</xs:complexType>
-	<xs:element name="FP_DetailZweckbestLandwirtschaftsFlaeche" type="FP_DetailZweckbestLandwirtschaftsFlaeche"/>
-	<xs:complexType name="FP_DetailZweckbestLandwirtschaftsFlaeche">
-		<xs:sequence/>
-	</xs:complexType>
-</xs:schema>
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" elementFormDefault="qualified" targetNamespace="" version="" xmlns:="">
+  <annotation>
+    <documentation>Darstellung von Grünflächen (§5, Abs. 2, Nr. 5 BauGB) und von Flächen für die Landwirtschaft und Wald (§5, Abs. 2, Nr. 9 BauGB).</documentation>
+  </annotation>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <!--XML Schema document created by ShapeChange - http://shapechange.net/-->
+  <element name="FP_Gruen" substitutionGroup=":FP_Geometrieobjekt" type=":FP_GruenType">
+    <annotation>
+      <documentation>Darstellung einer Grünfläche nach §5, Abs. 2, Nr. 5 BauGB,</documentation>
+    </annotation>
+  </element>
+  <complexType name="FP_GruenType">
+    <complexContent>
+      <extension base=":FP_GeometrieobjektType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="zweckbestimmung" type=":XP_ZweckbestimmungGruenType">
+            <annotation>
+              <documentation>Allgemeine Zweckbestimmungen der Grünfläche.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="besondereZweckbestimmung" type=":XP_BesondereZweckbestimmungGruenType">
+            <annotation>
+              <documentation>Besondere Zweckbestimmungen der Grünfläche, die die zugehörige allgemeinen Zweckbestimmungen detaillieren oder ersetzen.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="detaillierteZweckbestimmung" type="gml:CodeType">
+            <annotation>
+              <documentation>Über eine CodeList definierte zusätzliche Zweckbestimmungen.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="nutzungsform" type=":XP_NutzungsformType">
+            <annotation>
+              <documentation>Nutzungsform der Grünfläche.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="FP_LandwirtschaftsFlaeche" substitutionGroup=":FP_Flaechenschlussobjekt" type=":FP_LandwirtschaftsFlaecheType">
+    <annotation>
+      <documentation>Darstellung einer Landwirtschaftsfläche nach §5, Abs. 2, Nr. 9a.</documentation>
+    </annotation>
+  </element>
+  <complexType name="FP_LandwirtschaftsFlaecheType">
+    <complexContent>
+      <extension base=":FP_FlaechenschlussobjektType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="detaillierteZweckbestimmung" type="gml:CodeType">
+            <annotation>
+              <documentation>Über eine CodeList definierte zusätzliche Zweckbestimmungen.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="zweckbestimmung" type=":XP_ZweckbestimmungLandwirtschaftType">
+            <annotation>
+              <documentation>Zweckbestimmungen der Fläche.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="FP_WaldFlaeche" substitutionGroup=":FP_Flaechenschlussobjekt" type=":FP_WaldFlaecheType">
+    <annotation>
+      <documentation>Darstellung von Waldflächen nach §5, Abs. 2, Nr. 9b,</documentation>
+    </annotation>
+  </element>
+  <complexType name="FP_WaldFlaecheType">
+    <complexContent>
+      <extension base=":FP_FlaechenschlussobjektType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="zweckbestimmung" type=":XP_ZweckbestimmungWaldType">
+            <annotation>
+              <documentation>Zweckbestimmungen der Waldfläche.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="detaillierteZweckbestimmung" type="gml:CodeType">
+            <annotation>
+              <documentation>Über eine CodeList definierte zusätzliche Zweckbestimmungen.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+</schema>

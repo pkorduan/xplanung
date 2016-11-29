@@ -1,5 +1,0 @@
-tocTab[tocTab.length] = new Array("0.2.3.3.11:1", "", "FP_Wasser", "EARoot/EA2/EA3/EA3/EA11/EA2450.htm", "175.png", "733", "0", "", "class diagram0","{7FD8002D-91F2-427a-9EEA-4E2FA8C62DF4}");
-tocTab[tocTab.length] = new Array("0.2.3.3.11:2", "", "«CodeList» FP_DetailZweckbestGewaesser", "EARoot/EA2/EA3/EA3/EA11/EA2453.htm", "5.png", "E872", "0", "", "Class0","{9508C541-DCAB-4ee6-8750-948135531A71}");
-tocTab[tocTab.length] = new Array("0.2.3.3.11:3", "", "«CodeList» FP_DetailZweckbestWasserwirtschaft", "EARoot/EA2/EA3/EA3/EA11/EA2454.htm", "5.png", "E873", "0", "", "Class0","{6BAF43D6-5227-411f-9C07-6F0B5A3F2BD7}");
-tocTab[tocTab.length] = new Array("0.2.3.3.11:4", "", "«FeatureType» FP_Gewaesser", "EARoot/EA2/EA3/EA3/EA11/EA2455.htm", "5.png", "E870", "0", "", "Class0","{95FBCFCD-F6C3-4f25-8855-46EF226575EF}");
-tocTab[tocTab.length] = new Array("0.2.3.3.11:5", "", "«FeatureType» FP_Wasserwirtschaft", "EARoot/EA2/EA3/EA3/EA11/EA2456.htm", "5.png", "E871", "0", "", "Class0","{DF9384E8-489C-4bdc-92EB-870863E32397}");

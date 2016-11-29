@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:xplan="http://www.xplan-raumordnung.de/model/xplangml/raumordnungsmodell" elementFormDefault="qualified" targetNamespace="http://www.xplanung.de/xplangml/5/0" version="5.0">
+  <annotation>
+    <documentation>Das XPLanGML Basisschema enthält abstrakte Oberklassen, von denen alle Klassen der Fachschemata abgeleitet sind, sowie allgemeine Feature-Types, DataTypes und Enumerationen, die in verschiedenen Fach-Schemata verwendet werden.</documentation>
+  </annotation>
+  <import namespace=""/>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <!--XML Schema document created by ShapeChange - http://shapechange.net/-->
+</schema>

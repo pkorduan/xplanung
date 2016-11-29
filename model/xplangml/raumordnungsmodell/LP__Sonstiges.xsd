@@ -1,148 +1,103 @@
-<?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-	<xs:annotation>
-		<xs:documentation>Sonstige Klassen des Kernmodells Landschaftsplanung.</xs:documentation>
-	</xs:annotation>
-	<xs:include/>
-	<xs:include/>
-	<xs:include/>
-	<xs:include schemaLocation="LP__Basisobjekte.xsd"/>
-	<xs:element name="LP_Abgrenzung" type="LP_Abgrenzung"/>
-	<xs:complexType name="LP_Abgrenzung">
-		<xs:annotation>
-			<xs:documentation>Abgrenzungen unterschiedlicher Ziel- und Zweckbestimmungen und Nutzungsarten, Abgrenzungen unterschiedlicher Biotoptypen.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="LP_Linienobjekt">
-				<xs:sequence/>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="LP_Landschaftsbild" type="LP_Landschaftsbild"/>
-	<xs:complexType name="LP_Landschaftsbild">
-		<xs:annotation>
-			<xs:documentation>Festlegung, Darstellung bzw. Festsetzung zum Landschaftsbild in einem  landschaftsplanerischen Planwerk.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="LP_Geometrieobjekt">
-				<xs:sequence>
-					<xs:element name="massnahme" type="LP_MassnahmeLandschaftsbild" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Spezifizierung einer Massnahme zum Landschaftsbild.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="LP_TextlicheFestsetzungsFlaeche" type="LP_TextlicheFestsetzungsFlaeche"/>
-	<xs:complexType name="LP_TextlicheFestsetzungsFlaeche">
-		<xs:annotation>
-			<xs:documentation>Bereich in dem bestimmte textliche Festsetzungen gültig sind, die über die Relation "refTextInhalt" (Basisklasse XP_Objekt) spezifiziert werden.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="LP_Flaechenobjekt">
-				<xs:sequence/>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="LP_MassnahmeLandschaftsbild" type="LP_MassnahmeLandschaftsbild"/>
-	<xs:complexType name="LP_MassnahmeLandschaftsbild">
-		<xs:annotation>
-			<xs:documentation>Codeliste zur Differenzierung von Festlegungen, Darstellungen bzw. Festsetzungen zum Landschaftsbild.</xs:documentation>
-		</xs:annotation>
-		<xs:sequence/>
-	</xs:complexType>
-	<xs:element name="LP_NutzungsAusschluss" type="LP_NutzungsAusschluss"/>
-	<xs:complexType name="LP_NutzungsAusschluss">
-		<xs:annotation>
-			<xs:documentation>Flächen und Objekte die bestimmte geplante oder absehbare Nutzungsänderungen nicht erfahren sollen.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="LP_Geometrieobjekt">
-				<xs:sequence>
-					<xs:element name="auszuschliessendeNutzungen" type="CharacterString" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Auszuschließende Nutzungen (Textform).</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="auszuschliessendeNutzungenKuerzel" type="CharacterString" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Auszuschließende Nutzungen (Kürzel).</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="begruendung" type="CharacterString" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Begründung des Ausschlusses (Textform).</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="begruendungKuerzel" type="CharacterString" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Begründung des Ausschlusses (Kürzel)</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="LP_SonstigeAbgrenzuung" type="LP_SonstigeAbgrenzuung"/>
-	<xs:complexType name="LP_SonstigeAbgrenzuung">
-		<xs:sequence/>
-	</xs:complexType>
-	<xs:element name="LP_ZuBegruenendeGrundstueckflaeche" type="LP_ZuBegruenendeGrundstueckflaeche"/>
-	<xs:complexType name="LP_ZuBegruenendeGrundstueckflaeche">
-		<xs:annotation>
-			<xs:documentation>Zu begrünende Grundstücksfläche</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="LP_Flaechenobjekt">
-				<xs:sequence>
-					<xs:element name="gruenflaechenFaktor" type="Decimal" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Angabe des Verhältnisses zwischen einem Flächenanteil Grün und einer bebauten Fläche (auch als Biotopflächenfaktor bekannt)</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="gaertnerischanzulegen" type="Boolean" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Angabe in wie weit ein Grünfläche gärtnerish anzulegen ist.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="LP_PlanerischeVertiefung" type="LP_PlanerischeVertiefung"/>
-	<xs:complexType name="LP_PlanerischeVertiefung">
-		<xs:annotation>
-			<xs:documentation>Bereiche, die einer planerischen Vertiefung bedürfen.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="LP_Geometrieobjekt">
-				<xs:sequence>
-					<xs:element name="vertiefung" type="CharacterString" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Textliche Formulierung der Vertiefung</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="LP_GenerischesObjekt" type="LP_GenerischesObjekt"/>
-	<xs:complexType name="LP_GenerischesObjekt">
-		<xs:annotation>
-			<xs:documentation>Klasse zur Modellierung aller Inhalte des Landschaftsplans, die durch keine andere Klasse des LPlan-Fachschemas dargestellt werden können.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="LP_Geometrieobjekt">
-				<xs:sequence>
-					<xs:element name="zweckbestimmung" type="CharacterString" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Zweckbestimmung</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-</xs:schema>
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" elementFormDefault="qualified" targetNamespace="" version="" xmlns:="">
+  <annotation>
+    <documentation>Sonstige Klassen des Kernmodells Landschaftsplanung.</documentation>
+  </annotation>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <!--XML Schema document created by ShapeChange - http://shapechange.net/-->
+  <element name="LP_Abgrenzung" substitutionGroup=":LP_Linienobjekt" type=":LP_AbgrenzungType">
+    <annotation>
+      <documentation>Abgrenzungen unterschiedlicher Ziel- und Zweckbestimmungen und Nutzungsarten, Abgrenzungen unterschiedlicher Biotoptypen.</documentation>
+    </annotation>
+  </element>
+  <complexType name="LP_AbgrenzungType">
+    <complexContent>
+      <extension base=":LP_LinienobjektType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="LP_GenerischesObjekt" substitutionGroup=":LP_Geometrieobjekt" type=":LP_GenerischesObjektType">
+    <annotation>
+      <documentation>Klasse zur Modellierung aller Inhalte des Landschaftsplans, die durch keine andere Klasse des LPlan-Fachschemas dargestellt werden können.</documentation>
+    </annotation>
+  </element>
+  <complexType name="LP_GenerischesObjektType">
+    <complexContent>
+      <extension base=":LP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="zweckbestimmung" type="gml:CodeType">
+            <annotation>
+              <documentation>Zweckbestimmung</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="LP_NutzungsAusschluss" substitutionGroup=":LP_Geometrieobjekt" type=":LP_NutzungsAusschlussType">
+    <annotation>
+      <documentation>Flächen und Objekte die bestimmte geplante oder absehbare Nutzungsänderungen nicht erfahren sollen.</documentation>
+    </annotation>
+  </element>
+  <complexType name="LP_NutzungsAusschlussType">
+    <complexContent>
+      <extension base=":LP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="auszuschliessendeNutzungen" type="string">
+            <annotation>
+              <documentation>Auszuschließende Nutzungen (Textform).</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="auszuschliessendeNutzungenKuerzel" type="string">
+            <annotation>
+              <documentation>Auszuschließende Nutzungen (Kürzel).</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="begruendung" type="string">
+            <annotation>
+              <documentation>Begründung des Ausschlusses (Textform).</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="begruendungKuerzel" type="string">
+            <annotation>
+              <documentation>Begründung des Ausschlusses (Kürzel)</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="LP_PlanerischeVertiefung" substitutionGroup=":LP_Geometrieobjekt" type=":LP_PlanerischeVertiefungType">
+    <annotation>
+      <documentation>Bereiche, die einer planerischen Vertiefung bedürfen.</documentation>
+    </annotation>
+  </element>
+  <complexType name="LP_PlanerischeVertiefungType">
+    <complexContent>
+      <extension base=":LP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="vertiefung" type="string">
+            <annotation>
+              <documentation>Textliche Formulierung der Vertiefung</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="LP_SonstigeAbgrenzuung" substitutionGroup="gml:AbstractFeature" type=":LP_SonstigeAbgrenzuungType"/>
+  <complexType name="LP_SonstigeAbgrenzuungType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="LP_SonstigeAbgrenzuungPropertyType">
+    <sequence minOccurs="0">
+      <element ref=":LP_SonstigeAbgrenzuung"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+</schema>

@@ -1,6 +1,0 @@
-tocTab[tocTab.length] = new Array("0.1.1", "", "ISO 19142:2010WFS", "EARoot/EA1/EA1/EA8.htm", "4.png", "", "", "{0071DAFF-06FA-4843-BD64-871EA2835704}", "Package");
-tocTab[tocTab.length] = new Array("0.1.2", "1", "ISO 19103 Conceptual Schema Language", "EARoot/EA1/EA2/EA9.htm", "4.png", "", "", "{84C9535C-0522-419f-BCC2-8D54D048D420}", "Package");
-tocTab[tocTab.length] = new Array("0.1.3", "1", "ISO 19107 Spatial Schema", "EARoot/EA1/EA3/EA394.htm", "4.png", "", "", "{1732820A-A441-4704-84AC-990CB18C8550}", "Package");
-tocTab[tocTab.length] = new Array("0.1.4", "1", "ISO 19108 Temporal schema", "EARoot/EA1/EA4/EA902.htm", "4.png", "", "", "{E633A7BD-C91E-4f6c-AF75-26016754FBD2}", "Package");
-tocTab[tocTab.length] = new Array("0.1.5", "1", "ISO 19115-All Metadata", "EARoot/EA1/EA5/EA1053.htm", "4.png", "", "", "{C862AF90-338A-48da-9CCE-299ECCBA5788}", "Package");
-tocTab[tocTab.length] = new Array("0.1.6", "1", "ISO 19136 GML", "EARoot/EA1/EA6/EA1682.htm", "4.png", "", "", "{058DF8F3-CF92-474f-9175-E4A67EEF62A9}", "Package");
