@@ -1900,7 +1900,7 @@ function show_uml() {
       <center><h2>Modell-Downloads</h2></center><hr>
       <h3>UML-Modell als PDF zum <a href="/model/XPlan Raumordnungsplan Arbeitsmodell (Version 16-10-13).pdf">herunterladen</a> (Version 2016-10-13)</h3>
       Diese Datei enthält alle Pakete des XP- und RP-Schemas. Die UML-Repräsentation in PDF-Form ist eine graphische Darstellung der relevanten Modellelemente und erlaubt die Suche von Begriffen innerhalb des Modells.
-      <h3>Liste aller Modelländerungen zum <a href="/model/2016-10-13_Aenderungsliste_XPlan_Raumordnungsmodell.doc">herunterladen</a> (Version 2016-10-13)</h3>
+      <h3>Liste aller Modelländerungen zum <a href="/model/2016-10-13_Aenderungsliste_XPlan_Raumordnungsmodell.odt">herunterladen</a> (Version 2016-10-13)</h3>
       Änderungen am RP-Schema von XPlanGML4.1 seit Projektbeginn sind hier textlich dokumentiert und werden mit jeder Modelländerung aktualisiert.
       <h3>Konformitätsbedingungen für das Raumordnungsschema zum <a href="/model/2016_10_13_Konformitaetsbedingungen.doc">herunterladen</a> (Version 2016-10-13)</h3>
       Konformitätsbedingungen beschreiben Regeln und Relationen des Modells, welche nicht direkt in UML festgehalten werden können. Diese sind jedoch für eine vollständige und valide Konvertierung wichtig. Da XPlanGML4.1 keine Konformitätsbedingungen für das RP-Schema besitzt, wurden für das Projekt neue Konformitätsbedingungen für die Raumordnung zur Integration in die bestehenden Konformitätsbedingungen von XPlan aufgestellt.
