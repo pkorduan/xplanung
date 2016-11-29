@@ -1,5 +1,0 @@
-tocTab[tocTab.length] = new Array("0.2.3.3.10:1", "", "FP_Verkehr", "EARoot/EA2/EA3/EA3/EA10/EA2443.htm", "175.png", "732", "0", "", "class diagram0","{3DF498CC-F655-43e0-8557-C99F3578A644}");
-tocTab[tocTab.length] = new Array("0.2.3.3.10:2", "", "«enumeration» FP_BesondereZweckbestimmungStrassenverkehr", "EARoot/EA2/EA3/EA3/EA10/EA2446.htm", "5.png", "E868", "0", "", "Class0","{BED5A50D-D5DA-42bb-A3A8-70BF2645906D}");
-tocTab[tocTab.length] = new Array("0.2.3.3.10:3", "", "«CodeList» FP_DetailZweckbestStrassenverkehr", "EARoot/EA2/EA3/EA3/EA10/EA2447.htm", "5.png", "E867", "0", "", "Class0","{13E08276-A487-41e1-BA44-948F8126F01E}");
-tocTab[tocTab.length] = new Array("0.2.3.3.10:4", "", "«FeatureType» FP_Strassenverkehr", "EARoot/EA2/EA3/EA3/EA10/EA2448.htm", "5.png", "E866", "0", "", "Class0","{37635D48-5E74-4f76-A213-985F931BDC0C}");
-tocTab[tocTab.length] = new Array("0.2.3.3.10:5", "", "«enumeration» FP_ZweckbestimmungStrassenverkehr", "EARoot/EA2/EA3/EA3/EA10/EA2449.htm", "5.png", "E869", "0", "", "Class0","{C027B3CC-2D85-493f-8C80-7030A2BA0412}");

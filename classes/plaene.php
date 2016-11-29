@@ -11,7 +11,6 @@ class Plan {
   */
   function get($params) {
     # Erzeugt ein json file mit planzeichen
-    $conn = pg_connect('dbname=moro user=pgadmin password=PaGeMin2');
     $planart = $params['planart'];
     $planid = $params['planid'];
     $lnd = $params['lnd'];

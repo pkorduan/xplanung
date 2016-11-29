@@ -1,154 +1,141 @@
-<?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-	<xs:annotation>
-		<xs:documentation>Klassen zur Modellierung sonstiger Gebietsausweisungen in Bauleitplänen.</xs:documentation>
-	</xs:annotation>
-	<xs:include/>
-	<xs:include/>
-	<xs:include schemaLocation="XP_Basisobjekte.xsd"/>
-	<xs:include schemaLocation="SO_Basisobjekte.xsd"/>
-	<xs:simpleType name="SO_GebietsArt">
-		<xs:annotation>
-			<xs:documentation>Aufzählung von Gebietsausweisungen nach BauGB</xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:&lt;undefined&gt;">
-			<xs:enumeration value="Umlegungsgebiet">
-				<xs:annotation>
-					<xs:documentation>Umlegungsgebiet (§ 45 ff BauGB).</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="StaedtebaulicheSanierung">
-				<xs:annotation>
-					<xs:documentation>Gebiet nach § 136 ff BauGB</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="StaedtebaulicheEntwicklungsmassnahme">
-				<xs:annotation>
-					<xs:documentation>Gebiet nach § 165 ff BauGB</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Stadtumbaugebiet">
-				<xs:annotation>
-					<xs:documentation>Gebiet nach § 171 a-d BauGB</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="SozialeStadt">
-				<xs:annotation>
-					<xs:documentation>Gebiet nach § 171 e BauGB</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="BusinessImprovementDestrict">
-				<xs:annotation>
-					<xs:documentation>Gebiet nach §171 f BauGB</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="HousingImprovementDestrict">
-				<xs:annotation>
-					<xs:documentation>Gebiet nach §171 f BauGB</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Erhaltungsverordnung">
-				<xs:annotation>
-					<xs:documentation>Allgemeine Erhaltungsverordnung</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="ErhaltungsverordnungStaedebaulicheGestalt">
-				<xs:annotation>
-					<xs:documentation>Gebiet einer Satzung nach § 172 Abs. 1.1 BauGB</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="ErhaltungsverordnungWohnbevoelkerung">
-				<xs:annotation>
-					<xs:documentation>Gebiet einer Satzung nach § 172 Abs. 1.2 BauGB</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="ErhaltungsverordnungUmstrukturierung">
-				<xs:annotation>
-					<xs:documentation>Gebiet einer Satzung nach § 172 Abs. 1.2 BauGB</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Sonstiges">
-				<xs:annotation>
-					<xs:documentation>Sonstiger Gebietstyp</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="SO_RechtsstandGebietTyp">
-		<xs:annotation>
-			<xs:documentation>Aufzählung der möglichen Rechtsstände des Gebiets.</xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:&lt;undefined&gt;">
-			<xs:enumeration value="VorbereitendeUntersuchung"/>
-			<xs:enumeration value="Aufstellung"/>
-			<xs:enumeration value="Festlegung"/>
-			<xs:enumeration value="Abgeschlossen"/>
-			<xs:enumeration value="Verstetigung"/>
-			<xs:enumeration value="Sonstiges"/>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:element name="SO_Gebiet" type="SO_Gebiet"/>
-	<xs:complexType name="SO_Gebiet">
-		<xs:annotation>
-			<xs:documentation>Umgrenzung eines sonstigen Gebietes nach BauGB</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="SO_Flaechenobjekt">
-				<xs:sequence>
-					<xs:element name="gemeinde" type="XP_Gemeinde" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Zuständige Gemeinde</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="gebietsArt" type="SO_GebietsArt" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Klassifikation des Gebietes nach BauGB.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="sonstGebietsArt" type="SO_SonstGebietsArt" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Klassifikation einer nicht auf dem BauGB, z.B. länderspezifischen Gebietsausweisung.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="rechtsstandGebiet" type="SO_RechtsstandGebietTyp" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Rechtsstand der Gebietsausweisung</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="sonstRechtsstandGebiet" type="SO_SonstRechtsstandGebietTyp" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Sonstiger Rechtsstand der Gebietsausweisung, der nicht durch die Liset SO_AusweisungRechtscharakter wiedergegeben werden kann.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="aufstellungsbeschhlussDatum" type="Date" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Datum des Aufstellungsbeschlusses</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="durchfuehrungStartDatum" type="Date" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Start-Datum der Durchführung</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="durchfuehrungEndDatum" type="Date" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>End-Datum der Durchführung</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="traegerMassnahme" type="CharacterString" minOccurs="0" maxOccurs="1"/>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="SO_SonstRechtsstandGebietTyp" type="SO_SonstRechtsstandGebietTyp"/>
-	<xs:complexType name="SO_SonstRechtsstandGebietTyp">
-		<xs:sequence/>
-	</xs:complexType>
-	<xs:element name="SO_SonstGebietsArt" type="SO_SonstGebietsArt"/>
-	<xs:complexType name="SO_SonstGebietsArt">
-		<xs:annotation>
-			<xs:documentation>Aufzählung weiterer, z.B. länderspezifischer  Gebietstypen.</xs:documentation>
-		</xs:annotation>
-		<xs:sequence/>
-	</xs:complexType>
-</xs:schema>
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" elementFormDefault="qualified" targetNamespace="" version="" xmlns:="">
+  <annotation>
+    <documentation>Klassen zur Modellierung sonstiger Gebietsausweisungen in Bauleitplänen.</documentation>
+  </annotation>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <!--XML Schema document created by ShapeChange - http://shapechange.net/-->
+  <element name="SO_Gebiet" substitutionGroup=":SO_Flaechenobjekt" type=":SO_GebietType">
+    <annotation>
+      <documentation>Umgrenzung eines sonstigen Gebietes nach BauGB</documentation>
+    </annotation>
+  </element>
+  <complexType name="SO_GebietType">
+    <complexContent>
+      <extension base=":SO_FlaechenobjektType">
+        <sequence>
+          <element minOccurs="0" name="gemeinde" type=":XP_GemeindePropertyType">
+            <annotation>
+              <documentation>Zuständige Gemeinde</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="gebietsArt" type=":SO_GebietsArtType">
+            <annotation>
+              <documentation>Klassifikation des Gebietes nach BauGB.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="sonstGebietsArt" type="gml:CodeType">
+            <annotation>
+              <documentation>Klassifikation einer nicht auf dem BauGB, z.B. länderspezifischen Gebietsausweisung.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="rechtsstandGebiet" type=":SO_RechtsstandGebietTypType">
+            <annotation>
+              <documentation>Rechtsstand der Gebietsausweisung</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="sonstRechtsstandGebiet" type="gml:CodeType">
+            <annotation>
+              <documentation>Sonstiger Rechtsstand der Gebietsausweisung, der nicht durch die Liste SO_AusweisungRechtscharakter wiedergegeben werden kann.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="aufstellungsbeschhlussDatum" type="date">
+            <annotation>
+              <documentation>Datum des Aufstellungsbeschlusses</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="durchfuehrungStartDatum" type="date">
+            <annotation>
+              <documentation>Start-Datum der Durchführung</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="durchfuehrungEndDatum" type="date">
+            <annotation>
+              <documentation>End-Datum der Durchführung</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="traegerMassnahme" type="string"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <simpleType name="SO_GebietsArtType">
+    <annotation>
+      <documentation>Aufzählung von Gebietsausweisungen nach BauGB</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>Umlegungsgebiet (§ 45 ff BauGB).</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1100">
+        <annotation>
+          <documentation>Gebiet nach § 136 ff BauGB</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1200">
+        <annotation>
+          <documentation>Gebiet nach § 165 ff BauGB</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1300">
+        <annotation>
+          <documentation>Gebiet nach § 171 a-d BauGB</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1400">
+        <annotation>
+          <documentation>Gebiet nach § 171 e BauGB</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1500">
+        <annotation>
+          <documentation>Gebiet nach §171 f BauGB</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1600">
+        <annotation>
+          <documentation>Gebiet nach §171 f BauGB</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1999">
+        <annotation>
+          <documentation>Allgemeine Erhaltungsverordnung</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2000">
+        <annotation>
+          <documentation>Gebiet einer Satzung nach § 172 Abs. 1.1 BauGB</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2100">
+        <annotation>
+          <documentation>Gebiet einer Satzung nach § 172 Abs. 1.2 BauGB</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2200">
+        <annotation>
+          <documentation>Gebiet einer Satzung nach § 172 Abs. 1.2 BauGB</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="9999">
+        <annotation>
+          <documentation>Sonstiger Gebietstyp</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <simpleType name="SO_RechtsstandGebietTypType">
+    <annotation>
+      <documentation>Aufzählung der möglichen Rechtsstände des Gebiets.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="3000"/>
+      <enumeration value="4000"/>
+      <enumeration value="5000"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+</schema>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xplan="http://www.xplanung.de/xplangml/5/0" elementFormDefault="qualified" targetNamespace="" version="" xmlns:="">
+  <import namespace="http://www.xplanung.de/xplangml/5/0"/>
+  <!--XML Schema document created by ShapeChange - http://shapechange.net/-->
+</schema>

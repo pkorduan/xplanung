@@ -1,1017 +1,1007 @@
-<?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-	<xs:annotation>
-		<xs:documentation>Dies Paket enthält verschiedene Enumerationen, die Fachschema-übergreifend verwwendet werden</xs:documentation>
-	</xs:annotation>
-	<xs:simpleType name="XP_ZweckbestimmungWasserwirtschaft">
-		<xs:annotation>
-			<xs:documentation>Aufzählung wasserwirtschaftlicher Zweckbestimmungen.</xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:&lt;undefined&gt;">
-			<xs:enumeration value="HochwasserRueckhaltebecken">
-				<xs:annotation>
-					<xs:documentation>Hochwasser-Rückhaltebecken</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Ueberschwemmgebiet">
-				<xs:annotation>
-					<xs:documentation>Überschwemmungs-gefährdetes Gebiet</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Versickerungsflaeche"/>
-			<xs:enumeration value="Entwaesserungsgraben"/>
-			<xs:enumeration value="Sonstiges">
-				<xs:annotation>
-					<xs:documentation>Sonstige Zweckbestimmung</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="XP_GrenzeTypen">
-		<xs:annotation>
-			<xs:documentation>Aufzählung der verschiedenen Typen von Grenzen.</xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:&lt;undefined&gt;">
-			<xs:enumeration value="Bundesgrenze"/>
-			<xs:enumeration value="Landesgrenze"/>
-			<xs:enumeration value="Regierungsbezirksgrenze"/>
-			<xs:enumeration value="Bezirksgrenze"/>
-			<xs:enumeration value="Kreisgrenze"/>
-			<xs:enumeration value="Gemeindegrenze"/>
-			<xs:enumeration value="Verbandsgemeindegrenze"/>
-			<xs:enumeration value="Samtgemeindegrenze"/>
-			<xs:enumeration value="Mitgliedsgemeindegrenze"/>
-			<xs:enumeration value="Amtsgrenze"/>
-			<xs:enumeration value="Stadtteilgrenze"/>
-			<xs:enumeration value="VorgeschlageneGrundstuecksgrenze">
-				<xs:annotation>
-					<xs:documentation>Hinweis auf eine vorgeschlagene Grundstücksgrenze im BPlan.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="GrenzeBestehenderBebauungsplan">
-				<xs:annotation>
-					<xs:documentation>Hinweis auf den Geltungsbereich eines bestehenden BPlan.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="SonstGrenze"/>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="XP_Nutzungsform">
-		<xs:annotation>
-			<xs:documentation>Aufzählung möglicher Nutzungsformen einer Fläche</xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:&lt;undefined&gt;">
-			<xs:enumeration value="Privat">
-				<xs:annotation>
-					<xs:documentation>Private Nutzung</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Oeffentlich">
-				<xs:annotation>
-					<xs:documentation>Öffentliche Nutzung</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="XP_ZweckbestimmungKennzeichnung">
-		<xs:annotation>
-			<xs:documentation>Aufzählung der Kennzeichnungen nach §5, Abs. 3 BauGB</xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:&lt;undefined&gt;">
-			<xs:enumeration value="Naturgewalten">
-				<xs:annotation>
-					<xs:documentation>Flächen, bei deren Bebauung besondere bauliche Sicherungsmaßnahmen gegen Naturgewalten erforderlich sind (§5, Abs. 3, Nr. 1 BauGB).</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Abbauflaeche">
-				<xs:annotation>
-					<xs:documentation>Flächen, unter denen der Bergbau umgeht oder die für den Abbau von Mineralien bestimmt sind (§5, Abs. 3, Nr. 2 BauGB).</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="AeussereEinwirkungen">
-				<xs:annotation>
-					<xs:documentation>Flächen, bei deren Bebauung besondere bauliche Sicherungsmaßnahmen gegen äußere Einwirkungen erforderlich sind (§5, Abs. 3, Nr. 1 BauGB).</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="SchadstoffBelastBoden">
-				<xs:annotation>
-					<xs:documentation>Für bauliche Nutzung vorgesehene Flächen, deren Böden erheblich mit umweltgefährdenden Stoffen belastet sind (§5, Abs. 3, Nr. 3 BauGB).</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="LaermBelastung">
-				<xs:annotation>
-					<xs:documentation>ür bauliche Nutzung vorgesehene Flächen, die erheblichen Lärmbelastung ausgesetzt sind.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Bergbau"/>
-			<xs:enumeration value="Bodenordnung"/>
-			<xs:enumeration value="AndereGesetzlVorschriften">
-				<xs:annotation>
-					<xs:documentation>Kennzeichnung nach anderen gesetzlichen Vorschriften.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="XP_ZweckbestimmungLandwirtschaft">
-		<xs:restriction base="xs:&lt;undefined&gt;">
-			<xs:enumeration value="LandwirtschaftAllgemein">
-				<xs:annotation>
-					<xs:documentation>Allgemeine Landwirtschaft</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Ackerbau">
-				<xs:annotation>
-					<xs:documentation>Ackerbau</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="WiesenWeidewirtschaft">
-				<xs:annotation>
-					<xs:documentation>Wiesen- und Weidewirtschaft</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="GartenbaulicheErzeugung">
-				<xs:annotation>
-					<xs:documentation>Gartenbauliche Erzeugung</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Obstbau">
-				<xs:annotation>
-					<xs:documentation>Obstbau</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Weinbau">
-				<xs:annotation>
-					<xs:documentation>Weinbau</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Imkerei">
-				<xs:annotation>
-					<xs:documentation>Imkerei</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Binnenfischerei">
-				<xs:annotation>
-					<xs:documentation>Binnenfischerei</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Sonstiges">
-				<xs:annotation>
-					<xs:documentation>Sonstiges</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="XP_BesondereZweckbestGemeinbedarf">
-		<xs:restriction base="xs:&lt;undefined&gt;">
-			<xs:enumeration value="KommunaleEinrichtung">
-				<xs:annotation>
-					<xs:documentation>Kommunale Einrichtung wie z. B. Rathaus, Gesundheitsamt, Gesundheitsfürsorgestelle, Gartenbauamt, Gartenarbeitsstützpunkt, Fuhrpark.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="BetriebOeffentlZweckbestimmung">
-				<xs:annotation>
-					<xs:documentation>Betrieb mit öffentlicher Zweckbestimmung wie z.B. ein Stadtreinigungsbetrieb, Autobusbetriebshof, Omnibusbahnhof.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="AnlageBundLand">
-				<xs:annotation>
-					<xs:documentation>Eine Anlage des Bundes oder eines Bundeslandes wie z. B.  Arbeitsamt, Autobahnmeisterei, Brückenmeisterei, Patentamt, Wasserbauhof, Finanzamt.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="SonstigeOeffentlicheVerwaltung">
-				<xs:annotation>
-					<xs:documentation>Sonstige Einrichtung oder Anlage der öffentlichen Verwaltung wie z. B. die Industrie und Handelskammer oder Handwerkskammer.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Schule">
-				<xs:annotation>
-					<xs:documentation>Schulische Einrichtung. Darunter fallen u. a. Allgemeinbildende Schule, Oberstufenzentrum, Sonderschule, Fachschule, Volkshochschule,
-Konservatorium.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Hochschule">
-				<xs:annotation>
-					<xs:documentation>Hochschule, Fachhochschule, Berufsakademie, o. Ä.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="BerufsbildendeSchule">
-				<xs:annotation>
-					<xs:documentation>Berufsbildende Schule</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Forschungseinrichtung">
-				<xs:annotation>
-					<xs:documentation>Forschungseinrichtung, Forschungsinstitut.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="SonstigesBildungForschung">
-				<xs:annotation>
-					<xs:documentation>Sonstige Anlage oder Einrichtung aus Bildung und Forschung.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Sakralgebaeude">
-				<xs:annotation>
-					<xs:documentation>Religiösen Zwecken dienendes Gebäude wie z. B. Kirche, 
- Kapelle, Moschee, Synagoge, Gebetssaal.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="KirchlicheVerwaltung">
-				<xs:annotation>
-					<xs:documentation>Kirchliches Verwaltungsgebäude, z. B. Pfarramt, Bischöfliches Ordinariat, Konsistorium.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Kirchengemeinde">
-				<xs:annotation>
-					<xs:documentation>Religiöse Gemeinde- oder Versammlungseinrichtung, z. B. Gemeindehaus, Gemeindezentrum.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="SonstigesKirche">
-				<xs:annotation>
-					<xs:documentation>Sonstige religiösen Zwecken dienende Anlage oder Einrichtung.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="EinrichtungKinder">
-				<xs:annotation>
-					<xs:documentation>Soziale Einrichtung für Kinder, wie z. B. Kinderheim, Kindertagesstätte, Kindergarten.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="EinrichtungJugendliche">
-				<xs:annotation>
-					<xs:documentation>Soziale Einrichtung für Jugendliche, wie z. B. Jugendfreizeitheim/-stätte, Jugendgästehaus, Jugendherberge, Jugendheim.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="EinrichtungFamilienErwachsene">
-				<xs:annotation>
-					<xs:documentation>Soziale Einrichtung für Familien und Erwachsene, wie z. B. Bildungszentrum, Volkshochschule, Kleinkinderfürsorgestelle, Säuglingsfürsorgestelle, Nachbarschaftsheim.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="EinrichtungSenioren">
-				<xs:annotation>
-					<xs:documentation>Soziale Einrichtung für Senioren, wie z. B. Alten-/Seniorentagesstätte, Alten-/Seniorenheim, Alten-/Seniorenwohnheim, Altersheim.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="SonstigeSozialeEinrichtung">
-				<xs:annotation>
-					<xs:documentation>Sonstige soziale Einrichtung, z. B. Pflegeheim, Schwesternwohnheim, Studentendorf, Studentenwohnheim. Tierheim, Übergangsheim.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Krankenhaus">
-				<xs:annotation>
-					<xs:documentation>Krankenhaus oder vergleichbare Einrichtung (z. B. Klinik, Hospital, Krankenheim, Heil- und Pflegeanstalt),</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="SonstigesGesundheit">
-				<xs:annotation>
-					<xs:documentation>Sonstige Gesundheits-Einrichtung, z. B. Sanatorium, Kurklinik, Desinfektionsanstalt.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="MusikTheater">
-				<xs:annotation>
-					<xs:documentation>Kulturelle Einrichtung aus dem Bereich Musik oder Theater (z. B. Theater, Konzerthaus, Musikhalle, Oper).</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Bildung">
-				<xs:annotation>
-					<xs:documentation>Kulturelle Einrichtung mit Bildungsfunktion ( z. B. Museum, Bibliothek, Bücherei, Stadtbücherei, Volksbücherei).</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="SonstigeKultur">
-				<xs:annotation>
-					<xs:documentation>Sonstige kulturelle Einrichtung, wie z. B. Archiv, Landesbildstelle, Rundfunk und Fernsehen, Kongress- und Veranstaltungshalle, Mehrzweckhalle..</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Bad">
-				<xs:annotation>
-					<xs:documentation>Schwimmbad, Freibad, Hallenbad, Schwimmhalle o. Ä..</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="SportplatzSporthalle">
-				<xs:annotation>
-					<xs:documentation>Sportplatz, Sporthalle, Tennishalle o. Ä.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="SonstigerSport">
-				<xs:annotation>
-					<xs:documentation>Sonstige Sporteinrichtung.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Feuerwehr">
-				<xs:annotation>
-					<xs:documentation>Einrichtung oder Anlage der Feuerwehr.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Schutzbauwerk">
-				<xs:annotation>
-					<xs:documentation>Schutzbauwerk</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Justiz">
-				<xs:annotation>
-					<xs:documentation>Einrichtung der Justiz, wie z. B. Justizvollzug, Gericht, Haftanstalt.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="SonstigeSicherheitOrdnung">
-				<xs:annotation>
-					<xs:documentation>Sonstige Anlage oder Einrichtung für Sicherheit und Ordnung, z. B. Polizei, Zoll, Feuerwehr, Zivilschutz, Bundeswehr, Landesverteidigung.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Post">
-				<xs:annotation>
-					<xs:documentation>Einrichtung der Post.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="SonstigeInfrastruktur">
-				<xs:annotation>
-					<xs:documentation>Sonstige Anlage oder Einrichtung der Infrastruktur.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="XP_AnpflanzungBindungErhaltungsGegenstand">
-		<xs:annotation>
-			<xs:documentation>Gegenstand der nach §9, Abs. 1, Nr. 25 festgesetzten Maßnahme</xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:&lt;undefined&gt;">
-			<xs:enumeration value="Baeume">
-				<xs:annotation>
-					<xs:documentation>Bäume</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Kopfbaeume"/>
-			<xs:enumeration value="Baumreihe"/>
-			<xs:enumeration value="Straeucher">
-				<xs:annotation>
-					<xs:documentation>Sträucher</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Hecke"/>
-			<xs:enumeration value="Knick"/>
-			<xs:enumeration value="SonstBepflanzung">
-				<xs:annotation>
-					<xs:documentation>Sonstige Bepflanzung</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Gewaesser">
-				<xs:annotation>
-					<xs:documentation>Gewässer (nur Erhaltung)</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Fassadenbegruenung"/>
-			<xs:enumeration value="Dachbegruenung"/>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="XP_ZweckbestimmungGruen">
-		<xs:restriction base="xs:&lt;undefined&gt;">
-			<xs:enumeration value="Parkanlage">
-				<xs:annotation>
-					<xs:documentation>Parkanlage; auch: Erholungsgrün, Grünanlage, Naherholung.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Dauerkleingaerten">
-				<xs:annotation>
-					<xs:documentation>Dauerkleingarten; auch: Gartenfläche, Hofgärten, Gartenland</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Sportplatz">
-				<xs:annotation>
-					<xs:documentation>Sportplatz</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Spielplatz">
-				<xs:annotation>
-					<xs:documentation>Spielplatz</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Zeltplatz">
-				<xs:annotation>
-					<xs:documentation>Zeltplatz</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Badeplatz">
-				<xs:annotation>
-					<xs:documentation>Badeplatz, auch Schwimmbad, Liegewiese</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="FreizeitErholung">
-				<xs:annotation>
-					<xs:documentation>Anlage für Freizeit und Erholung.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="SpezGruenflaeche">
-				<xs:annotation>
-					<xs:documentation>Spezielle Grünfläche</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Friedhof">
-				<xs:annotation>
-					<xs:documentation>Friedhof</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Sonstiges">
-				<xs:annotation>
-					<xs:documentation>Sonstiges</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="XP_BesondereZweckbestimmungVerEntsorgung">
-		<xs:restriction base="xs:&lt;undefined&gt;">
-			<xs:enumeration value="Hochspannungsleitung"/>
-			<xs:enumeration value="TrafostationUmspannwerk"/>
-			<xs:enumeration value="Solarkraftwerk"/>
-			<xs:enumeration value="Windkraftwerk"/>
-			<xs:enumeration value="Geothermiekraftwerk"/>
-			<xs:enumeration value="Elektrizitaetswerk"/>
-			<xs:enumeration value="Wasserkraftwerk"/>
-			<xs:enumeration value="BiomasseKraftwerk"/>
-			<xs:enumeration value="Kabelleitung"/>
-			<xs:enumeration value="Niederspannungsleitung"/>
-			<xs:enumeration value="Leitungsmast"/>
-			<xs:enumeration value="Ferngasleitung"/>
-			<xs:enumeration value="Gaswerk"/>
-			<xs:enumeration value="Gasbehaelter"/>
-			<xs:enumeration value="Gasdruckregler"/>
-			<xs:enumeration value="Gasstation"/>
-			<xs:enumeration value="Gasleitung"/>
-			<xs:enumeration value="Erdoelleitung"/>
-			<xs:enumeration value="Bohrstelle"/>
-			<xs:enumeration value="Erdoelpumpstation"/>
-			<xs:enumeration value="Oeltank"/>
-			<xs:enumeration value="Blockheizkraftwerk"/>
-			<xs:enumeration value="Fernwaermeleitung"/>
-			<xs:enumeration value="Fernheizwerk"/>
-			<xs:enumeration value="Wasserwerk"/>
-			<xs:enumeration value="Wasserleitung"/>
-			<xs:enumeration value="Wasserspeicher"/>
-			<xs:enumeration value="Brunnen"/>
-			<xs:enumeration value="Pumpwerk"/>
-			<xs:enumeration value="Quelle"/>
-			<xs:enumeration value="Abwasserleitung"/>
-			<xs:enumeration value="Abwasserrueckhaltebecken"/>
-			<xs:enumeration value="Abwasserpumpwerk"/>
-			<xs:enumeration value="Klaeranlage"/>
-			<xs:enumeration value="AnlageKlaerschlamm"/>
-			<xs:enumeration value="SonstigeAbwasserBehandlungsanlage"/>
-			<xs:enumeration value="RegenwasserRueckhaltebecken"/>
-			<xs:enumeration value="Niederschlagswasserleitung"/>
-			<xs:enumeration value="Muellumladestation"/>
-			<xs:enumeration value="Muellbeseitigungsanlage"/>
-			<xs:enumeration value="Muellsortieranlage"/>
-			<xs:enumeration value="Recyclinghof"/>
-			<xs:enumeration value="Erdaushubdeponie"/>
-			<xs:enumeration value="Bauschuttdeponie"/>
-			<xs:enumeration value="Hausmuelldeponie"/>
-			<xs:enumeration value="Sondermuelldeponie"/>
-			<xs:enumeration value="StillgelegteDeponie"/>
-			<xs:enumeration value="RekultivierteDeponie"/>
-			<xs:enumeration value="Fernmeldeanlage"/>
-			<xs:enumeration value="Mobilfunkstrecke"/>
-			<xs:enumeration value="Fernmeldekabel"/>
-			<xs:enumeration value="Windenergie"/>
-			<xs:enumeration value="Photovoltaik"/>
-			<xs:enumeration value="Biomasse"/>
-			<xs:enumeration value="Geothermie"/>
-			<xs:enumeration value="SonstErneuerbareEnergie"/>
-			<xs:enumeration value="Produktenleitung"/>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="XP_VerlaengerungVeraenderungssperre">
-		<xs:restriction base="xs:&lt;undefined&gt;">
-			<xs:enumeration value="Keine"/>
-			<xs:enumeration value="ErsteVerlaengerung"/>
-			<xs:enumeration value="ZweiteVerlaengerung"/>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="XP_Bundeslaender">
-		<xs:restriction base="xs:&lt;undefined&gt;">
-			<xs:enumeration value="BB">
-				<xs:annotation>
-					<xs:documentation>Brandenburg</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="BE">
-				<xs:annotation>
-					<xs:documentation>Berlin</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="BW">
-				<xs:annotation>
-					<xs:documentation>Baden-Württemberg</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="BY">
-				<xs:annotation>
-					<xs:documentation>Bayern</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="HB"/>
-			<xs:enumeration value="HE">
-				<xs:annotation>
-					<xs:documentation>Hessen</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="HH"/>
-			<xs:enumeration value="MV">
-				<xs:annotation>
-					<xs:documentation>Mecklenburg-Vorpommern</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="NI">
-				<xs:annotation>
-					<xs:documentation>Niedersachsen</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="NW">
-				<xs:annotation>
-					<xs:documentation>Nordrhein-Westfalen</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="RP">
-				<xs:annotation>
-					<xs:documentation>Rheinland-Pfalz</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="SH">
-				<xs:annotation>
-					<xs:documentation>Schleswig-Holstein</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="SL">
-				<xs:annotation>
-					<xs:documentation>Saarland</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="SN">
-				<xs:annotation>
-					<xs:documentation>Sachsen</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="ST">
-				<xs:annotation>
-					<xs:documentation>Sachsen-Anhalt</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="TH">
-				<xs:annotation>
-					<xs:documentation>Thüringen</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Bund">
-				<xs:annotation>
-					<xs:documentation>Der Bund.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="XP_ZweckbestimmungWald">
-		<xs:restriction base="xs:&lt;undefined&gt;">
-			<xs:enumeration value="Naturwald"/>
-			<xs:enumeration value="Nutzwald"/>
-			<xs:enumeration value="Erholungswald">
-				<xs:annotation>
-					<xs:documentation>Erholungswald</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Schutzwald">
-				<xs:annotation>
-					<xs:documentation>Schutzwald</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="FlaecheForstwirtschaft"/>
-			<xs:enumeration value="Sonstiges">
-				<xs:annotation>
-					<xs:documentation>Sonstiges</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="XP_ABEMassnahmenTypen">
-		<xs:annotation>
-			<xs:documentation>Liste der nach §9, Abs.1, Nr. 25 möglichen Maßnahmen</xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:&lt;undefined&gt;">
-			<xs:enumeration value="BindungErhaltung">
-				<xs:annotation>
-					<xs:documentation>Bindung und Erhaltung von Bäumen, Sträuchern und sonstigen Bepflanzungen, sowie von Gewässern.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Anpflanzung">
-				<xs:annotation>
-					<xs:documentation>Anpflanzung von Bäumen, Sträuchern oder sonstigen Bepflanzungen.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="AnpflanzungBindungErhaltung"/>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="XP_Sondernutzungen">
-		<xs:annotation>
-			<xs:documentation>Aufzählung möglicher Sondernutzungen einer Sonderbaufläche nach §§ 10 und 11 BauNVO.</xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:&lt;undefined&gt;">
-			<xs:enumeration value="Wochenendhausgebiet"/>
-			<xs:enumeration value="Ferienhausgebiet"/>
-			<xs:enumeration value="Campingplatzgebiet"/>
-			<xs:enumeration value="Kurgebiet"/>
-			<xs:enumeration value="SonstSondergebietErholung"/>
-			<xs:enumeration value="Einzelhandelsgebiet"/>
-			<xs:enumeration value="GrossflaechigerEinzelhandel"/>
-			<xs:enumeration value="Ladengebiet"/>
-			<xs:enumeration value="Einkaufszentrum"/>
-			<xs:enumeration value="SonstGrossflEinzelhandel"/>
-			<xs:enumeration value="Verkehrsuebungsplatz"/>
-			<xs:enumeration value="Hafengebiet"/>
-			<xs:enumeration value="SondergebietErneuerbareEnergie"/>
-			<xs:enumeration value="SondergebietMilitaer"/>
-			<xs:enumeration value="SondergebietLandwirtschaft"/>
-			<xs:enumeration value="SondergebietSport"/>
-			<xs:enumeration value="SondergebietGesundheitSoziales"/>
-			<xs:enumeration value="Golfplatz"/>
-			<xs:enumeration value="SondergebietKultur"/>
-			<xs:enumeration value="SondergebietTourismus"/>
-			<xs:enumeration value="SondergebietBueroUndVerwaltung"/>
-			<xs:enumeration value="SondergebietHochschuleEinrichtungen"/>
-			<xs:enumeration value="SondergebietMesse"/>
-			<xs:enumeration value="SondergebietAndereNutzungen"/>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="XP_SPEZiele">
-		<xs:annotation>
-			<xs:documentation>Aufzählung der Ziele für Schutz-, Pflege- und Entwicklungsmaßnahmen.</xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:&lt;undefined&gt;">
-			<xs:enumeration value="SchutzPflege"/>
-			<xs:enumeration value="Entwicklung"/>
-			<xs:enumeration value="Anlage"/>
-			<xs:enumeration value="SchutzPflegeEntwicklung"/>
-			<xs:enumeration value="Sonstiges"/>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="XP_KlassifizSchutzgebietNaturschutzrecht">
-		<xs:annotation>
-			<xs:documentation>Klassifikation von Schutzgebieten nach Naturschutzrecht.</xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:&lt;undefined&gt;">
-			<xs:enumeration value="Naturschutzgebiet">
-				<xs:annotation>
-					<xs:documentation>Naturschutzgebiet</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Nationalpark">
-				<xs:annotation>
-					<xs:documentation>Nationalpark</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Biosphaerenreservat">
-				<xs:annotation>
-					<xs:documentation>Biosphaerenreservate</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Landschaftsschutzgebiet">
-				<xs:annotation>
-					<xs:documentation>Landschaftsschutzgebiet</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Naturpark">
-				<xs:annotation>
-					<xs:documentation>Naturpark</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Naturdenkmal">
-				<xs:annotation>
-					<xs:documentation>Naturdenkmal</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="GeschuetzterLandschaftsBestandteil">
-				<xs:annotation>
-					<xs:documentation>Geschützter Bestandteil der Landschaft</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="GesetzlichGeschuetztesBiotop">
-				<xs:annotation>
-					<xs:documentation>Gesetzlich geschützte Biotope</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Natura2000">
-				<xs:annotation>
-					<xs:documentation>Schutzgebiet nach Europäischem Recht. Die umfasst das "Gebiet Gemeinschaftlicher Bedeutung" (FFH-Gebiet) und das "Europäische Vogelschutzgebiet"</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="GebietGemeinschaftlicherBedeutung">
-				<xs:annotation>
-					<xs:documentation>Gebiete von gemeinschaftlicher Bedeutung</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="EuropaeischesVogelschutzgebiet">
-				<xs:annotation>
-					<xs:documentation>Europäische Vogelschutzgebiete</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="NationalesNaturmonument"/>
-			<xs:enumeration value="Sonstiges">
-				<xs:annotation>
-					<xs:documentation>Sonstiges</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="XP_ZweckbestimmungGewaesser">
-		<xs:annotation>
-			<xs:documentation>Aufzählung der Zweckbestimmungen von Gewässern.</xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:&lt;undefined&gt;">
-			<xs:enumeration value="Hafen"/>
-			<xs:enumeration value="Wasserflaeche"/>
-			<xs:enumeration value="Fliessgewaesser"/>
-			<xs:enumeration value="Sonstiges">
-				<xs:annotation>
-					<xs:documentation>Sonstiges</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="XP_ZweckbestimmungGemeinbedarf">
-		<xs:restriction base="xs:&lt;undefined&gt;">
-			<xs:enumeration value="OffentlicheVerwaltung">
-				<xs:annotation>
-					<xs:documentation>Einrichtungen und Anlagen für öffentliche Verwaltung</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="BildungForschung">
-				<xs:annotation>
-					<xs:documentation>Einrichtungen und Anlagen für Schulen und sonstige Bildungs- und Forschungseinrichtungen.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Kirche">
-				<xs:annotation>
-					<xs:documentation>Kirchliche Einrichtungen</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Sozial">
-				<xs:annotation>
-					<xs:documentation>Einrichtungen und Anlagen für soziale Zwecke.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Gesundheit">
-				<xs:annotation>
-					<xs:documentation>Einrichtungen und Anlagen für gesundheitliche Zwecke.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Kultur">
-				<xs:annotation>
-					<xs:documentation>Einrichtungen und Anlagen für kulturelle Zwecke.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Sport">
-				<xs:annotation>
-					<xs:documentation>Einrichtungen und Anlagen für sportliche Zwecke.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="SicherheitOrdnung">
-				<xs:annotation>
-					<xs:documentation>Einrichtungen und Anlagen für Sicherheit und Ordnung.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Infrastruktur">
-				<xs:annotation>
-					<xs:documentation>Einrichtungen und Anlagen der Infrastruktur.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Sonstiges">
-				<xs:annotation>
-					<xs:documentation>Sonstiges</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="XP_AbweichungBauNVOTypen">
-		<xs:annotation>
-			<xs:documentation>Aufzählung verschiedener Möglichkeiten, von den nach BauNVO standardmäßig festgelegten baulichen Nutzungen abzuweichen.</xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:&lt;undefined&gt;">
-			<xs:enumeration value="EinschraenkungNutzung">
-				<xs:annotation>
-					<xs:documentation>Einschränkung einer generell erlaubten Nutzung.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="AusschlussNutzung">
-				<xs:annotation>
-					<xs:documentation>Ausschluss einer generell erlaubten Nutzung.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="AusweitungNutzung">
-				<xs:annotation>
-					<xs:documentation>Eine neu ausnahmsweise zulässige Nutzung wird generell zulässig.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="SonstAbweichung">
-				<xs:annotation>
-					<xs:documentation>Sonstige Abweichung.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="XP_AllgArtDerBaulNutzung">
-		<xs:annotation>
-			<xs:documentation>Aufzählung der möglichen" Allgemeinen Arten der baulichen Nutztung".</xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:&lt;undefined&gt;">
-			<xs:enumeration value="WohnBauflaeche"/>
-			<xs:enumeration value="GemischteBauflaeche"/>
-			<xs:enumeration value="GewerblicheBauflaeche"/>
-			<xs:enumeration value="SonderBauflaeche"/>
-			<xs:enumeration value="SonstigeBauflaeche"/>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="XP_ZweckbestimmungSpielSportanlage">
-		<xs:restriction base="xs:&lt;undefined&gt;">
-			<xs:enumeration value="Sportanlage">
-				<xs:annotation>
-					<xs:documentation>Sportanlage</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Spielanlage">
-				<xs:annotation>
-					<xs:documentation>Spielanlage</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="SpielSportanlage">
-				<xs:annotation>
-					<xs:documentation>Spiel- und/oder Sportanlage.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Sonstiges">
-				<xs:annotation>
-					<xs:documentation>Sonstiges</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="XP_BesondereZweckbestimmungGruen">
-		<xs:restriction base="xs:&lt;undefined&gt;">
-			<xs:enumeration value="ParkanlageHistorisch"/>
-			<xs:enumeration value="ParkanlageNaturnah"/>
-			<xs:enumeration value="ParkanlageWaldcharakter"/>
-			<xs:enumeration value="NaturnaheUferParkanlage"/>
-			<xs:enumeration value="ErholungsGaerten"/>
-			<xs:enumeration value="Reitsportanlage"/>
-			<xs:enumeration value="Hundesportanlage"/>
-			<xs:enumeration value="Wassersportanlage"/>
-			<xs:enumeration value="Schiessstand"/>
-			<xs:enumeration value="Golfplatz"/>
-			<xs:enumeration value="Skisport"/>
-			<xs:enumeration value="Tennisanlage"/>
-			<xs:enumeration value="SonstigerSportplatz"/>
-			<xs:enumeration value="Bolzplatz"/>
-			<xs:enumeration value="Abenteuerspielplatz"/>
-			<xs:enumeration value="Campingplatz"/>
-			<xs:enumeration value="Kleintierhaltung"/>
-			<xs:enumeration value="Festplatz"/>
-			<xs:enumeration value="StrassenbegleitGruen"/>
-			<xs:enumeration value="BoeschungsFlaeche"/>
-			<xs:enumeration value="FeldWaldWiese"/>
-			<xs:enumeration value="Uferschutzstreifen"/>
-			<xs:enumeration value="Abschirmgruen"/>
-			<xs:enumeration value="UmweltbildungsparkSchaugatter"/>
-			<xs:enumeration value="RuhenderVerkehr"/>
-			<xs:enumeration value="Gaertnerei"/>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="XP_ZweckbestimmungVerEntsorgung">
-		<xs:restriction base="xs:&lt;undefined&gt;">
-			<xs:enumeration value="Elektrizitaet">
-				<xs:annotation>
-					<xs:documentation>Versorgung mit Elektrizität</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Gas">
-				<xs:annotation>
-					<xs:documentation>Gas-Versorgung</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Erdoel"/>
-			<xs:enumeration value="Waermeversorgung">
-				<xs:annotation>
-					<xs:documentation>Versorgung mit Fernwärme</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Trinkwasser">
-				<xs:annotation>
-					<xs:documentation>Wasser-Versorgung</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Abwasser">
-				<xs:annotation>
-					<xs:documentation>Abwasser-Entsorgung</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Regenwasser">
-				<xs:annotation>
-					<xs:documentation>Regenwasser Entsorgung</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Abfallentsorgung">
-				<xs:annotation>
-					<xs:documentation>Abfall-Beseitigung</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Ablagerung">
-				<xs:annotation>
-					<xs:documentation>Ablagerungen, Deponien</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Telekommunikation">
-				<xs:annotation>
-					<xs:documentation>Einrichtungen und Anlagen zur Telekommunikation</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="ErneuerbareEnergien">
-				<xs:annotation>
-					<xs:documentation>Anlagen, Einrichtungen oder sonstige Maßnahmen zur dezentralen und zentralen Erzeugung, Verteilung oder Speicherung von Strom, Wärme oder Kälte aus erneuerbaren Energien.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="KraftWaermeKopplung">
-				<xs:annotation>
-					<xs:documentation>Anlagen, Einrichtungen oder sonstige Maßnahmen zur dezentralen und zentralen Erzeugung, Verteilung oder Speicherung von Strom, Wärme oder Kälte aus Kraft-Wärme Kopplung.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Sonstiges">
-				<xs:annotation>
-					<xs:documentation>Sonstige Zweckbestimmung</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="XP_BesondereArtDerBaulNutzung">
-		<xs:annotation>
-			<xs:documentation>Aufzählung der verschiedenen Typen der "Art der Baulichen Nutzung" laut BauGB.</xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:&lt;undefined&gt;">
-			<xs:enumeration value="Kleinsiedlungsgebiet">
-				<xs:annotation>
-					<xs:documentation>Kleinsiedlungsgebiet</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="ReinesWohngebiet">
-				<xs:annotation>
-					<xs:documentation>Reines Wohngebiet</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="AllgWohngebiet">
-				<xs:annotation>
-					<xs:documentation>Allgemeines Wohngebiet</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="BesonderesWohngebiet">
-				<xs:annotation>
-					<xs:documentation>Besonderes Wohngebiet</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Dorfgebiet">
-				<xs:annotation>
-					<xs:documentation>Dorfgebiet</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Mischgebiet"/>
-			<xs:enumeration value="Kerngebiet">
-				<xs:annotation>
-					<xs:documentation>Kerngebiet</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Gewerbegebiet"/>
-			<xs:enumeration value="Industriegebiet">
-				<xs:annotation>
-					<xs:documentation>Industriegebiet</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="SondergebietErholung">
-				<xs:annotation>
-					<xs:documentation>Sondergebiet, das der Erholung dient (§ 10 BauNVO); z.B. Wochenendhausgebiet</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="SondergebietSonst">
-				<xs:annotation>
-					<xs:documentation>Sonstiges Sondergebiet (§ 11 BauNVO); z.B. Klinikgebiet</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Wochenendhausgebiet"/>
-			<xs:enumeration value="Sondergebiet"/>
-			<xs:enumeration value="SonstigesGebiet">
-				<xs:annotation>
-					<xs:documentation>Sonstiges Gebiet</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="XP_VersionBauNVO">
-		<xs:annotation>
-			<xs:documentation>Aufzählung verschiedener Versionen der BauNVO.</xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:&lt;undefined&gt;">
-			<xs:enumeration value="Version_1962"/>
-			<xs:enumeration value="Version_1968"/>
-			<xs:enumeration value="Version_1977"/>
-			<xs:enumeration value="Version_1990"/>
-			<xs:enumeration value="AndereGesetzlicheBestimmung"/>
-		</xs:restriction>
-	</xs:simpleType>
-</xs:schema>
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xplan="http://www.xplan-raumordnung.de/model/xplangml/raumordnungsmodell" elementFormDefault="qualified">
+  <annotation>
+    <documentation>Dies Paket enthält verschiedene Enumerationen, die Fachschema-übergreifend verwwendet werden</documentation>
+  </annotation>
+  <!--XML Schema document created by ShapeChange - http://shapechange.net/-->
+  <simpleType name="XP_ABEMassnahmenTypenType">
+    <annotation>
+      <documentation>Liste der nach §9, Abs.1, Nr. 25 möglichen Maßnahmen</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>Bindung und Erhaltung von Bäumen, Sträuchern und sonstigen Bepflanzungen, sowie von Gewässern.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2000">
+        <annotation>
+          <documentation>Anpflanzung von Bäumen, Sträuchern oder sonstigen Bepflanzungen.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="3000"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="XP_AbweichungBauNVOTypenType">
+    <annotation>
+      <documentation>Aufzählung verschiedener Möglichkeiten, von den nach BauNVO standardmäßig festgelegten baulichen Nutzungen abzuweichen.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>Einschränkung einer generell erlaubten Nutzung.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2000">
+        <annotation>
+          <documentation>Ausschluss einer generell erlaubten Nutzung.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="3000">
+        <annotation>
+          <documentation>Eine neu ausnahmsweise zulässige Nutzung wird generell zulässig.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="9999">
+        <annotation>
+          <documentation>Sonstige Abweichung.</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <simpleType name="XP_AllgArtDerBaulNutzungType">
+    <annotation>
+      <documentation>Aufzählung der möglichen" Allgemeinen Arten der baulichen Nutztung".</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="3000"/>
+      <enumeration value="4000"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="XP_AnpflanzungBindungErhaltungsGegenstandType">
+    <annotation>
+      <documentation>Gegenstand der nach §9, Abs. 1, Nr. 25 festgesetzten Maßnahme</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>Bäume</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1100"/>
+      <enumeration value="1200"/>
+      <enumeration value="2000">
+        <annotation>
+          <documentation>Sträucher</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2100"/>
+      <enumeration value="2200"/>
+      <enumeration value="3000">
+        <annotation>
+          <documentation>Sonstige Bepflanzung</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="4000">
+        <annotation>
+          <documentation>Gewässer (nur Erhaltung)</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="5000"/>
+      <enumeration value="6000"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="XP_BesondereArtDerBaulNutzungType">
+    <annotation>
+      <documentation>Aufzählung der verschiedenen Typen der "Art der Baulichen Nutzung" laut BauGB.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>Kleinsiedlungsgebiet</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1100">
+        <annotation>
+          <documentation>Reines Wohngebiet</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1200">
+        <annotation>
+          <documentation>Allgemeines Wohngebiet</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1300">
+        <annotation>
+          <documentation>Besonderes Wohngebiet</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1400">
+        <annotation>
+          <documentation>Dorfgebiet</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1500"/>
+      <enumeration value="1600">
+        <annotation>
+          <documentation>Kerngebiet</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1700"/>
+      <enumeration value="1800">
+        <annotation>
+          <documentation>Industriegebiet</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2000">
+        <annotation>
+          <documentation>Sondergebiet, das der Erholung dient (§ 10 BauNVO); z.B. Wochenendhausgebiet</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2100">
+        <annotation>
+          <documentation>Sonstiges Sondergebiet (§ 11 BauNVO); z.B. Klinikgebiet</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="3000"/>
+      <enumeration value="4000"/>
+      <enumeration value="9999">
+        <annotation>
+          <documentation>Sonstiges Gebiet</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <simpleType name="XP_BesondereZweckbestGemeinbedarfType">
+    <restriction base="string">
+      <enumeration value="10000">
+        <annotation>
+          <documentation>Kommunale Einrichtung wie z. B. Rathaus, Gesundheitsamt, Gesundheitsfürsorgestelle, Gartenbauamt, Gartenarbeitsstützpunkt, Fuhrpark.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="10001">
+        <annotation>
+          <documentation>Betrieb mit öffentlicher Zweckbestimmung wie z.B. ein Stadtreinigungsbetrieb, Autobusbetriebshof, Omnibusbahnhof.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="10002">
+        <annotation>
+          <documentation>Eine Anlage des Bundes oder eines Bundeslandes wie z. B.  Arbeitsamt, Autobahnmeisterei, Brückenmeisterei, Patentamt, Wasserbauhof, Finanzamt.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="10003">
+        <annotation>
+          <documentation>Sonstige Einrichtung oder Anlage der öffentlichen Verwaltung wie z. B. die Industrie und Handelskammer oder Handwerkskammer.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="12000">
+        <annotation>
+          <documentation>Schulische Einrichtung. Darunter fallen u. a. Allgemeinbildende Schule, Oberstufenzentrum, Sonderschule, Fachschule, Volkshochschule,
+Konservatorium.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="12001">
+        <annotation>
+          <documentation>Hochschule, Fachhochschule, Berufsakademie, o. Ä.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="12002">
+        <annotation>
+          <documentation>Berufsbildende Schule</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="12003">
+        <annotation>
+          <documentation>Forschungseinrichtung, Forschungsinstitut.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="12004">
+        <annotation>
+          <documentation>Sonstige Anlage oder Einrichtung aus Bildung und Forschung.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="14000">
+        <annotation>
+          <documentation>Religiösen Zwecken dienendes Gebäude wie z. B. Kirche, 
+ Kapelle, Moschee, Synagoge, Gebetssaal.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="14001">
+        <annotation>
+          <documentation>Kirchliches Verwaltungsgebäude, z. B. Pfarramt, Bischöfliches Ordinariat, Konsistorium.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="14002">
+        <annotation>
+          <documentation>Religiöse Gemeinde- oder Versammlungseinrichtung, z. B. Gemeindehaus, Gemeindezentrum.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="14003">
+        <annotation>
+          <documentation>Sonstige religiösen Zwecken dienende Anlage oder Einrichtung.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="16000">
+        <annotation>
+          <documentation>Soziale Einrichtung für Kinder, wie z. B. Kinderheim, Kindertagesstätte, Kindergarten.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="16001">
+        <annotation>
+          <documentation>Soziale Einrichtung für Jugendliche, wie z. B. Jugendfreizeitheim/-stätte, Jugendgästehaus, Jugendherberge, Jugendheim.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="16002">
+        <annotation>
+          <documentation>Soziale Einrichtung für Familien und Erwachsene, wie z. B. Bildungszentrum, Volkshochschule, Kleinkinderfürsorgestelle, Säuglingsfürsorgestelle, Nachbarschaftsheim.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="16003">
+        <annotation>
+          <documentation>Soziale Einrichtung für Senioren, wie z. B. Alten-/Seniorentagesstätte, Alten-/Seniorenheim, Alten-/Seniorenwohnheim, Altersheim.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="16004">
+        <annotation>
+          <documentation>Sonstige soziale Einrichtung, z. B. Pflegeheim, Schwesternwohnheim, Studentendorf, Studentenwohnheim. Tierheim, Übergangsheim.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="18000">
+        <annotation>
+          <documentation>Krankenhaus oder vergleichbare Einrichtung (z. B. Klinik, Hospital, Krankenheim, Heil- und Pflegeanstalt),</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="18001">
+        <annotation>
+          <documentation>Sonstige Gesundheits-Einrichtung, z. B. Sanatorium, Kurklinik, Desinfektionsanstalt.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="20000">
+        <annotation>
+          <documentation>Kulturelle Einrichtung aus dem Bereich Musik oder Theater (z. B. Theater, Konzerthaus, Musikhalle, Oper).</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="20001">
+        <annotation>
+          <documentation>Kulturelle Einrichtung mit Bildungsfunktion ( z. B. Museum, Bibliothek, Bücherei, Stadtbücherei, Volksbücherei).</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="20002">
+        <annotation>
+          <documentation>Sonstige kulturelle Einrichtung, wie z. B. Archiv, Landesbildstelle, Rundfunk und Fernsehen, Kongress- und Veranstaltungshalle, Mehrzweckhalle..</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="22000">
+        <annotation>
+          <documentation>Schwimmbad, Freibad, Hallenbad, Schwimmhalle o. Ä..</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="22001">
+        <annotation>
+          <documentation>Sportplatz, Sporthalle, Tennishalle o. Ä.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="22002">
+        <annotation>
+          <documentation>Sonstige Sporteinrichtung.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="24000">
+        <annotation>
+          <documentation>Einrichtung oder Anlage der Feuerwehr.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="24001">
+        <annotation>
+          <documentation>Schutzbauwerk</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="24002">
+        <annotation>
+          <documentation>Einrichtung der Justiz, wie z. B. Justizvollzug, Gericht, Haftanstalt.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="24003">
+        <annotation>
+          <documentation>Sonstige Anlage oder Einrichtung für Sicherheit und Ordnung, z. B. Polizei, Zoll, Feuerwehr, Zivilschutz, Bundeswehr, Landesverteidigung.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="26000">
+        <annotation>
+          <documentation>Einrichtung der Post.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="26001">
+        <annotation>
+          <documentation>Sonstige Anlage oder Einrichtung der Infrastruktur.</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <simpleType name="XP_BesondereZweckbestimmungGruenType">
+    <restriction base="string">
+      <enumeration value="10000"/>
+      <enumeration value="10001"/>
+      <enumeration value="10002"/>
+      <enumeration value="10003"/>
+      <enumeration value="12000"/>
+      <enumeration value="14000"/>
+      <enumeration value="14001"/>
+      <enumeration value="14002"/>
+      <enumeration value="14003"/>
+      <enumeration value="14004"/>
+      <enumeration value="14005"/>
+      <enumeration value="14006"/>
+      <enumeration value="14007"/>
+      <enumeration value="16000"/>
+      <enumeration value="16001"/>
+      <enumeration value="18000"/>
+      <enumeration value="22000"/>
+      <enumeration value="22001"/>
+      <enumeration value="24000"/>
+      <enumeration value="24001"/>
+      <enumeration value="24002"/>
+      <enumeration value="24003"/>
+      <enumeration value="24004"/>
+      <enumeration value="24005"/>
+      <enumeration value="24006"/>
+      <enumeration value="99990"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="XP_BesondereZweckbestimmungVerEntsorgungType">
+    <restriction base="string">
+      <enumeration value="10000"/>
+      <enumeration value="10001"/>
+      <enumeration value="10002"/>
+      <enumeration value="10003"/>
+      <enumeration value="10004"/>
+      <enumeration value="10005"/>
+      <enumeration value="10006"/>
+      <enumeration value="10007"/>
+      <enumeration value="10008"/>
+      <enumeration value="10009"/>
+      <enumeration value="10010"/>
+      <enumeration value="12000"/>
+      <enumeration value="12001"/>
+      <enumeration value="12002"/>
+      <enumeration value="12003"/>
+      <enumeration value="12004"/>
+      <enumeration value="12005"/>
+      <enumeration value="13000"/>
+      <enumeration value="13001"/>
+      <enumeration value="13002"/>
+      <enumeration value="13003"/>
+      <enumeration value="14000"/>
+      <enumeration value="14001"/>
+      <enumeration value="14002"/>
+      <enumeration value="16000"/>
+      <enumeration value="16001"/>
+      <enumeration value="16002"/>
+      <enumeration value="16003"/>
+      <enumeration value="16004"/>
+      <enumeration value="16005"/>
+      <enumeration value="18000"/>
+      <enumeration value="18001"/>
+      <enumeration value="18002"/>
+      <enumeration value="18003"/>
+      <enumeration value="18004"/>
+      <enumeration value="18005"/>
+      <enumeration value="18006"/>
+      <enumeration value="20000"/>
+      <enumeration value="20001"/>
+      <enumeration value="22000"/>
+      <enumeration value="22001"/>
+      <enumeration value="22002"/>
+      <enumeration value="22003"/>
+      <enumeration value="24000"/>
+      <enumeration value="24001"/>
+      <enumeration value="24002"/>
+      <enumeration value="24003"/>
+      <enumeration value="24004"/>
+      <enumeration value="24005"/>
+      <enumeration value="26000"/>
+      <enumeration value="26001"/>
+      <enumeration value="26002"/>
+      <enumeration value="28000"/>
+      <enumeration value="28001"/>
+      <enumeration value="28002"/>
+      <enumeration value="28003"/>
+      <enumeration value="28004"/>
+      <enumeration value="99990"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="XP_BundeslaenderType">
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>Brandenburg</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1100">
+        <annotation>
+          <documentation>Berlin</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1200">
+        <annotation>
+          <documentation>Baden-Württemberg</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1300">
+        <annotation>
+          <documentation>Bayern</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1400"/>
+      <enumeration value="1500">
+        <annotation>
+          <documentation>Hessen</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1600"/>
+      <enumeration value="1700">
+        <annotation>
+          <documentation>Mecklenburg-Vorpommern</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1800">
+        <annotation>
+          <documentation>Niedersachsen</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1900">
+        <annotation>
+          <documentation>Nordrhein-Westfalen</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2000">
+        <annotation>
+          <documentation>Rheinland-Pfalz</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2100">
+        <annotation>
+          <documentation>Schleswig-Holstein</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2200">
+        <annotation>
+          <documentation>Saarland</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2300">
+        <annotation>
+          <documentation>Sachsen</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2400">
+        <annotation>
+          <documentation>Sachsen-Anhalt</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2500">
+        <annotation>
+          <documentation>Thüringen</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="3000">
+        <annotation>
+          <documentation>Der Bund.</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <simpleType name="XP_GrenzeTypenType">
+    <annotation>
+      <documentation>Aufzählung der verschiedenen Typen von Grenzen.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="1100"/>
+      <enumeration value="1200"/>
+      <enumeration value="1250"/>
+      <enumeration value="1300"/>
+      <enumeration value="1400"/>
+      <enumeration value="1450"/>
+      <enumeration value="1500"/>
+      <enumeration value="1510"/>
+      <enumeration value="1550"/>
+      <enumeration value="1600"/>
+      <enumeration value="2000">
+        <annotation>
+          <documentation>Hinweis auf eine vorgeschlagene Grundstücksgrenze im BPlan.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2100">
+        <annotation>
+          <documentation>Hinweis auf den Geltungsbereich eines bestehenden BPlan.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="XP_KlassifizSchutzgebietNaturschutzrechtType">
+    <annotation>
+      <documentation>Klassifikation von Schutzgebieten nach Naturschutzrecht.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>Naturschutzgebiet</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1100">
+        <annotation>
+          <documentation>Nationalpark</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1200">
+        <annotation>
+          <documentation>Biosphaerenreservate</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1300">
+        <annotation>
+          <documentation>Landschaftsschutzgebiet</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1400">
+        <annotation>
+          <documentation>Naturpark</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1500">
+        <annotation>
+          <documentation>Naturdenkmal</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1600">
+        <annotation>
+          <documentation>Geschützter Bestandteil der Landschaft</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1700">
+        <annotation>
+          <documentation>Gesetzlich geschützte Biotope</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1800">
+        <annotation>
+          <documentation>Schutzgebiet nach Europäischem Recht. Dies umfasst das "Gebiet Gemeinschaftlicher Bedeutung" (FFH-Gebiet) und das "Europäische Vogelschutzgebiet"</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="18000">
+        <annotation>
+          <documentation>Gebiete von gemeinschaftlicher Bedeutung</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="18001">
+        <annotation>
+          <documentation>Europäische Vogelschutzgebiete</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2000"/>
+      <enumeration value="9999">
+        <annotation>
+          <documentation>Sonstiges</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <simpleType name="XP_NutzungsformType">
+    <annotation>
+      <documentation>Aufzählung möglicher Nutzungsformen einer Fläche</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>Private Nutzung</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2000">
+        <annotation>
+          <documentation>Öffentliche Nutzung</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <simpleType name="XP_SPEZieleType">
+    <annotation>
+      <documentation>Aufzählung der Ziele für Schutz-, Pflege- und Entwicklungsmaßnahmen.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="3000"/>
+      <enumeration value="4000"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="XP_SondernutzungenType">
+    <annotation>
+      <documentation>Aufzählung möglicher Sondernutzungen einer Sonderbaufläche nach §§ 10 und 11 BauNVO.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="1100"/>
+      <enumeration value="1200"/>
+      <enumeration value="1300"/>
+      <enumeration value="1400"/>
+      <enumeration value="1500"/>
+      <enumeration value="1600"/>
+      <enumeration value="16000"/>
+      <enumeration value="16001"/>
+      <enumeration value="16002"/>
+      <enumeration value="1700"/>
+      <enumeration value="1800"/>
+      <enumeration value="1900"/>
+      <enumeration value="2000"/>
+      <enumeration value="2100"/>
+      <enumeration value="2200"/>
+      <enumeration value="2300"/>
+      <enumeration value="2400"/>
+      <enumeration value="2500"/>
+      <enumeration value="2600"/>
+      <enumeration value="2700"/>
+      <enumeration value="2800"/>
+      <enumeration value="2900"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="XP_VerlaengerungVeraenderungssperreType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="3000"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="XP_ZweckbestimmungGemeinbedarfType">
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>Einrichtungen und Anlagen für öffentliche Verwaltung</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1200">
+        <annotation>
+          <documentation>Einrichtungen und Anlagen für Schulen und sonstige Bildungs- und Forschungseinrichtungen.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1400">
+        <annotation>
+          <documentation>Kirchliche Einrichtungen</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1600">
+        <annotation>
+          <documentation>Einrichtungen und Anlagen für soziale Zwecke.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1800">
+        <annotation>
+          <documentation>Einrichtungen und Anlagen für gesundheitliche Zwecke.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2000">
+        <annotation>
+          <documentation>Einrichtungen und Anlagen für kulturelle Zwecke.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2200">
+        <annotation>
+          <documentation>Einrichtungen und Anlagen für sportliche Zwecke.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2400">
+        <annotation>
+          <documentation>Einrichtungen und Anlagen für Sicherheit und Ordnung.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2600">
+        <annotation>
+          <documentation>Einrichtungen und Anlagen der Infrastruktur.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="9999">
+        <annotation>
+          <documentation>Sonstiges</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <simpleType name="XP_ZweckbestimmungGewaesserType">
+    <annotation>
+      <documentation>Aufzählung der Zweckbestimmungen von Gewässern.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="1100"/>
+      <enumeration value="1200"/>
+      <enumeration value="9999">
+        <annotation>
+          <documentation>Sonstiges</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <simpleType name="XP_ZweckbestimmungGruenType">
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>Parkanlage; auch: Erholungsgrün, Grünanlage, Naherholung.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1200">
+        <annotation>
+          <documentation>Dauerkleingarten; auch: Gartenfläche, Hofgärten, Gartenland</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1400">
+        <annotation>
+          <documentation>Sportplatz</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1600">
+        <annotation>
+          <documentation>Spielplatz</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1800">
+        <annotation>
+          <documentation>Zeltplatz</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2000">
+        <annotation>
+          <documentation>Badeplatz, auch Schwimmbad, Liegewiese</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2200">
+        <annotation>
+          <documentation>Anlage für Freizeit und Erholung.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2400">
+        <annotation>
+          <documentation>Spezielle Grünfläche</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2600">
+        <annotation>
+          <documentation>Friedhof</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="9999">
+        <annotation>
+          <documentation>Sonstiges</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <simpleType name="XP_ZweckbestimmungKennzeichnungType">
+    <annotation>
+      <documentation>Aufzählung der Kennzeichnungen nach §5, Abs. 3 BauGB</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>Flächen, bei deren Bebauung besondere bauliche Sicherungsmaßnahmen gegen Naturgewalten erforderlich sind (§5, Abs. 3, Nr. 1 BauGB).</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2000">
+        <annotation>
+          <documentation>Flächen, unter denen der Bergbau umgeht oder die für den Abbau von Mineralien bestimmt sind (§5, Abs. 3, Nr. 2 BauGB).</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="3000">
+        <annotation>
+          <documentation>Flächen, bei deren Bebauung besondere bauliche Sicherungsmaßnahmen gegen äußere Einwirkungen erforderlich sind (§5, Abs. 3, Nr. 1 BauGB).</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="4000">
+        <annotation>
+          <documentation>Für bauliche Nutzung vorgesehene Flächen, deren Böden erheblich mit umweltgefährdenden Stoffen belastet sind (§5, Abs. 3, Nr. 3 BauGB).</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="5000">
+        <annotation>
+          <documentation>Für bauliche Nutzung vorgesehene Flächen, die erheblicher Lärmbelastung ausgesetzt sind.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="6000"/>
+      <enumeration value="7000"/>
+      <enumeration value="9999">
+        <annotation>
+          <documentation>Kennzeichnung nach anderen gesetzlichen Vorschriften.</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <simpleType name="XP_ZweckbestimmungLandwirtschaftType">
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>Allgemeine Landwirtschaft</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1100">
+        <annotation>
+          <documentation>Ackerbau</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1200">
+        <annotation>
+          <documentation>Wiesen- und Weidewirtschaft</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1300">
+        <annotation>
+          <documentation>Gartenbauliche Erzeugung</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1400">
+        <annotation>
+          <documentation>Obstbau</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1500">
+        <annotation>
+          <documentation>Weinbau</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1600">
+        <annotation>
+          <documentation>Imkerei</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1700">
+        <annotation>
+          <documentation>Binnenfischerei</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="9999">
+        <annotation>
+          <documentation>Sonstiges</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <simpleType name="XP_ZweckbestimmungSpielSportanlageType">
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>Sportanlage</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2000">
+        <annotation>
+          <documentation>Spielanlage</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="3000">
+        <annotation>
+          <documentation>Spiel- und/oder Sportanlage.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="9999">
+        <annotation>
+          <documentation>Sonstiges</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <simpleType name="XP_ZweckbestimmungVerEntsorgungType">
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>Versorgung mit Elektrizität</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1200">
+        <annotation>
+          <documentation>Gas-Versorgung</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1300"/>
+      <enumeration value="1400">
+        <annotation>
+          <documentation>Versorgung mit Fernwärme</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1600">
+        <annotation>
+          <documentation>Wasser-Versorgung</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1800">
+        <annotation>
+          <documentation>Abwasser-Entsorgung</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2000">
+        <annotation>
+          <documentation>Regenwasser Entsorgung</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2200">
+        <annotation>
+          <documentation>Abfall-Beseitigung</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2400">
+        <annotation>
+          <documentation>Ablagerungen, Deponien</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2600">
+        <annotation>
+          <documentation>Einrichtungen und Anlagen zur Telekommunikation</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2800">
+        <annotation>
+          <documentation>Anlagen, Einrichtungen oder sonstige Maßnahmen zur dezentralen und zentralen Erzeugung, Verteilung oder Speicherung von Strom, Wärme oder Kälte aus erneuerbaren Energien.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="3000">
+        <annotation>
+          <documentation>Anlagen, Einrichtungen oder sonstige Maßnahmen zur dezentralen und zentralen Erzeugung, Verteilung oder Speicherung von Strom, Wärme oder Kälte aus Kraft-Wärme Kopplung.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="9999">
+        <annotation>
+          <documentation>Sonstige Zweckbestimmung</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <simpleType name="XP_ZweckbestimmungWaldType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="1200"/>
+      <enumeration value="1400">
+        <annotation>
+          <documentation>Erholungswald</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1600">
+        <annotation>
+          <documentation>Schutzwald</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1800"/>
+      <enumeration value="9999">
+        <annotation>
+          <documentation>Sonstiges</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <simpleType name="XP_ZweckbestimmungWasserwirtschaftType">
+    <annotation>
+      <documentation>Aufzählung wasserwirtschaftlicher Zweckbestimmungen.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>Hochwasser-Rückhaltebecken</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1100">
+        <annotation>
+          <documentation>Überschwemmungs-gefährdetes Gebiet</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="1200"/>
+      <enumeration value="1300"/>
+      <enumeration value="1400"/>
+      <enumeration value="9999">
+        <annotation>
+          <documentation>Sonstige Zweckbestimmung</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+</schema>

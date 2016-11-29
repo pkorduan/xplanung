@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" elementFormDefault="qualified" targetNamespace="" version="" xmlns:="">
+  <annotation>
+    <documentation>Darstellung von Flächen für Versorgungsanlagen, für die Abfallentsorgung und Abwasserbeseitigung, für Ablagerungen, sowie für Hauptversorgungs- und Hauptabwasserleitungen (§5, Abs. 2, Nr. 4 BauGB).</documentation>
+  </annotation>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <!--XML Schema document created by ShapeChange - http://shapechange.net/-->
+  <element name="FP_VerEntsorgung" substitutionGroup=":FP_Geometrieobjekt" type=":FP_VerEntsorgungType">
+    <annotation>
+      <documentation>Flächen für Versorgungsanlagen, für die Abfallentsorgung und Abwasserbeseitigung sowie für Ablagerungen (§5, Abs. 2, Nr. 4 BauGB).</documentation>
+    </annotation>
+  </element>
+  <complexType name="FP_VerEntsorgungType">
+    <complexContent>
+      <extension base=":FP_GeometrieobjektType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="zweckbestimmung" type=":XP_ZweckbestimmungVerEntsorgungType">
+            <annotation>
+              <documentation>Allgemeine Zweckbestimmungen der Fläche.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="besondereZweckbestimmung" type=":XP_BesondereZweckbestimmungVerEntsorgungType">
+            <annotation>
+              <documentation>Besondere Zweckbestimmungen der Fläche, die die zugehörigen allgemeinen Zweckbestimmungen detaillieren oder ersetzen.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="detaillierteZweckbestimmung" type="gml:CodeType">
+            <annotation>
+              <documentation>Über eine CodeList definierte zusätzliche Zweckbestimmungen.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="textlicheErgaenzung" type="string">
+            <annotation>
+              <documentation>Textliche Ergänzung der Flächenazusweisung.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="zugunstenVon" type="string"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+</schema>

@@ -1,6 +1,0 @@
-tocTab[tocTab.length] = new Array("0.2.3.6.5:1", "", "SO_SonstigeGebiete", "EARoot/EA2/EA3/EA6/EA5/EA2776.htm", "175.png", "759", "0", "", "class diagram0","{06527410-A58D-4b48-9F96-C19FDC423429}");
-tocTab[tocTab.length] = new Array("0.2.3.6.5:2", "", "«FeatureType» SO_Gebiet", "EARoot/EA2/EA3/EA6/EA5/EA2779.htm", "5.png", "E1063", "0", "", "Class0","{A67B4A54-F685-499b-AA01-43C0F30FDDDA}");
-tocTab[tocTab.length] = new Array("0.2.3.6.5:3", "", "«enumeration» SO_GebietsArt", "EARoot/EA2/EA3/EA6/EA5/EA2780.htm", "5.png", "E1061", "0", "", "Class0","{F7CBFEDB-2D98-472e-80D0-0D5A43D737C9}");
-tocTab[tocTab.length] = new Array("0.2.3.6.5:4", "", "«enumeration» SO_RechtsstandGebietTyp", "EARoot/EA2/EA3/EA6/EA5/EA2781.htm", "5.png", "E1062", "0", "", "Class0","{C207CD71-9E7C-419f-B167-6925E7AE6A6F}");
-tocTab[tocTab.length] = new Array("0.2.3.6.5:5", "", "«CodeList» SO_SonstGebietsArt", "EARoot/EA2/EA3/EA6/EA5/EA2782.htm", "5.png", "E1065", "0", "", "Class0","{40FC2F3F-8B5A-42af-8690-F44F9FEA68DB}");
-tocTab[tocTab.length] = new Array("0.2.3.6.5:6", "", "«CodeList» SO_SonstRechtsstandGebietTyp", "EARoot/EA2/EA3/EA6/EA5/EA2783.htm", "5.png", "E1064", "0", "", "Class0","{4663C780-C5D3-4777-B2B3-7F8D469D3225}");

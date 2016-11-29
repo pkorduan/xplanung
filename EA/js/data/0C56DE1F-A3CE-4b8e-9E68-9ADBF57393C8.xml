@@ -1,3 +1,0 @@
-tocTab[tocTab.length] = new Array("0.2.3.2.11:1", "", "BP_Ver_und_Entsorgung", "EARoot/EA2/EA3/EA2/EA11/EA2318.htm", "175.png", "718", "0", "", "class diagram0","{79079E12-D784-4c8a-86AC-609821F49793}");
-tocTab[tocTab.length] = new Array("0.2.3.2.11:2", "", "«CodeList» BP_DetailZweckbestVerEntsorgung", "EARoot/EA2/EA3/EA2/EA11/EA2321.htm", "5.png", "E782", "0", "", "Class0","{7DDFD27F-342F-4130-A91C-0C7D9599688A}");
-tocTab[tocTab.length] = new Array("0.2.3.2.11:3", "", "«FeatureType» BP_VerEntsorgung", "EARoot/EA2/EA3/EA2/EA11/EA2322.htm", "5.png", "E783", "0", "", "Class0","{B9C9D798-AF74-4ec2-8F52-2392D107B1BE}");

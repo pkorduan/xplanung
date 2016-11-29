@@ -1,87 +1,87 @@
-<?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-	<xs:annotation>
-		<xs:documentation>Festsetzungen  zur Erhaltungssatzungen(§172 BauGB), Denkmalschutz-Ensembles sowie Einzelanlagen des Denkmalschutzes.</xs:documentation>
-	</xs:annotation>
-	<xs:include/>
-	<xs:include/>
-	<xs:include schemaLocation="BP__Basisobjekte.xsd"/>
-	<xs:element name="BP_DenkmalschutzEinzelanlage" type="BP_DenkmalschutzEinzelanlage"/>
-	<xs:complexType name="BP_DenkmalschutzEinzelanlage">
-		<xs:annotation>
-			<xs:documentation>Denkmalgeschützte Einzelanlage, sofern es sich um eine Festsetzung des Bebauungsplans handelt (§9 Abs. 4 BauGB - landesrechtliche Regelung).</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="BP_Geometrieobjekt">
-				<xs:sequence>
-					<xs:element name="denkmal" type="CharacterString" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Nähere Bezeichnung des Denkmals.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="BP_DenkmalschutzEnsembleFlaeche" type="BP_DenkmalschutzEnsembleFlaeche"/>
-	<xs:complexType name="BP_DenkmalschutzEnsembleFlaeche">
-		<xs:annotation>
-			<xs:documentation>Umgrenzung eines Denkmalgeschützten Ensembles, sofern es sich um eine Festsetzung des Bebauungsplans handelt (§9 Abs. 4 BauGB - landesrechtliche Regelung). Weltkulturerbe kann eigentlich nicht vorkommen.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="BP_Ueberlagerungsobjekt">
-				<xs:sequence>
-					<xs:element name="denkmal" type="CharacterString" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Nähere Bezeichnung des Denkmals.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="weltkulturerbe" type="Boolean" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Angabe, ob das Denkmal zum UNESCO Welkulturerbe gehört. Dies Attribut wird nicht benötigt, da Welterbestätten prinzipiell nur nachrichtlich übernommen werden und nicht festgesetzt werden können. In einer zukünftigen Version des Standards wird das Attribut deshalb wegfallen.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="BP_ErhaltungsBereichFlaeche" type="BP_ErhaltungsBereichFlaeche"/>
-	<xs:complexType name="BP_ErhaltungsBereichFlaeche">
-		<xs:annotation>
-			<xs:documentation>Fläche, auf denen der Rückbau, die Änderung oder die Nutzungsänderung baulichen Anlagen der Genehmigung durch die Gemeinde bedarf (§172 BauGB)</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="BP_Ueberlagerungsobjekt">
-				<xs:sequence>
-					<xs:element name="grund" type="BP_ErhaltungsGrund" minOccurs="1" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Erhaltungsgrund</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:simpleType name="BP_ErhaltungsGrund">
-		<xs:annotation>
-			<xs:documentation>Aufzählung der Gründe für eine Erhaltungssatzung</xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:&lt;undefined&gt;">
-			<xs:enumeration value="StaedtebaulicheGestalt">
-				<xs:annotation>
-					<xs:documentation>Erhaltung der städtebaulichen Eigenart des Gebiets auf Grund seiner städtebaulichen Gestalt</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Wohnbevoelkerung">
-				<xs:annotation>
-					<xs:documentation>Erhaltung der Zusammensetzung der Wohnbevölkerung</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Umstrukturierung">
-				<xs:annotation>
-					<xs:documentation>Erhaltung bei städtebaulichen Umstrukturierungen</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-		</xs:restriction>
-	</xs:simpleType>
-</xs:schema>
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="" version="" xmlns:="">
+  <annotation>
+    <documentation>Festsetzungen  zur Erhaltungssatzungen(§172 BauGB), Denkmalschutz-Ensembles sowie Einzelanlagen des Denkmalschutzes.</documentation>
+  </annotation>
+  <!--XML Schema document created by ShapeChange - http://shapechange.net/-->
+  <element name="BP_DenkmalschutzEinzelanlage" substitutionGroup=":BP_Geometrieobjekt" type=":BP_DenkmalschutzEinzelanlageType">
+    <annotation>
+      <documentation>Denkmalgeschützte Einzelanlage, sofern es sich um eine Festsetzung des Bebauungsplans handelt (§9 Abs. 4 BauGB - landesrechtliche Regelung).</documentation>
+    </annotation>
+  </element>
+  <complexType name="BP_DenkmalschutzEinzelanlageType">
+    <complexContent>
+      <extension base=":BP_GeometrieobjektType">
+        <sequence>
+          <element minOccurs="0" name="denkmal" type="string">
+            <annotation>
+              <documentation>Nähere Bezeichnung des Denkmals.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="BP_DenkmalschutzEnsembleFlaeche" substitutionGroup=":BP_Ueberlagerungsobjekt" type=":BP_DenkmalschutzEnsembleFlaecheType">
+    <annotation>
+      <documentation>Umgrenzung eines Denkmalgeschützten Ensembles, sofern es sich um eine Festsetzung des Bebauungsplans handelt (§9 Abs. 4 BauGB - landesrechtliche Regelung). Weltkulturerbe kann eigentlich nicht vorkommen.</documentation>
+    </annotation>
+  </element>
+  <complexType name="BP_DenkmalschutzEnsembleFlaecheType">
+    <complexContent>
+      <extension base=":BP_UeberlagerungsobjektType">
+        <sequence>
+          <element minOccurs="0" name="denkmal" type="string">
+            <annotation>
+              <documentation>Nähere Bezeichnung des Denkmals.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="weltkulturerbe" type="boolean">
+            <annotation>
+              <documentation>Angabe, ob das Denkmal zum UNESCO Welkulturerbe gehört. &lt;b&gt;Dies Attribut wird nicht benötigt, da Welterbestätten prinzipiell nur nachrichtlich übernommen werden und nicht festgesetzt werden können. In einer zukünftigen Version des Standards wird das Attribut deshalb wegfallen.&lt;/b&gt;</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="BP_ErhaltungsBereichFlaeche" substitutionGroup=":BP_Ueberlagerungsobjekt" type=":BP_ErhaltungsBereichFlaecheType">
+    <annotation>
+      <documentation>Fläche, auf denen der Rückbau, die Änderung oder die Nutzungsänderung baulichen Anlagen der Genehmigung durch die Gemeinde bedarf (§172 BauGB)</documentation>
+    </annotation>
+  </element>
+  <complexType name="BP_ErhaltungsBereichFlaecheType">
+    <complexContent>
+      <extension base=":BP_UeberlagerungsobjektType">
+        <sequence>
+          <element name="grund" type=":BP_ErhaltungsGrundType">
+            <annotation>
+              <documentation>Erhaltungsgrund</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <simpleType name="BP_ErhaltungsGrundType">
+    <annotation>
+      <documentation>Aufzählung der Gründe für eine Erhaltungssatzung</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1000">
+        <annotation>
+          <documentation>Erhaltung der städtebaulichen Eigenart des Gebiets auf Grund seiner städtebaulichen Gestalt</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2000">
+        <annotation>
+          <documentation>Erhaltung der Zusammensetzung der Wohnbevölkerung</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="3000">
+        <annotation>
+          <documentation>Erhaltung bei städtebaulichen Umstrukturierungen</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+</schema>

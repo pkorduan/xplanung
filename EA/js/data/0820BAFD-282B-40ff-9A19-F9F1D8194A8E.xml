@@ -1,8 +1,0 @@
-tocTab[tocTab.length] = new Array("0.1.6.13:1", "", "Context Diagram: AbstractGML", "EARoot/EA1/EA6/EA13/EA1892.htm", "175.png", "651", "0", "", "Logical diagram0","{3E278850-D436-4a95-8ECA-403F6E0390EA}");
-tocTab[tocTab.length] = new Array("0.1.6.13:2", "", "Context Diagram: AbstractObject", "EARoot/EA1/EA6/EA13/EA1894.htm", "175.png", "649", "0", "", "Logical diagram0","{951E7A86-1309-420d-B251-4AED16219FAE}");
-tocTab[tocTab.length] = new Array("0.1.6.13:3", "", "Context Diagram: AggregationType", "EARoot/EA1/EA6/EA13/EA1896.htm", "175.png", "647", "0", "", "Logical diagram0","{68B8FC6F-A87B-4db4-98C2-0697DE902C5A}");
-tocTab[tocTab.length] = new Array("0.1.6.13:4", "", "Figure D.43 ? Base types", "EARoot/EA1/EA6/EA13/EA1898.htm", "175.png", "648", "0", "", "Logical diagram0","{DB90E5ED-82BA-4550-B9EF-A4E095C71936}");
-tocTab[tocTab.length] = new Array("0.1.6.13:5", "", "Figure D.44 ? Aggregation types of collections", "EARoot/EA1/EA6/EA13/EA1900.htm", "175.png", "650", "0", "", "Logical diagram0","{E609CD01-A090-40e5-86AB-C47F930CF1FE}");
-tocTab[tocTab.length] = new Array("0.1.6.13:6", "", "«type» AbstractGML", "EARoot/EA1/EA6/EA13/EA1903.htm", "5.png", "E537", "0", "", "Class0","{4D1CBC18-3563-4359-863B-6341200C2291}");
-tocTab[tocTab.length] = new Array("0.1.6.13:7", "", "«type» AbstractObject", "EARoot/EA1/EA6/EA13/EA1904.htm", "5.png", "E539", "0", "", "Class0","{77C11C87-ECEA-4a42-99AF-177C6FE09E4F}");
-tocTab[tocTab.length] = new Array("0.1.6.13:8", "", "«enumeration» AggregationType", "EARoot/EA1/EA6/EA13/EA1905.htm", "5.png", "E538", "0", "", "Class0","{7789B619-C808-4e8c-A406-73262D586A98}");

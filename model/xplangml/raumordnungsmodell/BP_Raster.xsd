@@ -1,65 +1,64 @@
-<?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-	<xs:annotation>
-		<xs:documentation>Rasterdarstellung von Bebauungsplänen</xs:documentation>
-	</xs:annotation>
-	<xs:include/>
-	<xs:include schemaLocation="P_Raster.xsd"/>
-	<xs:element name="BP_RasterplanAenderung" type="BP_RasterplanAenderung"/>
-	<xs:complexType name="BP_RasterplanAenderung">
-		<xs:annotation>
-			<xs:documentation>Georeferenziertes Rasterbild der Änderung eines Basisplans. Die abgeleitete Klasse besitzt Datums-Attribute, die spezifisch für Bebauungspläne sind.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="XP_RasterplanAenderung">
-				<xs:sequence>
-					<xs:element name="aufstellungsbeschlussDatum" type="Date" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Datum des Aufstellungsbeschlusses</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="auslegungsStartDatum" type="Date" minOccurs="0" maxOccurs="unbounded">
-						<xs:annotation>
-							<xs:documentation>Start-Datum der öffentlichen Auslegung.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="auslegungsEndDatum" type="Date" minOccurs="0" maxOccurs="unbounded">
-						<xs:annotation>
-							<xs:documentation>End-Datum der öffentlichen Auslegung.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="traegerbeteiligungsStartDatum" type="Date" minOccurs="0" maxOccurs="unbounded">
-						<xs:annotation>
-							<xs:documentation>Start-Datum der Trägerbeteiligung.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="traegerbeteiligungsEndDatum" type="Date" minOccurs="0" maxOccurs="unbounded">
-						<xs:annotation>
-							<xs:documentation>End-Datum der Trägerbeteiligung.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="veraenderungssperreDatum" type="Date" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Datum einer Veränderungssperre</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="satzungsbeschlussDatum" type="Date" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Datum des Satzungsbeschlusses der Änderung.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="rechtsverordnungsDatum" type="Date" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Datum der Rechtsverordnung</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="inkrafttretensDatum" type="Date" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>Datum des Inkrafttretens der Änderung</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-</xs:schema>
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="" version="" xmlns:="">
+  <annotation>
+    <documentation>Rasterdarstellung von Bebauungsplänen</documentation>
+  </annotation>
+  <!--XML Schema document created by ShapeChange - http://shapechange.net/-->
+  <element name="BP_RasterplanAenderung" substitutionGroup=":XP_RasterplanAenderung" type=":BP_RasterplanAenderungType">
+    <annotation>
+      <documentation>Georeferenziertes Rasterbild der Änderung eines Basisplans. Die abgeleitete Klasse besitzt Datums-Attribute, die spezifisch für Bebauungspläne sind.</documentation>
+    </annotation>
+  </element>
+  <complexType name="BP_RasterplanAenderungType">
+    <complexContent>
+      <extension base=":XP_RasterplanAenderungType">
+        <sequence>
+          <element minOccurs="0" name="aufstellungsbeschlussDatum" type="date">
+            <annotation>
+              <documentation>Datum des Aufstellungsbeschlusses</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="auslegungsStartDatum" type="date">
+            <annotation>
+              <documentation>Start-Datum der öffentlichen Auslegung.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="auslegungsEndDatum" type="date">
+            <annotation>
+              <documentation>End-Datum der öffentlichen Auslegung.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="traegerbeteiligungsStartDatum" type="date">
+            <annotation>
+              <documentation>Start-Datum der Trägerbeteiligung.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="traegerbeteiligungsEndDatum" type="date">
+            <annotation>
+              <documentation>End-Datum der Trägerbeteiligung.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="veraenderungssperreDatum" type="date">
+            <annotation>
+              <documentation>Datum einer Veränderungssperre</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="satzungsbeschlussDatum" type="date">
+            <annotation>
+              <documentation>Datum des Satzungsbeschlusses der Änderung.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="rechtsverordnungsDatum" type="date">
+            <annotation>
+              <documentation>Datum der Rechtsverordnung</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="inkrafttretensDatum" type="date">
+            <annotation>
+              <documentation>Datum des Inkrafttretens der Änderung</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+</schema>

@@ -1,4 +1,0 @@
-tocTab[tocTab.length] = new Array("0.2.3.2.10:1", "", "BP_Umwelt", "EARoot/EA2/EA3/EA2/EA10/EA2312.htm", "175.png", "717", "0", "", "class diagram0","{EAB44C38-2B3B-4827-9F26-B147A21B4F37}");
-tocTab[tocTab.length] = new Array("0.2.3.2.10:2", "", "«FeatureType» BP_ErneuerbareEnergieFlaeche", "EARoot/EA2/EA3/EA2/EA10/EA2315.htm", "5.png", "E780", "0", "", "Class0","{B9B0DC5D-4207-4f81-9B1C-1E8B1C217477}");
-tocTab[tocTab.length] = new Array("0.2.3.2.10:3", "", "«FeatureType» BP_Immissionsschutz", "EARoot/EA2/EA3/EA2/EA10/EA2316.htm", "5.png", "E779", "0", "", "Class0","{0DA69145-D1C3-45e5-9555-DFC05E1BD521}");
-tocTab[tocTab.length] = new Array("0.2.3.2.10:4", "", "«FeatureType» BP_LuftreinhalteFlaeche", "EARoot/EA2/EA3/EA2/EA10/EA2317.htm", "5.png", "E781", "0", "", "Class0","{52938072-5E72-42d8-94BA-8D94AED9698F}");

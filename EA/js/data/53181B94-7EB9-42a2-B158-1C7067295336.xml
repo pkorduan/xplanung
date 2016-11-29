@@ -1,5 +1,0 @@
-tocTab[tocTab.length] = new Array("0.1.6.8:1", "", "Context Diagram: AbstractFeature", "EARoot/EA1/EA6/EA8/EA1844.htm", "175.png", "633", "0", "", "Logical diagram0","{7B805926-B6B3-46f4-81CD-3F3B03BB9362}");
-tocTab[tocTab.length] = new Array("0.1.6.8:2", "", "Context Diagram: EnvelopeWithTimePeriod", "EARoot/EA1/EA6/EA8/EA1846.htm", "175.png", "634", "0", "", "Logical diagram0","{5F6DD196-673E-4769-A6F4-8365DAB887F8}");
-tocTab[tocTab.length] = new Array("0.1.6.8:3", "", "Figure D.45 ? Features", "EARoot/EA1/EA6/EA8/EA1848.htm", "175.png", "635", "0", "", "Logical diagram0","{E9EACA1B-D1C9-4443-9707-98E6AC0661A7}");
-tocTab[tocTab.length] = new Array("0.1.6.8:4", "", "«FeatureType» AbstractFeature", "EARoot/EA1/EA6/EA8/EA1852.htm", "5.png", "E523", "0", "", "Class0","{9B11A782-87B3-452a-955B-D05DB25A47C4}");
-tocTab[tocTab.length] = new Array("0.1.6.8:5", "", "EnvelopeWithTimePeriod", "EARoot/EA1/EA6/EA8/EA1853.htm", "5.png", "E524", "0", "", "Class0","{2AAAF191-47A4-417d-846E-C3EBD7936F5D}");
