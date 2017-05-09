@@ -225,7 +225,7 @@ switch ($go) {
     ($angemeldet) ? show_uml() : show_login();
     break;
   case 'show_konverter':
-    ($angemeldet) ? show_konverter() : show_login();
+    show_konverter();
     break;
   default:
     ($angemeldet) ? show_home() : show_login();
@@ -247,7 +247,7 @@ function angemeldet() {
       $angemeldet = authentified($_POST['username'], $_POST['userbemerkung']);
       if ($angemeldet) {
         $_SESSION['angemeldet'] = true;
-        $_SESSION['username'] = $_POST['username'];
+        $_SESSION['login_name'] = $_POST['username'];
       }
     }
   }
